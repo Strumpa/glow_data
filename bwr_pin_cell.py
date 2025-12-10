@@ -6,6 +6,8 @@ from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
 
+
+tracking_type = "TISO" # "TSPC"
 pitch = 1.295
 # Build the cell's geometry layout by adding three circular regions
 cell = RectCell(name="Cartesian cell", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
@@ -15,7 +17,7 @@ for radius in radii:
     cell.add_circle(radius)
 # Assign the materials to each zone in the cell
 cell.set_properties(
-      {PropertyType.MATERIAL: [1, 1, 1, 1, 2, 3, 4]}
+      {PropertyType.MATERIAL: ["UOX", "UOX", "UOX", "UOX", "GAP", "CLAD", "MODERATOR"]}
 )
 # Apply the cell's sectorization
 #cell.sectorize([1, 1, 1, 1, 1, 1, 8], [0, 0, 0, 0, 0, 0, 22.5], windmill=True)
@@ -33,11 +35,28 @@ lattice.show(PropertyType.MATERIAL)
 # Update the box cell's technological geometry with the assembled one
 
 # Apply the eighth symmetry type to the cartesian lattice
-#lattice.apply_symmetry(SymmetryType.FULL)
+lattice.apply_symmetry(SymmetryType.FULL)
 # Show the resulting layout with the 'MATERIAL' colorset
 lattice.show(PropertyType.MATERIAL)
-#lattice.type_geo = 1 # 0, 1, 2 for TISO tracking, >2 for TSPC tracking
+
+
 # Perform the geometry analysis and export the TDT file of the surface
 # geometry
-analyse_and_generate_tdt(
-    [lattice], "data/bwr_cartesian_simple_cell", TdtSetup(GeometryType.SECTORIZED))
+if tracking_type == "TISO":
+      lattice.type_geo = LatticeGeometryType.ISOTROPIC
+      analyse_and_generate_tdt(
+      [lattice], "data/tdt_data/AT10_simple_cell_TISO", TdtSetup(
+                                                            geom_type=GeometryType.TECHNOLOGICAL, 
+                                                            property_type=PropertyType.MATERIAL,
+                                                            type_geo=LatticeGeometryType.ISOTROPIC,
+                                                            albedo=1.0
+                                                            ))
+elif tracking_type == "TSPC":
+     lattice.type_geo = LatticeGeometryType.RECTANGLE_SYM
+     analyse_and_generate_tdt(
+    [lattice], "data/tdt_data/AT10_simple_cell_TSPC", TdtSetup(
+                                                            geom_type=GeometryType.TECHNOLOGICAL, 
+                                                            property_type=PropertyType.MATERIAL,
+                                                            type_geo=LatticeGeometryType.RECTANGLE_SYM,
+                                                            symmetry_type=BoundaryType.AXIAL_SYMMETRY
+                                                            ))
