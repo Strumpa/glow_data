@@ -27,6 +27,7 @@ def build_subdivisions(bounding_box_length, inner_side_length, outer_side_length
     test_lattice.add_cell(central_region, ())
 
     # Corners : add overlapping cells to build bounding box.
+    
     ### Bottom left corner
     coolant_corner = RectCell(name="coolant_corner", height_x_width=(pitch,pitch), center=(pitch/2 + water_box_bottom_corner[0], pitch/2 + water_box_bottom_corner[1], 0.0))
     coolant_corner.set_properties(
@@ -51,12 +52,12 @@ def build_subdivisions(bounding_box_length, inner_side_length, outer_side_length
 
 
     # Bottom right corner
-    cooalant_corner_br = RectCell(name="coolant_corner_br", height_x_width=(pitch,pitch), center=(bounding_box_length - pitch/2 + water_box_bottom_corner[0], pitch/2 + water_box_bottom_corner[1], 0.0))
-    cooalant_corner_br.set_properties(
+    coolant_corner_br = RectCell(name="coolant_corner_br", height_x_width=(pitch,pitch), center=(bounding_box_length - pitch/2 + water_box_bottom_corner[0], pitch/2 + water_box_bottom_corner[1], 0.0))
+    coolant_corner_br.set_properties(
         {PropertyType.MATERIAL: ["COOLANT"]}
     )
-    box_elements.append(cooalant_corner_br)
-    test_lattice.add_cell(cooalant_corner_br, ())
+    box_elements.append(coolant_corner_br)
+    test_lattice.add_cell(coolant_corner_br, ())
     # box covering coolant corner
     box_corner_br = RectCell(name="box_corner_br", height_x_width=(pitch-x1, pitch-x1), center=(bounding_box_length - x1 - (pitch - x1)/2 + water_box_bottom_corner[0], x1+(pitch-x1)/2 + water_box_bottom_corner[1], 0.0))
     #  
@@ -194,7 +195,6 @@ def build_subdivisions(bounding_box_length, inner_side_length, outer_side_length
     test_lattice.add_cell(coolant_edge_rm, ())
     # box covering coolant edge
     box_edge_rm = RectCell(name="box_edge_rm", height_x_width=(pitch, pitch - x1), center=(bounding_box_length - x1 - (pitch - x1)/2 + water_box_bottom_corner[0], bounding_box_length/2 + water_box_bottom_corner[1], 0.0))
-    #  
     box_edge_rm.set_properties(
         {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
     )
@@ -212,6 +212,397 @@ def build_subdivisions(bounding_box_length, inner_side_length, outer_side_length
     #test_lattice.show(PropertyType.MATERIAL)
     return box_elements
 
+def build_subdivisions_GEO(bounding_box_length, inner_side_length, outer_side_length, number_subdivisions, translation=(0.0,0.0,0.0)):
+    box_elements = []
+    pitch = bounding_box_length / number_subdivisions
+    ## Compute sub-meshing points
+    x1 = (bounding_box_length - outer_side_length)/2
+    box_thickness = (outer_side_length - inner_side_length)/2
+    print("Moderator box thickness:", box_thickness)
+    x2 = x1 + box_thickness
+    x3 = x2 + (inner_side_length)
+    x4 = x3 + box_thickness
+    test_lattice = Lattice(name="test_lattice", center=(0.0+translation[0], 0.0+translation[1], 0.0+translation[2]))
+
+    # Corners : add overlapping cells to build bounding box.
+    ### Bottom left corner
+    coolant_corner = RectCell(name="coolant_corner", height_x_width=(x1,x1), center=(x1/2+translation[0], x1/2+translation[1], 0.0+translation[2]))
+    coolant_corner.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_corner)
+    test_lattice.add_cell(coolant_corner, ())
+    
+    
+    # Coolant vertical rectangle right of bottom left corner
+    coolant_vert_right = RectCell(name="coolant_vert_right", height_x_width=(x1, box_thickness), center=(x1+(box_thickness)/2+translation[0], x1/2+translation[1], 0.0+translation[2]))
+    coolant_vert_right.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_vert_right)
+    test_lattice.add_cell(coolant_vert_right, ())
+    # Coolant horizontal rectangle above bottom left corner
+    coolant_horiz_above = RectCell(name="coolant_horiz_above", height_x_width=(box_thickness, x1), center=(x1/2+translation[0], x1+(box_thickness)/2+translation[1], 0.0+translation[2]))
+    coolant_horiz_above.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_horiz_above)
+    test_lattice.add_cell(coolant_horiz_above, ())
+    
+    # long coolant rectangle to the right of bottom left corner
+    coolant_long_right = RectCell(name="coolant_long_right", height_x_width=(x1, pitch-x2), center=(x2 + (pitch - x2)/2+translation[0], x1/2+translation[1], 0.0+translation[2]))
+    coolant_long_right.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_right)
+    test_lattice.add_cell(coolant_long_right, ())
+    # long coolant rectangle above bottom left corner
+    coolant_long_above = RectCell(name="coolant_long_above", height_x_width=(pitch-x2, x1), center=(x1/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    coolant_long_above.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_above)
+    test_lattice.add_cell(coolant_long_above, ())
+    
+    
+    
+    # box covering coolant corner
+    box_corner = RectCell(name="box_corner", height_x_width=(box_thickness, box_thickness), center=(x1+(box_thickness)/2+translation[0], x1+(box_thickness)/2+translation[1], 0.0+translation[2]))
+    box_corner.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_corner)
+    test_lattice.add_cell(box_corner, ())
+    # rectangular box to the right of box corner
+    box_right = RectCell(name="box_right", height_x_width=(box_thickness,pitch-x2), center=(x2 + (pitch - x2)/2+translation[0], x1+box_thickness/2+translation[1], 0.0+translation[2]))
+    box_right.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_right)
+    test_lattice.add_cell(box_right, ())
+    
+    # rectangular box above coolant corner
+    box_top = RectCell(name="box_top", height_x_width=(pitch - x2, box_thickness), center=(x1 + box_thickness/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_top.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_top)
+    test_lattice.add_cell(box_top, ())
+
+    # Moderator in lower left corner
+    box_moderator = RectCell(name="box_moderator", height_x_width=(pitch - x2, pitch - x2), center=(x2 + (pitch - x2)/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator)
+    test_lattice.add_cell(box_moderator, ())
+
+
+    # Bottom right corner
+    coolant_corner_br = RectCell(name="coolant_corner_br", height_x_width=(x1,x1), center=(bounding_box_length - (x1)/2+translation[0], (x1)/2+translation[1], 0.0+translation[2]))
+    coolant_corner_br.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_corner_br)
+    test_lattice.add_cell(coolant_corner_br, ())
+    # little rectangle left of bottom right corner
+    coolant_vert_left_br = RectCell(name="coolant_vert_left_br", height_x_width=(x1, box_thickness), center=(bounding_box_length - x1 - (box_thickness)/2+translation[0], x1/2+translation[1], 0.0+translation[2]))
+    coolant_vert_left_br.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_vert_left_br)
+    test_lattice.add_cell(coolant_vert_left_br, ())
+    # little rectangle above bottom right corner
+    coolant_horiz_above_br = RectCell(name="coolant_horiz_above_br", height_x_width=(box_thickness,x1), center=(bounding_box_length - x1/2+translation[0], x1 + (box_thickness)/2+translation[1], 0.0+translation[2]))
+    coolant_horiz_above_br.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_horiz_above_br)
+    test_lattice.add_cell(coolant_horiz_above_br, ())
+    # long rectangle to the left of bottom right corner
+    coolant_long_left_br = RectCell(name="coolant_long_left_br", height_x_width=(x1, pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], x1/2+translation[1], 0.0+translation[2]))
+    coolant_long_left_br.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_left_br)
+    test_lattice.add_cell(coolant_long_left_br, ())
+    # long rectangle above bottom right corner
+    coolant_long_above_br = RectCell(name="coolant_long_above_br", height_x_width=(pitch - x2, x1), center=(bounding_box_length - x1/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    coolant_long_above_br.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_above_br)
+    test_lattice.add_cell(coolant_long_above_br, ())
+
+    # box corner on bottom right
+    box_corner_br = RectCell(name="box_corner_br", height_x_width=(box_thickness, box_thickness), center=(bounding_box_length - x1 - (box_thickness)/2+translation[0], x1+(box_thickness)/2+translation[1], 0.0+translation[2]))
+    #  
+    box_corner_br.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_corner_br)
+    test_lattice.add_cell(box_corner_br, ())
+    # rectangular box left of box corner
+    box_left_br = RectCell(name="box_left_br", height_x_width=(box_thickness,pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], x1 + box_thickness/2+translation[1], 0.0+translation[2]))
+    box_left_br.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_left_br)
+    test_lattice.add_cell(box_left_br, ())
+    # rectangular box above box corner
+    box_top_br = RectCell(name="box_top_br", height_x_width=(pitch - x2, box_thickness), center=(bounding_box_length - box_thickness/2-x1+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_top_br.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_top_br)
+    test_lattice.add_cell(box_top_br, ())
+    
+    # Moderator region in bottom right corner
+    box_moderator_br = RectCell(name="box_moderator_br", height_x_width=(pitch - x2, pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator_br.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_br)
+    test_lattice.add_cell(box_moderator_br, ())
+    
+
+    ### Top left corner
+    coolant_corner_tl = RectCell(name="coolant_corner_tl", height_x_width=(x1,x1), center=(x1/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_corner_tl.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_corner_tl)
+    test_lattice.add_cell(coolant_corner_tl, ())
+    # little rectangle right of top left corner
+    coolant_vert_right_tl = RectCell(name="coolant_vert_right_tl", height_x_width=(x1, box_thickness), center=(x1 + (box_thickness)/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_vert_right_tl.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_vert_right_tl)
+    test_lattice.add_cell(coolant_vert_right_tl, ())
+    # little rectangle below top left corner
+    coolant_horiz_below_tl = RectCell(name="coolant_horiz_below_tl", height_x_width=(box_thickness,x1), center=(x1/2+translation[0], bounding_box_length - x1 - (box_thickness)/2+translation[1], 0.0+translation[2]))
+    coolant_horiz_below_tl.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_horiz_below_tl)
+    test_lattice.add_cell(coolant_horiz_below_tl, ())
+    # long rectangle to the right of top left corner
+    coolant_long_right_tl = RectCell(name="coolant_long_right_tl", height_x_width=(x1, pitch - x2), center=(x2 + (pitch - x2)/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_long_right_tl.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_right_tl)
+    test_lattice.add_cell(coolant_long_right_tl, ())
+    # long rectangle below top left corner
+    coolant_long_below_tl = RectCell(name="coolant_long_below_tl", height_x_width=(pitch - x2, x1), center=(x1/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    coolant_long_below_tl.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_below_tl)
+    test_lattice.add_cell(coolant_long_below_tl, ())
+    
+    # box covering coolant corner
+    box_corner_tl = RectCell(name="box_corner_tl", height_x_width=(box_thickness, box_thickness), center=(x1+(box_thickness)/2+translation[0], bounding_box_length - x1 - (box_thickness)/2+translation[1], 0.0+translation[2]))
+    box_corner_tl.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_corner_tl)
+    test_lattice.add_cell(box_corner_tl, ())
+    # rectangular box to the right of box corner
+    box_right_tl = RectCell(name="box_right_tl", height_x_width=(box_thickness,pitch - x2), center=(x2 + (pitch - x2)/2+translation[0], bounding_box_length - x1 - box_thickness/2+translation[1], 0.0+translation[2]))
+    box_right_tl.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_right_tl)
+    test_lattice.add_cell(box_right_tl, ())
+    # rectangular box below box corner
+    box_bottom_tl = RectCell(name="box_bottom_tl", height_x_width=(pitch - x2, box_thickness), center=(x1 + box_thickness/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_bottom_tl.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_bottom_tl)
+    test_lattice.add_cell(box_bottom_tl, ())
+    
+    # Moderator box covering BOX region
+    box_moderator_tl = RectCell(name="box_moderator_tl", height_x_width=(pitch - x2, pitch - x2), center=(x2 + (pitch - x2)/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator_tl.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_tl)
+    test_lattice.add_cell(box_moderator_tl, ())
+
+    ### Top right corner
+    coolant_corner_tr = RectCell(name="coolant_corner_tr", height_x_width=(x1,x1), center=(bounding_box_length - x1/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_corner_tr.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_corner_tr)
+    test_lattice.add_cell(coolant_corner_tr, ())
+    # little rectangle left of top right corner
+    coolant_vert_left_tr = RectCell(name="coolant_vert_left_tr", height_x_width=(x1, box_thickness), center=(bounding_box_length - x1 - (box_thickness)/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_vert_left_tr.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_vert_left_tr)
+    test_lattice.add_cell(coolant_vert_left_tr, ())
+    # little rectangle below top right corner
+    coolant_horiz_below_tr = RectCell(name="coolant_horiz_below_tr", height_x_width=(box_thickness,x1), center=(bounding_box_length - x1/2+translation[0], bounding_box_length - x1 - (box_thickness)/2+translation[1], 0.0+translation[2]))
+    coolant_horiz_below_tr.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_horiz_below_tr)
+    test_lattice.add_cell(coolant_horiz_below_tr, ())
+    # long rectangle to the left of top right corner
+    coolant_long_left_tr = RectCell(name="coolant_long_left_tr", height_x_width=(x1, pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], bounding_box_length - x1/2+translation[1], 0.0+translation[2]))
+    coolant_long_left_tr.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_left_tr)
+    test_lattice.add_cell(coolant_long_left_tr, ())
+    # long rectangle below top right corner
+    coolant_long_below_tr = RectCell(name="coolant_long_below_tr", height_x_width=(pitch - x2, x1), center=(bounding_box_length - x1/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    coolant_long_below_tr.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_long_below_tr)
+    test_lattice.add_cell(coolant_long_below_tr, ())
+    
+    # box covering coolant corner
+    box_corner_tr = RectCell(name="box_corner_tr", height_x_width=(box_thickness, box_thickness), center=(bounding_box_length - x1 - (box_thickness)/2+translation[0], bounding_box_length - x1 - (box_thickness)/2+translation[1], 0.0+translation[2]))
+    #  
+    box_corner_tr.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_corner_tr)
+    test_lattice.add_cell(box_corner_tr, ())
+    # rectangular box left of box corner
+    box_left_tr = RectCell(name="box_left_tr", height_x_width=(box_thickness,pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], bounding_box_length - x1 - box_thickness/2+translation[1], 0.0+translation[2]))
+    box_left_tr.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_left_tr)
+    test_lattice.add_cell(box_left_tr, ())
+    # rectangular box below box corner
+    box_bottom_tr = RectCell(name="box_bottom_tr", height_x_width=(pitch - x2, box_thickness), center=(bounding_box_length - box_thickness/2 - x1+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_bottom_tr.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_bottom_tr)
+    test_lattice.add_cell(box_bottom_tr, ())
+    
+    # Moderator in top right corner
+    box_moderator_tr = RectCell(name="box_moderator_tr", height_x_width=(pitch - x2, pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator_tr.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_tr)
+    test_lattice.add_cell(box_moderator_tr, ())
+
+
+
+    ### Bottom middle edge
+    coolant_edge_bm = RectCell(name="coolant_edge_bm", height_x_width=(pitch, pitch), center=(bounding_box_length/2+translation[0], pitch/2+translation[1], 0.0+translation[2]))
+    coolant_edge_bm.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_edge_bm)
+    test_lattice.add_cell(coolant_edge_bm, ())
+    # box covering coolant edge
+    box_edge_bm = RectCell(name="box_edge_bm", height_x_width=(pitch - x1, pitch), center=(bounding_box_length/2+translation[0], x1 + (pitch - x1)/2+translation[1], 0.0+translation[2]))
+    box_edge_bm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_edge_bm)
+    test_lattice.add_cell(box_edge_bm, ())
+    # Moderator box covering BOX region
+    box_moderator_bm = RectCell(name="box_moderator_bm", height_x_width=(pitch - x2, pitch), center=(bounding_box_length/2+translation[0], x2 + (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator_bm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_bm)
+    test_lattice.add_cell(box_moderator_bm, ())
+
+    ### Top middle edge
+    coolant_edge_tm = RectCell(name="coolant_edge_tm", height_x_width=(pitch, pitch), center=(bounding_box_length/2+translation[0], bounding_box_length - pitch/2+translation[1], 0.0+translation[2]))
+    coolant_edge_tm.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_edge_tm)
+    test_lattice.add_cell(coolant_edge_tm, ())
+    # box covering coolant edge
+    box_edge_tm = RectCell(name="box_edge_tm", height_x_width=(pitch - x1, pitch), center=(bounding_box_length/2+translation[0], bounding_box_length - x1 - (pitch - x1)/2+translation[1], 0.0+translation[2]))
+    box_edge_tm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_edge_tm)
+    test_lattice.add_cell(box_edge_tm, ())
+    # Moderator box covering BOX region
+    box_moderator_tm = RectCell(name="box_moderator_tm", height_x_width=(pitch - x2, pitch), center=(bounding_box_length/2+translation[0], bounding_box_length - x2 - (pitch - x2)/2+translation[1], 0.0+translation[2]))
+    box_moderator_tm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_tm)
+    test_lattice.add_cell(box_moderator_tm, ())
+    
+    ### Left middle edge
+    coolant_edge_lm = RectCell(name="coolant_edge_lm", height_x_width=(pitch, pitch), center=(pitch/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    coolant_edge_lm.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_edge_lm)
+    test_lattice.add_cell(coolant_edge_lm, ())
+    # box covering coolant edge
+    box_edge_lm = RectCell(name="box_edge_lm", height_x_width=(pitch, pitch - x1), center=(x1 + (pitch - x1)/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    box_edge_lm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_edge_lm)
+    test_lattice.add_cell(box_edge_lm, ())
+    # Moderator box covering BOX region
+    box_moderator_lm = RectCell(name="box_moderator_lm", height_x_width=(pitch, pitch - x2), center=(x2 + (pitch - x2)/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    box_moderator_lm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_lm)
+    test_lattice.add_cell(box_moderator_lm, ())
+
+
+    ### Right middle edge
+    coolant_edge_rm = RectCell(name="coolant_edge_rm", height_x_width=(pitch, pitch), center=(bounding_box_length - pitch/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    coolant_edge_rm.set_properties(
+        {PropertyType.MATERIAL: ["COOLANT"]}
+    )
+    box_elements.append(coolant_edge_rm)
+    test_lattice.add_cell(coolant_edge_rm, ())
+    # box covering coolant edge
+    box_edge_rm = RectCell(name="box_edge_rm", height_x_width=(pitch, pitch - x1), center=(bounding_box_length - x1 - (pitch - x1)/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    #  
+    box_edge_rm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR_BOX"]}
+    )
+    box_elements.append(box_edge_rm)
+    test_lattice.add_cell(box_edge_rm, ())
+    # Moderator box covering BOX region
+    box_moderator_rm = RectCell(name="box_moderator_rm", height_x_width=(pitch, pitch - x2), center=(bounding_box_length - x2 - (pitch - x2)/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    box_moderator_rm.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(box_moderator_rm)
+    test_lattice.add_cell(box_moderator_rm, ())
+
+    # Central region : 
+    central_region = RectCell(name="central_region", height_x_width=(pitch, pitch), center=(bounding_box_length/2+translation[0], bounding_box_length/2+translation[1], 0.0+translation[2]))
+    central_region.set_properties(
+        {PropertyType.MATERIAL: ["MODERATOR"]}
+    )
+    box_elements.append(central_region)
+    test_lattice.add_cell(central_region, ())
+
+    #test_lattice.show(PropertyType.MATERIAL)
+    
+    return box_elements
+
 tracking_type = "TSPC" # "TSPC"
 
 pitch = 1.295
@@ -220,9 +611,10 @@ channel_box_outer_side, channel_box_inner_side, channel_box_thickness = 13.74, 1
 moder_box_outer_side, moder_box_inner_side, moder_box_thickness = 3.5, 3.34, 0.08 # Moderating box outer, inner sides and thickness
 intra_assembly_water_gap_width = (channel_box_inner_side - 10*pitch)/2 # Intra-assembly water gap thickness
 number_subdivisions = 3
-water_box_bottom_corner = (4*pitch, 4*pitch, 0.0)
-print("Water box bottom corner:", water_box_bottom_corner)
 
+pincell_translation = water_gap_width+channel_box_thickness+intra_assembly_water_gap_width
+water_box_bottom_corner = (4*pitch+pincell_translation, 4*pitch+pincell_translation, 0.0)
+print("Water box bottom corner:", water_box_bottom_corner)
 
 # Build the cell1's geometry layout by adding three circular regions
 cell1 = RectCell(name="C1", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
@@ -282,7 +674,7 @@ cell8.set_properties(
 # LATTICE CONSTRUCTION
 # --------------------
 # Build the lattice with several rings of the same cartesian cell1
-lattice = Lattice([cell1], 'ATRIUM-10 Lattice', center=(0.0, 0.0, 0.0))
+lattice = Lattice(name='ATRIUM-10 Lattice with moderator box', center=(0.0, 0.0, 0.0))
 #lattice.add_rings_of_cells(cell1, 1)
 """
     C1 C2 C3 C5 C6 C5 C4 C3 C2 C1
@@ -296,115 +688,110 @@ lattice = Lattice([cell1], 'ATRIUM-10 Lattice', center=(0.0, 0.0, 0.0))
     C2 C4 C7 C5 C6 C7 C4 C8 C4 C2
     C1 C2 C3 C4 C4 C4 C4 C3 C2 C1
 """
-# First row
-lattice.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell5, ((7/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((9/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell5, ((11/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((13/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((15/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell2, ((17/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell1, ((19/2)*pitch, (1/2)*pitch, 0.0))
+lattice.add_cell(cell1, ((1/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((3/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((5/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell5, ((7/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((9/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell5, ((11/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((13/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((15/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((17/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell1, ((19/2)*pitch+pincell_translation, (1/2)*pitch+pincell_translation, 0.0))
 # Second row
-lattice.add_cell(cell2, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((5/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((9/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((11/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((13/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((15/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((17/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell2, ((19/2)*pitch, (3/2)*pitch, 0.0))
-
+lattice.add_cell(cell2, ((1/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((3/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((5/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((9/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((11/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((13/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((15/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((17/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((19/2)*pitch+pincell_translation, (3/2)*pitch+pincell_translation, 0.0))
 # Third row
-lattice.add_cell(cell3, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((9/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((11/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((13/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((15/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((17/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((19/2)*pitch, (5/2)*pitch, 0.0))
-
+lattice.add_cell(cell3, ((1/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((3/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((5/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((9/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((11/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((13/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((15/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((17/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((19/2)*pitch+pincell_translation, (5/2)*pitch+pincell_translation, 0.0))
 # Fourth row
-lattice.add_cell(cell5, ((1/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((3/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((9/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((11/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((13/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((15/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell5, ((17/2)*pitch, (7/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((19/2)*pitch, (7/2)*pitch, 0.0))
-
+lattice.add_cell(cell5, ((1/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((3/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((5/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((9/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((11/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((13/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((15/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell5, ((17/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((19/2)*pitch+pincell_translation, (7/2)*pitch+pincell_translation, 0.0))
 # Fifth row
-lattice.add_cell(cell6, ((1/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((3/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((15/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((17/2)*pitch, (9/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((19/2)*pitch, (9/2)*pitch, 0.0))
+lattice.add_cell(cell6, ((1/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((3/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((5/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((15/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((17/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((19/2)*pitch+pincell_translation, (9/2)*pitch+pincell_translation, 0.0))
 # Sixth row
-lattice.add_cell(cell5, ((1/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((3/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((5/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((15/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((17/2)*pitch, (11/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((19/2)*pitch, (11/2)*pitch, 0.0))
-
+lattice.add_cell(cell5, ((1/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((3/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((5/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((15/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((17/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((19/2)*pitch+pincell_translation, (11/2)*pitch+pincell_translation, 0.0))
 # Seventh row
-lattice.add_cell(cell4, ((1/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((3/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((7/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((15/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((17/2)*pitch, (13/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((19/2)*pitch, (13/2)*pitch, 0.0))
+lattice.add_cell(cell4, ((1/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((3/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((5/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((7/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((15/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((17/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((19/2)*pitch+pincell_translation, (13/2)*pitch+pincell_translation, 0.0))
 
 # Eighth row
-lattice.add_cell(cell3, ((1/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((3/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((7/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((9/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((11/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((13/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((15/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell8, ((17/2)*pitch, (15/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((19/2)*pitch, (15/2)*pitch, 0.0))
-
+lattice.add_cell(cell3, ((1/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((3/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((5/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((7/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((9/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((11/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((13/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((15/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell8, ((17/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((19/2)*pitch+pincell_translation, (15/2)*pitch+pincell_translation, 0.0))
 # Ninth row
-lattice.add_cell(cell2, ((1/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((3/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((5/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell5, ((7/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((9/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell7, ((11/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((13/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell8, ((15/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((17/2)*pitch, (17/2)*pitch, 0.0))
-lattice.add_cell(cell2, ((19/2)*pitch, (17/2)*pitch, 0.0))
+lattice.add_cell(cell2, ((1/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((3/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((5/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell5, ((7/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell6, ((9/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell7, ((11/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((13/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell8, ((15/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((17/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((19/2)*pitch+pincell_translation, (17/2)*pitch+pincell_translation, 0.0))
 
 # Tenth row
-lattice.add_cell(cell1, ((1/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell2, ((3/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((5/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((7/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((9/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((11/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell4, ((13/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((15/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell2, ((17/2)*pitch, (19/2)*pitch, 0.0))
-lattice.add_cell(cell1, ((19/2)*pitch, (19/2)*pitch, 0.0))
+lattice.add_cell(cell1, ((1/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((3/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((5/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((7/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((9/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((11/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell4, ((13/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell3, ((15/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell2, ((17/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
+lattice.add_cell(cell1, ((19/2)*pitch+pincell_translation, (19/2)*pitch+pincell_translation, 0.0))
 
-box_elements = build_subdivisions(number_subdivisions*pitch, moder_box_inner_side, moder_box_outer_side, number_subdivisions, water_box_bottom_corner)
+box_elements = build_subdivisions_GEO(number_subdivisions*pitch, moder_box_inner_side, moder_box_outer_side, number_subdivisions, water_box_bottom_corner)
 for element in box_elements:
     lattice.add_cell(element, ())
 
@@ -429,7 +816,11 @@ if tracking_type == "TISO":
 elif tracking_type == "TSPC":
     lattice.type_geo = LatticeGeometryType.RECTANGLE_SYM
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/AT10_lattice_MODEBOX_TSPC", TdtSetup(GeometryType.SECTORIZED, 
-                                                            property_type=PropertyType.MATERIAL,
-                                                            type_geo=LatticeGeometryType.RECTANGLE_SYM,
-                                                            symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+    [lattice], 
+    "data/tdt_data/AT10_lattice_MODEBOX_TSPC", 
+    TdtSetup(GeometryType.SECTORIZED, 
+            property_type=PropertyType.MATERIAL,
+            type_geo=LatticeGeometryType.RECTANGLE_SYM,
+            symmetry_type=BoundaryType.AXIAL_SYMMETRY),
+    #compound_to_export=make_partition([r.face for r in lattice.regions], [], ShapeType.COMPOUND)
+)
