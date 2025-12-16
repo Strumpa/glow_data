@@ -7,7 +7,7 @@ from glow.interface.geom_interface import *
 from glow.support.types import *
 
 
-tracking_type = "TSPC" # "TSPC"
+tracking_type = "TISO" # "TSPC"
 pitch = 1.295
 # Build the cell1's geometry layout by adding three circular regions
 cell1 = RectCell(name="C1", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
