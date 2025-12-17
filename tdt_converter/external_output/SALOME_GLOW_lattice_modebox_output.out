@@ -1,0 +1,1859 @@
+exec(compile(open('/home/user/data/glow_data/AT10_LATTICE_WITH_MODEBOX.py', 'rb').read(), '/home/user/data/glow_data/AT10_LATTICE_WITH_MODEBOX.py', 'exec'))
+Water box bottom corner: (6.325, 6.325, 0.0)
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position (1.7925000000000004, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 1
+Number of lattice rings is 1
+Adding the cell to position (3.0875000000000004, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 2
+Number of lattice rings is 2
+Adding the cell to position (4.3825, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 3
+Number of lattice rings is 3
+Adding the cell to position (5.6775, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 4
+Number of lattice rings is 4
+Adding the cell to position (6.9725, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 5
+Number of lattice rings is 5
+Adding the cell to position (8.2675, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 6
+Number of lattice rings is 6
+Adding the cell to position (9.5625, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 7
+Number of lattice rings is 7
+Adding the cell to position (10.857499999999998, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 8
+Number of lattice rings is 8
+Adding the cell to position (12.1525, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 9
+Number of lattice rings is 9
+Adding the cell to position (13.447499999999998, 1.7925000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 10
+Number of lattice rings is 10
+Adding the cell to position (1.7925000000000004, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 11
+Number of lattice rings is 10
+Adding the cell to position (3.0875000000000004, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 12
+Number of lattice rings is 10
+Adding the cell to position (4.3825, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 13
+Number of lattice rings is 10
+Adding the cell to position (5.6775, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 14
+Number of lattice rings is 10
+Adding the cell to position (6.9725, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 15
+Number of lattice rings is 10
+Adding the cell to position (8.2675, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 16
+Number of lattice rings is 10
+Adding the cell to position (9.5625, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 17
+Number of lattice rings is 10
+Adding the cell to position (10.857499999999998, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 18
+Number of lattice rings is 10
+Adding the cell to position (12.1525, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 19
+Number of lattice rings is 10
+Adding the cell to position (13.447499999999998, 3.0875000000000004, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 20
+Number of lattice rings is 11
+Adding the cell to position (1.7925000000000004, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 21
+Number of lattice rings is 11
+Adding the cell to position (3.0875000000000004, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 22
+Number of lattice rings is 11
+Adding the cell to position (4.3825, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 23
+Number of lattice rings is 11
+Adding the cell to position (5.6775, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 24
+Number of lattice rings is 11
+Adding the cell to position (6.9725, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 25
+Number of lattice rings is 11
+Adding the cell to position (8.2675, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 26
+Number of lattice rings is 11
+Adding the cell to position (9.5625, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 27
+Number of lattice rings is 11
+Adding the cell to position (10.857499999999998, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 28
+Number of lattice rings is 11
+Adding the cell to position (12.1525, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 29
+Number of lattice rings is 11
+Adding the cell to position (13.447499999999998, 4.3825, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 30
+Number of lattice rings is 12
+Adding the cell to position (1.7925000000000004, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 31
+Number of lattice rings is 12
+Adding the cell to position (3.0875000000000004, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 32
+Number of lattice rings is 12
+Adding the cell to position (4.3825, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 33
+Number of lattice rings is 12
+Adding the cell to position (5.6775, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 34
+Number of lattice rings is 12
+Adding the cell to position (6.9725, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 35
+Number of lattice rings is 12
+Adding the cell to position (8.2675, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 36
+Number of lattice rings is 12
+Adding the cell to position (9.5625, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 37
+Number of lattice rings is 12
+Adding the cell to position (10.857499999999998, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 38
+Number of lattice rings is 12
+Adding the cell to position (12.1525, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 39
+Number of lattice rings is 12
+Adding the cell to position (13.447499999999998, 5.6775, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 40
+Number of lattice rings is 13
+Adding the cell to position (1.7925000000000004, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 41
+Number of lattice rings is 13
+Adding the cell to position (3.0875000000000004, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 42
+Number of lattice rings is 13
+Adding the cell to position (4.3825, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 43
+Number of lattice rings is 13
+Adding the cell to position (5.6775, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 44
+Number of lattice rings is 13
+Adding the cell to position (10.857499999999998, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 45
+Number of lattice rings is 13
+Adding the cell to position (12.1525, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 46
+Number of lattice rings is 13
+Adding the cell to position (13.447499999999998, 6.9725, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 47
+Number of lattice rings is 14
+Adding the cell to position (1.7925000000000004, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 48
+Number of lattice rings is 14
+Adding the cell to position (3.0875000000000004, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 49
+Number of lattice rings is 14
+Adding the cell to position (4.3825, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 50
+Number of lattice rings is 14
+Adding the cell to position (5.6775, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 51
+Number of lattice rings is 14
+Adding the cell to position (10.857499999999998, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 52
+Number of lattice rings is 14
+Adding the cell to position (12.1525, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 53
+Number of lattice rings is 14
+Adding the cell to position (13.447499999999998, 8.2675, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 54
+Number of lattice rings is 15
+Adding the cell to position (1.7925000000000004, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 55
+Number of lattice rings is 15
+Adding the cell to position (3.0875000000000004, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 56
+Number of lattice rings is 15
+Adding the cell to position (4.3825, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 57
+Number of lattice rings is 15
+Adding the cell to position (5.6775, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 58
+Number of lattice rings is 15
+Adding the cell to position (10.857499999999998, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 59
+Number of lattice rings is 15
+Adding the cell to position (12.1525, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 60
+Number of lattice rings is 15
+Adding the cell to position (13.447499999999998, 9.5625, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 61
+Number of lattice rings is 16
+Adding the cell to position (1.7925000000000004, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 62
+Number of lattice rings is 16
+Adding the cell to position (3.0875000000000004, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 63
+Number of lattice rings is 16
+Adding the cell to position (4.3825, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 64
+Number of lattice rings is 16
+Adding the cell to position (5.6775, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 65
+Number of lattice rings is 16
+Adding the cell to position (6.9725, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 66
+Number of lattice rings is 16
+Adding the cell to position (8.2675, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 67
+Number of lattice rings is 16
+Adding the cell to position (9.5625, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 68
+Number of lattice rings is 16
+Adding the cell to position (10.857499999999998, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 69
+Number of lattice rings is 16
+Adding the cell to position (12.1525, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 70
+Number of lattice rings is 16
+Adding the cell to position (13.447499999999998, 10.857499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 71
+Number of lattice rings is 17
+Adding the cell to position (1.7925000000000004, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 72
+Number of lattice rings is 17
+Adding the cell to position (3.0875000000000004, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 73
+Number of lattice rings is 17
+Adding the cell to position (4.3825, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 74
+Number of lattice rings is 17
+Adding the cell to position (5.6775, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 75
+Number of lattice rings is 17
+Adding the cell to position (6.9725, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 76
+Number of lattice rings is 17
+Adding the cell to position (8.2675, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 77
+Number of lattice rings is 17
+Adding the cell to position (9.5625, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 78
+Number of lattice rings is 17
+Adding the cell to position (10.857499999999998, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 79
+Number of lattice rings is 17
+Adding the cell to position (12.1525, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 80
+Number of lattice rings is 17
+Adding the cell to position (13.447499999999998, 12.1525, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 81
+Number of lattice rings is 18
+Adding the cell to position (1.7925000000000004, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 82
+Number of lattice rings is 18
+Adding the cell to position (3.0875000000000004, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 83
+Number of lattice rings is 18
+Adding the cell to position (4.3825, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 84
+Number of lattice rings is 18
+Adding the cell to position (5.6775, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 85
+Number of lattice rings is 18
+Adding the cell to position (6.9725, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 86
+Number of lattice rings is 18
+Adding the cell to position (8.2675, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 87
+Number of lattice rings is 18
+Adding the cell to position (9.5625, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 88
+Number of lattice rings is 18
+Adding the cell to position (10.857499999999998, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 89
+Number of lattice rings is 18
+Adding the cell to position (12.1525, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 90
+Number of lattice rings is 18
+Adding the cell to position (13.447499999999998, 13.447499999999998, 0.0)
+The type of cells is CellType.RECT
+Number of lattice cells is 91
+Number of lattice rings is 19
+Moderator box thickness: 0.08000000000000007
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 1
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 2
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 3
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 4
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 5
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 6
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 7
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 8
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 9
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 10
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 11
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 12
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 13
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 14
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 15
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 16
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 17
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 18
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 19
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 20
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 21
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 22
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 23
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 24
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 25
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 26
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 27
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 28
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 29
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 30
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 31
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 32
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 33
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 34
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 35
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 36
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 37
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 38
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 39
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 40
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 41
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 42
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 43
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 44
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 45
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 46
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 47
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 48
+Number of lattice rings is 0
+VALID_SECTOR_NO_VS_ANGLE =  {1: [0], 4: [0, 45], 8: [0, 22.5], 16: [0]}
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 49
+Number of lattice rings is 0
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 92
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 93
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 94
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 95
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 96
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 97
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 98
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 99
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 100
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 101
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 102
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 103
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 104
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 105
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 106
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 107
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 108
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 109
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 110
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 111
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 112
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 113
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 114
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 115
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 116
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 117
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 118
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 119
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 120
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 121
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 122
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 123
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 124
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 125
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 126
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 127
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 128
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 129
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 130
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 131
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 132
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 133
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 134
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 135
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 136
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 137
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 138
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 139
+Number of lattice rings is 19
+Adding the cell to position ()
+The type of cells is CellType.RECT
+Number of lattice cells is 140
+Number of lattice rings is 19
+The type of cells is CellType.RECT
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+The current layer overlaps the inferior one.
+Updating cell #0 face ...
+No. cell regions in lattice: 718
+Total no. regions in lattice: 718
+Total no. subfaces in lattice: 718
+No. cell regions in lattice: 718
+Total no. regions in lattice: 718
+Total no. subfaces in lattice: 718
+The Cell_140 cell has not been sectorized: the non sectorized face will be used.
+The Cell_139 cell has not been sectorized: the non sectorized face will be used.
+The Cell_138 cell has not been sectorized: the non sectorized face will be used.
+The Cell_137 cell has not been sectorized: the non sectorized face will be used.
+The Cell_136 cell has not been sectorized: the non sectorized face will be used.
+The Cell_135 cell has not been sectorized: the non sectorized face will be used.
+The Cell_134 cell has not been sectorized: the non sectorized face will be used.
+The Cell_133 cell has not been sectorized: the non sectorized face will be used.
+The Cell_132 cell has not been sectorized: the non sectorized face will be used.
+The Cell_131 cell has not been sectorized: the non sectorized face will be used.
+The Cell_130 cell has not been sectorized: the non sectorized face will be used.
+The Cell_129 cell has not been sectorized: the non sectorized face will be used.
+The Cell_128 cell has not been sectorized: the non sectorized face will be used.
+The Cell_127 cell has not been sectorized: the non sectorized face will be used.
+The Cell_126 cell has not been sectorized: the non sectorized face will be used.
+The Cell_125 cell has not been sectorized: the non sectorized face will be used.
+The Cell_124 cell has not been sectorized: the non sectorized face will be used.
+The Cell_123 cell has not been sectorized: the non sectorized face will be used.
+The Cell_122 cell has not been sectorized: the non sectorized face will be used.
+The Cell_121 cell has not been sectorized: the non sectorized face will be used.
+The Cell_120 cell has not been sectorized: the non sectorized face will be used.
+The Cell_119 cell has not been sectorized: the non sectorized face will be used.
+The Cell_118 cell has not been sectorized: the non sectorized face will be used.
+The Cell_117 cell has not been sectorized: the non sectorized face will be used.
+The Cell_116 cell has not been sectorized: the non sectorized face will be used.
+The Cell_115 cell has not been sectorized: the non sectorized face will be used.
+The Cell_114 cell has not been sectorized: the non sectorized face will be used.
+The Cell_113 cell has not been sectorized: the non sectorized face will be used.
+The Cell_112 cell has not been sectorized: the non sectorized face will be used.
+The Cell_111 cell has not been sectorized: the non sectorized face will be used.
+The Cell_110 cell has not been sectorized: the non sectorized face will be used.
+The Cell_109 cell has not been sectorized: the non sectorized face will be used.
+The Cell_108 cell has not been sectorized: the non sectorized face will be used.
+The Cell_107 cell has not been sectorized: the non sectorized face will be used.
+The Cell_106 cell has not been sectorized: the non sectorized face will be used.
+The Cell_105 cell has not been sectorized: the non sectorized face will be used.
+The Cell_104 cell has not been sectorized: the non sectorized face will be used.
+The Cell_103 cell has not been sectorized: the non sectorized face will be used.
+The Cell_102 cell has not been sectorized: the non sectorized face will be used.
+The Cell_101 cell has not been sectorized: the non sectorized face will be used.
+The Cell_100 cell has not been sectorized: the non sectorized face will be used.
+The Cell_99 cell has not been sectorized: the non sectorized face will be used.
+The Cell_98 cell has not been sectorized: the non sectorized face will be used.
+The Cell_97 cell has not been sectorized: the non sectorized face will be used.
+The Cell_96 cell has not been sectorized: the non sectorized face will be used.
+The Cell_95 cell has not been sectorized: the non sectorized face will be used.
+The Cell_94 cell has not been sectorized: the non sectorized face will be used.
+The Cell_93 cell has not been sectorized: the non sectorized face will be used.
+The Cell_92 cell has not been sectorized: the non sectorized face will be used.
+The Cell_91 cell has not been sectorized: the non sectorized face will be used.
+The Cell_90 cell has not been sectorized: the non sectorized face will be used.
+The Cell_89 cell has not been sectorized: the non sectorized face will be used.
+The Cell_88 cell has not been sectorized: the non sectorized face will be used.
+The Cell_87 cell has not been sectorized: the non sectorized face will be used.
+The Cell_86 cell has not been sectorized: the non sectorized face will be used.
+The Cell_85 cell has not been sectorized: the non sectorized face will be used.
+The Cell_84 cell has not been sectorized: the non sectorized face will be used.
+The Cell_83 cell has not been sectorized: the non sectorized face will be used.
+The Cell_82 cell has not been sectorized: the non sectorized face will be used.
+The Cell_81 cell has not been sectorized: the non sectorized face will be used.
+The Cell_80 cell has not been sectorized: the non sectorized face will be used.
+The Cell_79 cell has not been sectorized: the non sectorized face will be used.
+The Cell_78 cell has not been sectorized: the non sectorized face will be used.
+The Cell_77 cell has not been sectorized: the non sectorized face will be used.
+The Cell_76 cell has not been sectorized: the non sectorized face will be used.
+The Cell_75 cell has not been sectorized: the non sectorized face will be used.
+The Cell_74 cell has not been sectorized: the non sectorized face will be used.
+The Cell_73 cell has not been sectorized: the non sectorized face will be used.
+The Cell_72 cell has not been sectorized: the non sectorized face will be used.
+The Cell_71 cell has not been sectorized: the non sectorized face will be used.
+The Cell_70 cell has not been sectorized: the non sectorized face will be used.
+The Cell_69 cell has not been sectorized: the non sectorized face will be used.
+The Cell_68 cell has not been sectorized: the non sectorized face will be used.
+The Cell_67 cell has not been sectorized: the non sectorized face will be used.
+The Cell_66 cell has not been sectorized: the non sectorized face will be used.
+The Cell_65 cell has not been sectorized: the non sectorized face will be used.
+The Cell_64 cell has not been sectorized: the non sectorized face will be used.
+The Cell_63 cell has not been sectorized: the non sectorized face will be used.
+The Cell_62 cell has not been sectorized: the non sectorized face will be used.
+The Cell_61 cell has not been sectorized: the non sectorized face will be used.
+The Cell_60 cell has not been sectorized: the non sectorized face will be used.
+The Cell_59 cell has not been sectorized: the non sectorized face will be used.
+The Cell_58 cell has not been sectorized: the non sectorized face will be used.
+The Cell_57 cell has not been sectorized: the non sectorized face will be used.
+The Cell_56 cell has not been sectorized: the non sectorized face will be used.
+The Cell_55 cell has not been sectorized: the non sectorized face will be used.
+The Cell_54 cell has not been sectorized: the non sectorized face will be used.
+The Cell_53 cell has not been sectorized: the non sectorized face will be used.
+The Cell_52 cell has not been sectorized: the non sectorized face will be used.
+The Cell_51 cell has not been sectorized: the non sectorized face will be used.
+The Cell_50 cell has not been sectorized: the non sectorized face will be used.
+The Cell_49 cell has not been sectorized: the non sectorized face will be used.
+The Cell_48 cell has not been sectorized: the non sectorized face will be used.
+The Cell_47 cell has not been sectorized: the non sectorized face will be used.
+The Cell_46 cell has not been sectorized: the non sectorized face will be used.
+The Cell_45 cell has not been sectorized: the non sectorized face will be used.
+The Cell_44 cell has not been sectorized: the non sectorized face will be used.
+The Cell_43 cell has not been sectorized: the non sectorized face will be used.
+The Cell_42 cell has not been sectorized: the non sectorized face will be used.
+The Cell_41 cell has not been sectorized: the non sectorized face will be used.
+The Cell_40 cell has not been sectorized: the non sectorized face will be used.
+The Cell_39 cell has not been sectorized: the non sectorized face will be used.
+The Cell_38 cell has not been sectorized: the non sectorized face will be used.
+The Cell_37 cell has not been sectorized: the non sectorized face will be used.
+The Cell_36 cell has not been sectorized: the non sectorized face will be used.
+The Cell_35 cell has not been sectorized: the non sectorized face will be used.
+The Cell_34 cell has not been sectorized: the non sectorized face will be used.
+The Cell_33 cell has not been sectorized: the non sectorized face will be used.
+The Cell_32 cell has not been sectorized: the non sectorized face will be used.
+The Cell_31 cell has not been sectorized: the non sectorized face will be used.
+The Cell_30 cell has not been sectorized: the non sectorized face will be used.
+The Cell_29 cell has not been sectorized: the non sectorized face will be used.
+The Cell_28 cell has not been sectorized: the non sectorized face will be used.
+The Cell_27 cell has not been sectorized: the non sectorized face will be used.
+The Cell_26 cell has not been sectorized: the non sectorized face will be used.
+The Cell_25 cell has not been sectorized: the non sectorized face will be used.
+The Cell_24 cell has not been sectorized: the non sectorized face will be used.
+The Cell_23 cell has not been sectorized: the non sectorized face will be used.
+The Cell_22 cell has not been sectorized: the non sectorized face will be used.
+The Cell_21 cell has not been sectorized: the non sectorized face will be used.
+The Cell_20 cell has not been sectorized: the non sectorized face will be used.
+The Cell_19 cell has not been sectorized: the non sectorized face will be used.
+The Cell_18 cell has not been sectorized: the non sectorized face will be used.
+The Cell_17 cell has not been sectorized: the non sectorized face will be used.
+The Cell_16 cell has not been sectorized: the non sectorized face will be used.
+The Cell_15 cell has not been sectorized: the non sectorized face will be used.
+The Cell_14 cell has not been sectorized: the non sectorized face will be used.
+The Cell_13 cell has not been sectorized: the non sectorized face will be used.
+The Cell_12 cell has not been sectorized: the non sectorized face will be used.
+The Cell_11 cell has not been sectorized: the non sectorized face will be used.
+The Cell_10 cell has not been sectorized: the non sectorized face will be used.
+The Cell_9 cell has not been sectorized: the non sectorized face will be used.
+The Cell_8 cell has not been sectorized: the non sectorized face will be used.
+The Cell_7 cell has not been sectorized: the non sectorized face will be used.
+The Cell_6 cell has not been sectorized: the non sectorized face will be used.
+The Cell_5 cell has not been sectorized: the non sectorized face will be used.
+The Cell_4 cell has not been sectorized: the non sectorized face will be used.
+The Cell_3 cell has not been sectorized: the non sectorized face will be used.
+The Cell_2 cell has not been sectorized: the non sectorized face will be used.
+The Cell_1 cell has not been sectorized: the non sectorized face will be used.
+The Cell_140 cell has not been sectorized: the non sectorized face will be used.
+The Cell_139 cell has not been sectorized: the non sectorized face will be used.
+The Cell_138 cell has not been sectorized: the non sectorized face will be used.
+The Cell_137 cell has not been sectorized: the non sectorized face will be used.
+The Cell_136 cell has not been sectorized: the non sectorized face will be used.
+The Cell_135 cell has not been sectorized: the non sectorized face will be used.
+The Cell_134 cell has not been sectorized: the non sectorized face will be used.
+The Cell_133 cell has not been sectorized: the non sectorized face will be used.
+The Cell_132 cell has not been sectorized: the non sectorized face will be used.
+The Cell_131 cell has not been sectorized: the non sectorized face will be used.
+The Cell_130 cell has not been sectorized: the non sectorized face will be used.
+The Cell_129 cell has not been sectorized: the non sectorized face will be used.
+The Cell_128 cell has not been sectorized: the non sectorized face will be used.
+The Cell_127 cell has not been sectorized: the non sectorized face will be used.
+The Cell_126 cell has not been sectorized: the non sectorized face will be used.
+The Cell_125 cell has not been sectorized: the non sectorized face will be used.
+The Cell_124 cell has not been sectorized: the non sectorized face will be used.
+The Cell_123 cell has not been sectorized: the non sectorized face will be used.
+The Cell_122 cell has not been sectorized: the non sectorized face will be used.
+The Cell_121 cell has not been sectorized: the non sectorized face will be used.
+The Cell_120 cell has not been sectorized: the non sectorized face will be used.
+The Cell_119 cell has not been sectorized: the non sectorized face will be used.
+The Cell_118 cell has not been sectorized: the non sectorized face will be used.
+The Cell_117 cell has not been sectorized: the non sectorized face will be used.
+The Cell_116 cell has not been sectorized: the non sectorized face will be used.
+The Cell_115 cell has not been sectorized: the non sectorized face will be used.
+The Cell_114 cell has not been sectorized: the non sectorized face will be used.
+The Cell_113 cell has not been sectorized: the non sectorized face will be used.
+The Cell_112 cell has not been sectorized: the non sectorized face will be used.
+The Cell_111 cell has not been sectorized: the non sectorized face will be used.
+The Cell_110 cell has not been sectorized: the non sectorized face will be used.
+The Cell_109 cell has not been sectorized: the non sectorized face will be used.
+The Cell_108 cell has not been sectorized: the non sectorized face will be used.
+The Cell_107 cell has not been sectorized: the non sectorized face will be used.
+The Cell_106 cell has not been sectorized: the non sectorized face will be used.
+The Cell_105 cell has not been sectorized: the non sectorized face will be used.
+The Cell_104 cell has not been sectorized: the non sectorized face will be used.
+The Cell_103 cell has not been sectorized: the non sectorized face will be used.
+The Cell_102 cell has not been sectorized: the non sectorized face will be used.
+The Cell_101 cell has not been sectorized: the non sectorized face will be used.
+The Cell_100 cell has not been sectorized: the non sectorized face will be used.
+The Cell_99 cell has not been sectorized: the non sectorized face will be used.
+The Cell_98 cell has not been sectorized: the non sectorized face will be used.
+The Cell_97 cell has not been sectorized: the non sectorized face will be used.
+The Cell_96 cell has not been sectorized: the non sectorized face will be used.
+The Cell_95 cell has not been sectorized: the non sectorized face will be used.
+The Cell_94 cell has not been sectorized: the non sectorized face will be used.
+The Cell_93 cell has not been sectorized: the non sectorized face will be used.
+The Cell_92 cell has not been sectorized: the non sectorized face will be used.
+The Cell_91 cell has not been sectorized: the non sectorized face will be used.
+The Cell_90 cell has not been sectorized: the non sectorized face will be used.
+The Cell_89 cell has not been sectorized: the non sectorized face will be used.
+The Cell_88 cell has not been sectorized: the non sectorized face will be used.
+The Cell_87 cell has not been sectorized: the non sectorized face will be used.
+The Cell_86 cell has not been sectorized: the non sectorized face will be used.
+The Cell_85 cell has not been sectorized: the non sectorized face will be used.
+The Cell_84 cell has not been sectorized: the non sectorized face will be used.
+The Cell_83 cell has not been sectorized: the non sectorized face will be used.
+The Cell_82 cell has not been sectorized: the non sectorized face will be used.
+The Cell_81 cell has not been sectorized: the non sectorized face will be used.
+The Cell_80 cell has not been sectorized: the non sectorized face will be used.
+The Cell_79 cell has not been sectorized: the non sectorized face will be used.
+The Cell_78 cell has not been sectorized: the non sectorized face will be used.
+The Cell_77 cell has not been sectorized: the non sectorized face will be used.
+The Cell_76 cell has not been sectorized: the non sectorized face will be used.
+The Cell_75 cell has not been sectorized: the non sectorized face will be used.
+The Cell_74 cell has not been sectorized: the non sectorized face will be used.
+The Cell_73 cell has not been sectorized: the non sectorized face will be used.
+The Cell_72 cell has not been sectorized: the non sectorized face will be used.
+The Cell_71 cell has not been sectorized: the non sectorized face will be used.
+The Cell_70 cell has not been sectorized: the non sectorized face will be used.
+The Cell_69 cell has not been sectorized: the non sectorized face will be used.
+The Cell_68 cell has not been sectorized: the non sectorized face will be used.
+The Cell_67 cell has not been sectorized: the non sectorized face will be used.
+The Cell_66 cell has not been sectorized: the non sectorized face will be used.
+The Cell_65 cell has not been sectorized: the non sectorized face will be used.
+The Cell_64 cell has not been sectorized: the non sectorized face will be used.
+The Cell_63 cell has not been sectorized: the non sectorized face will be used.
+The Cell_62 cell has not been sectorized: the non sectorized face will be used.
+The Cell_61 cell has not been sectorized: the non sectorized face will be used.
+The Cell_60 cell has not been sectorized: the non sectorized face will be used.
+The Cell_59 cell has not been sectorized: the non sectorized face will be used.
+The Cell_58 cell has not been sectorized: the non sectorized face will be used.
+The Cell_57 cell has not been sectorized: the non sectorized face will be used.
+The Cell_56 cell has not been sectorized: the non sectorized face will be used.
+The Cell_55 cell has not been sectorized: the non sectorized face will be used.
+The Cell_54 cell has not been sectorized: the non sectorized face will be used.
+The Cell_53 cell has not been sectorized: the non sectorized face will be used.
+The Cell_52 cell has not been sectorized: the non sectorized face will be used.
+The Cell_51 cell has not been sectorized: the non sectorized face will be used.
+The Cell_50 cell has not been sectorized: the non sectorized face will be used.
+The Cell_49 cell has not been sectorized: the non sectorized face will be used.
+The Cell_48 cell has not been sectorized: the non sectorized face will be used.
+The Cell_47 cell has not been sectorized: the non sectorized face will be used.
+The Cell_46 cell has not been sectorized: the non sectorized face will be used.
+The Cell_45 cell has not been sectorized: the non sectorized face will be used.
+The Cell_44 cell has not been sectorized: the non sectorized face will be used.
+The Cell_43 cell has not been sectorized: the non sectorized face will be used.
+The Cell_42 cell has not been sectorized: the non sectorized face will be used.
+The Cell_41 cell has not been sectorized: the non sectorized face will be used.
+The Cell_40 cell has not been sectorized: the non sectorized face will be used.
+The Cell_39 cell has not been sectorized: the non sectorized face will be used.
+The Cell_38 cell has not been sectorized: the non sectorized face will be used.
+The Cell_37 cell has not been sectorized: the non sectorized face will be used.
+The Cell_36 cell has not been sectorized: the non sectorized face will be used.
+The Cell_35 cell has not been sectorized: the non sectorized face will be used.
+The Cell_34 cell has not been sectorized: the non sectorized face will be used.
+The Cell_33 cell has not been sectorized: the non sectorized face will be used.
+The Cell_32 cell has not been sectorized: the non sectorized face will be used.
+The Cell_31 cell has not been sectorized: the non sectorized face will be used.
+The Cell_30 cell has not been sectorized: the non sectorized face will be used.
+The Cell_29 cell has not been sectorized: the non sectorized face will be used.
+The Cell_28 cell has not been sectorized: the non sectorized face will be used.
+The Cell_27 cell has not been sectorized: the non sectorized face will be used.
+The Cell_26 cell has not been sectorized: the non sectorized face will be used.
+The Cell_25 cell has not been sectorized: the non sectorized face will be used.
+The Cell_24 cell has not been sectorized: the non sectorized face will be used.
+The Cell_23 cell has not been sectorized: the non sectorized face will be used.
+The Cell_22 cell has not been sectorized: the non sectorized face will be used.
+The Cell_21 cell has not been sectorized: the non sectorized face will be used.
+The Cell_20 cell has not been sectorized: the non sectorized face will be used.
+The Cell_19 cell has not been sectorized: the non sectorized face will be used.
+The Cell_18 cell has not been sectorized: the non sectorized face will be used.
+The Cell_17 cell has not been sectorized: the non sectorized face will be used.
+The Cell_16 cell has not been sectorized: the non sectorized face will be used.
+The Cell_15 cell has not been sectorized: the non sectorized face will be used.
+The Cell_14 cell has not been sectorized: the non sectorized face will be used.
+The Cell_13 cell has not been sectorized: the non sectorized face will be used.
+The Cell_12 cell has not been sectorized: the non sectorized face will be used.
+The Cell_11 cell has not been sectorized: the non sectorized face will be used.
+The Cell_10 cell has not been sectorized: the non sectorized face will be used.
+The Cell_9 cell has not been sectorized: the non sectorized face will be used.
+The Cell_8 cell has not been sectorized: the non sectorized face will be used.
+The Cell_7 cell has not been sectorized: the non sectorized face will be used.
+The Cell_6 cell has not been sectorized: the non sectorized face will be used.
+The Cell_5 cell has not been sectorized: the non sectorized face will be used.
+The Cell_4 cell has not been sectorized: the non sectorized face will be used.
+The Cell_3 cell has not been sectorized: the non sectorized face will be used.
+The Cell_2 cell has not been sectorized: the non sectorized face will be used.
+The Cell_1 cell has not been sectorized: the non sectorized face will be used.
+No. cell regions in lattice: 718
+Total no. regions in lattice: 718
+Total no. subfaces in lattice: 718
+LEN REGIONS: 718
+LEN SUBFACES 718
+Region 1, name=FACE_1, property=MODERATOR
+Region 2, name=FACE_2, property=MODERATOR
+Region 3, name=FACE_3, property=MODERATOR_BOX
+Region 4, name=FACE_4, property=COOLANT
+Region 5, name=FACE_5, property=MODERATOR
+Region 6, name=FACE_6, property=MODERATOR_BOX
+Region 7, name=FACE_7, property=COOLANT
+Region 8, name=FACE_8, property=MODERATOR
+Region 9, name=FACE_9, property=MODERATOR_BOX
+Region 10, name=FACE_10, property=COOLANT
+Region 11, name=FACE_11, property=MODERATOR
+Region 12, name=FACE_12, property=MODERATOR_BOX
+Region 13, name=FACE_13, property=COOLANT
+Region 14, name=FACE_14, property=MODERATOR
+Region 15, name=FACE_15, property=MODERATOR_BOX
+Region 16, name=FACE_16, property=MODERATOR_BOX
+Region 17, name=FACE_17, property=MODERATOR_BOX
+Region 18, name=FACE_18, property=COOLANT
+Region 19, name=FACE_19, property=COOLANT
+Region 20, name=FACE_20, property=COOLANT
+Region 21, name=FACE_21, property=COOLANT
+Region 22, name=FACE_22, property=COOLANT
+Region 23, name=FACE_23, property=MODERATOR
+Region 24, name=FACE_24, property=MODERATOR_BOX
+Region 25, name=FACE_25, property=MODERATOR_BOX
+Region 26, name=FACE_26, property=MODERATOR_BOX
+Region 27, name=FACE_27, property=COOLANT
+Region 28, name=FACE_28, property=COOLANT
+Region 29, name=FACE_29, property=COOLANT
+Region 30, name=FACE_30, property=COOLANT
+Region 31, name=FACE_31, property=COOLANT
+Region 32, name=FACE_32, property=MODERATOR
+Region 33, name=FACE_33, property=MODERATOR_BOX
+Region 34, name=FACE_34, property=MODERATOR_BOX
+Region 35, name=FACE_35, property=MODERATOR_BOX
+Region 36, name=FACE_36, property=COOLANT
+Region 37, name=FACE_37, property=COOLANT
+Region 38, name=FACE_38, property=COOLANT
+Region 39, name=FACE_39, property=COOLANT
+Region 40, name=FACE_40, property=COOLANT
+Region 41, name=FACE_41, property=MODERATOR
+Region 42, name=FACE_42, property=MODERATOR_BOX
+Region 43, name=FACE_43, property=MODERATOR_BOX
+Region 44, name=FACE_44, property=MODERATOR_BOX
+Region 45, name=FACE_45, property=COOLANT
+Region 46, name=FACE_46, property=COOLANT
+Region 47, name=FACE_47, property=COOLANT
+Region 48, name=FACE_48, property=COOLANT
+Region 49, name=FACE_49, property=COOLANT
+Region 50, name=FACE_50, property=COOLANT
+Region 51, name=FACE_51, property=CLAD
+Region 52, name=FACE_52, property=GAP
+Region 53, name=FACE_53, property=24UOX
+Region 54, name=FACE_54, property=24UOX
+Region 55, name=FACE_55, property=24UOX
+Region 56, name=FACE_56, property=24UOX
+Region 57, name=FACE_57, property=COOLANT
+Region 58, name=FACE_58, property=CLAD
+Region 59, name=FACE_59, property=GAP
+Region 60, name=FACE_60, property=32UOX
+Region 61, name=FACE_61, property=32UOX
+Region 62, name=FACE_62, property=32UOX
+Region 63, name=FACE_63, property=32UOX
+Region 64, name=FACE_64, property=COOLANT
+Region 65, name=FACE_65, property=CLAD
+Region 66, name=FACE_66, property=GAP
+Region 67, name=FACE_67, property=42UOX
+Region 68, name=FACE_68, property=42UOX
+Region 69, name=FACE_69, property=42UOX
+Region 70, name=FACE_70, property=42UOX
+Region 71, name=FACE_71, property=COOLANT
+Region 72, name=FACE_72, property=CLAD
+Region 73, name=FACE_73, property=GAP
+Region 74, name=FACE_74, property=45UOX
+Region 75, name=FACE_75, property=45UOX
+Region 76, name=FACE_76, property=45UOX
+Region 77, name=FACE_77, property=45UOX
+Region 78, name=FACE_78, property=COOLANT
+Region 79, name=FACE_79, property=CLAD
+Region 80, name=FACE_80, property=GAP
+Region 81, name=FACE_81, property=45UOX
+Region 82, name=FACE_82, property=45UOX
+Region 83, name=FACE_83, property=45UOX
+Region 84, name=FACE_84, property=45UOX
+Region 85, name=FACE_85, property=COOLANT
+Region 86, name=FACE_86, property=CLAD
+Region 87, name=FACE_87, property=GAP
+Region 88, name=FACE_88, property=45UOX
+Region 89, name=FACE_89, property=45UOX
+Region 90, name=FACE_90, property=45UOX
+Region 91, name=FACE_91, property=45UOX
+Region 92, name=FACE_92, property=COOLANT
+Region 93, name=FACE_93, property=CLAD
+Region 94, name=FACE_94, property=GAP
+Region 95, name=FACE_95, property=45UOX
+Region 96, name=FACE_96, property=45UOX
+Region 97, name=FACE_97, property=45UOX
+Region 98, name=FACE_98, property=45UOX
+Region 99, name=FACE_99, property=COOLANT
+Region 100, name=FACE_100, property=CLAD
+Region 101, name=FACE_101, property=GAP
+Region 102, name=FACE_102, property=42UOX
+Region 103, name=FACE_103, property=42UOX
+Region 104, name=FACE_104, property=42UOX
+Region 105, name=FACE_105, property=42UOX
+Region 106, name=FACE_106, property=COOLANT
+Region 107, name=FACE_107, property=CLAD
+Region 108, name=FACE_108, property=GAP
+Region 109, name=FACE_109, property=32UOX
+Region 110, name=FACE_110, property=32UOX
+Region 111, name=FACE_111, property=32UOX
+Region 112, name=FACE_112, property=32UOX
+Region 113, name=FACE_113, property=COOLANT
+Region 114, name=FACE_114, property=CLAD
+Region 115, name=FACE_115, property=GAP
+Region 116, name=FACE_116, property=24UOX
+Region 117, name=FACE_117, property=24UOX
+Region 118, name=FACE_118, property=24UOX
+Region 119, name=FACE_119, property=24UOX
+Region 120, name=FACE_120, property=COOLANT
+Region 121, name=FACE_121, property=CLAD
+Region 122, name=FACE_122, property=GAP
+Region 123, name=FACE_123, property=32UOX
+Region 124, name=FACE_124, property=32UOX
+Region 125, name=FACE_125, property=32UOX
+Region 126, name=FACE_126, property=32UOX
+Region 127, name=FACE_127, property=COOLANT
+Region 128, name=FACE_128, property=CLAD
+Region 129, name=FACE_129, property=GAP
+Region 130, name=FACE_130, property=45UOX
+Region 131, name=FACE_131, property=45UOX
+Region 132, name=FACE_132, property=45UOX
+Region 133, name=FACE_133, property=45UOX
+Region 134, name=FACE_134, property=COOLANT
+Region 135, name=FACE_135, property=CLAD
+Region 136, name=FACE_136, property=GAP
+Region 137, name=FACE_137, property=42Gd
+Region 138, name=FACE_138, property=42Gd
+Region 139, name=FACE_139, property=42Gd
+Region 140, name=FACE_140, property=42Gd
+Region 141, name=FACE_141, property=42Gd
+Region 142, name=FACE_142, property=42Gd
+Region 143, name=FACE_143, property=COOLANT
+Region 144, name=FACE_144, property=CLAD
+Region 145, name=FACE_145, property=GAP
+Region 146, name=FACE_146, property=45UOX
+Region 147, name=FACE_147, property=45UOX
+Region 148, name=FACE_148, property=45UOX
+Region 149, name=FACE_149, property=45UOX
+Region 150, name=FACE_150, property=COOLANT
+Region 151, name=FACE_151, property=CLAD
+Region 152, name=FACE_152, property=GAP
+Region 153, name=FACE_153, property=45Gd
+Region 154, name=FACE_154, property=45Gd
+Region 155, name=FACE_155, property=45Gd
+Region 156, name=FACE_156, property=45Gd
+Region 157, name=FACE_157, property=45Gd
+Region 158, name=FACE_158, property=45Gd
+Region 159, name=FACE_159, property=COOLANT
+Region 160, name=FACE_160, property=CLAD
+Region 161, name=FACE_161, property=GAP
+Region 162, name=FACE_162, property=50UOX
+Region 163, name=FACE_163, property=50UOX
+Region 164, name=FACE_164, property=50UOX
+Region 165, name=FACE_165, property=50UOX
+Region 166, name=FACE_166, property=COOLANT
+Region 167, name=FACE_167, property=CLAD
+Region 168, name=FACE_168, property=GAP
+Region 169, name=FACE_169, property=48UOX
+Region 170, name=FACE_170, property=48UOX
+Region 171, name=FACE_171, property=48UOX
+Region 172, name=FACE_172, property=48UOX
+Region 173, name=FACE_173, property=COOLANT
+Region 174, name=FACE_174, property=CLAD
+Region 175, name=FACE_175, property=GAP
+Region 176, name=FACE_176, property=45Gd
+Region 177, name=FACE_177, property=45Gd
+Region 178, name=FACE_178, property=45Gd
+Region 179, name=FACE_179, property=45Gd
+Region 180, name=FACE_180, property=45Gd
+Region 181, name=FACE_181, property=45Gd
+Region 182, name=FACE_182, property=COOLANT
+Region 183, name=FACE_183, property=CLAD
+Region 184, name=FACE_184, property=GAP
+Region 185, name=FACE_185, property=45UOX
+Region 186, name=FACE_186, property=45UOX
+Region 187, name=FACE_187, property=45UOX
+Region 188, name=FACE_188, property=45UOX
+Region 189, name=FACE_189, property=COOLANT
+Region 190, name=FACE_190, property=CLAD
+Region 191, name=FACE_191, property=GAP
+Region 192, name=FACE_192, property=32UOX
+Region 193, name=FACE_193, property=32UOX
+Region 194, name=FACE_194, property=32UOX
+Region 195, name=FACE_195, property=32UOX
+Region 196, name=FACE_196, property=COOLANT
+Region 197, name=FACE_197, property=CLAD
+Region 198, name=FACE_198, property=GAP
+Region 199, name=FACE_199, property=42UOX
+Region 200, name=FACE_200, property=42UOX
+Region 201, name=FACE_201, property=42UOX
+Region 202, name=FACE_202, property=42UOX
+Region 203, name=FACE_203, property=COOLANT
+Region 204, name=FACE_204, property=CLAD
+Region 205, name=FACE_205, property=GAP
+Region 206, name=FACE_206, property=42Gd
+Region 207, name=FACE_207, property=42Gd
+Region 208, name=FACE_208, property=42Gd
+Region 209, name=FACE_209, property=42Gd
+Region 210, name=FACE_210, property=42Gd
+Region 211, name=FACE_211, property=42Gd
+Region 212, name=FACE_212, property=COOLANT
+Region 213, name=FACE_213, property=CLAD
+Region 214, name=FACE_214, property=GAP
+Region 215, name=FACE_215, property=45UOX
+Region 216, name=FACE_216, property=45UOX
+Region 217, name=FACE_217, property=45UOX
+Region 218, name=FACE_218, property=45UOX
+Region 219, name=FACE_219, property=COOLANT
+Region 220, name=FACE_220, property=CLAD
+Region 221, name=FACE_221, property=GAP
+Region 222, name=FACE_222, property=45UOX
+Region 223, name=FACE_223, property=45UOX
+Region 224, name=FACE_224, property=45UOX
+Region 225, name=FACE_225, property=45UOX
+Region 226, name=FACE_226, property=COOLANT
+Region 227, name=FACE_227, property=CLAD
+Region 228, name=FACE_228, property=GAP
+Region 229, name=FACE_229, property=42UOX
+Region 230, name=FACE_230, property=42UOX
+Region 231, name=FACE_231, property=42UOX
+Region 232, name=FACE_232, property=42UOX
+Region 233, name=FACE_233, property=COOLANT
+Region 234, name=FACE_234, property=CLAD
+Region 235, name=FACE_235, property=GAP
+Region 236, name=FACE_236, property=45UOX
+Region 237, name=FACE_237, property=45UOX
+Region 238, name=FACE_238, property=45UOX
+Region 239, name=FACE_239, property=45UOX
+Region 240, name=FACE_240, property=COOLANT
+Region 241, name=FACE_241, property=CLAD
+Region 242, name=FACE_242, property=GAP
+Region 243, name=FACE_243, property=50UOX
+Region 244, name=FACE_244, property=50UOX
+Region 245, name=FACE_245, property=50UOX
+Region 246, name=FACE_246, property=50UOX
+Region 247, name=FACE_247, property=COOLANT
+Region 248, name=FACE_248, property=CLAD
+Region 249, name=FACE_249, property=GAP
+Region 250, name=FACE_250, property=50UOX
+Region 251, name=FACE_251, property=50UOX
+Region 252, name=FACE_252, property=50UOX
+Region 253, name=FACE_253, property=50UOX
+Region 254, name=FACE_254, property=COOLANT
+Region 255, name=FACE_255, property=CLAD
+Region 256, name=FACE_256, property=GAP
+Region 257, name=FACE_257, property=45Gd
+Region 258, name=FACE_258, property=45Gd
+Region 259, name=FACE_259, property=45Gd
+Region 260, name=FACE_260, property=45Gd
+Region 261, name=FACE_261, property=45Gd
+Region 262, name=FACE_262, property=45Gd
+Region 263, name=FACE_263, property=COOLANT
+Region 264, name=FACE_264, property=CLAD
+Region 265, name=FACE_265, property=GAP
+Region 266, name=FACE_266, property=42UOX
+Region 267, name=FACE_267, property=42UOX
+Region 268, name=FACE_268, property=42UOX
+Region 269, name=FACE_269, property=42UOX
+Region 270, name=FACE_270, property=COOLANT
+Region 271, name=FACE_271, property=CLAD
+Region 272, name=FACE_272, property=GAP
+Region 273, name=FACE_273, property=45UOX
+Region 274, name=FACE_274, property=45UOX
+Region 275, name=FACE_275, property=45UOX
+Region 276, name=FACE_276, property=45UOX
+Region 277, name=FACE_277, property=COOLANT
+Region 278, name=FACE_278, property=CLAD
+Region 279, name=FACE_279, property=GAP
+Region 280, name=FACE_280, property=45UOX
+Region 281, name=FACE_281, property=45UOX
+Region 282, name=FACE_282, property=45UOX
+Region 283, name=FACE_283, property=45UOX
+Region 284, name=FACE_284, property=COOLANT
+Region 285, name=FACE_285, property=CLAD
+Region 286, name=FACE_286, property=GAP
+Region 287, name=FACE_287, property=45UOX
+Region 288, name=FACE_288, property=45UOX
+Region 289, name=FACE_289, property=45UOX
+Region 290, name=FACE_290, property=45UOX
+Region 291, name=FACE_291, property=COOLANT
+Region 292, name=FACE_292, property=CLAD
+Region 293, name=FACE_293, property=GAP
+Region 294, name=FACE_294, property=45Gd
+Region 295, name=FACE_295, property=45Gd
+Region 296, name=FACE_296, property=45Gd
+Region 297, name=FACE_297, property=45Gd
+Region 298, name=FACE_298, property=45Gd
+Region 299, name=FACE_299, property=45Gd
+Region 300, name=FACE_300, property=COOLANT
+Region 301, name=FACE_301, property=CLAD
+Region 302, name=FACE_302, property=GAP
+Region 303, name=FACE_303, property=50UOX
+Region 304, name=FACE_304, property=50UOX
+Region 305, name=FACE_305, property=50UOX
+Region 306, name=FACE_306, property=50UOX
+Region 307, name=FACE_307, property=COOLANT
+Region 308, name=FACE_308, property=CLAD
+Region 309, name=FACE_309, property=GAP
+Region 310, name=FACE_310, property=50UOX
+Region 311, name=FACE_311, property=50UOX
+Region 312, name=FACE_312, property=50UOX
+Region 313, name=FACE_313, property=50UOX
+Region 314, name=FACE_314, property=COOLANT
+Region 315, name=FACE_315, property=CLAD
+Region 316, name=FACE_316, property=GAP
+Region 317, name=FACE_317, property=45UOX
+Region 318, name=FACE_318, property=45UOX
+Region 319, name=FACE_319, property=45UOX
+Region 320, name=FACE_320, property=45UOX
+Region 321, name=FACE_321, property=COOLANT
+Region 322, name=FACE_322, property=CLAD
+Region 323, name=FACE_323, property=GAP
+Region 324, name=FACE_324, property=45UOX
+Region 325, name=FACE_325, property=45UOX
+Region 326, name=FACE_326, property=45UOX
+Region 327, name=FACE_327, property=45UOX
+Region 328, name=FACE_328, property=COOLANT
+Region 329, name=FACE_329, property=CLAD
+Region 330, name=FACE_330, property=GAP
+Region 331, name=FACE_331, property=45Gd
+Region 332, name=FACE_332, property=45Gd
+Region 333, name=FACE_333, property=45Gd
+Region 334, name=FACE_334, property=45Gd
+Region 335, name=FACE_335, property=45Gd
+Region 336, name=FACE_336, property=45Gd
+Region 337, name=FACE_337, property=COOLANT
+Region 338, name=FACE_338, property=CLAD
+Region 339, name=FACE_339, property=GAP
+Region 340, name=FACE_340, property=42UOX
+Region 341, name=FACE_341, property=42UOX
+Region 342, name=FACE_342, property=42UOX
+Region 343, name=FACE_343, property=42UOX
+Region 344, name=FACE_344, property=COOLANT
+Region 345, name=FACE_345, property=CLAD
+Region 346, name=FACE_346, property=GAP
+Region 347, name=FACE_347, property=50UOX
+Region 348, name=FACE_348, property=50UOX
+Region 349, name=FACE_349, property=50UOX
+Region 350, name=FACE_350, property=50UOX
+Region 351, name=FACE_351, property=COOLANT
+Region 352, name=FACE_352, property=CLAD
+Region 353, name=FACE_353, property=GAP
+Region 354, name=FACE_354, property=45Gd
+Region 355, name=FACE_355, property=45Gd
+Region 356, name=FACE_356, property=45Gd
+Region 357, name=FACE_357, property=45Gd
+Region 358, name=FACE_358, property=45Gd
+Region 359, name=FACE_359, property=45Gd
+Region 360, name=FACE_360, property=COOLANT
+Region 361, name=FACE_361, property=CLAD
+Region 362, name=FACE_362, property=GAP
+Region 363, name=FACE_363, property=50UOX
+Region 364, name=FACE_364, property=50UOX
+Region 365, name=FACE_365, property=50UOX
+Region 366, name=FACE_366, property=50UOX
+Region 367, name=FACE_367, property=COOLANT
+Region 368, name=FACE_368, property=CLAD
+Region 369, name=FACE_369, property=GAP
+Region 370, name=FACE_370, property=48UOX
+Region 371, name=FACE_371, property=48UOX
+Region 372, name=FACE_372, property=48UOX
+Region 373, name=FACE_373, property=48UOX
+Region 374, name=FACE_374, property=COOLANT
+Region 375, name=FACE_375, property=CLAD
+Region 376, name=FACE_376, property=GAP
+Region 377, name=FACE_377, property=45UOX
+Region 378, name=FACE_378, property=45UOX
+Region 379, name=FACE_379, property=45UOX
+Region 380, name=FACE_380, property=45UOX
+Region 381, name=FACE_381, property=COOLANT
+Region 382, name=FACE_382, property=CLAD
+Region 383, name=FACE_383, property=GAP
+Region 384, name=FACE_384, property=50UOX
+Region 385, name=FACE_385, property=50UOX
+Region 386, name=FACE_386, property=50UOX
+Region 387, name=FACE_387, property=50UOX
+Region 388, name=FACE_388, property=COOLANT
+Region 389, name=FACE_389, property=CLAD
+Region 390, name=FACE_390, property=GAP
+Region 391, name=FACE_391, property=45UOX
+Region 392, name=FACE_392, property=45UOX
+Region 393, name=FACE_393, property=45UOX
+Region 394, name=FACE_394, property=45UOX
+Region 395, name=FACE_395, property=COOLANT
+Region 396, name=FACE_396, property=CLAD
+Region 397, name=FACE_397, property=GAP
+Region 398, name=FACE_398, property=50UOX
+Region 399, name=FACE_399, property=50UOX
+Region 400, name=FACE_400, property=50UOX
+Region 401, name=FACE_401, property=50UOX
+Region 402, name=FACE_402, property=COOLANT
+Region 403, name=FACE_403, property=CLAD
+Region 404, name=FACE_404, property=GAP
+Region 405, name=FACE_405, property=50UOX
+Region 406, name=FACE_406, property=50UOX
+Region 407, name=FACE_407, property=50UOX
+Region 408, name=FACE_408, property=50UOX
+Region 409, name=FACE_409, property=COOLANT
+Region 410, name=FACE_410, property=CLAD
+Region 411, name=FACE_411, property=GAP
+Region 412, name=FACE_412, property=45Gd
+Region 413, name=FACE_413, property=45Gd
+Region 414, name=FACE_414, property=45Gd
+Region 415, name=FACE_415, property=45Gd
+Region 416, name=FACE_416, property=45Gd
+Region 417, name=FACE_417, property=45Gd
+Region 418, name=FACE_418, property=COOLANT
+Region 419, name=FACE_419, property=CLAD
+Region 420, name=FACE_420, property=GAP
+Region 421, name=FACE_421, property=50UOX
+Region 422, name=FACE_422, property=50UOX
+Region 423, name=FACE_423, property=50UOX
+Region 424, name=FACE_424, property=50UOX
+Region 425, name=FACE_425, property=COOLANT
+Region 426, name=FACE_426, property=CLAD
+Region 427, name=FACE_427, property=GAP
+Region 428, name=FACE_428, property=45UOX
+Region 429, name=FACE_429, property=45UOX
+Region 430, name=FACE_430, property=45UOX
+Region 431, name=FACE_431, property=45UOX
+Region 432, name=FACE_432, property=COOLANT
+Region 433, name=FACE_433, property=CLAD
+Region 434, name=FACE_434, property=GAP
+Region 435, name=FACE_435, property=48UOX
+Region 436, name=FACE_436, property=48UOX
+Region 437, name=FACE_437, property=48UOX
+Region 438, name=FACE_438, property=48UOX
+Region 439, name=FACE_439, property=COOLANT
+Region 440, name=FACE_440, property=CLAD
+Region 441, name=FACE_441, property=GAP
+Region 442, name=FACE_442, property=50UOX
+Region 443, name=FACE_443, property=50UOX
+Region 444, name=FACE_444, property=50UOX
+Region 445, name=FACE_445, property=50UOX
+Region 446, name=FACE_446, property=COOLANT
+Region 447, name=FACE_447, property=CLAD
+Region 448, name=FACE_448, property=GAP
+Region 449, name=FACE_449, property=45Gd
+Region 450, name=FACE_450, property=45Gd
+Region 451, name=FACE_451, property=45Gd
+Region 452, name=FACE_452, property=45Gd
+Region 453, name=FACE_453, property=45Gd
+Region 454, name=FACE_454, property=45Gd
+Region 455, name=FACE_455, property=COOLANT
+Region 456, name=FACE_456, property=CLAD
+Region 457, name=FACE_457, property=GAP
+Region 458, name=FACE_458, property=50UOX
+Region 459, name=FACE_459, property=50UOX
+Region 460, name=FACE_460, property=50UOX
+Region 461, name=FACE_461, property=50UOX
+Region 462, name=FACE_462, property=COOLANT
+Region 463, name=FACE_463, property=CLAD
+Region 464, name=FACE_464, property=GAP
+Region 465, name=FACE_465, property=50UOX
+Region 466, name=FACE_466, property=50UOX
+Region 467, name=FACE_467, property=50UOX
+Region 468, name=FACE_468, property=50UOX
+Region 469, name=FACE_469, property=COOLANT
+Region 470, name=FACE_470, property=CLAD
+Region 471, name=FACE_471, property=GAP
+Region 472, name=FACE_472, property=50UOX
+Region 473, name=FACE_473, property=50UOX
+Region 474, name=FACE_474, property=50UOX
+Region 475, name=FACE_475, property=50UOX
+Region 476, name=FACE_476, property=COOLANT
+Region 477, name=FACE_477, property=CLAD
+Region 478, name=FACE_478, property=GAP
+Region 479, name=FACE_479, property=50UOX
+Region 480, name=FACE_480, property=50UOX
+Region 481, name=FACE_481, property=50UOX
+Region 482, name=FACE_482, property=50UOX
+Region 483, name=FACE_483, property=COOLANT
+Region 484, name=FACE_484, property=CLAD
+Region 485, name=FACE_485, property=GAP
+Region 486, name=FACE_486, property=50UOX
+Region 487, name=FACE_487, property=50UOX
+Region 488, name=FACE_488, property=50UOX
+Region 489, name=FACE_489, property=50UOX
+Region 490, name=FACE_490, property=COOLANT
+Region 491, name=FACE_491, property=CLAD
+Region 492, name=FACE_492, property=GAP
+Region 493, name=FACE_493, property=48UOX
+Region 494, name=FACE_494, property=48UOX
+Region 495, name=FACE_495, property=48UOX
+Region 496, name=FACE_496, property=48UOX
+Region 497, name=FACE_497, property=COOLANT
+Region 498, name=FACE_498, property=CLAD
+Region 499, name=FACE_499, property=GAP
+Region 500, name=FACE_500, property=42UOX
+Region 501, name=FACE_501, property=42UOX
+Region 502, name=FACE_502, property=42UOX
+Region 503, name=FACE_503, property=42UOX
+Region 504, name=FACE_504, property=COOLANT
+Region 505, name=FACE_505, property=CLAD
+Region 506, name=FACE_506, property=GAP
+Region 507, name=FACE_507, property=45Gd
+Region 508, name=FACE_508, property=45Gd
+Region 509, name=FACE_509, property=45Gd
+Region 510, name=FACE_510, property=45Gd
+Region 511, name=FACE_511, property=45Gd
+Region 512, name=FACE_512, property=45Gd
+Region 513, name=FACE_513, property=COOLANT
+Region 514, name=FACE_514, property=CLAD
+Region 515, name=FACE_515, property=GAP
+Region 516, name=FACE_516, property=50UOX
+Region 517, name=FACE_517, property=50UOX
+Region 518, name=FACE_518, property=50UOX
+Region 519, name=FACE_519, property=50UOX
+Region 520, name=FACE_520, property=COOLANT
+Region 521, name=FACE_521, property=CLAD
+Region 522, name=FACE_522, property=GAP
+Region 523, name=FACE_523, property=50UOX
+Region 524, name=FACE_524, property=50UOX
+Region 525, name=FACE_525, property=50UOX
+Region 526, name=FACE_526, property=50UOX
+Region 527, name=FACE_527, property=COOLANT
+Region 528, name=FACE_528, property=CLAD
+Region 529, name=FACE_529, property=GAP
+Region 530, name=FACE_530, property=45Gd
+Region 531, name=FACE_531, property=45Gd
+Region 532, name=FACE_532, property=45Gd
+Region 533, name=FACE_533, property=45Gd
+Region 534, name=FACE_534, property=45Gd
+Region 535, name=FACE_535, property=45Gd
+Region 536, name=FACE_536, property=COOLANT
+Region 537, name=FACE_537, property=CLAD
+Region 538, name=FACE_538, property=GAP
+Region 539, name=FACE_539, property=50UOX
+Region 540, name=FACE_540, property=50UOX
+Region 541, name=FACE_541, property=50UOX
+Region 542, name=FACE_542, property=50UOX
+Region 543, name=FACE_543, property=COOLANT
+Region 544, name=FACE_544, property=CLAD
+Region 545, name=FACE_545, property=GAP
+Region 546, name=FACE_546, property=50UOX
+Region 547, name=FACE_547, property=50UOX
+Region 548, name=FACE_548, property=50UOX
+Region 549, name=FACE_549, property=50UOX
+Region 550, name=FACE_550, property=COOLANT
+Region 551, name=FACE_551, property=CLAD
+Region 552, name=FACE_552, property=GAP
+Region 553, name=FACE_553, property=50UOX
+Region 554, name=FACE_554, property=50UOX
+Region 555, name=FACE_555, property=50UOX
+Region 556, name=FACE_556, property=50UOX
+Region 557, name=FACE_557, property=COOLANT
+Region 558, name=FACE_558, property=CLAD
+Region 559, name=FACE_559, property=GAP
+Region 560, name=FACE_560, property=45Gd
+Region 561, name=FACE_561, property=45Gd
+Region 562, name=FACE_562, property=45Gd
+Region 563, name=FACE_563, property=45Gd
+Region 564, name=FACE_564, property=45Gd
+Region 565, name=FACE_565, property=45Gd
+Region 566, name=FACE_566, property=COOLANT
+Region 567, name=FACE_567, property=CLAD
+Region 568, name=FACE_568, property=GAP
+Region 569, name=FACE_569, property=42UOX
+Region 570, name=FACE_570, property=42UOX
+Region 571, name=FACE_571, property=42UOX
+Region 572, name=FACE_572, property=42UOX
+Region 573, name=FACE_573, property=COOLANT
+Region 574, name=FACE_574, property=CLAD
+Region 575, name=FACE_575, property=GAP
+Region 576, name=FACE_576, property=32UOX
+Region 577, name=FACE_577, property=32UOX
+Region 578, name=FACE_578, property=32UOX
+Region 579, name=FACE_579, property=32UOX
+Region 580, name=FACE_580, property=COOLANT
+Region 581, name=FACE_581, property=CLAD
+Region 582, name=FACE_582, property=GAP
+Region 583, name=FACE_583, property=45UOX
+Region 584, name=FACE_584, property=45UOX
+Region 585, name=FACE_585, property=45UOX
+Region 586, name=FACE_586, property=45UOX
+Region 587, name=FACE_587, property=COOLANT
+Region 588, name=FACE_588, property=CLAD
+Region 589, name=FACE_589, property=GAP
+Region 590, name=FACE_590, property=45Gd
+Region 591, name=FACE_591, property=45Gd
+Region 592, name=FACE_592, property=45Gd
+Region 593, name=FACE_593, property=45Gd
+Region 594, name=FACE_594, property=45Gd
+Region 595, name=FACE_595, property=45Gd
+Region 596, name=FACE_596, property=COOLANT
+Region 597, name=FACE_597, property=CLAD
+Region 598, name=FACE_598, property=GAP
+Region 599, name=FACE_599, property=50UOX
+Region 600, name=FACE_600, property=50UOX
+Region 601, name=FACE_601, property=50UOX
+Region 602, name=FACE_602, property=50UOX
+Region 603, name=FACE_603, property=COOLANT
+Region 604, name=FACE_604, property=CLAD
+Region 605, name=FACE_605, property=GAP
+Region 606, name=FACE_606, property=50UOX
+Region 607, name=FACE_607, property=50UOX
+Region 608, name=FACE_608, property=50UOX
+Region 609, name=FACE_609, property=50UOX
+Region 610, name=FACE_610, property=COOLANT
+Region 611, name=FACE_611, property=CLAD
+Region 612, name=FACE_612, property=GAP
+Region 613, name=FACE_613, property=45Gd
+Region 614, name=FACE_614, property=45Gd
+Region 615, name=FACE_615, property=45Gd
+Region 616, name=FACE_616, property=45Gd
+Region 617, name=FACE_617, property=45Gd
+Region 618, name=FACE_618, property=45Gd
+Region 619, name=FACE_619, property=COOLANT
+Region 620, name=FACE_620, property=CLAD
+Region 621, name=FACE_621, property=GAP
+Region 622, name=FACE_622, property=50UOX
+Region 623, name=FACE_623, property=50UOX
+Region 624, name=FACE_624, property=50UOX
+Region 625, name=FACE_625, property=50UOX
+Region 626, name=FACE_626, property=COOLANT
+Region 627, name=FACE_627, property=CLAD
+Region 628, name=FACE_628, property=GAP
+Region 629, name=FACE_629, property=45Gd
+Region 630, name=FACE_630, property=45Gd
+Region 631, name=FACE_631, property=45Gd
+Region 632, name=FACE_632, property=45Gd
+Region 633, name=FACE_633, property=45Gd
+Region 634, name=FACE_634, property=45Gd
+Region 635, name=FACE_635, property=COOLANT
+Region 636, name=FACE_636, property=CLAD
+Region 637, name=FACE_637, property=GAP
+Region 638, name=FACE_638, property=45UOX
+Region 639, name=FACE_639, property=45UOX
+Region 640, name=FACE_640, property=45UOX
+Region 641, name=FACE_641, property=45UOX
+Region 642, name=FACE_642, property=COOLANT
+Region 643, name=FACE_643, property=CLAD
+Region 644, name=FACE_644, property=GAP
+Region 645, name=FACE_645, property=32UOX
+Region 646, name=FACE_646, property=32UOX
+Region 647, name=FACE_647, property=32UOX
+Region 648, name=FACE_648, property=32UOX
+Region 649, name=FACE_649, property=COOLANT
+Region 650, name=FACE_650, property=CLAD
+Region 651, name=FACE_651, property=GAP
+Region 652, name=FACE_652, property=24UOX
+Region 653, name=FACE_653, property=24UOX
+Region 654, name=FACE_654, property=24UOX
+Region 655, name=FACE_655, property=24UOX
+Region 656, name=FACE_656, property=COOLANT
+Region 657, name=FACE_657, property=CLAD
+Region 658, name=FACE_658, property=GAP
+Region 659, name=FACE_659, property=32UOX
+Region 660, name=FACE_660, property=32UOX
+Region 661, name=FACE_661, property=32UOX
+Region 662, name=FACE_662, property=32UOX
+Region 663, name=FACE_663, property=COOLANT
+Region 664, name=FACE_664, property=CLAD
+Region 665, name=FACE_665, property=GAP
+Region 666, name=FACE_666, property=42UOX
+Region 667, name=FACE_667, property=42UOX
+Region 668, name=FACE_668, property=42UOX
+Region 669, name=FACE_669, property=42UOX
+Region 670, name=FACE_670, property=COOLANT
+Region 671, name=FACE_671, property=CLAD
+Region 672, name=FACE_672, property=GAP
+Region 673, name=FACE_673, property=45UOX
+Region 674, name=FACE_674, property=45UOX
+Region 675, name=FACE_675, property=45UOX
+Region 676, name=FACE_676, property=45UOX
+Region 677, name=FACE_677, property=COOLANT
+Region 678, name=FACE_678, property=CLAD
+Region 679, name=FACE_679, property=GAP
+Region 680, name=FACE_680, property=48UOX
+Region 681, name=FACE_681, property=48UOX
+Region 682, name=FACE_682, property=48UOX
+Region 683, name=FACE_683, property=48UOX
+Region 684, name=FACE_684, property=COOLANT
+Region 685, name=FACE_685, property=CLAD
+Region 686, name=FACE_686, property=GAP
+Region 687, name=FACE_687, property=50UOX
+Region 688, name=FACE_688, property=50UOX
+Region 689, name=FACE_689, property=50UOX
+Region 690, name=FACE_690, property=50UOX
+Region 691, name=FACE_691, property=COOLANT
+Region 692, name=FACE_692, property=CLAD
+Region 693, name=FACE_693, property=GAP
+Region 694, name=FACE_694, property=48UOX
+Region 695, name=FACE_695, property=48UOX
+Region 696, name=FACE_696, property=48UOX
+Region 697, name=FACE_697, property=48UOX
+Region 698, name=FACE_698, property=COOLANT
+Region 699, name=FACE_699, property=CLAD
+Region 700, name=FACE_700, property=GAP
+Region 701, name=FACE_701, property=42UOX
+Region 702, name=FACE_702, property=42UOX
+Region 703, name=FACE_703, property=42UOX
+Region 704, name=FACE_704, property=42UOX
+Region 705, name=FACE_705, property=COOLANT
+Region 706, name=FACE_706, property=CLAD
+Region 707, name=FACE_707, property=GAP
+Region 708, name=FACE_708, property=32UOX
+Region 709, name=FACE_709, property=32UOX
+Region 710, name=FACE_710, property=32UOX
+Region 711, name=FACE_711, property=32UOX
+Region 712, name=FACE_712, property=COOLANT
+Region 713, name=FACE_713, property=CLAD
+Region 714, name=FACE_714, property=GAP
+Region 715, name=FACE_715, property=24UOX
+Region 716, name=FACE_716, property=24UOX
+Region 717, name=FACE_717, property=24UOX
+Region 718, name=FACE_718, property=24UOX
+	# subparts (faces) :  718
+	# edges found :  886
+	# edges w/one face : 40
+	# edges w/two faces : 846
+	# edges w errors : 0
+--- Lattice analysis executed in 18.53989028930664 seconds ---
+--- TdtData class instantiation executed in 0.0005404949188232422 seconds ---
+/home/user/data/tdt_data/AT10_lattice_MODEBOX_TISO.dat
+--- TDT file generation executed in 18.545531272888184 seconds ---

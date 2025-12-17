@@ -603,7 +603,7 @@ def build_subdivisions_GEO(bounding_box_length, inner_side_length, outer_side_le
     
     return box_elements
 
-tracking_type = "TSPC" # "TSPC"
+tracking_type = "TISO" # "TSPC"
 
 pitch = 1.295
 assembly_pitch, water_gap_width = 15.24, 0.75 # Assembly pitch and water gap thickness
