@@ -220,14 +220,14 @@ lattice.show(PropertyType.MATERIAL)
 if tracking_type == "TISO":
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/AT10_lattice_TISO", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_type=PropertyType.MATERIAL,
+    [lattice], "data/glow_data/tdt_data/AT10_lattice_TISO", TdtSetup(GeometryType.SECTORIZED, 
+                                                        property_types=[PropertyType.MATERIAL],
                                                         type_geo=LatticeGeometryType.ISOTROPIC,
                                                         symmetry_type=BoundaryType.AXIAL_SYMMETRY))
 elif tracking_type == "TSPC":
     lattice.type_geo = LatticeGeometryType.RECTANGLE_SYM
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/AT10_lattice_TSPC", TdtSetup(GeometryType.SECTORIZED, 
-                                                            property_type=PropertyType.MATERIAL,
+    [lattice], "data/glow_data/tdt_data/AT10_lattice_TSPC", TdtSetup(GeometryType.SECTORIZED, 
+                                                            property_types=[PropertyType.MATERIAL],
                                                             type_geo=LatticeGeometryType.RECTANGLE_SYM,
                                                             symmetry_type=BoundaryType.AXIAL_SYMMETRY))

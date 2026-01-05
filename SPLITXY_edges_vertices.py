@@ -85,7 +85,7 @@ lattice.show(PropertyType.MATERIAL)
 
 lattice.type_geo = LatticeGeometryType.ISOTROPIC
 analyse_and_generate_tdt(
-[lattice], "data/tdt_data/dummy_cells", TdtSetup(
+[lattice], "data/glow_data/tdt_data/dummy_cells", TdtSetup(
                                                     GeometryType.SECTORIZED, 
                                                     property_type=PropertyType.MATERIAL,
                                                     type_geo=LatticeGeometryType.ISOTROPIC,

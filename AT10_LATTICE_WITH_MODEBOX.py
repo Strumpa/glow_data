@@ -212,6 +212,7 @@ def build_subdivisions(bounding_box_length, inner_side_length, outer_side_length
     #test_lattice.show(PropertyType.MATERIAL)
     return box_elements
 
+
 def build_subdivisions_GEO(bounding_box_length, inner_side_length, outer_side_length, number_subdivisions, translation=(0.0,0.0,0.0)):
     box_elements = []
     pitch = bounding_box_length / number_subdivisions
@@ -1135,15 +1136,15 @@ lattice.show(PropertyType.MATERIAL)
 if tracking_type == "TISO":
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/AT10_lattice_MODEBOX_TISO", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_type=PropertyType.MATERIAL,
+    [lattice], "data/glow_data/tdt_data/AT10_lattice_MODEBOX_TISO", TdtSetup(GeometryType.SECTORIZED, 
+                                                        property_types=[PropertyType.MATERIAL],
                                                         type_geo=LatticeGeometryType.ISOTROPIC,
                                                         symmetry_type=BoundaryType.AXIAL_SYMMETRY))
 elif tracking_type == "TSPC":
     lattice.type_geo = LatticeGeometryType.RECTANGLE_SYM
     analyse_and_generate_tdt(
     [lattice], 
-    "data/tdt_data/AT10_lattice_MODEBOX_TSPC", 
+    "data/glow_data/tdt_data/AT10_lattice_MODEBOX_TSPC", 
     TdtSetup(GeometryType.SECTORIZED, 
             property_type=PropertyType.MATERIAL,
             type_geo=LatticeGeometryType.RECTANGLE_SYM,

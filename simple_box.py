@@ -77,7 +77,7 @@ def make_simple_box(pitch: float):
 
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/simple_box_fixed", TdtSetup(
+    [lattice], "data/glow_data/tdt_data/simple_box_fixed", TdtSetup(
                                                     geom_type=GeometryType.TECHNOLOGICAL, 
                                                     property_type=PropertyType.MATERIAL,
                                                     type_geo=LatticeGeometryType.ISOTROPIC,
@@ -179,7 +179,7 @@ def make_box_coolant_moder(pitch:float, moder_box_outer_side: float):
 
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
-    [lattice], "data/tdt_data/simple_box_coolant_moder", TdtSetup(
+    [lattice], "data/glow_data/tdt_data/simple_box_coolant_moder", TdtSetup(
                                                     geom_type=GeometryType.TECHNOLOGICAL, 
                                                     property_type=PropertyType.MATERIAL,
                                                     type_geo=LatticeGeometryType.ISOTROPIC,
