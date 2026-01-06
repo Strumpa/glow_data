@@ -38,7 +38,6 @@ def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch):
     return lattice
 
 
-
 def generate_cells(lattice_desc, pitch, C_to_mat):
     """
     generate RectCell objects for each individual subgeometry in the lattice
@@ -109,8 +108,9 @@ def generate_cells(lattice_desc, pitch, C_to_mat):
         lattice_components.append(row_of_cells)
     return lattice_components
 
-            
-
+# --------------------
+# LATTICE DEFINITION
+# --------------------
 
 C_to_MAT = {
     "C1":"24UOX",
