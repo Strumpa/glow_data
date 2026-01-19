@@ -119,7 +119,7 @@ lattice.show(PropertyType.MATERIAL)
 if tracking_type == "TISO":
       lattice.type_geo = LatticeGeometryType.ISOTROPIC
       analyse_and_generate_tdt(
-      [lattice], "data/glow_data/tdt_data/3x3_Gd_C_TISO_MACRO", TdtSetup(GeometryType.SECTORIZED, 
+      [lattice], "data/glow_data/tdt_data/3x3_Gd_C_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
                                                         property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
                                                         type_geo=LatticeGeometryType.ISOTROPIC,
                                                         symmetry_type=BoundaryType.AXIAL_SYMMETRY))
