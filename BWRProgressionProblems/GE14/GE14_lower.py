@@ -157,7 +157,9 @@ def create_assembly_box(assembly_pitch, channel_box_outer_side,channel_box_inner
         - assembly_pitch : float, assembly pitch (cm)
         - channel_box_inner_side : float, inner side of channel box (cm)
     """
-    assembly_cell = RectCell(name="out_of_assembly_moderator", height_x_width=(assembly_pitch, assembly_pitch), center=(assembly_pitch/2, assembly_pitch/2, 0.0))
+    assembly_cell = RectCell(name="out_of_assembly_moderator", height_x_width=(assembly_pitch, assembly_pitch), center=(assembly_pitch/2, assembly_pitch/2, 0.0),
+                        rounded_corners=[(0, corner_inner_radius_of_curvature), (1, corner_inner_radius_of_curvature),
+                                         (2, corner_inner_radius_of_curvature), (3, corner_inner_radius_of_curvature)])
     assembly_cell.set_properties(
         {PropertyType.MATERIAL: ["MODERATOR"],
          PropertyType.MACRO: ["MACRO_ASSEMBLY_OUT_MODERATOR"]*1}
@@ -267,16 +269,15 @@ if __name__ == "__main__":
     # Add assembly box cells
     lattice.add_cell(assembly_box_cell, ())
     #lattice.add_cell(channel_box_cell, ())
-    lattice.add_cell(coolant_intra_assembly_cell, ())
+    #lattice.add_cell(coolant_intra_assembly_cell, ())
 
-    #lattice = add_cells_to_regular_lattice(lattice=lattice, 
-    #                                    ordered_cells=ordered_fuel_cells,
-    #                                    cell_pitch=pin_pitch, translation=pincell_translation)
+    lattice = add_cells_to_regular_lattice(lattice=lattice, 
+                                        ordered_cells=ordered_fuel_cells,
+                                        cell_pitch=pin_pitch, translation=pincell_translation)
     # Add water rods cells
-    #lattice.add_cell(water_rod_cell1,(4*pin_pitch + pincell_translation, 4*pin_pitch + pincell_translation, 0.0))
-    #lattice.add_cell(water_rod_cell2,(6*pin_pitch + pincell_translation, 6*pin_pitch + pincell_translation, 0.0))
+    lattice.add_cell(water_rod_cell1,(4*pin_pitch + pincell_translation, 4*pin_pitch + pincell_translation, 0.0))
+    lattice.add_cell(water_rod_cell2,(6*pin_pitch + pincell_translation, 6*pin_pitch + pincell_translation, 0.0))
 
-    # Apply the eighth symmetry type to the cartesian lattice
 lattice.apply_symmetry(SymmetryType.FULL)
 # Show the resulting layout with the 'MATERIAL' colorset
 if include_MACRO_definitions:
@@ -288,7 +289,7 @@ else:
 # geometry
 if tracking_type == "TISO":
     if include_MACRO_definitions:
-        props = [PropertyType.MATERIAL,PropertyType.MACRO]
+        props = [PropertyType.MATERIAL]#,PropertyType.MACRO]
         output_file_name = "GE-14_lattice_TISO_MACRO"
     else:
         props = [PropertyType.MATERIAL]
