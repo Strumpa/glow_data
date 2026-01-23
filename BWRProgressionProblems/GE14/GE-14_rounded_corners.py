@@ -417,7 +417,7 @@ analyse_and_generate_tdt(
     f"data/glow_data/tdt_data/GE14_full_assembly_rounded_corners",
     TdtSetup(
         GeometryType.SECTORIZED,
-        property_types=[PropertyType.MATERIAL],
+        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
         type_geo=LatticeGeometryType.ISOTROPIC,
         symmetry_type=BoundaryType.AXIAL_SYMMETRY
     )
