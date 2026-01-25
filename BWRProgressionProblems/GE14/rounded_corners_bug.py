@@ -9,7 +9,7 @@ from glow.support.types import *
 
 
 
-def create_assembly_box(assembly_pitch, channel_box_outer_side,channel_box_inner_side, corner_inner_radius_of_curvature):
+def create_assembly_box(assembly_pitch, channel_box_outer_side, channel_box_inner_side, corner_inner_radius_of_curvature):
     """
     Create the assembly box cell for GE-14 assembly
     Parameters :
