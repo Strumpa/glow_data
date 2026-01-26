@@ -101,7 +101,6 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
             if mat_name == "MODERATOR":
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: ["MODERATOR"],
-                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"]
                 })
             else:
                 if cell_id in Gd_cells:
@@ -111,7 +110,6 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
                 list_of_cell_mats.extend(["GAP", "CLAD", "COOLANT"])
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: list_of_cell_mats,
-                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"] * len(list_of_cell_mats)
                 })
             row_of_cells.append(tmp_cell)
         lattice_components.append(row_of_cells)
@@ -126,28 +124,28 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius)
     water_rod_cell1 = RectCell(
         name="WATER_ROD_1",
         height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(2 * pin_pitch, 2 * pin_pitch, 0.0)
+        center=(0.0, 0.0 , 0.0)
     )
     water_rod_cell1.add_circle(water_rod_inner_radius)
     water_rod_cell1.add_circle(water_rod_outer_radius)
     water_rod_cell1.set_properties({
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-        PropertyType.MACRO: ["MACRO_WATER_ROD_1"] * 3
     })
-
+    
+    # Do the same for water rod cell 2
     water_rod_cell2 = RectCell(
         name="WATER_ROD_2",
         height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(2 * pin_pitch, 2 * pin_pitch, 0.0)
+        center=(0.0, 0.0, 0.0)
     )
     water_rod_cell2.add_circle(water_rod_inner_radius)
     water_rod_cell2.add_circle(water_rod_outer_radius)
     water_rod_cell2.set_properties({
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-        PropertyType.MACRO: ["MACRO_WATER_ROD_2"] * 3
     })
-
     return water_rod_cell1, water_rod_cell2
+
+
 
 
 def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch, translation):
@@ -195,12 +193,13 @@ corner_outer_radius_of_curvature = corner_inner_radius_of_curvature + channel_bo
 
 # Inner corner radius for the pin lattice region (where fuel pins sit)
 # This accounts for the rounded corners cutting into the coolant gap
-pin_lattice_corner_radius = corner_inner_radius_of_curvature - coolant_intra_assembly_width
+#pin_lattice_corner_radius = corner_inner_radius_of_curvature - pin_pitch / 2
+pin_lattice_corner_radius = corner_inner_radius_of_curvature - (coolant_intra_assembly_width + pin_pitch / 2)
 if pin_lattice_corner_radius < 0:
     pin_lattice_corner_radius = 0  # No rounding needed if coolant gap is large enough
 
 # Cap the corner radius at the maximum allowed for pin cells (half the pitch)
-max_pin_corner_radius = pin_pitch / 2 - 0.001  # Small margin for numerical stability
+max_pin_corner_radius = pin_pitch / 2 - 0.0001  # Small margin for numerical stability
 if pin_lattice_corner_radius > max_pin_corner_radius:
     print(f"WARNING: Pin lattice corner radius ({pin_lattice_corner_radius:.4f}) exceeds max allowed ({max_pin_corner_radius:.4f})")
     print(f"         Capping at maximum value. Corner fuel cells won't perfectly match channel box corners.")
@@ -267,7 +266,7 @@ ordered_fuel_cells = generate_cells(
 )
 
 # Create water rod cells
-water_rod_cell1, water_rod_cell2 = create_water_rods(
+water_rod_1_macros, water_rod_2_macros = create_water_rods(
     pin_pitch, water_rod_inner_radius, water_rod_outer_radius
 )
 
@@ -275,9 +274,10 @@ water_rod_cell1, water_rod_cell2 = create_water_rods(
 # CREATE ASSEMBLY BOX CELLS (with rounded corners)
 # --------------------
 # Inner coolant cell (the moderator gap between pins and channel box)
-coolant_intra_assembly_cell = RectCell(
+coolant_intra_assembly_cell = Rectangle(
     name="intra_assembly_coolant",
-    height_x_width=(channel_box_inner_side, channel_box_inner_side),
+    height=channel_box_inner_side,
+    width=channel_box_inner_side,
     center=center,
     rounded_corners=[
         (0, corner_inner_radius_of_curvature),
@@ -286,15 +286,12 @@ coolant_intra_assembly_cell = RectCell(
         (3, corner_inner_radius_of_curvature)
     ]
 )
-coolant_intra_assembly_cell.set_properties({
-    PropertyType.MATERIAL: ["COOLANT"],
-    PropertyType.MACRO: ["MACRO_INTRA_ASSEMBLY_COOLANT"]
-})
 
 # Channel box cell
-channel_box_cell = RectCell(
+channel_box_cell = Rectangle(
     name="channel_box",
-    height_x_width=(channel_box_outer_side, channel_box_outer_side),
+    height=channel_box_outer_side,
+    width=channel_box_outer_side,
     center=center,
     rounded_corners=[
         (0, corner_outer_radius_of_curvature),
@@ -303,87 +300,33 @@ channel_box_cell = RectCell(
         (3, corner_outer_radius_of_curvature)
     ]
 )
-channel_box_cell.set_properties({
-    PropertyType.MATERIAL: ["CHANNEL_BOX"],
-    PropertyType.MACRO: ["MACRO_CHANNEL_BOX"]
-})
 
 # Outer moderator cell (inter-assembly gap)
-assembly_cell = RectCell(
+assembly_box_cell = RectCell(
     name="out_of_assembly_moderator",
     height_x_width=(assembly_pitch, assembly_pitch),
     center=center
 )
-assembly_cell.set_properties({
-    PropertyType.MATERIAL: ["MODERATOR_2"],
-    PropertyType.MACRO: ["MACRO_ASSEMBLY_OUT_MODERATOR"]
-})
 
-# Inner pin lattice region with rounded corners to match the coolant gap inner boundary
-# Only needed for the make_cut operation to define the rounded inner boundary of the coolant gap
-pin_lattice_side = 10 * pin_pitch
-
-# Rounded version for the box cut operation
-rounded_pin_lattice_rounded_corners = None
-if pin_lattice_corner_radius > 0:
-    rounded_pin_lattice_rounded_corners = [
-        (0, pin_lattice_corner_radius),
-        (1, pin_lattice_corner_radius),
-        (2, pin_lattice_corner_radius),
-        (3, pin_lattice_corner_radius)
-    ]
-
-rounded_pin_lattice_cell = RectCell(
-    name="rounded_pin_lattice_for_cut",
-    height_x_width=(pin_lattice_side, pin_lattice_side),
-    center=center,
-    rounded_corners=rounded_pin_lattice_rounded_corners
+assembly_box_cell_face = make_partition(
+    [assembly_box_cell.face],
+    [channel_box_cell.face, coolant_intra_assembly_cell.face],
+    shape_type=ShapeType.COMPOUND
 )
 
-# --------------------
-# CREATE BOX GEOMETRY USING CUT OPERATIONS
-# --------------------
-# Cut the channel_box face from the assembly face to create the outer moderator ring
-moderator_face = make_cut(assembly_cell.face, channel_box_cell.face)
+assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
 
-# Cut the coolant region out of the channel box to create the channel box ring
-channel_box_face = make_cut(channel_box_cell.face, coolant_intra_assembly_cell.face)
-
-# Cut the pin lattice region out of the coolant to create the coolant gap ring
-# Use the ROUNDED version for the cut to get proper rounded inner boundary
-coolant_gap_face = make_cut(coolant_intra_assembly_cell.face, rounded_pin_lattice_cell.face)
-
-# Combine all three layers into a compound for the box
-box_face = make_compound([moderator_face, channel_box_face, coolant_gap_face])
-
-# Create the box cell with the combined moderator + channel box + coolant gap geometry
-box_cell = RectCell(
-    name="assembly_box",
-    height_x_width=(assembly_pitch, assembly_pitch),
-    center=center
-)
-
-# Update the box cell geometry with the cut faces
-box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, box_face)
-
-# Set properties for the zones in the box
-# The geometry has 3 zones created in this order via make_compound:
-# 0 = moderator_face (outer ring)
-# 1 = channel_box_face (middle ring) 
-# 2 = coolant_gap_face (inner ring)
-box_cell.set_properties({
+assembly_box_cell.set_properties({
     PropertyType.MATERIAL: ["COOLANT", "CHANNEL_BOX", "MODERATOR"],
-    PropertyType.MACRO: ["MACRO_COOLANT_GAP", "MACRO_CHANNEL_BOX", "MACRO_MODERATOR_OUTSIDE"]
 })
 
 # --------------------
 # LATTICE CONSTRUCTION
 # --------------------
-lattice = Lattice(name='GE14_full_assembly', center=center)
+lattice = Lattice(name='GE14_full_assembly - sectorized', center=center)
 
 # Add the box cell FIRST - this establishes the base/background for the lattice
 # Using () as position means it's the base cell
-lattice.add_cell(box_cell, ())
 
 # Add all fuel pin cells to the lattice
 lattice = add_cells_to_regular_lattice(
@@ -395,29 +338,31 @@ lattice = add_cells_to_regular_lattice(
 
 # Add water rod cells at their specific locations
 # Water rod 1: positions (3,4) x (3,4) -> center at (4*pitch, 4*pitch) + translation
+
 lattice.add_cell(
-    water_rod_cell1,
-    (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
-)
+        water_rod_1_macros,
+        (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
+    )
 # Water rod 2: positions (5,6) x (5,6) -> center at (6*pitch, 6*pitch) + translation
 lattice.add_cell(
-    water_rod_cell2,
+    water_rod_2_macros,
     (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
 )
 
+lattice.lattice_box = assembly_box_cell
 # Show the lattice
-lattice.show(geometry_type_to_show=GeometryType.TECHNOLOGICAL, property_type_to_show=PropertyType.MATERIAL)
+lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
 
-# --------------------
+# --------------------  
 # GENERATE TDT FILE
 # --------------------
 lattice.type_geo = LatticeGeometryType.ISOTROPIC
 analyse_and_generate_tdt(
     [lattice],
-    f"data/glow_data/tdt_data/GE14_full_assembly_rounded_corners",
+    f"data/glow_data/tdt_data/GE14_assembly_MOC",
     TdtSetup(
         GeometryType.SECTORIZED,
-        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
+        property_types=[PropertyType.MATERIAL],
         type_geo=LatticeGeometryType.ISOTROPIC,
         symmetry_type=BoundaryType.AXIAL_SYMMETRY
     )
