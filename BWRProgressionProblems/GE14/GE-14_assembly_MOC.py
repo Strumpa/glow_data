@@ -111,6 +111,7 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: list_of_cell_mats,
                 })
+                ## TODO : Sectorize the cell
             row_of_cells.append(tmp_cell)
         lattice_components.append(row_of_cells)
     return lattice_components
@@ -143,6 +144,8 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius)
     water_rod_cell2.set_properties({
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
     })
+
+    ## TODO : Sectorize both water rod cells
     return water_rod_cell1, water_rod_cell2
 
 
@@ -266,7 +269,7 @@ ordered_fuel_cells = generate_cells(
 )
 
 # Create water rod cells
-water_rod_1_macros, water_rod_2_macros = create_water_rods(
+water_rod_cell1, water_rod_cell2 = create_water_rods(
     pin_pitch, water_rod_inner_radius, water_rod_outer_radius
 )
 
@@ -337,15 +340,15 @@ lattice = add_cells_to_regular_lattice(
 )
 
 # Add water rod cells at their specific locations
-# Water rod 1: positions (3,4) x (3,4) -> center at (4*pitch, 4*pitch) + translation
+# -> center at (4*pitch, 4*pitch) + translation
 
 lattice.add_cell(
-        water_rod_1_macros,
+        water_rod_cell1,
         (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
     )
-# Water rod 2: positions (5,6) x (5,6) -> center at (6*pitch, 6*pitch) + translation
+# center at (6*pitch, 6*pitch) + translation
 lattice.add_cell(
-    water_rod_2_macros,
+    water_rod_cell2,
     (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
 )
 
