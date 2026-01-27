@@ -101,19 +101,18 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
             if mat_name == "MODERATOR":
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: ["MODERATOR"],
+                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"]
                 })
             else:
                 if cell_id in Gd_cells:
                     list_of_cell_mats = [mat_name] * 6
-                    tmp_cell.sectorize([8]*9, [22.5]*9, windmill=True)
                 else:
                     list_of_cell_mats = [mat_name] * 4
-                    tmp_cell.sectorize([8]*7, [22.5]*7, windmill=True)
                 list_of_cell_mats.extend(["GAP", "CLAD", "COOLANT"])
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: list_of_cell_mats,
+                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"] * len(list_of_cell_mats)
                 })
-                ## TODO : Sectorize the cell
             row_of_cells.append(tmp_cell)
         lattice_components.append(row_of_cells)
     return lattice_components
@@ -133,23 +132,85 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius)
     water_rod_cell1.add_circle(water_rod_outer_radius)
     water_rod_cell1.set_properties({
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
+        #PropertyType.MACRO: ["MACRO_WATER_ROD_1"] * 3
     })
-    
+    # Split the water rod into 4 different MACROS for IC method compatibility
+    # 4 Rectangle faces
+    face1 = Rectangle(
+        name="WATER_ROD_1_Q1_FACE",
+        height=pin_pitch,
+        width=pin_pitch,
+        center=(-pin_pitch / 2, -pin_pitch / 2, 0.0)
+    )
+    face2 = Rectangle(
+        name="WATER_ROD_1_Q2_FACE",
+        height=pin_pitch,
+        width=pin_pitch,
+        center=(pin_pitch / 2, -pin_pitch / 2, 0.0)
+    )
+    face3 = Rectangle(
+        name="WATER_ROD_1_Q3_FACE",
+        height=pin_pitch,
+        width=pin_pitch,
+        center=(-pin_pitch / 2, pin_pitch / 2, 0.0)
+    )
+    face4 = Rectangle(
+        name="WATER_ROD_1_Q4_FACE",
+        height=pin_pitch,
+        width=pin_pitch,
+        center=(pin_pitch / 2, pin_pitch / 2, 0.0)
+    )
+    water_rod_cell1_face = make_partition(
+        [water_rod_cell1.face],
+        [face1.face, face2.face, face3.face, face4.face],
+        shape_type=ShapeType.COMPOUND
+    )
+    # Create macro for quadrant 1 (bottom-left)
+    water_rod_1_macros = RectCell(
+        name="WATER_ROD_1_MACROS",
+        height_x_width=(pin_pitch*2, pin_pitch*2),
+        center=(0.0, 0.0, 0.0)
+    )
+    water_rod_1_macros.update_geometry_from_face(GeometryType.TECHNOLOGICAL, water_rod_cell1_face)
+    water_rod_1_macros.set_properties({
+        PropertyType.MATERIAL: ["MODERATOR", "MODERATOR", "MODERATOR", "MODERATOR",
+                                 "CLAD", "CLAD", "CLAD", "CLAD",
+                                 "COOLANT", "COOLANT", "COOLANT", "COOLANT"],
+        # 
+        PropertyType.MACRO: ["WATER_ROD_1_MACRO_1", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_4", 
+                             "WATER_ROD_1_MACRO_1", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_4", 
+                             "WATER_ROD_1_MACRO_4", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_1"]
+    })
+
     # Do the same for water rod cell 2
-    water_rod_cell2 = RectCell(
+    water_rod_2_macros = RectCell(
         name="WATER_ROD_2",
         height_x_width=(2 * pin_pitch, 2 * pin_pitch),
         center=(0.0, 0.0, 0.0)
     )
-    water_rod_cell2.add_circle(water_rod_inner_radius)
-    water_rod_cell2.add_circle(water_rod_outer_radius)
-    water_rod_cell2.set_properties({
+    water_rod_2_macros.add_circle(water_rod_inner_radius)
+    water_rod_2_macros.add_circle(water_rod_outer_radius)
+    water_rod_2_macros.set_properties({
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
     })
 
-    water_rod_cell1.sectorize([16, 16, 16], [0, 0, 0], windmill=False)
-    water_rod_cell2.sectorize([16, 16, 16], [0, 0, 0], windmill=False)
-    return water_rod_cell1, water_rod_cell2
+    water_rod_2_macros_face = make_partition(
+        [water_rod_2_macros.face],
+        [face1.face, face2.face, face3.face, face4.face],
+        shape_type=ShapeType.COMPOUND
+    )
+    water_rod_2_macros.update_geometry_from_face(GeometryType.TECHNOLOGICAL, water_rod_2_macros_face)
+    water_rod_2_macros.set_properties({
+        PropertyType.MATERIAL: ["MODERATOR", "MODERATOR", "MODERATOR", "MODERATOR",
+                                 "CLAD", "CLAD", "CLAD", "CLAD",
+                                 "COOLANT", "COOLANT", "COOLANT", "COOLANT"],
+        #
+        PropertyType.MACRO: ["WATER_ROD_2_MACRO_1", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_4", 
+                             "WATER_ROD_2_MACRO_1", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_4", 
+                             "WATER_ROD_2_MACRO_4", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_1"]
+    })
+
+    return water_rod_1_macros, water_rod_2_macros
 
 
 
@@ -220,14 +281,14 @@ def make_grid_faces(parent: Rectangle, nx: int, ny: int):
 
     return faces
 
-def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch):
+def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch):
     """
-    Make a partition of the box cell to allow for sub-meshing for MOC calculations.
+    Make a partition of the box cell to define new MACROs properties to allow for IC method.
     
     Parameters :
     ------------ 
     assembly_box_cell : RectCell
-        The assembly box cell to be discretized for MOC. 
+        The assembly box cell to be split into MACROs.
     pincell_pitch : float
         The pitch of individual pin cells in the lattice.
     assembly_pitch : float
@@ -235,7 +296,7 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch):
     Returns:
     --------
     RectCell
-        The updated assembly box cell with discretized geometry for MOC.
+        The updated assembly box cell with MACRO definitions for IC.
     """
     
     lattice_pitch = 10 * pincell_pitch
@@ -276,14 +337,14 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch):
     ]
     
     nx_ny_splits = [
-        (4, 4),  # Bottom-left
-        (30, 4),  # Bottom-middle
-        (4, 4),   # Bottom-right
-        (4, 30),  # Middle-left
-        (4, 30),  # Middle-right
-        (4, 4),   # Top-left
-        (30, 4),  # Top-middle
-        (4, 4)    # Top-right
+        (1,1),  # Bottom-left
+        (10, 1),  # Bottom-middle
+        (1, 1),   # Bottom-right
+        (1, 10),  # Middle-left
+        (1, 10),  # Middle-right
+        (1, 1),   # Top-left
+        (10, 1),  # Top-middle
+        (1, 1)    # Top-right
     ]
     splitting_faces = []
     # Split rectangles and collect faces
@@ -298,10 +359,112 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch):
     # Update the box cell's technological geometry with the assembled one
     assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
     
+    # Define MACRO names for each region
+    list_of_macros = ["BASE_CELL", 
+                    # COOLANT REGIONS IN DIFFERENT MACROS
+                      "LEFTSIDE_5", "LEFTSIDE_6", 
+                      "BOTSIDE_5", "BOTSIDE_6", 
+                      "TOPSIDE_5", "RIGHTSIDE_5", 
+                      "TOPSIDE_6", "RIGHTSIDE_6", 
+                      "LEFTSIDE_4", "BOTSIDE_4", 
+                      "LEFTSIDE_7", "BOTSIDE_7", 
+                      "TOPSIDE_4", "RIGHTSIDE_4", 
+                      "TOPSIDE_7", "RIGHTSIDE_7",
+                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
+                      "LEFTSIDE_6", "LEFTSIDE_5",
+                      "TOPSIDE_5", "TOPSIDE_6",
+                      "BOTSIDE_5", "BOTSIDE_6",
+                      "RIGHTSIDE_6", "RIGHTSIDE_5",
+                      "LEFTSIDE_4", "TOPSIDE_4",
+                      "BOTSIDE_4", "RIGHTSIDE_4",
+                      "LEFTSIDE_7", "TOPSIDE_7",
+                      "BOTSIDE_7", "RIGHTSIDE_7",
+                    # MODERATOR REGIONS IN DIFFERENT MACROS
+                      "RIGHTSIDE_5", "TOPSIDE_5",
+                      "RIGHTSIDE_6", "TOPSIDE_6",
+                      "BOTSIDE_5", "LEFTSIDE_5",
+                      "BOTSIDE_6", "LEFTSIDE_6", 
+                      "RIGHTSIDE_4", "TOPSIDE_4",
+                      "BOTSIDE_4", "LEFTSIDE_4",
+                      "RIGHTSIDE_7", "TOPSIDE_7",
+                      "BOTSIDE_7", "LEFTSIDE_7",
+                    # COOLANT REGIONS IN DIFFERENT MACROS
+                      "LEFTSIDE_3", "BOTSIDE_3",
+                      "LEFTSIDE_8", "BOTSIDE_8",
+                      "TOPSIDE_3", "RIGHTSIDE_3",
+                      "TOPSIDE_8", "RIGHTSIDE_8",
+                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
+                      "TOPSIDE_3", "LEFTSIDE_3",
+                      "BOTSIDE_3", "RIGHTSIDE_3",
+                      "LEFTSIDE_8", "TOPSIDE_8",
+                      "RIGHTSIDE_8", "BOTSIDE_8",
+                    # MODERATOR REGION IN DIFFERENT MACROS
+                      "RIGHTSIDE_3", "TOPSIDE_3",
+                      "RIGHTSIDE_8", "BOTSIDE_3",
+                      "LEFTSIDE_3", "BOTSIDE_8",
+                      "TOPSIDE_8", "LEFTSIDE_8",
+                    # COOLANT REGIONS IN DIFFERENT MACROS
+                      "LEFTSIDE_2", "BOTSIDE_2",
+                      "LEFTSIDE_9", "BOTSIDE_9",
+                      "TOPSIDE_2", "RIGHTSIDE_2",
+                      "TOPSIDE_9", "RIGHTSIDE_9",
+                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
+                      "TOPSIDE_2", "LEFTSIDE_2",
+                      "BOTSIDE_2", "RIGHTSIDE_2",
+                      "LEFTSIDE_9", "TOPSIDE_9",
+                      "RIGHTSIDE_9", "BOTSIDE_9",
+                    # MODERATOR REGION IN DIFFERENT MACROS
+                      "RIGHTSIDE_2", "TOPSIDE_2",
+                      "RIGHTSIDE_9", "BOTSIDE_2",
+                      "LEFTSIDE_2", "BOTSIDE_9",
+                      "TOPSIDE_9", "LEFTSIDE_9",
+                    # COOLANT REGIONS IN DIFFERENT MACROS
+                        "LEFTSIDE_1", "BOTSIDE_1",
+                        "TOPSIDE_1", "RIGHTSIDE_1",
+                        "LEFTSIDE_10", "BOTSIDE_10",
+                        "TOPSIDE_10", "RIGHTSIDE_10",
+                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
+                        "TOPSIDE_1", "LEFTSIDE_1",
+                        "BOTSIDE_1", "RIGHTSIDE_1",
+                        "LEFTSIDE_10", "TOPSIDE_10",
+                        "RIGHTSIDE_10", "BOTSIDE_10",
+                    # MODERATOR REGION IN DIFFERENT MACROS
+                        "BOTSIDE_1", "LEFTSIDE_1",
+                        "RIGHTSIDE_1", "TOPSIDE_1",
+                        "RIGHTSIDE_10", "BOTSIDE_10",
+                        "LEFTSIDE_10", "TOPSIDE_10",
+                    # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERING FUEL CELL MACROS
+                        "MACRO90", "MACRO00", "MACRO09", "MACRO99",
+                    # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERS OF LATTICE
+                        "CORNER_TOP_RIGHT",
+                        "CORNER_TOP_LEFT",
+                        "CORNER_BOTTOM_LEFT",
+                        "CORNER_BOTTOM_RIGHT",
+                    # MODERATOR CORNERS
+                        "CORNER_BOTTOM_RIGHT",
+                        "CORNER_TOP_LEFT",
+                        "CORNER_TOP_RIGHT",
+                        "CORNER_BOTTOM_LEFT"
+                      ]
+    list_of_materials = ["COOLANT"] + ["COOLANT"] * 16 + ["CHANNEL_BOX"] * 16 + ["MODERATOR"] * 16 \
+    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
+    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
+    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
+    + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 4
+
+
+
+    # set properties for the new MACRO regions
+    assembly_box_cell.set_properties({
+        PropertyType.MATERIAL: list_of_materials,
+        PropertyType.MACRO: list_of_macros
+    })
+    
+    # return the updated assembly box cell
     return assembly_box_cell
 
 ### GLOW OUTPUT PARAMETERS 
-tracking_type = "TSPC"  # Options: "TISO" or "TSPC"
+tracking_type = "TISO"  # Options: "TISO" or "TSPC"
 
 
 # --------------------
@@ -457,7 +620,7 @@ assembly_box_cell.set_properties({
 # --------------------
 # LATTICE CONSTRUCTION
 # --------------------
-lattice = Lattice(name='GE14_full_assembly - sectorized', center=center)
+lattice = Lattice(name='GE14_full_assembly - MACROs', center=center)
 
 # Add the box cell FIRST - this establishes the base/background for the lattice
 # Using () as position means it's the base cell
@@ -484,28 +647,25 @@ lattice.add_cell(
 )
 
 ## Discretize box for MOC
-assembly_box_cell = discretize_box_for_MOC(assembly_box_cell, pin_pitch, assembly_pitch)
+assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch)
 
 lattice.lattice_box = assembly_box_cell
 
 # Show the lattice
-lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
+lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MACRO)
 
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
 if tracking_type == "TISO":
-    output_file_name = "GE-14_assembly_MOC_TISO"
+    output_file_name = "GE-14_assembly_IC_MACRO_TISO"
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
-    [lattice], f"data/glow_data/tdt_data/{output_file_name}", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+        [lattice], 
+        f"data/glow_data/tdt_data/{output_file_name}", 
+        TdtSetup(GeometryType.SECTORIZED, 
+                property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
+                type_geo=LatticeGeometryType.ISOTROPIC,
+                symmetry_type=BoundaryType.AXIAL_SYMMETRY))
 elif tracking_type == "TSPC":
-    lattice.type_geo = LatticeGeometryType.RECTANGLE_SYM
-    analyse_and_generate_tdt(
-    [lattice], "data/glow_data/tdt_data/GE-14_assembly_MOC_TSPC", TdtSetup(GeometryType.SECTORIZED, 
-                                                            property_types=[PropertyType.MATERIAL],
-                                                            type_geo=LatticeGeometryType.RECTANGLE_SYM,
-                                                            symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+    raise NotImplementedError("TSPC tracking type is not supported for IC MACRO geometry.")
