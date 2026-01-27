@@ -113,7 +113,6 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
                 tmp_cell.set_properties({
                     PropertyType.MATERIAL: list_of_cell_mats,
                 })
-                ## TODO : Sectorize the cell
             row_of_cells.append(tmp_cell)
         lattice_components.append(row_of_cells)
     return lattice_components
@@ -147,8 +146,8 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius)
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
     })
 
-    water_rod_cell1.sectorize([16, 16, 16], [0, 0, 0], windmill=False)
-    water_rod_cell2.sectorize([16, 16, 16], [0, 0, 0], windmill=False)
+    water_rod_cell1.sectorize([16, 16, 16], [0, 0, 0], windmill=True)
+    water_rod_cell2.sectorize([16, 16, 16], [0, 0, 0], windmill=True)
     return water_rod_cell1, water_rod_cell2
 
 
@@ -301,7 +300,7 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch):
     return assembly_box_cell
 
 ### GLOW OUTPUT PARAMETERS 
-tracking_type = "TSPC"  # Options: "TISO" or "TSPC"
+tracking_type = "TISO"  # Options: "TISO" or "TSPC"
 
 
 # --------------------
