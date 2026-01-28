@@ -434,7 +434,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
                         "RIGHTSIDE_10", "BOTSIDE_10",
                         "LEFTSIDE_10", "TOPSIDE_10",
                     # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERING FUEL CELL MACROS
-                        "MACRO90", "MACRO00", "MACRO09", "MACRO99",
+                        "MACRO90", "MACRO00", "MACRO99", "MACRO09",
                     # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERS OF LATTICE
                         "CORNER_TOP_RIGHT",
                         "CORNER_TOP_LEFT",
