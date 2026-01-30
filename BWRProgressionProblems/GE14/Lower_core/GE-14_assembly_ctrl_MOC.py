@@ -279,19 +279,19 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch, con
     
     
     nx_ny_splits = [
-        (5,5),  # Bottom-left corner: moderator + box
+        (4,4),  # Bottom-left corner: moderator + box
         (2,4),  # Bottom-left : under the cross arm
-        (30,5),   # Bottom-center : center bottom
-        (5,5),   # Bottom-right corner
+        (30,4),   # Bottom-center : center bottom
+        (4,4),   # Bottom-right corner
         (1,1),   # Rectangle overlapping with the control cross arm
-        (5,30),    # middle-left : moderator + box + coolant gap
+        (4,30),    # middle-left : moderator + box + coolant gap
         #(1,1),  # Middle-middle : covering the pin lattice region
-        (5,30),  # Middle-right
-        (5,5),   # Top-left moderator corner under cross
-        (30,5),  # Top-middle : moderator + box + coolant gap
+        (4,30),  # Middle-right
+        (4,4),   # Top-left moderator corner under cross
+        (30,4),  # Top-middle : moderator + box + coolant gap
         (1,1),    # Rectangle overlapping with the control cross north arm
         (8,2),    # top-right moderator region right of north arm
-        (5,5),   # Top-right corner : moderator + box
+        (4,4),   # Top-right corner : moderator + box
     ]
     
     splitting_faces = []
@@ -310,7 +310,7 @@ def discretize_box_for_MOC(assembly_box_cell, pincell_pitch, assembly_pitch, con
     return assembly_box_cell
 
 ### GLOW OUTPUT PARAMETERS 
-tracking_type = "TSPC"  # Options: "TISO" or "TSPC"
+tracking_type = "TISO"  # Options: "TISO" or "TSPC"
 
 # --------------------
 # GEOMETRY PARAMETERS
