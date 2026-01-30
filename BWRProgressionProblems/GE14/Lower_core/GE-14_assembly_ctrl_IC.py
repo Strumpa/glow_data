@@ -122,106 +122,7 @@ def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, c
     return lattice_components
 
 
-def create_water_rods_in_split_MACROs(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
-    """
-    Create water rod cells for GE-14 assembly (2x2 pin pitch size)
-    Cell center is at (2*pin_pitch, 2*pin_pitch) because the cell spans 2x2 pins
-    """
-    water_rod_cell1 = RectCell(
-        name="WATER_ROD_1",
-        height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(0.0, 0.0 , 0.0)
-    )
-    water_rod_cell1.add_circle(water_rod_inner_radius)
-    water_rod_cell1.add_circle(water_rod_outer_radius)
-    water_rod_cell1.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-        #PropertyType.MACRO: ["MACRO_WATER_ROD_1"] * 3
-    })
-    # Split the water rod into 4 different MACROS for IC method compatibility
-    # 4 Rectangle faces
-    face1 = Rectangle(
-        name="WATER_ROD_1_Q1_FACE",
-        height=pin_pitch,
-        width=pin_pitch,
-        center=(-pin_pitch / 2, -pin_pitch / 2, 0.0)
-    )
-    face2 = Rectangle(
-        name="WATER_ROD_1_Q2_FACE",
-        height=pin_pitch,
-        width=pin_pitch,
-        center=(pin_pitch / 2, -pin_pitch / 2, 0.0)
-    )
-    face3 = Rectangle(
-        name="WATER_ROD_1_Q3_FACE",
-        height=pin_pitch,
-        width=pin_pitch,
-        center=(-pin_pitch / 2, pin_pitch / 2, 0.0)
-    )
-    face4 = Rectangle(
-        name="WATER_ROD_1_Q4_FACE",
-        height=pin_pitch,
-        width=pin_pitch,
-        center=(pin_pitch / 2, pin_pitch / 2, 0.0)
-    )
-    water_rod_cell1_face = make_partition(
-        [water_rod_cell1.face],
-        [face1.face, face2.face, face3.face, face4.face],
-        shape_type=ShapeType.COMPOUND
-    )
-    # Create macro for quadrant 1 (bottom-left)
-    water_rod_1_macros = RectCell(
-        name="WATER_ROD_1_MACROS",
-        height_x_width=(pin_pitch*2, pin_pitch*2),
-        center=(0.0, 0.0, 0.0)
-    )
-    water_rod_1_macros.update_geometry_from_face(GeometryType.TECHNOLOGICAL, water_rod_cell1_face)
-    water_rod_1_macros.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "MODERATOR", "MODERATOR", "MODERATOR",
-                                 "CLAD", "CLAD", "CLAD", "CLAD",
-                                 "COOLANT", "COOLANT", "COOLANT", "COOLANT"],
-        # 
-        PropertyType.MACRO: ["WATER_ROD_1_MACRO_1", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_4", 
-                             "WATER_ROD_1_MACRO_1", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_4", 
-                             "WATER_ROD_1_MACRO_4", "WATER_ROD_1_MACRO_2", "WATER_ROD_1_MACRO_3", "WATER_ROD_1_MACRO_1"]
-    })
-
-    # Do the same for water rod cell 2
-    water_rod_2_macros = RectCell(
-        name="WATER_ROD_2",
-        height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(0.0, 0.0, 0.0)
-    )
-    water_rod_2_macros.add_circle(water_rod_inner_radius)
-    water_rod_2_macros.add_circle(water_rod_outer_radius)
-    water_rod_2_macros.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-    })
-
-    water_rod_2_macros_face = make_partition(
-        [water_rod_2_macros.face],
-        [face1.face, face2.face, face3.face, face4.face],
-        shape_type=ShapeType.COMPOUND
-    )
-    water_rod_2_macros.update_geometry_from_face(GeometryType.TECHNOLOGICAL, water_rod_2_macros_face)
-    water_rod_2_macros.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "MODERATOR", "MODERATOR", "MODERATOR",
-                                 "CLAD", "CLAD", "CLAD", "CLAD",
-                                 "COOLANT", "COOLANT", "COOLANT", "COOLANT"],
-        #
-        PropertyType.MACRO: ["WATER_ROD_2_MACRO_1", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_4", 
-                             "WATER_ROD_2_MACRO_1", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_4", 
-                             "WATER_ROD_2_MACRO_4", "WATER_ROD_2_MACRO_2", "WATER_ROD_2_MACRO_3", "WATER_ROD_2_MACRO_1"]
-    })
-    
-    if windmill:
-        water_rod_1_macros.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
-        water_rod_2_macros.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
-
-    return water_rod_1_macros, water_rod_2_macros
-
-
-def create_water_rods_in_same_MACRO(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
+def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
     """
     Create water rod cells for GE-14 assembly (2x2 pin pitch size)
     Cell center is at (2*pin_pitch, 2*pin_pitch) because the cell spans 2x2 pins
@@ -250,10 +151,14 @@ def create_water_rods_in_same_MACRO(pin_pitch, water_rod_inner_radius, water_rod
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
         PropertyType.MACRO: ["MACRO_WATER_ROD_2"] * 3
     })
+    
     if windmill:
         water_rod_cell1.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
         water_rod_cell2.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
+        
     return water_rod_cell1, water_rod_cell2
+
+
 
 
 def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch, translation):
@@ -322,70 +227,79 @@ def make_grid_faces(parent: Rectangle, nx: int, ny: int):
 
     return faces
 
-def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch):
+def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch, control_cross_thickness, control_cross_half_span):
     """
-    Make a partition of the box cell to define new MACROs properties to allow for IC method.
+    Make a partition of the box cell to allow for sub-meshing for MOC calculations.
     
     Parameters :
     ------------ 
     assembly_box_cell : RectCell
-        The assembly box cell to be split into MACROs.
+        The assembly box cell to be discretized for MOC. 
     pincell_pitch : float
         The pitch of individual pin cells in the lattice.
     assembly_pitch : float
         The overall pitch of the assembly box.
+    control_cross_thickness : float
+        The thickness of the control cross arms.
+    control_cross_half_span : float
+        The half-span of the control cross arms.
     Returns:
     --------
     RectCell
-        The updated assembly box cell with MACRO definitions for IC.
+        The updated assembly box cell with discretized geometry for MOC.
     """
     
     lattice_pitch = 10 * pincell_pitch
-    x0 = (assembly_pitch - lattice_pitch) / 2
-    y0 = (assembly_pitch - lattice_pitch) / 2
-    x1 = x0 + lattice_pitch
-    y1 = y0 + lattice_pitch
-    
+    x0 = control_cross_thickness / 2
+    y_blade = assembly_pitch - control_cross_half_span
+    x1 = (assembly_pitch - lattice_pitch) / 2
+    y1 = (assembly_pitch - lattice_pitch) / 2
+    x2 = assembly_pitch - x1
+    xend = x0 + lattice_pitch
+    yend = y1 + lattice_pitch
     # Create vertices for the partition
-    points = [  (0.0, 0.0, 0.0), 
-                (x0, 0.0, 0.0),
-                (x1, 0.0, 0.0), 
-                (assembly_pitch, 0.0, 0.0),
-                (0.0, y0, 0.0),
-                (x0, y0, 0.0),
-                (x1, y0, 0.0),
-                (assembly_pitch, y0, 0.0),
-                (0.0, y1, 0.0),
-                (x0, y1, 0.0),
-                (x1, y1, 0.0),
-                (assembly_pitch, y1, 0.0),
-                (0.0, assembly_pitch, 0.0),
-                (x0, assembly_pitch, 0.0),
-                (x1, assembly_pitch, 0.0),
-                (assembly_pitch, assembly_pitch, 0.0)
-              ]
-    # Create rectangles for the partition
+
+    # Create rectangles for the partition in x-increasing / y-increasing order
     rectangles_to_split = [
-        Rectangle(height=y0, width=x0, center=(x0/2, y0/2, 0.0)),  # Bottom-left
-        Rectangle(height=y0, width=(x1 - x0), center=((x0 + x1)/2, y0/2, 0.0)), # Bottom-middle
-        Rectangle(height=y0, width=(assembly_pitch - x1), center=((x1 + assembly_pitch)/2, y0/2, 0.0)), # Bottom-right
-        Rectangle(height=(y1 - y0), width=x0, center=(x0/2, (y0 + y1)/2, 0.0)), # Middle-left
-        #Rectangle(height=(y1 - y0), width=(x1 - x0), center=((x0 + x1)/2, (y0 + y1)/2, 0.0))  # Middle-middle
-        Rectangle(height=(y1 - y0), width=(assembly_pitch - x1), center=((x1 + assembly_pitch)/2, (y0 + y1)/2, 0.0)),  # Middle-right
-        Rectangle(height=(assembly_pitch - y1), width=x0, center=(x0/2, (y1 + assembly_pitch)/2, 0.0)),  # Top-left
-        Rectangle(height=(assembly_pitch - y1), width=(x1 - x0), center=((x0 + x1)/2, (y1 + assembly_pitch)/2, 0.0)), # Top-middle        
-        Rectangle(height=(assembly_pitch - y1), width=(assembly_pitch - x1), center=((x1 + assembly_pitch)/2, (y1 + assembly_pitch)/2, 0.0))  # Top-right
+        Rectangle(height=y1, width=x1 , center=(x1/2, y1/2, 0.0)), # Bottom-left corner : moderator + box
+        Rectangle(height=y_blade-y1, width=x0, center=(x0/2, (y_blade-y1)/2+y1, 0.0)),  # Bottom-left : moderator under west arm of control cross
+        Rectangle(height=y1, width=(x2 - x1), center=((x1 + x2)/2, y1/2, 0.0)), # center bottom : moderator + box + coolant gap
+        
+        Rectangle(height=y1, width=(assembly_pitch - x2), center=((x2 + assembly_pitch)/2, y1/2, 0.0)), # Bottom-right
+        # Rectangle overlapping with the control cross arm
+        Rectangle(height=(assembly_pitch - y_blade), width=x0, center=(x0/2, (assembly_pitch - y_blade)/2 + y_blade, 0.0)),  # left : overlapping with control cross arm
+        Rectangle(height=lattice_pitch, width=(x1 - x0), center=((x0 + x1)/2, lattice_pitch/2 + y1 , 0.0)),  # middle
+        #Rectangle(height=(lattice_pitch), width=(lattice_pitch), center=(assembly_pitch/2, assembly_pitch/2, 0.0))  # Middle-middle
+        Rectangle(height=(lattice_pitch), width=(assembly_pitch - x2), center=((x2 + assembly_pitch)/2, (assembly_pitch)/2, 0.0)),  # Middle-right
+        
+        Rectangle(height=(x1 - x0), width=(x1 - x0), center=((x0 + x1)/2, (assembly_pitch-control_cross_thickness/2 - (x1 - x0)/2), 0.0)),  # Top-left moderator corner
+        Rectangle(height=(x1 - x0), width=(lattice_pitch), center=((x1 + x2)/2, (assembly_pitch-control_cross_thickness/2 - (x1 - x0)/2), 0.0)), # Top-middle : moderator + box + coolant gap
+
+        # Rectangle overlapping with the control cross north arm
+        Rectangle(height=(control_cross_thickness/2), width=control_cross_half_span, center=(control_cross_half_span/2, (assembly_pitch - control_cross_thickness/4), 0.0)),  # top : overlapping with control cross north arm
+        
+        Rectangle(height=(control_cross_thickness/2), width=assembly_pitch-control_cross_half_span-x1, 
+                  center=(((assembly_pitch-control_cross_half_span-x1)/2 + control_cross_half_span, 
+                           (assembly_pitch - control_cross_thickness/4), 
+                           0.0))),  # top-right moderator region right of north arm
+        Rectangle(height=x1, width=y1, center=((x2 + assembly_pitch)/2, (assembly_pitch - x1/2), 0.0)),  # Top-right : moderator + box
     ]
     
+    
     nx_ny_splits = [
-        (1,1),  # Bottom-left
-        (10, 1),  # Bottom-middle
-        (1, 1),   # Bottom-right
-        (1, 10),  # Middle-left
-        (1, 10),  # Middle-right
-        (1, 1),   # Top-left
-        (10, 1),  # Top-middle
-        (1, 1)    # Top-right
+        (1,1),  # Bottom-left corner: moderator + box
+        (1,1),  # Bottom-left : under the cross arm
+        (1,1),   # Bottom-center : center bottom
+        (1,1),   # Bottom-right corner
+        (1,1),   # Rectangle overlapping with the control cross arm
+        (1,1),    # Middle-left : moderator + box + coolant gap
+        #(1,1),  # Middle-middle : covering the pin lattice region
+        (1,1),  # Middle-right
+        (1,1),   # Top-left moderator corner under cross
+        (1,1),  # Top-middle : moderator + box + coolant gap
+        (1,1),    # Rectangle overlapping with the control cross north arm
+        (1,1),    # top-right moderator region right of north arm
+        (1,1),   # Top-right corner : moderator + box
     ]
     splitting_faces = []
     # Split rectangles and collect faces
@@ -401,103 +315,46 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
     assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
     
     # Define MACRO names for each region
-    list_of_macros = ["BASE_CELL", 
-                    # COOLANT REGIONS IN DIFFERENT MACROS
-                      "LEFTSIDE_5", "LEFTSIDE_6", 
-                      "BOTSIDE_5", "BOTSIDE_6", 
-                      "TOPSIDE_5", "RIGHTSIDE_5", 
-                      "TOPSIDE_6", "RIGHTSIDE_6", 
-                      "LEFTSIDE_4", "BOTSIDE_4", 
-                      "LEFTSIDE_7", "BOTSIDE_7", 
-                      "TOPSIDE_4", "RIGHTSIDE_4", 
-                      "TOPSIDE_7", "RIGHTSIDE_7",
-                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
-                      "LEFTSIDE_6", "LEFTSIDE_5",
-                      "TOPSIDE_5", "TOPSIDE_6",
-                      "BOTSIDE_5", "BOTSIDE_6",
-                      "RIGHTSIDE_6", "RIGHTSIDE_5",
-                      "LEFTSIDE_4", "TOPSIDE_4",
-                      "BOTSIDE_4", "RIGHTSIDE_4",
-                      "LEFTSIDE_7", "TOPSIDE_7",
-                      "BOTSIDE_7", "RIGHTSIDE_7",
-                    # MODERATOR REGIONS IN DIFFERENT MACROS
-                      "RIGHTSIDE_5", "TOPSIDE_5",
-                      "RIGHTSIDE_6", "TOPSIDE_6",
-                      "BOTSIDE_5", "LEFTSIDE_5",
-                      "BOTSIDE_6", "LEFTSIDE_6", 
-                      "RIGHTSIDE_4", "TOPSIDE_4",
-                      "BOTSIDE_4", "LEFTSIDE_4",
-                      "RIGHTSIDE_7", "TOPSIDE_7",
-                      "BOTSIDE_7", "LEFTSIDE_7",
-                    # COOLANT REGIONS IN DIFFERENT MACROS
-                      "LEFTSIDE_3", "BOTSIDE_3",
-                      "LEFTSIDE_8", "BOTSIDE_8",
-                      "TOPSIDE_3", "RIGHTSIDE_3",
-                      "TOPSIDE_8", "RIGHTSIDE_8",
-                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
-                      "TOPSIDE_3", "LEFTSIDE_3",
-                      "BOTSIDE_3", "RIGHTSIDE_3",
-                      "LEFTSIDE_8", "TOPSIDE_8",
-                      "RIGHTSIDE_8", "BOTSIDE_8",
-                    # MODERATOR REGION IN DIFFERENT MACROS
-                      "RIGHTSIDE_3", "TOPSIDE_3",
-                      "RIGHTSIDE_8", "BOTSIDE_3",
-                      "LEFTSIDE_3", "BOTSIDE_8",
-                      "TOPSIDE_8", "LEFTSIDE_8",
-                    # COOLANT REGIONS IN DIFFERENT MACROS
-                      "LEFTSIDE_2", "BOTSIDE_2",
-                      "LEFTSIDE_9", "BOTSIDE_9",
-                      "TOPSIDE_2", "RIGHTSIDE_2",
-                      "TOPSIDE_9", "RIGHTSIDE_9",
-                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
-                      "TOPSIDE_2", "LEFTSIDE_2",
-                      "BOTSIDE_2", "RIGHTSIDE_2",
-                      "LEFTSIDE_9", "TOPSIDE_9",
-                      "RIGHTSIDE_9", "BOTSIDE_9",
-                    # MODERATOR REGION IN DIFFERENT MACROS
-                      "RIGHTSIDE_2", "TOPSIDE_2",
-                      "RIGHTSIDE_9", "BOTSIDE_2",
-                      "LEFTSIDE_2", "BOTSIDE_9",
-                      "TOPSIDE_9", "LEFTSIDE_9",
-                    # COOLANT REGIONS IN DIFFERENT MACROS
-                        "LEFTSIDE_1", "BOTSIDE_1",
-                        "TOPSIDE_1", "RIGHTSIDE_1",
-                        "LEFTSIDE_10", "BOTSIDE_10",
-                        "TOPSIDE_10", "RIGHTSIDE_10",
-                    # CHANNEL BOX REGIONS IN DIFFERENT MACROS
-                        "TOPSIDE_1", "LEFTSIDE_1",
-                        "BOTSIDE_1", "RIGHTSIDE_1",
-                        "LEFTSIDE_10", "TOPSIDE_10",
-                        "RIGHTSIDE_10", "BOTSIDE_10",
-                    # MODERATOR REGION IN DIFFERENT MACROS
-                        "BOTSIDE_1", "LEFTSIDE_1",
-                        "RIGHTSIDE_1", "TOPSIDE_1",
-                        "RIGHTSIDE_10", "BOTSIDE_10",
-                        "LEFTSIDE_10", "TOPSIDE_10",
-                    # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERING FUEL CELL MACROS
-                        "MACRO90", "MACRO00", "MACRO99", "MACRO09",
-                    # ELEMENTS OF THE ROUNDED CORNER REGIONS : TO BE REGROUPED WITH CORNERS OF LATTICE
-                        "CORNER_TOP_RIGHT",
-                        "CORNER_TOP_LEFT",
-                        "CORNER_BOTTOM_LEFT",
-                        "CORNER_BOTTOM_RIGHT",
-                    # MODERATOR CORNERS
-                        "CORNER_BOTTOM_RIGHT",
-                        "CORNER_TOP_LEFT",
-                        "CORNER_TOP_RIGHT",
-                        "CORNER_BOTTOM_LEFT"
-                      ]
-    list_of_materials = ["COOLANT"] + ["COOLANT"] * 16 + ["CHANNEL_BOX"] * 16 + ["MODERATOR"] * 16 \
-    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
-    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
-    + ["COOLANT"] * 8 + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 8 \
-    + ["CHANNEL_BOX"] * 8 + ["MODERATOR"] * 4
+    list_of_macros = ["BASE_CELL"] + ["MACRO_LEFT_SIDE", "MACRO_BOT_SIDE", "MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE"]  \
+        + ["MACRO_LEFT_SIDE", "MACRO_TOP_SIDE", "MACRO_BOT_SIDE", "MACRO_RIGHT_SIDE"] \
+        + ["MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE", "MACRO_LEFT_SIDE", "MACRO_BOT_SIDE"] \
+        + ["MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 + ["MACRO_NORTH_CROSS"]*2 + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS"] \
+        + ["MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS"] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS"] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS"] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
+        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
+        + ["UNDER_WEST_CROSS", "RIGHT_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \
+        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_WEST_CORNER",  "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_EAST_CORNER", "NORTH_EAST_CORNER",] \
+        + ["SOUTH_WEST_CORNER", "MACRO_WEST_CROSS"]
+            
+    
+    list_of_materials = ["COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX",] \
+        + ["MODERATOR"]*4 + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 \
+        + [sheath_material]*2 + [absorber_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 \
+        + [sheath_material]*4 + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 \
+        + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*2 \
+        + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 + ["CHANNEL_BOX"]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]
 
 
 
     # set properties for the new MACRO regions
     assembly_box_cell.set_properties({
-        PropertyType.MATERIAL: list_of_materials,
+        PropertyType.MATERIAL: list_of_materials + ["mat"] * (162 - len(list_of_materials)),
         PropertyType.MACRO: list_of_macros
     })
     
@@ -521,6 +378,26 @@ fuel_clad_inner_radius = 0.447
 fuel_clad_outer_radius = 0.515
 water_rod_inner_radius = 1.170
 water_rod_outer_radius = 1.245
+
+# control cross dimensions
+blade_half_span = 12.3825
+blade_thickness = 0.79248
+number_tubes_per_wing = 21
+tip_radius = 0.39624
+central_structure_half_span = 1.98501
+sheath_thickness = 0.14224
+
+# absorber tube dimensions
+absorber_tube_outer_radius = 0.23876
+absorber_tube_inner_radius = 0.17526
+
+absorber_material = "B4C"
+sheath_material = "SS304"
+
+
+## --------------------------
+# COMPUTE DERIVED DIMENSIONS
+# ---------------------------
 
 # Derived dimensions
 channel_box_inner_side = assembly_pitch - 2 * channel_box_thickness - 2 * gap_wide
@@ -600,16 +477,14 @@ ordered_fuel_cells = generate_cells(
     fuel_rad=fuel_pellet_radius,
     gap_rad=fuel_clad_inner_radius,
     clad_rad=fuel_clad_outer_radius,
-    corner_radius=pin_lattice_corner_radius  # Rounded corners for corner fuel cells
+    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
+    windmill=False
 )
 
 # Create water rod cells
-water_rod_cell1, water_rod_cell2 = create_water_rods_in_split_MACROs(
+water_rod_cell1, water_rod_cell2 = create_water_rods(
     pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False
 )
-#water_rod_cell1, water_rod_cell2 = create_water_rods_i(
-#    pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False
-#)
 
 # --------------------
 # CREATE ASSEMBLY BOX CELLS (with rounded corners)
@@ -649,25 +524,145 @@ assembly_box_cell = RectCell(
     center=center
 )
 
+
+ctrl_cross_sheath_cells = []
+# control cross center at top left corner of assembly
+# due to symmetry, we only model 1/4 of the control cross
+# Center 
+control_cross_center_cell = Rectangle(
+    name="CONTROL_CROSS_CENTER_QUARTER",
+    height=blade_thickness/2,
+    width=blade_thickness/2,
+    center=(blade_thickness/4,
+            assembly_pitch - blade_thickness/4, 
+            0.0),
+)
+ctrl_cross_sheath_cells.append(control_cross_center_cell)
+
+# control cross right central structure 
+control_cross_right_central_structure_cell = Rectangle(
+    name="CONTROL_CROSS_RIGHT_CENTRAL_STRUCTURE_HALF",
+    height=blade_thickness/2,
+    width=central_structure_half_span-blade_thickness/2,
+    center=((central_structure_half_span-blade_thickness/2)/2 + blade_thickness/2,
+            assembly_pitch - blade_thickness/4, 
+            0.0),
+)
+ctrl_cross_sheath_cells.append(control_cross_right_central_structure_cell)
+# bottom central structure
+control_cross_bottom_central_structure_cell = Rectangle(
+    name="CONTROL_CROSS_BOTTOM_CENTRAL_STRUCTURE_HALF",
+    height=central_structure_half_span - blade_thickness/2,
+    width=blade_thickness/2,
+    center=(blade_thickness/4,
+            assembly_pitch - (central_structure_half_span - blade_thickness/2)/2 - blade_thickness/2, 
+            0.0),
+)
+ctrl_cross_sheath_cells.append(control_cross_bottom_central_structure_cell)
+
+# control cross right wing
+control_cross_right_wing_cell = Rectangle(
+    name="CONTROL_CROSS_RIGHT_WING_HALF",
+    height=blade_thickness,
+    width=blade_half_span - central_structure_half_span,
+    center=((blade_half_span - central_structure_half_span)/2 + central_structure_half_span,
+            assembly_pitch, 
+            0.0),
+    rounded_corners=[(1, tip_radius)])
+ctrl_cross_sheath_cells.append(control_cross_right_wing_cell)
+
+# control cross bottom wing
+control_cross_bottom_wing_cell = Rectangle(
+    name="CONTROL_CROSS_BOTTOM_WING_HALF",
+    height=blade_half_span - central_structure_half_span,
+    width=blade_thickness,
+    center=(0.0,
+            assembly_pitch - (blade_half_span - central_structure_half_span)/2 - central_structure_half_span, 
+            0.0),
+    rounded_corners=[(1, tip_radius)])
+ctrl_cross_sheath_cells.append(control_cross_bottom_wing_cell)
+
+# subdivide control cross sheath cells to add absorber tubes : first create another rectangle to partition each "WING" sheath cell
+inner_sheath_width = blade_thickness - 2 * sheath_thickness
+inner_right_wing_cell = Rectangle(
+    name="CONTROL_CROSS_RIGHT_WING_INNER",
+    height=inner_sheath_width,
+    width=blade_half_span - central_structure_half_span - sheath_thickness,
+    center=((blade_half_span - central_structure_half_span - sheath_thickness)/2 + central_structure_half_span,
+            assembly_pitch, 
+            0.0),
+    rounded_corners=[(1, tip_radius-sheath_thickness)])
+ctrl_cross_sheath_cells.append(inner_right_wing_cell)
+
+inner_bottom_wing_cell = Rectangle(
+    name="CONTROL_CROSS_BOTTOM_WING_INNER",
+    height=blade_half_span - central_structure_half_span - sheath_thickness,
+    width=inner_sheath_width,
+    center=(0.0,
+            assembly_pitch - (blade_half_span - central_structure_half_span - sheath_thickness)/2 - central_structure_half_span, 
+            0.0),
+    rounded_corners=[(1, tip_radius-sheath_thickness)])
+ctrl_cross_sheath_cells.append(inner_bottom_wing_cell)
+
+
+# first control cylinder tube offset from center
+moderator_width = blade_thickness - 2 * sheath_thickness
+delta_tube = 0.4883456  # spacing between tubes centers
+print("=== Absorber Tubes Placement ===")
+
+#delta_tube += missing / number_tubes_per_wing  # adjust to fit exactly
+b4c_tubes = []
+for i in range(number_tubes_per_wing):
+    offset_x = 2.229183 + i * delta_tube
+    tube_x_tmp = RectCell(
+        name="CONTROL_CROSS_TUBE_X",
+        height_x_width=(moderator_width, delta_tube),
+        center=(offset_x, assembly_pitch - 0.0, 0.0)
+    )
+    tube_x_tmp.add_circle(absorber_tube_inner_radius)
+    tube_x_tmp.add_circle(absorber_tube_outer_radius)
+    
+    offset_y = offset_x
+    tube_y_tmp = RectCell(
+        name="CONTROL_CROSS_TUBE_Y",
+        height_x_width=(delta_tube, moderator_width),
+        center=(0.0, assembly_pitch - offset_y, 0.0)
+    )
+    tube_y_tmp.add_circle(absorber_tube_inner_radius)
+    tube_y_tmp.add_circle(absorber_tube_outer_radius)
+
+    b4c_tubes.append(tube_x_tmp)
+    b4c_tubes.append(tube_y_tmp)
+
 assembly_box_cell_face = make_partition(
     [assembly_box_cell.face],
-    [channel_box_cell.face, coolant_intra_assembly_cell.face],
+    [channel_box_cell.face, coolant_intra_assembly_cell.face] + [tube.face for tube in b4c_tubes] + [structure.face for structure in ctrl_cross_sheath_cells],
     shape_type=ShapeType.COMPOUND
 )
 
 assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
 
+list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
+    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
+    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
+    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
+    + [sheath_material]*3       
+print(list_of_materials)
 assembly_box_cell.set_properties({
-    PropertyType.MATERIAL: ["COOLANT", "CHANNEL_BOX", "MODERATOR"],
+    PropertyType.MATERIAL: list_of_materials
 })
 
 # --------------------
 # LATTICE CONSTRUCTION
 # --------------------
-lattice = Lattice(name='GE14_full_assembly - MACROs', center=center)
+lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 
 # Add the box cell FIRST - this establishes the base/background for the lattice
 # Using () as position means it's the base cell
+
 
 # Add all fuel pin cells to the lattice
 lattice = add_cells_to_regular_lattice(
@@ -690,19 +685,19 @@ lattice.add_cell(
     (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
 )
 
-## split the box into MACROs for IC method compatibility
-assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch)
+## split the box into MACROs for IC
+assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch, blade_thickness, blade_half_span)
 
 lattice.lattice_box = assembly_box_cell
-
 # Show the lattice
 lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MACRO)
+#lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
 
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
 if tracking_type == "TISO":
-    output_file_name = "GE-14_assembly_IC_MACRO_TISO"
+    output_file_name = "GE-14_assembly_ctrl_IC_MACRO_TISO"
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
         [lattice], 

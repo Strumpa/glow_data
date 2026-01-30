@@ -202,15 +202,13 @@ ctrl_cross_sheath_cells.append(inner_bottom_wing_cell)
 
 # first control cylinder tube offset from center
 moderator_width = blade_thickness - 2 * sheath_thickness
-delta_tube = float((blade_half_span - central_structure_half_span - sheath_thickness) / (number_tubes_per_wing))
-missing = float((blade_half_span - central_structure_half_span - sheath_thickness)- delta_tube * number_tubes_per_wing)
+delta_tube = 0.4883456  # spacing between tubes centers
 print("=== Absorber Tubes Placement ===")
 
-print(f"Missing length for absorber tubes placement: {missing:.6f} cm")
 #delta_tube += missing / number_tubes_per_wing  # adjust to fit exactly
 b4c_tubes = []
 for i in range(number_tubes_per_wing):
-    offset_x = float(central_structure_half_span + absorber_tube_outer_radius + missing / number_tubes_per_wing + i * (delta_tube+missing / number_tubes_per_wing))
+    offset_x = 2.229183 + i * delta_tube
     tube_x_tmp = RectCell(
         name="CONTROL_CROSS_TUBE_X",
         height_x_width=(moderator_width, delta_tube),
@@ -219,7 +217,7 @@ for i in range(number_tubes_per_wing):
     tube_x_tmp.add_circle(absorber_tube_inner_radius)
     tube_x_tmp.add_circle(absorber_tube_outer_radius)
     
-    offset_y = float((central_structure_half_span + absorber_tube_outer_radius + missing / number_tubes_per_wing) + i * (delta_tube+missing / number_tubes_per_wing))
+    offset_y = offset_x
     tube_y_tmp = RectCell(
         name="CONTROL_CROSS_TUBE_Y",
         height_x_width=(delta_tube, moderator_width),
@@ -239,8 +237,17 @@ assembly_box_cell_face = make_partition(
 
 assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
 
+list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
+    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
+    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
+    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
+    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
+    + [sheath_material]*3       
+print(list_of_materials)
 assembly_box_cell.set_properties({
-    PropertyType.MATERIAL: ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + ["SS304"] * 11 + ["SS304", "B4C", "MODERATOR"] * number_tubes_per_wing * 2
+    PropertyType.MATERIAL: list_of_materials
 })
 
 # --------------------
@@ -254,21 +261,21 @@ lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 
 lattice.add_cell(assembly_box_cell, ())
 
-lattice.lattice_box = assembly_box_cell
+#lattice.lattice_box = assembly_box_cell
 # Show the lattice
 lattice.show(geometry_type_to_show=GeometryType.TECHNOLOGICAL, property_type_to_show=PropertyType.MATERIAL)
 
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
-#lattice.type_geo = LatticeGeometryType.ISOTROPIC
-#analyse_and_generate_tdt(
-#    [lattice],
-#    f"data/glow_data/tdt_data/GE14_control_cross",
-#    TdtSetup(
-#        GeometryType.SECTORIZED,
-#        property_types=[PropertyType.MATERIAL],
-#        type_geo=LatticeGeometryType.ISOTROPIC,
-#        symmetry_type=BoundaryType.AXIAL_SYMMETRY
-#    )
-#)
+lattice.type_geo = LatticeGeometryType.ISOTROPIC
+analyse_and_generate_tdt(
+    [lattice],
+    f"data/glow_data/tdt_data/GE14_control_cross",
+    TdtSetup(
+        GeometryType.SECTORIZED,
+        property_types=[PropertyType.MATERIAL],
+        type_geo=LatticeGeometryType.ISOTROPIC,
+        symmetry_type=BoundaryType.AXIAL_SYMMETRY
+    )
+)
