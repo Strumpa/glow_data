@@ -289,14 +289,14 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
     nx_ny_splits = [
         (1,1),  # Bottom-left corner: moderator + box
         (1,1),  # Bottom-left : under the cross arm
-        (1,1),   # Bottom-center : center bottom
+        (2,1),   # Bottom-center : center bottom
         (1,1),   # Bottom-right corner
         (1,1),   # Rectangle overlapping with the control cross arm
-        (1,1),    # Middle-left : moderator + box + coolant gap
+        (1,2),    # Middle-left : moderator + box + coolant gap
         #(1,1),  # Middle-middle : covering the pin lattice region
-        (1,1),  # Middle-right
+        (1,2),  # Middle-right
         (1,1),   # Top-left moderator corner under cross
-        (1,1),  # Top-middle : moderator + box + coolant gap
+        (2,1),  # Top-middle : moderator + box + coolant gap
         (1,1),    # Rectangle overlapping with the control cross north arm
         (1,1),    # top-right moderator region right of north arm
         (1,1),   # Top-right corner : moderator + box
@@ -315,6 +315,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
     assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
     
     # Define MACRO names for each region
+    """
     list_of_macros = ["BASE_CELL"] + ["MACRO_LEFT_SIDE", "MACRO_BOT_SIDE", "MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE"]  \
         + ["MACRO_LEFT_SIDE", "MACRO_TOP_SIDE", "MACRO_BOT_SIDE", "MACRO_RIGHT_SIDE"] \
         + ["MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE", "MACRO_LEFT_SIDE", "MACRO_BOT_SIDE"] \
@@ -340,22 +341,41 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_WEST_CORNER",  "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_EAST_CORNER", "NORTH_EAST_CORNER",] \
         + ["SOUTH_WEST_CORNER", "MACRO_WEST_CROSS"]
             
+    """
+    list_of_materials = ["COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT",] \
+        + ["CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX"]*2 \
+        + ["MODERATOR"]*8 + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
+        + [absorber_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*2 \
+        + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6 + [absorber_material]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 + ["CHANNEL_BOX"]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]   
     
-    list_of_materials = ["COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX",] \
-        + ["MODERATOR"]*4 + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 \
-        + [sheath_material]*2 + [absorber_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 \
-        + [sheath_material]*4 + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 \
-        + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*2 \
-        + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 + ["CHANNEL_BOX"]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]
-
+    list_of_macros = ["BASE_CELL"] + ["MACRO_LEFT_SIDE0", "MACRO_LEFT_SIDE1", "MACRO_BOT_SIDE0", "MACRO_BOT_SIDE1", "MACRO_TOP_SIDE0", "MACRO_RIGHT_SIDE0", "MACRO_TOP_SIDE1", "MACRO_RIGHT_SIDE1"]  \
+        + ["MACRO_LEFT_SIDE1", "MACRO_LEFT_SIDE0","MACRO_TOP_SIDE0","MACRO_BOT_SIDE0","MACRO_TOP_SIDE1","MACRO_BOT_SIDE1","MACRO_RIGHT_SIDE1","MACRO_RIGHT_SIDE0"] \
+        + ["MACRO_TOP_SIDE0","MACRO_RIGHT_SIDE0","MACRO_RIGHT_SIDE1","MACRO_TOP_SIDE1","MACRO_LEFT_SIDE0","MACRO_LEFT_SIDE1","MACRO_BOT_SIDE0","MACRO_BOT_SIDE1"] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS", "MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",]  \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","UNDER_WEST_CROSS","RIGHT_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO90", "MACRO00", "MACRO99", "MACRO09","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
+        + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_WEST_CORNER",  "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_EAST_CORNER", "NORTH_EAST_CORNER",] \
+        + ["SOUTH_WEST_CORNER", "MACRO_WEST_CROSS"]                
 
 
     # set properties for the new MACRO regions
     assembly_box_cell.set_properties({
-        PropertyType.MATERIAL: list_of_materials + ["mat"] * (162 - len(list_of_materials)),
-        PropertyType.MACRO: list_of_macros
+        PropertyType.MATERIAL: list_of_materials + ["mat"] * (174 - len(list_of_materials)),
+        PropertyType.MACRO: list_of_macros + ["macro1"] * (174 - len(list_of_macros))
     })
     
     # return the updated assembly box cell

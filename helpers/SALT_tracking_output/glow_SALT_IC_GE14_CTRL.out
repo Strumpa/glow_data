@@ -1,0 +1,3730 @@
+>| --- GLOW CASES TREATMENT ---                                                                                           |>0026
+->@BEGIN MODULE : SALT:       
+->@DESCRIPTION  : Track calculations from a SALOME surfacic file                          
+->@CREDITS      : A. Hebert, X. Warin                                                     
+->@COPYRIGHTS   : ECOLE POLYTECHNIQUE DE MONTREAL  
+                  GNU LESSER GENERAL PUBLIC LICENSE
+                                                                                 
+ 	dat input file for DRAGON5                                                     
+ ------------------------------------------------------------                    
+                                                                                 
+                                                                                 
+ SEEKS => dimensions for geometry
+ * typge, nbfo, node, elem, macr, nreg,    z, mac2                               
+        0       0     847    1324     106     847
+
+1 SSSSS    AA   LL     TTTTTTTT ***********************************************************************************************
+ SSSSSSS  AAAA  LL     TTTTTTTT ********************************************************** MULTIGROUP VERSION.  X. WARIN (2001)
+ SS   SS  AAAA  LL        TT
+  SS     AA  AA LL        TT
+    SS   AAAAAA LL        TT
+ SS   SS AAAAAA LL        TT
+ SSSSSSS AA  AA LLLLLLL   TT
+  SSSSS  AA  AA LLLLLLL   TT
+
+ MULTICELL SURFACIC GE14_A_CTRL GLOW+MACRO CASE                          
+
+ SALT: isotropic boundary conditions
+ SALT: multicell surfacic tracking
+ SAL100: TYPGEO=           0  NBFOLD=           0
+
+
+     domain checkout:
+     elements are in contact for distance <   1.0000E-05
+
+
+ SAL110: after unfolding -- NB_ELEM=        1324  NB_PERIM=           0
+
+ SALMUS: TYPGEO=    0 NBFOLD=    0 NMACRO=  106
+
+ ********** IMACRO=     1 **********
+
+ MUSACG: number of flux in macro000001=    3
+ NODE    1    2    3
+ MERG    1    2    3
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    1    1    1    1    2    2
+    -    1    1    1    1    1    1    1    1    2    3
+    +    0    0    0    0    0    0    0    0    1    2
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           3           8           3
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 1.890453D+00
+         5.690210D-01 4.300526D+00
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     3
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         3
+ Number of regions after merge  =         3
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04985     0.08466    -0.02078
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     2 **********
+
+ MUSACG: number of flux in macro000002=    3
+ NODE    1    2    3
+ MERG    1    2    3
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    1    1    1    1    2    2
+    -    1    1    1    1    1    1    1    1    2    3
+    +    0    0    0    0    0    0    0    0    1    2
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           3           8           3
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 1.890453D+00
+         5.690210D-01 4.300526D+00
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     3
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         3
+ Number of regions after merge  =         3
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04985     0.08466    -0.02078
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     3 **********
+
+ MUSACG: number of flux in macro000003=    8
+ NODE    1    2    3    4    5    6    7    8
+ MERG    1    2    3    4    5    6    7    8
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12   13
+ TYPE    1    1    3    1    1    1    1    2    2    2    2    2    2
+    -    8    8    1    0    0    1    1    2    3    4    5    6    7
+    +    0    0    8    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          36  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           8           8           8
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 3.369861D+00
+         8.220417D-01 1.000911D-01 1.205392D-01 3.616174D-01 7.232349D-01
+         1.205391D+00 5.715086D-02
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     4     5     5     5     5    17
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3     4     5     6     7     8
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         8
+ Number of regions after merge  =         8
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04529     0.10313     0.01428
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     4 **********
+
+ MUSACG: number of flux in macro000004=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     5 **********
+
+ MUSACG: number of flux in macro000005=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     6 **********
+
+ MUSACG: number of flux in macro000006=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     7 **********
+
+ MUSACG: number of flux in macro000007=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     8 **********
+
+ MUSACG: number of flux in macro000008=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=     9 **********
+
+ MUSACG: number of flux in macro000009=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    10 **********
+
+ MUSACG: number of flux in macro000010=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     7     7
+             7     7
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    11 **********
+
+ MUSACG: number of flux in macro000011=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     5     5
+             5     5
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    12 **********
+
+ MUSACG: number of flux in macro000012=    8
+ NODE    1    2    3    4    5    6    7    8
+ MERG    1    2    3    4    5    6    7    8
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12   13
+ TYPE    1    1    3    1    1    1    1    2    2    2    2    2    2
+    -    8    8    1    1    0    1    1    2    3    4    5    6    7
+    +    0    0    8    0    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          36  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           8           8           8
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 3.369923D+00
+         8.220417D-01 1.000911D-01 1.205392D-01 3.616174D-01 7.232349D-01
+         1.205391D+00 5.716097D-02
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     4     8     8     8     8    17
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3     4     5     6     7     8
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         8
+ Number of regions after merge  =         8
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04292     0.10313     0.01183
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    13 **********
+
+ MUSACG: number of flux in macro000013=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567712D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37730     0.80679    -0.04513
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    14 **********
+
+ MUSACG: number of flux in macro000014=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    15 **********
+
+ MUSACG: number of flux in macro000015=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    16 **********
+
+ MUSACG: number of flux in macro000016=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    17 **********
+
+ MUSACG: number of flux in macro000017=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    10    10
+            10    10    10    10
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    18 **********
+
+ MUSACG: number of flux in macro000018=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    11    11
+            11    11
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    19 **********
+
+ MUSACG: number of flux in macro000019=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    20 **********
+
+ MUSACG: number of flux in macro000020=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     7     7
+             7     7
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    21 **********
+
+ MUSACG: number of flux in macro000021=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     5     5
+             5     5
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    22 **********
+
+ MUSACG: number of flux in macro000022=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     5     5
+             5     5
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    23 **********
+
+ MUSACG: number of flux in macro000023=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    24 **********
+
+ MUSACG: number of flux in macro000024=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    25 **********
+
+ MUSACG: number of flux in macro000025=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    26 **********
+
+ MUSACG: number of flux in macro000026=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    27 **********
+
+ MUSACG: number of flux in macro000027=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    28 **********
+
+ MUSACG: number of flux in macro000028=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    14    14
+            14    14    14    14
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    29 **********
+
+ MUSACG: number of flux in macro000029=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    30 **********
+
+ MUSACG: number of flux in macro000030=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    15    15
+            15    15    15    15
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    31 **********
+
+ MUSACG: number of flux in macro000031=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     7     7
+             7     7
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    32 **********
+
+ MUSACG: number of flux in macro000032=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     7     7
+             7     7
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    33 **********
+
+ MUSACG: number of flux in macro000033=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    34 **********
+
+ MUSACG: number of flux in macro000034=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    35 **********
+
+ MUSACG: number of flux in macro000035=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    36 **********
+
+ MUSACG: number of flux in macro000036=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    37 **********
+
+ MUSACG: number of flux in macro000037=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    38 **********
+
+ MUSACG: number of flux in macro000038=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    39 **********
+
+ MUSACG: number of flux in macro000039=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    40 **********
+
+ MUSACG: number of flux in macro000040=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    41 **********
+
+ MUSACG: number of flux in macro000041=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    42 **********
+
+ MUSACG: number of flux in macro000042=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    43 **********
+
+ MUSACG: number of flux in macro000043=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    44 **********
+
+ MUSACG: number of flux in macro000044=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    45 **********
+
+ MUSACG: number of flux in macro000045=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    46 **********
+
+ MUSACG: number of flux in macro000046=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    14    14
+            14    14    14    14
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    47 **********
+
+ MUSACG: number of flux in macro000047=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    11    11
+            11    11
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    48 **********
+
+ MUSACG: number of flux in macro000048=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    49 **********
+
+ MUSACG: number of flux in macro000049=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    50 **********
+
+ MUSACG: number of flux in macro000050=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    51 **********
+
+ MUSACG: number of flux in macro000051=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    52 **********
+
+ MUSACG: number of flux in macro000052=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    53 **********
+
+ MUSACG: number of flux in macro000053=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    54 **********
+
+ MUSACG: number of flux in macro000054=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    55 **********
+
+ MUSACG: number of flux in macro000055=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    10    10
+            10    10    10    10
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    56 **********
+
+ MUSACG: number of flux in macro000056=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    57 **********
+
+ MUSACG: number of flux in macro000057=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    58 **********
+
+ MUSACG: number of flux in macro000058=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    59 **********
+
+ MUSACG: number of flux in macro000059=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    60 **********
+
+ MUSACG: number of flux in macro000060=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    61 **********
+
+ MUSACG: number of flux in macro000061=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    62 **********
+
+ MUSACG: number of flux in macro000062=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7    8    9
+    +    1    1    1    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    63 **********
+
+ MUSACG: number of flux in macro000063=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    64 **********
+
+ MUSACG: number of flux in macro000064=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    65 **********
+
+ MUSACG: number of flux in macro000065=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    66 **********
+
+ MUSACG: number of flux in macro000066=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    67 **********
+
+ MUSACG: number of flux in macro000067=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    68 **********
+
+ MUSACG: number of flux in macro000068=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    69 **********
+
+ MUSACG: number of flux in macro000069=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    70 **********
+
+ MUSACG: number of flux in macro000070=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    71 **********
+
+ MUSACG: number of flux in macro000071=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    0    2    3    4    5    6    7
+    +    1    1    0    1    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    72 **********
+
+ MUSACG: number of flux in macro000072=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    13    13
+            13    13
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    73 **********
+
+ MUSACG: number of flux in macro000073=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    74 **********
+
+ MUSACG: number of flux in macro000074=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    75 **********
+
+ MUSACG: number of flux in macro000075=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    0    1    2    3    4    5    6    7
+    +    1    1    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    76 **********
+
+ MUSACG: number of flux in macro000076=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    77 **********
+
+ MUSACG: number of flux in macro000077=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    78 **********
+
+ MUSACG: number of flux in macro000078=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    79 **********
+
+ MUSACG: number of flux in macro000079=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    16    16
+            16    16    16    16
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    80 **********
+
+ MUSACG: number of flux in macro000080=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    81 **********
+
+ MUSACG: number of flux in macro000081=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    82 **********
+
+ MUSACG: number of flux in macro000082=    9
+ NODE    1    2    3    4    5    6    7    8    9
+ MERG    1    2    3    4    5    6    7    8    9
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12
+ TYPE    1    1    1    1    2    2    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7    8    9
+    +    1    1    0    0    1    2    3    4    5    6    7    8
+ MUSACG: after unfolding -- NB_ELEM=          12  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           9           4           9
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.205391D-01 1.205391D-01 1.205391D-01 1.205391D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     9     9
+             9     9     9     9
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7     8     9
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         9
+ Number of regions after merge  =         9
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.33547     0.80681    -0.03225
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    83 **********
+
+ MUSACG: number of flux in macro000083=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    84 **********
+
+ MUSACG: number of flux in macro000084=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    0    1    1    2    3    4    5    6    7
+    +    1    1    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    85 **********
+
+ MUSACG: number of flux in macro000085=    8
+ NODE    1    2    3    4    5    6    7    8
+ MERG    1    2    3    4    5    6    7    8
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12   13
+ TYPE    1    1    3    1    1    1    1    2    2    2    2    2    2
+    -    8    8    1    0    1    1    1    2    3    4    5    6    7
+    +    0    0    8    1    0    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          36  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           8           8           8
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 3.369923D+00
+         8.220417D-01 1.000911D-01 1.205392D-01 3.616174D-01 7.232349D-01
+         1.205391D+00 5.716164D-02
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     4     7     7     7     7    17
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3     4     5     6     7     8
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         8
+ Number of regions after merge  =         8
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04279     0.10313     0.01168
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    86 **********
+
+ MUSACG: number of flux in macro000086=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567712D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37730     0.80679    -0.04513
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    87 **********
+
+ MUSACG: number of flux in macro000087=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    88 **********
+
+ MUSACG: number of flux in macro000088=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    89 **********
+
+ MUSACG: number of flux in macro000089=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    90 **********
+
+ MUSACG: number of flux in macro000090=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    91 **********
+
+ MUSACG: number of flux in macro000091=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    92 **********
+
+ MUSACG: number of flux in macro000092=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4    12    12
+            12    12
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    93 **********
+
+ MUSACG: number of flux in macro000093=    7
+ NODE    1    2    3    4    5    6    7
+ MERG    1    2    3    4    5    6    7
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10
+ TYPE    1    1    1    1    2    2    2    2    2    2
+    -    0    1    0    1    2    3    4    5    6    7
+    +    1    0    1    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          10  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           7           4           7
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00
+         8.567711D-01 2.055104D-01 2.502279D-02 3.013479D-02 9.040435D-02
+         1.808087D-01 3.013479D-01
+ --------------------
+ MATALB     -4    -3    -2    -1     0     1     2     4     6     6
+             6     6
+ --------------------
+ KEYMRG     -4    -3    -2    -1     0     1     2     3     4     5
+             6     7
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         7
+ Number of regions after merge  =         7
+ Number of surfaces before merge=         4
+ Number of surfaces after merge =         4
+ Number of directions for tracking =         48
+ Number of lines per direction     =        185
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.37731     0.80681    -0.04514
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    94 **********
+
+ MUSACG: number of flux in macro000094=    8
+ NODE    1    2    3    4    5    6    7    8
+ MERG    1    2    3    4    5    6    7    8
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12   13
+ TYPE    1    1    3    1    1    1    1    2    2    2    2    2    2
+    -    8    8    1    1    1    1    1    2    3    4    5    6    7
+    +    0    0    8    0    0    0    0    1    2    3    4    5    6
+ MUSACG: after unfolding -- NB_ELEM=          36  NB_PERIM=           4
+ number of merged regions,surfaces,nodes           8           8           8
+ --------------------
+ VOLUME  1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00 1.300000D+00
+         1.300000D+00 1.300000D+00 1.300000D+00 0.000000D+00 3.369924D+00
+         8.220417D-01 1.000911D-01 1.205392D-01 3.616174D-01 7.232349D-01
+         1.205391D+00 5.716114D-02
+ --------------------
+ MATALB     -4    -4    -3    -3    -2    -1    -2    -1     0     1
+             2     4     5     5     5     5    17
+ --------------------
+ KEYMRG     -8    -7    -6    -5    -4    -3    -2    -1     0     1
+             2     3     4     5     6     7     8
+ --------------------
+ ICODE      -1    -2    -3    -4
+ --------------------
+ GALBED  1.000000E+00 1.000000E+00 1.000000E+00 1.000000E+00
+(* Output from --SALTCG-- follows 
+ Tracking of geometry begins:
+ Number of regions before merge =         8
+ Number of regions after merge  =         8
+ Number of surfaces before merge=         8
+ Number of surfaces after merge =         8
+ Number of directions for tracking =         48
+ Number of lines per direction     =        369
+ SALTLS: Global RMS, maximum and average errors (%) on region volumes :     0.04288     0.10312     0.01178
+ Tracking of geometry completed
+   Output from --SALTCG-- completed *)
+
+ ********** IMACRO=    95 **********
+
+ MUSACG: number of flux in macro000095=    3
+ NODE    1    2    3
+ MERG    1    2    3
+
+ MUSACG: IPAR VALUES IN MACRO GEOMETRY
+ ELEM    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20
+        21   22   23
+ TYPE    1    3    1    3    1    1    1    1    3    1    3    1    1    1    1    1    1    1    1    1
+         1    1    1
+    -    1    2    1    2    0    0    2    0    3    2    3    0    0    0    3    3    3    3    3    3
+         3    3    0
+    +    0    1    2    1    1    1    0    2    2    3    2    2    2    3    0    0    0    0    0    0
+         0    0    3
+ MUSACG: after unfolding -- NB_ELEM=         224  NB_PERIM=           5
+
+
+==> cannot close node     1   AT ELEMENT   74
+
+ SAL140: node not closed
