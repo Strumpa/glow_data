@@ -324,7 +324,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6  + ["MODERATOR"]*2 + [absorber_material]*4 \
         + ["MODERATOR"]*2 + [sheath_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
         + ["CHANNEL_BOX"]*4 + ["MODERATOR"]*4 + [sheath_material]   
-    
+        #+ ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \ instead of base cell
     list_of_macros = ["BASE_CELL"] + ["LEFT_SIDE0", "LEFT_SIDE1", "BOT_SIDE0", "BOT_SIDE1", "TOP_SIDE0", "RIGHT_SIDE0", "TOP_SIDE1", "RIGHT_SIDE1"]  \
         + ["LEFT_SIDE1", "LEFT_SIDE0","TOP_SIDE0","BOT_SIDE0","TOP_SIDE1","BOT_SIDE1","RIGHT_SIDE1","RIGHT_SIDE0"] \
         + ["RIGHT_SIDE0", "RIGHT_SIDE1", "TOP_SIDE0","TOP_SIDE1","LEFT_SIDE0","BOT_SIDE0","BOT_SIDE1","LEFT_SIDE1",] \
@@ -341,7 +341,9 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS",] \
         + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS",] \
         + ["NORTH_CROSS","WEST_CROSS","UNDER_WEST","RIGHT_NORTH", "NORTH_CROSS", "WEST_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS",] \
-        + ["WEST_CROSS","NORTH_CROSS","MACRO90", "MACRO00", "MACRO99", "MACRO09","WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS",] \
+        + ["WEST_CROSS","NORTH_CROSS",] \
+        + ["BASE_CELL"]*4 \
+        + ["WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS",] \
         + ["NORTH_EAST", "NORTH_WEST","SOUTH_WEST", "SOUTH_EAST", "SOUTH_EAST", "NORTH_WEST", "NORTH_EAST",] \
         + ["SOUTH_WEST", "WEST_CROSS"]                
     print(len(list_of_macros))
@@ -732,20 +734,24 @@ lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 # Add water rod cells at their specific locations
 # -> center at (4*pitch, 4*pitch) + translation
 
-lattice.add_cell(
-        water_rod_cell1,
-        (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
-    )
+#lattice.add_cell(
+#        water_rod_cell1,
+#        (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
+#    )
 # center at (6*pitch, 6*pitch) + translation
-lattice.add_cell(
-    water_rod_cell2,
-    (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
-)
+#lattice.add_cell(
+#    water_rod_cell2,
+#    (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
+#)
 
 ## split the box into MACROs for IC
 assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch, blade_thickness, blade_half_span)
 
-lattice.lattice_box = assembly_box_cell
+lattice.add_cell(
+    assembly_box_cell,
+    ()
+)
+#lattice.lattice_box = assembly_box_cell
 # Show the lattice
 lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MACRO)
 #lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
