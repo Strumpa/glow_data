@@ -159,8 +159,6 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius,
     return water_rod_cell1, water_rod_cell2
 
 
-
-
 def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch, translation):
     """
     Add fuel cells to the lattice, skipping water rod placeholders
@@ -181,6 +179,7 @@ def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch, translation
                     )
                 )
     return lattice
+
 
 def make_grid_faces(parent: Rectangle, nx: int, ny: int):
     # parent width/height and lower-left corner
@@ -226,6 +225,7 @@ def make_grid_faces(parent: Rectangle, nx: int, ny: int):
             faces.append(face)
 
     return faces
+
 
 def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch, control_cross_thickness, control_cross_half_span):
     """
@@ -305,6 +305,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
     # Split rectangles and collect faces
     for react, (nx, ny) in zip(rectangles_to_split, nx_ny_splits):
         splitting_faces.extend(make_grid_faces(react, nx, ny))
+
     # Assemble all the geometric shapes together
     assembly_box_cell_face = make_partition(
         [assembly_box_cell.face],
@@ -315,45 +316,18 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
     assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
     
     # Define MACRO names for each region
-    """
-    list_of_macros = ["BASE_CELL"] + ["MACRO_LEFT_SIDE", "MACRO_BOT_SIDE", "MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE"]  \
-        + ["MACRO_LEFT_SIDE", "MACRO_TOP_SIDE", "MACRO_BOT_SIDE", "MACRO_RIGHT_SIDE"] \
-        + ["MACRO_TOP_SIDE", "MACRO_RIGHT_SIDE", "MACRO_LEFT_SIDE", "MACRO_BOT_SIDE"] \
-        + ["MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 + ["MACRO_NORTH_CROSS"]*2 + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 \
-        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS"] \
-        + ["MACRO_NORTH_CROSS"] + ["MACRO_WEST_CROSS"]*2 + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS"] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS"] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS"] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
-        + ["MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS",] \
-        + ["UNDER_WEST_CROSS", "RIGHT_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \
-        + ["MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_WEST_CORNER",  "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_EAST_CORNER", "NORTH_EAST_CORNER",] \
-        + ["SOUTH_WEST_CORNER", "MACRO_WEST_CROSS"]
-            
-    """
     list_of_materials = ["COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT", "COOLANT",] \
         + ["CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX", "CHANNEL_BOX"]*2 \
         + ["MODERATOR"]*8 + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
         + [absorber_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*2 \
         + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6 + [absorber_material]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 + ["CHANNEL_BOX"]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]   
+        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6  + ["MODERATOR"]*2 + [absorber_material]*4 \
+        + ["MODERATOR"]*2 + [sheath_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
+        + ["CHANNEL_BOX"]*4 + ["MODERATOR"]*4 + [sheath_material]   
     
     list_of_macros = ["BASE_CELL"] + ["MACRO_LEFT_SIDE0", "MACRO_LEFT_SIDE1", "MACRO_BOT_SIDE0", "MACRO_BOT_SIDE1", "MACRO_TOP_SIDE0", "MACRO_RIGHT_SIDE0", "MACRO_TOP_SIDE1", "MACRO_RIGHT_SIDE1"]  \
         + ["MACRO_LEFT_SIDE1", "MACRO_LEFT_SIDE0","MACRO_TOP_SIDE0","MACRO_BOT_SIDE0","MACRO_TOP_SIDE1","MACRO_BOT_SIDE1","MACRO_RIGHT_SIDE1","MACRO_RIGHT_SIDE0"] \
-        + ["MACRO_TOP_SIDE0","MACRO_RIGHT_SIDE0","MACRO_RIGHT_SIDE1","MACRO_TOP_SIDE1","MACRO_LEFT_SIDE0","MACRO_LEFT_SIDE1","MACRO_BOT_SIDE0","MACRO_BOT_SIDE1"] \
+        + ["MACRO_RIGHT_SIDE0", "MACRO_RIGHT_SIDE1", "MACRO_TOP_SIDE0","MACRO_TOP_SIDE1","MACRO_LEFT_SIDE0","MACRO_BOT_SIDE0","MACRO_BOT_SIDE1","MACRO_LEFT_SIDE1",] \
         + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
         + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS", "MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
         + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
@@ -364,18 +338,20 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",]  \
         + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
         + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
-        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
-        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
-        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","UNDER_WEST_CROSS","RIGHT_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
+        + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS",] \
+        + ["MACRO_NORTH_CROSS","MACRO_WEST_CROSS","UNDER_WEST_CROSS","RIGHT_NORTH_CROSS", "MACRO_NORTH_CROSS", "MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO_NORTH_CROSS","MACRO_WEST_CROSS","MACRO_WEST_CROSS","MACRO_NORTH_CROSS",] \
         + ["MACRO_WEST_CROSS","MACRO_NORTH_CROSS","MACRO90", "MACRO00", "MACRO99", "MACRO09","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS","MACRO_WEST_CROSS", "MACRO_NORTH_CROSS",] \
-        + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_WEST_CORNER",  "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "SOUTH_EAST_CORNER", "NORTH_EAST_CORNER",] \
+        + ["NORTH_EAST_CORNER", "NORTH_WEST_CORNER","SOUTH_WEST_CORNER", "SOUTH_EAST_CORNER", "SOUTH_EAST_CORNER", "NORTH_WEST_CORNER", "NORTH_EAST_CORNER",] \
         + ["SOUTH_WEST_CORNER", "MACRO_WEST_CROSS"]                
-
+    print(len(list_of_macros))
+    print(len(list_of_materials))
+    print(f"Material at postition len(list_of_materials)-1: {list_of_materials[-1]}")
 
     # set properties for the new MACRO regions
     assembly_box_cell.set_properties({
-        PropertyType.MATERIAL: list_of_materials + ["mat"] * (174 - len(list_of_materials)),
-        PropertyType.MACRO: list_of_macros + ["macro1"] * (174 - len(list_of_macros))
+        PropertyType.MATERIAL: list_of_materials, #+ ["mat0"] + ["mat"] * (177 - len(list_of_materials)),
+        PropertyType.MACRO: list_of_macros #+  ["macro0"] + ["macro1"] * (177 - len(list_of_macros))
     })
     
     # return the updated assembly box cell
@@ -634,29 +610,105 @@ print("=== Absorber Tubes Placement ===")
 b4c_tubes = []
 for i in range(number_tubes_per_wing):
     offset_x = 2.229183 + i * delta_tube
+    offset_y = offset_x
+
+    #if i == number_tubes_per_wing -1:
+    #    tube_x_tmp = RectCell(
+    #        name="CONTROL_CROSS_TUBE_X",
+    #        height_x_width=(moderator_width, delta_tube),
+    #        center=(offset_x, assembly_pitch - 0.0, 0.0),
+    #        rounded_corners=[(1, tip_radius - sheath_thickness - delta_tube/2) ]
+    #    )
+    #    tube_y_tmp = RectCell(
+    #        name="CONTROL_CROSS_TUBE_Y",
+    #        height_x_width=(delta_tube, moderator_width),
+    #        center=(0.0, assembly_pitch - offset_y, 0.0),
+    #        rounded_corners=[(1, tip_radius - sheath_thickness - delta_tube/2) ]
+    #    )
+    #else:
     tube_x_tmp = RectCell(
         name="CONTROL_CROSS_TUBE_X",
         height_x_width=(moderator_width, delta_tube),
         center=(offset_x, assembly_pitch - 0.0, 0.0)
     )
-    tube_x_tmp.add_circle(absorber_tube_inner_radius)
-    tube_x_tmp.add_circle(absorber_tube_outer_radius)
-    
-    offset_y = offset_x
     tube_y_tmp = RectCell(
         name="CONTROL_CROSS_TUBE_Y",
         height_x_width=(delta_tube, moderator_width),
         center=(0.0, assembly_pitch - offset_y, 0.0)
     )
+
+    tube_x_tmp.add_circle(absorber_tube_inner_radius)   
+    tube_x_tmp.add_circle(absorber_tube_outer_radius)
     tube_y_tmp.add_circle(absorber_tube_inner_radius)
     tube_y_tmp.add_circle(absorber_tube_outer_radius)
 
     b4c_tubes.append(tube_x_tmp)
     b4c_tubes.append(tube_y_tmp)
 
+    if i == number_tubes_per_wing-1:
+        last_x_tube = tube_x_tmp
+        last_y_tube = tube_y_tmp
+
+last_x_boundary = float(last_x_tube.inner_circles[0].o.GetParameters().split(":")[0]) + delta_tube/2
+last_y_boundary = float(last_y_tube.inner_circles[0].o.GetParameters().split(":")[1]) - delta_tube/2
+print(f"Last X tube center at {float(last_x_tube.inner_circles[0].o.GetParameters().split(':')[0])} cm, boundary at {last_x_boundary:.6f} cm")
+print(f"Last Y tube center at {float(last_y_tube.inner_circles[0].o.GetParameters().split(':')[1])} cm, boundary at {last_y_boundary:.6f} cm")
+print(f"Distance from top corner : {assembly_pitch - last_y_boundary:.6f} cm")
+# Rectangle overlapping with the control cross north arm
+north_cross_rectangle = Rectangle(height=(blade_thickness/2), width=blade_half_span, center=(blade_half_span/2, (assembly_pitch - blade_thickness/4), 0.0))  # top : overlapping with control cross north arm
+west_cross_rectangle = Rectangle(height=blade_half_span, width=(blade_thickness/2), center=(blade_thickness/4, assembly_pitch - blade_half_span/2, 0.0))  # left : overlapping with control cross west arm
+
+def split_rectangle_at_plane(rectangle, plane_position, axis='x'):
+    """
+    Split a rectangle into two parts at a given plane position along the specified axis.
+    
+    Parameters:
+    -----------
+    rectangle : Rectangle
+        The rectangle to be split.
+    plane_position : float
+        The position of the splitting plane along the specified axis.
+    axis : str
+        The axis along which to split ('x' or 'y').
+        
+    Returns:
+    --------
+    tuple
+        A tuple containing the two resulting rectangles after the split.
+    """
+    if axis == 'x':
+        left_width = plane_position - (float(rectangle.o.GetParameters().split(":")[0]) - rectangle.lx / 2)
+        right_width = rectangle.lx - left_width
+        left_center = (float(rectangle.o.GetParameters().split(":")[0]) - (rectangle.lx / 2 - left_width / 2), 
+                       float(rectangle.o.GetParameters().split(":")[1]), 0.0)
+        right_center = (float(rectangle.o.GetParameters().split(":")[0]) + (rectangle.lx / 2 - right_width / 2), 
+                        float(rectangle.o.GetParameters().split(":")[1]), 0.0)
+        left_rectangle = Rectangle(name=rectangle.name + "_left", height=rectangle.ly, width=left_width, center=left_center)
+        right_rectangle = Rectangle(name=rectangle.name + "_right", height=rectangle.ly, width=right_width, center=right_center)
+    elif axis == 'y':
+        bottom_height = plane_position - (float(rectangle.o.GetParameters().split(":")[1]) - rectangle.ly / 2)
+        top_height = rectangle.ly - bottom_height
+        bottom_center = (float(rectangle.o.GetParameters().split(":")[0]), float(rectangle.o.GetParameters().split(":")[1]) - (rectangle.ly / 2 - bottom_height / 2), 0.0)
+        top_center = (float(rectangle.o.GetParameters().split(":")[0]), float(rectangle.o.GetParameters().split(":")[1]) + (rectangle.ly / 2 - top_height / 2), 0.0)
+        bottom_rectangle = Rectangle(name=rectangle.name + "_bottom", height=bottom_height, width=rectangle.lx, center=bottom_center)
+        top_rectangle = Rectangle(name=rectangle.name + "_top", height=top_height, width=rectangle.lx, center=top_center)
+        return bottom_rectangle, top_rectangle
+    else:
+        raise ValueError("Axis must be 'x' or 'y'.")
+    
+    return left_rectangle, right_rectangle
+
+
+# split the north cross rectangle at last tube boundary positions
+left_north_cross_rectangle, right_north_cross_rectangle = split_rectangle_at_plane(north_cross_rectangle, last_x_boundary, axis='x')
+bottom_west_cross_rectangle, top_west_cross_rectangle = split_rectangle_at_plane(west_cross_rectangle, last_y_boundary, axis='y')
+
+# update 
+
 assembly_box_cell_face = make_partition(
     [assembly_box_cell.face],
-    [channel_box_cell.face, coolant_intra_assembly_cell.face] + [tube.face for tube in b4c_tubes] + [structure.face for structure in ctrl_cross_sheath_cells],
+    [channel_box_cell.face, coolant_intra_assembly_cell.face] + [tube.face for tube in b4c_tubes] + [structure.face for structure in ctrl_cross_sheath_cells]
+    + [left_north_cross_rectangle.face, right_north_cross_rectangle.face, bottom_west_cross_rectangle.face, top_west_cross_rectangle.face],
     shape_type=ShapeType.COMPOUND
 )
 
@@ -672,7 +724,7 @@ list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]
     + [sheath_material]*3       
 print(list_of_materials)
 assembly_box_cell.set_properties({
-    PropertyType.MATERIAL: list_of_materials
+    PropertyType.MATERIAL: list_of_materials + ["mat"] * (142 - len(list_of_materials)),
 })
 
 # --------------------
