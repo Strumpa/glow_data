@@ -466,16 +466,16 @@ ROD_to_material = {
 # --------------------
 # GENERATE FUEL CELLS
 # --------------------
-ordered_fuel_cells = generate_cells(
-    lattice_desc=lattice_description,
-    pitch=pin_pitch,
-    C_to_mat=ROD_to_material,
-    fuel_rad=fuel_pellet_radius,
-    gap_rad=fuel_clad_inner_radius,
-    clad_rad=fuel_clad_outer_radius,
-    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
-    windmill=False
-)
+#ordered_fuel_cells = generate_cells(
+#    lattice_desc=lattice_description,
+#    pitch=pin_pitch,
+#    C_to_mat=ROD_to_material,
+#    fuel_rad=fuel_pellet_radius,
+#    gap_rad=fuel_clad_inner_radius,
+#    clad_rad=fuel_clad_outer_radius,
+#    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
+#    windmill=False
+#)
 
 # Create water rod cells
 water_rod_cell1, water_rod_cell2 = create_water_rods(
@@ -611,21 +611,6 @@ b4c_tubes = []
 for i in range(number_tubes_per_wing):
     offset_x = 2.229183 + i * delta_tube
     offset_y = offset_x
-
-    #if i == number_tubes_per_wing -1:
-    #    tube_x_tmp = RectCell(
-    #        name="CONTROL_CROSS_TUBE_X",
-    #        height_x_width=(moderator_width, delta_tube),
-    #        center=(offset_x, assembly_pitch - 0.0, 0.0),
-    #        rounded_corners=[(1, tip_radius - sheath_thickness - delta_tube/2) ]
-    #    )
-    #    tube_y_tmp = RectCell(
-    #        name="CONTROL_CROSS_TUBE_Y",
-    #        height_x_width=(delta_tube, moderator_width),
-    #        center=(0.0, assembly_pitch - offset_y, 0.0),
-    #        rounded_corners=[(1, tip_radius - sheath_thickness - delta_tube/2) ]
-    #    )
-    #else:
     tube_x_tmp = RectCell(
         name="CONTROL_CROSS_TUBE_X",
         height_x_width=(moderator_width, delta_tube),
@@ -737,12 +722,12 @@ lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 
 
 # Add all fuel pin cells to the lattice
-lattice = add_cells_to_regular_lattice(
-    lattice=lattice,
-    ordered_cells=ordered_fuel_cells,
-    cell_pitch=pin_pitch,
-    translation=pincell_translation
-)
+#lattice = add_cells_to_regular_lattice(
+#    lattice=lattice,
+#    ordered_cells=ordered_fuel_cells,
+#    cell_pitch=pin_pitch,
+#    translation=pincell_translation
+#)
 
 # Add water rod cells at their specific locations
 # -> center at (4*pitch, 4*pitch) + translation
