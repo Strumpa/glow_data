@@ -5,121 +5,12 @@ from glow.geometry_layouts.lattices import Lattice
 from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
+from starterDD.GeometryBuilder.geometry_builder import make_grid_faces, computeSantamarinaradii
 
 
 # --------------------
 # HELPER FUNCTIONS
 # --------------------
-def computeSantamarinaradii(fuel_radius, gap_radius, clad_radius, gadolinium=False):
-    """
-    Helper to define fuel region radii for fuel pins
-    A. Santamarina recommendations:
-    - UOX pins: 50%, 80%, 95% and 100% volume fractions
-    - Gd2O3 pins: 20%, 40%, 60%, 80%, 95% and 100% volume fractions
-    """
-    if not gadolinium:
-        pin_radii = [
-            (0.5**0.5) * fuel_radius,
-            (0.8**0.5) * fuel_radius,
-            (0.95**0.5) * fuel_radius,
-            fuel_radius,
-            gap_radius,
-            clad_radius
-        ]
-    else:
-        pin_radii = [
-            (0.2**0.5) * fuel_radius,
-            (0.4**0.5) * fuel_radius,
-            (0.6**0.5) * fuel_radius,
-            (0.8**0.5) * fuel_radius,
-            (0.95**0.5) * fuel_radius,
-            fuel_radius,
-            gap_radius,
-            clad_radius
-        ]
-    return pin_radii
-
-
-def generate_cells(lattice_desc, pitch, C_to_mat, fuel_rad, gap_rad, clad_rad, corner_radius=0, windmill=False):
-    """
-    Generate RectCell objects for each individual subgeometry in the lattice
-    
-    Parameters:
-    -----------
-    corner_radius : float, optional
-        Radius of curvature for the outer corner of corner fuel cells.
-        Only the 4 corner cells (positions (0,0), (0,n-1), (n-1,0), (n-1,n-1)) 
-        will have a single rounded corner to match the channel box inner boundary.
-    """
-    Gd_cells = ["ROD5G", "ROD6H", "ROD6K", "ROD7G", "ROD7H"]
-    lattice_components = []
-    n_rows = len(lattice_desc)
-    n_cols = len(lattice_desc[0]) if lattice_desc else 0
-    
-    for row_idx in range(n_rows):
-        row = lattice_desc[row_idx]
-        row_of_cells = []
-        for cell_idx in range(len(row)):
-            cell_id = row[cell_idx]
-            
-            # Check if this is a corner cell that needs a rounded corner
-            # to match the channel box inner boundary
-            rounded_corners = None
-            if corner_radius > 0:
-                # Corner 0 = bottom-left of cell (row=0, col=0 -> assembly corner)
-                # Corner 1 = bottom-right of cell (row=0, col=n_cols-1 -> assembly corner)
-                # Corner 2 = top-right of cell (row=n_rows-1, col=n_cols-1 -> assembly corner)
-                # Corner 3 = top-left of cell (row=n_rows-1, col=0 -> assembly corner)
-                if row_idx == 0 and cell_idx == 0:
-                    rounded_corners = [(0, corner_radius)]
-                elif row_idx == 0 and cell_idx == n_cols - 1:
-                    rounded_corners = [(1, corner_radius)]
-                elif row_idx == n_rows - 1 and cell_idx == n_cols - 1:
-                    rounded_corners = [(2, corner_radius)]
-                elif row_idx == n_rows - 1 and cell_idx == 0:
-                    rounded_corners = [(3, corner_radius)]
-            
-            tmp_cell = RectCell(
-                name=cell_id,
-                height_x_width=(pitch, pitch),
-                center=(pitch / 2, pitch / 2, 0.0),
-                rounded_corners=rounded_corners
-            )
-            mat_name = C_to_mat[cell_id]
-            
-            if cell_id in Gd_cells:
-                radii = computeSantamarinaradii(fuel_rad, gap_rad, clad_rad, gadolinium=True)
-            elif "ROD" in cell_id and "W" not in cell_id:
-                radii = computeSantamarinaradii(fuel_rad, gap_rad, clad_rad, gadolinium=False)
-            else:  # Water rod placeholder
-                radii = []
-                mat_name = "MODERATOR"
-            
-            for radius in radii:
-                tmp_cell.add_circle(radius)
-
-            if mat_name == "MODERATOR":
-                tmp_cell.set_properties({
-                    PropertyType.MATERIAL: ["MODERATOR"],
-                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"]
-                })
-            else:
-                if cell_id in Gd_cells:
-                    list_of_cell_mats = [mat_name] * 6
-                    if windmill:
-                        tmp_cell.sectorize([1]*8 + [8], [0]*8 + [22.5], windmill=True)
-                else:
-                    list_of_cell_mats = [mat_name] * 4
-                    if windmill:
-                        tmp_cell.sectorize([1]*6 + [8], [0]*6 + [22.5], windmill=True)
-                list_of_cell_mats.extend(["GAP", "CLAD", "COOLANT"])
-                tmp_cell.set_properties({
-                    PropertyType.MATERIAL: list_of_cell_mats,
-                    PropertyType.MACRO: [f"MACRO{row_idx}{cell_idx}"] * len(list_of_cell_mats)
-                })
-            row_of_cells.append(tmp_cell)
-        lattice_components.append(row_of_cells)
-    return lattice_components
 
 
 def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
@@ -157,74 +48,6 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius,
         water_rod_cell2.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
         
     return water_rod_cell1, water_rod_cell2
-
-
-def add_cells_to_regular_lattice(lattice, ordered_cells, cell_pitch, translation):
-    """
-    Add fuel cells to the lattice, skipping water rod placeholders
-    """
-    for row_idx in range(len(ordered_cells)):
-        row_of_cells = ordered_cells[row_idx]
-        for cell_idx in range(len(row_of_cells)):
-            cell = row_of_cells[cell_idx]
-            if "W" in cell.name:  # Skip water rod placeholders
-                continue
-            else:
-                lattice.add_cell(
-                    cell,
-                    (
-                        (cell_idx + 0.5) * cell_pitch + translation,
-                        (row_idx + 0.5) * cell_pitch + translation,
-                        0.0
-                    )
-                )
-    return lattice
-
-
-def make_grid_faces(parent: Rectangle, nx: int, ny: int):
-    # parent width/height and lower-left corner
-    lx = float(parent.lx) 
-    ly = float(parent.ly)  
-    dx = lx / nx
-    dy = ly / ny
-    cx_parent, cy_parent = float(parent.o.GetParameters().split(":")[0]), float(parent.o.GetParameters().split(":")[1])
-    x0 = cx_parent - lx / 2.0
-    y0 = cy_parent - ly / 2.0
-
-    # create a (nx+1) x (ny+1) grid of vertices
-    verts = []
-    for j in range(ny + 1):
-        for i in range(nx + 1):
-            x = x0 + i * dx
-            y = y0 + j * dy
-            v = make_vertex((x, y, 0.0))
-            verts.append(v)
-
-    # helper to index vertex at grid (i,j)
-    def v_at(i, j):
-        return verts[j * (nx + 1) + i]
-
-    faces = []
-    for j in range(ny):
-        for i in range(nx):
-            # rectangle corners (lower-left, lower-right, upper-right, upper-left)
-            v00 = v_at(i, j)
-            v10 = v_at(i + 1, j)
-            v11 = v_at(i + 1, j + 1)
-            v01 = v_at(i, j + 1)
-
-            # create four edges for the rectangle (order matters for consistent orientation)
-            e_bottom = make_edge(v00, v10)
-            e_right = make_edge(v10, v11)
-            e_top = make_edge(v11, v01)
-            e_left = make_edge(v01, v00)
-
-            # assemble a face from the four edges
-            face = make_face([e_bottom, e_right, e_top, e_left])
-
-            faces.append(face)
-
-    return faces
 
 
 def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch, control_cross_thickness, control_cross_half_span):
@@ -324,7 +147,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6  + ["MODERATOR"]*2 + [absorber_material]*4 \
         + ["MODERATOR"]*2 + [sheath_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
         + ["CHANNEL_BOX"]*4 + ["MODERATOR"]*4 + [sheath_material]   
-
+        #+ ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \ instead of base cell
     list_of_macros = ["BASE_CELL"] + ["LEFT_SIDE0", "LEFT_SIDE1", "BOT_SIDE0", "BOT_SIDE1", "TOP_SIDE0", "RIGHT_SIDE0", "TOP_SIDE1", "RIGHT_SIDE1"]  \
         + ["LEFT_SIDE1", "LEFT_SIDE0","TOP_SIDE0","BOT_SIDE0","TOP_SIDE1","BOT_SIDE1","RIGHT_SIDE1","RIGHT_SIDE0"] \
         + ["RIGHT_SIDE0", "RIGHT_SIDE1", "TOP_SIDE0","TOP_SIDE1","LEFT_SIDE0","BOT_SIDE0","BOT_SIDE1","LEFT_SIDE1",] \
@@ -342,7 +165,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS",] \
         + ["NORTH_CROSS","WEST_CROSS","UNDER_WEST","RIGHT_NORTH", "NORTH_CROSS", "WEST_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS",] \
         + ["WEST_CROSS","NORTH_CROSS",] \
-        + ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \
+        + ["BASE_CELL"]*4 \
         + ["WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS",] \
         + ["NORTH_EAST", "NORTH_WEST","SOUTH_WEST", "SOUTH_EAST", "SOUTH_EAST", "NORTH_WEST", "NORTH_EAST",] \
         + ["SOUTH_WEST", "WEST_CROSS"]                
@@ -352,8 +175,10 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
 
     # set properties for the new MACRO regions
     assembly_box_cell.set_properties({
-        PropertyType.MATERIAL: list_of_materials, #+ ["mat0"] + ["mat"] * (177 - len(list_of_materials)),
-        PropertyType.MACRO: list_of_macros #+  ["macro0"] + ["macro1"] * (177 - len(list_of_macros))
+        #PropertyType.MATERIAL: list_of_materials, #+ ["mat0"] + ["mat"] * (177 - len(list_of_materials)),
+        #PropertyType.MACRO: list_of_macros #+  ["macro0"] + ["macro1"] * (177 - len(list_of_macros))
+        PropertyType.MATERIAL: ["mat"]*173, #+ ["mat0"] + ["mat"] * (177 - len(list_of_materials)),
+        PropertyType.MACRO: ["macro0"]*173 #+  ["macro0"] + ["macro1"] * (177 - len(list_of_macros))
     })
     
     # return the updated assembly box cell
@@ -468,16 +293,16 @@ ROD_to_material = {
 # --------------------
 # GENERATE FUEL CELLS
 # --------------------
-ordered_fuel_cells = generate_cells(
-    lattice_desc=lattice_description,
-    pitch=pin_pitch,
-    C_to_mat=ROD_to_material,
-    fuel_rad=fuel_pellet_radius,
-    gap_rad=fuel_clad_inner_radius,
-    clad_rad=fuel_clad_outer_radius,
-    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
-    windmill=False
-)
+#ordered_fuel_cells = generate_cells(
+#    lattice_desc=lattice_description,
+#    pitch=pin_pitch,
+#    C_to_mat=ROD_to_material,
+#    fuel_rad=fuel_pellet_radius,
+#    gap_rad=fuel_clad_inner_radius,
+#    clad_rad=fuel_clad_outer_radius,
+#    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
+#    windmill=False
+#)
 
 # Create water rod cells
 water_rod_cell1, water_rod_cell2 = create_water_rods(
@@ -566,7 +391,8 @@ control_cross_right_wing_cell = Rectangle(
     center=((blade_half_span - central_structure_half_span)/2 + central_structure_half_span,
             assembly_pitch, 
             0.0),
-    rounded_corners=[(1, tip_radius)])
+    #rounded_corners=[(1, tip_radius)]
+    )
 ctrl_cross_sheath_cells.append(control_cross_right_wing_cell)
 
 # control cross bottom wing
@@ -577,7 +403,8 @@ control_cross_bottom_wing_cell = Rectangle(
     center=(0.0,
             assembly_pitch - (blade_half_span - central_structure_half_span)/2 - central_structure_half_span, 
             0.0),
-    rounded_corners=[(1, tip_radius)])
+    #rounded_corners=[(1, tip_radius)]
+    )
 ctrl_cross_sheath_cells.append(control_cross_bottom_wing_cell)
 
 # subdivide control cross sheath cells to add absorber tubes : first create another rectangle to partition each "WING" sheath cell
@@ -589,7 +416,8 @@ inner_right_wing_cell = Rectangle(
     center=((blade_half_span - central_structure_half_span - sheath_thickness)/2 + central_structure_half_span,
             assembly_pitch, 
             0.0),
-    rounded_corners=[(1, tip_radius-sheath_thickness)])
+    #ro0unded_corners=[(1, tip_radius-sheath_thickness)]
+    )
 ctrl_cross_sheath_cells.append(inner_right_wing_cell)
 
 inner_bottom_wing_cell = Rectangle(
@@ -599,7 +427,8 @@ inner_bottom_wing_cell = Rectangle(
     center=(0.0,
             assembly_pitch - (blade_half_span - central_structure_half_span - sheath_thickness)/2 - central_structure_half_span, 
             0.0),
-    rounded_corners=[(1, tip_radius-sheath_thickness)])
+    #rounded_corners=[(1, tip_radius-sheath_thickness)]
+    )
 ctrl_cross_sheath_cells.append(inner_bottom_wing_cell)
 
 
@@ -610,6 +439,8 @@ print("=== Absorber Tubes Placement ===")
 
 #delta_tube += missing / number_tubes_per_wing  # adjust to fit exactly
 b4c_tubes = []
+north_tubes = []
+west_tubes = []
 for i in range(number_tubes_per_wing):
     offset_x = 2.229183 + i * delta_tube
     offset_y = offset_x
@@ -629,8 +460,17 @@ for i in range(number_tubes_per_wing):
     tube_y_tmp.add_circle(absorber_tube_inner_radius)
     tube_y_tmp.add_circle(absorber_tube_outer_radius)
 
+    tube_x_tmp.set_properties({
+        PropertyType.MATERIAL: [absorber_material, sheath_material, "MODERATOR"]
+    })
+    tube_y_tmp.set_properties({
+        PropertyType.MATERIAL: [absorber_material, sheath_material, "MODERATOR"]
+    })
+
     b4c_tubes.append(tube_x_tmp)
     b4c_tubes.append(tube_y_tmp)
+    north_tubes.append(tube_x_tmp)
+    west_tubes.append(tube_y_tmp)
 
     if i == number_tubes_per_wing-1:
         last_x_tube = tube_x_tmp
@@ -687,31 +527,36 @@ def split_rectangle_at_plane(rectangle, plane_position, axis='x'):
 
 
 # split the north cross rectangle at last tube boundary positions
-left_north_cross_rectangle, right_north_cross_rectangle = split_rectangle_at_plane(north_cross_rectangle, last_x_boundary, axis='x')
-bottom_west_cross_rectangle, top_west_cross_rectangle = split_rectangle_at_plane(west_cross_rectangle, last_y_boundary, axis='y')
-
-# update 
+#left_north_cross_rectangle, right_north_cross_rectangle = split_rectangle_at_plane(north_cross_rectangle, last_x_boundary, axis='x')
+#bottom_west_cross_rectangle, top_west_cross_rectangle = split_rectangle_at_plane(west_cross_rectangle, last_y_boundary, axis='y')
 
 assembly_box_cell_face = make_partition(
     [assembly_box_cell.face],
-    [channel_box_cell.face, coolant_intra_assembly_cell.face] + [tube.face for tube in b4c_tubes] + [structure.face for structure in ctrl_cross_sheath_cells]
-    + [left_north_cross_rectangle.face, right_north_cross_rectangle.face, bottom_west_cross_rectangle.face, top_west_cross_rectangle.face],
+    [channel_box_cell.face, coolant_intra_assembly_cell.face] + [structure.face for structure in ctrl_cross_sheath_cells],# + [tube.face for tube in b4c_tubes],
+    #+ [left_north_cross_rectangle.face, right_north_cross_rectangle.face, bottom_west_cross_rectangle.face, top_west_cross_rectangle.face],
     shape_type=ShapeType.COMPOUND
 )
+# remove overlapping regions with absorber tubes
+for tube in b4c_tubes:
+    assembly_box_cell_face = make_cut(
+        assembly_box_cell_face,
+        tube.face,
+    )
 
 assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
 
-list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
-    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
-    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
-    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
-    + [sheath_material]*3       
-print(list_of_materials)
+#list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
+#    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
+#    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
+#    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
+#    + [sheath_material]*3       
+#print(list_of_materials)
 assembly_box_cell.set_properties({
-    PropertyType.MATERIAL: list_of_materials + ["mat"] * (142 - len(list_of_materials)),
+    PropertyType.MATERIAL: ["mat"]*8,
+    PropertyType.MACRO: ["macro0"]*8
 })
 
 # --------------------
@@ -724,12 +569,12 @@ lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 
 
 # Add all fuel pin cells to the lattice
-lattice = add_cells_to_regular_lattice(
-    lattice=lattice,
-    ordered_cells=ordered_fuel_cells,
-    cell_pitch=pin_pitch,
-    translation=pincell_translation
-)
+#lattice = add_cells_to_regular_lattice(
+#    lattice=lattice,
+#    ordered_cells=ordered_fuel_cells,
+#    cell_pitch=pin_pitch,
+#    translation=pincell_translation
+#)
 
 # Add water rod cells at their specific locations
 # -> center at (4*pitch, 4*pitch) + translation
@@ -745,19 +590,39 @@ lattice.add_cell(
 )
 
 ## split the box into MACROs for IC
-assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch, blade_thickness, blade_half_span)
+#assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, assembly_pitch, blade_thickness, blade_half_span)
 
 
+#lattice.add_cell(
+#    assembly_box_cell,
+#    ()
+#)
 lattice.lattice_box = assembly_box_cell
+
+for tube in north_tubes:
+    i = north_tubes.index(tube)
+    offset_x = 2.229183 + i * delta_tube
+    lattice.add_cell(
+        tube,
+        ()#(offset_x, assembly_pitch - 0.0, 0.0)
+    )
+for tube in west_tubes:
+    i = west_tubes.index(tube)
+    offset_y = 2.229183 + i * delta_tube
+    lattice.add_cell(
+        tube,
+        ()#(0.0, assembly_pitch - offset_y, 0.0)
+    )
+
 # Show the lattice
-lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MACRO)
-#lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
+#lattice.show(geometry_type_to_show=GeometryType.TECHNOLOGICAL, property_type_to_show=PropertyType.MACRO)
+lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
 
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
 if tracking_type == "TISO":
-    output_file_name = "GE-14_assembly_ctrl_IC_MACRO_TISO"
+    output_file_name = "GE14_simple_control_cross_tubes"
     lattice.type_geo = LatticeGeometryType.ISOTROPIC
     analyse_and_generate_tdt(
         [lattice], 
