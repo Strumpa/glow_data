@@ -12,7 +12,7 @@ from starterDD.GeometryBuilder.geometry_builder import generate_IC_cells, add_ce
 
 tracking_type = "TISO" # "TSPC"
 pitch = 1.295
-lattice_center = (0.0, 0.0, 0.0)
+lattice_center = (3*pitch/2, 3*pitch/2, 0.0)
 # numbered in increasing x / increasing y order
 ## Geometric data
 lattice_desc_3x3_GdC = [
@@ -37,9 +37,10 @@ cells_3x3_GdC = generate_IC_cells(lattice_desc_3x3_GdC,
                                  windmill=False)
 
 lattice_3x3_GdC = Lattice(name='3x3 with Gd center', center=lattice_center)
-lattice_3x3_GdC = add_cells_to_regular_lattice(lattice_3x3_GdC, cells_3x3_GdC, pitch)
+lattice_3x3_GdC = add_cells_to_regular_lattice(lattice_3x3_GdC, cells_3x3_GdC, pitch, translation=0.0)
 
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdC.show(PropertyType.MACRO)
 lattice_3x3_GdC.show(PropertyType.MATERIAL)
 
@@ -73,6 +74,7 @@ lattice_3x3_GdTR = Lattice(name ='3x3 with Gd top right', center=lattice_center)
 
 lattice_3x3_GdTR = add_cells_to_regular_lattice(lattice_3x3_GdTR, cells_3x3_GdTR, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdTR.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdTR.show(PropertyType.MACRO)
 lattice_3x3_GdTR.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
@@ -100,6 +102,7 @@ cells_3x3_GdTC = generate_IC_cells(lattice_desc_3x3_GdTC,
 lattice_3x3_GdTC = Lattice(name='3x3 with Gd top center', center=lattice_center)
 lattice_3x3_GdTC = add_cells_to_regular_lattice(lattice_3x3_GdTC, cells_3x3_GdTC, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdTC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdTC.show(PropertyType.MACRO)
 lattice_3x3_GdTC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
@@ -131,6 +134,7 @@ cells_3x3_GdBC = generate_IC_cells(lattice_desc_3x3_GdBC,
 lattice_3x3_GdBC = Lattice(name='3x3 with Gd bottom center', center=lattice_center)
 lattice_3x3_GdBC = add_cells_to_regular_lattice(lattice_3x3_GdBC, cells_3x3_GdBC, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdBC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdBC.show(PropertyType.MACRO)
 lattice_3x3_GdBC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
@@ -158,6 +162,7 @@ cells_3x3_GdBL = generate_IC_cells(lattice_desc_3x3_GdBL,
 lattice_3x3_GdBL = Lattice(name='3x3 with Gd bottom left', center=lattice_center)
 lattice_3x3_GdBL = add_cells_to_regular_lattice(lattice_3x3_GdBL, cells_3x3_GdBL, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdBL.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdBL.show(PropertyType.MACRO)
 lattice_3x3_GdBL.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
@@ -186,6 +191,7 @@ cells_3x3_GdRC = generate_IC_cells(lattice_3x3_GdRC_desc,
 lattice_3x3_GdRC = Lattice(name='3x3 with Gd right center', center=lattice_center)
 lattice_3x3_GdRC = add_cells_to_regular_lattice(lattice_3x3_GdRC, cells_3x3_GdRC, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdRC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdRC.show(PropertyType.MACRO)
 lattice_3x3_GdRC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
@@ -213,6 +219,7 @@ cells_3x3_GdLC = generate_IC_cells(lattice_3x3_GdLC_desc,
 lattice_3x3_GdLC = Lattice(name='3x3 with Gd left center', center=lattice_center)
 lattice_3x3_GdLC = add_cells_to_regular_lattice(lattice_3x3_GdLC, cells_3x3_GdLC, pitch)
 # Show the resulting layout with the 'MATERIAL' colorset
+lattice_3x3_GdLC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdLC.show(PropertyType.MACRO)
 lattice_3x3_GdLC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
