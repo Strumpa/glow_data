@@ -6,13 +6,13 @@ from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
 
-from starterDD.GeometryBuilder.geometry_builder import generate_IC_cells, add_cells_to_regular_lattice, export_glow_geom
+from starterDD.starterDD.GeometryBuilder.glow_builder import generate_IC_cells, add_cells_to_regular_lattice, export_glow_geom
 
 
 
 tracking_type = "TISO" # "TSPC"
 pitch = 1.295
-lattice_center = (3*pitch/2, 3*pitch/2, 0.0)
+lattice_center = (0.0, 0.0, 0.0)
 # numbered in increasing x / increasing y order
 ## Geometric data
 lattice_desc_3x3_GdC = [
