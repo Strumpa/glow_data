@@ -5,7 +5,7 @@ from glow.geometry_layouts.lattices import Lattice
 from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
-from starterDD.starterDD.GeometryBuilder.glow_builder import generate_IC_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
+from starterDD.starterDD.GeometryBuilder.glow_builder import generate_simple_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
 
 # --------------------
 # HELPER FUNCTIONS
@@ -141,9 +141,9 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["MODERATOR"]*8 + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
         + [absorber_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*2 \
         + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
-        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 #+ [sheath_material]*6  + ["MODERATOR"]*2 + [absorber_material]*4 \
-        #+ ["MODERATOR"]*2 + [sheath_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
-        #+ ["CHANNEL_BOX"]*4 + ["MODERATOR"]*4 + [sheath_material]   
+        + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*6 + [sheath_material]*6 + [absorber_material]*4 \
+        + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + ["CHANNEL_BOX"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]*2 \
+        + ["CHANNEL_BOX"]*4 + ["MODERATOR"]*4 + [sheath_material]   
 
     list_of_macros = ["BASE_CELL"] + ["LEFT_SIDE0", "LEFT_SIDE1", "BOT_SIDE0", "BOT_SIDE1", "TOP_SIDE0", "RIGHT_SIDE0", "TOP_SIDE1", "RIGHT_SIDE1"]  \
         + ["LEFT_SIDE1", "LEFT_SIDE0","TOP_SIDE0","BOT_SIDE0","TOP_SIDE1","BOT_SIDE1","RIGHT_SIDE1","RIGHT_SIDE0"] \
@@ -159,29 +159,27 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch,
         + ["NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS",] \
         + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS",] \
         + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS",] \
-        #+ ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS",] \
-        #+ ["NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS", "NORTH_CROSS", "WEST_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","WEST_CROSS","NORTH_CROSS",] \
-        #+ ["WEST_CROSS","NORTH_CROSS",] \
-        #+ ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \
-        #+ ["WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS","WEST_CROSS", "NORTH_CROSS",] \
-        #+ ["NORTH_EAST", "NORTH_WEST","SOUTH_WEST", "SOUTH_EAST", "SOUTH_EAST", "NORTH_WEST", "NORTH_EAST",] \
-        #+ ["SOUTH_WEST", "WEST_CROSS"]                
+        + ["WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS",] \
+        + ["WEST_CROSS", "NORTH_CROSS","WEST_CROSS","NORTH_CROSS","NORTH_CROSS", "WEST_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS","NORTH_CROSS",] \
+        + ["MACRO90", "MACRO00", "MACRO99", "MACRO09",] \
+        + ["WEST_CROSS", "NORTH_CROSS","WEST_CROSS","NORTH_CROSS","WEST_CROSS", "NORTH_CROSS",] \
+        + ["NORTH_EAST", "NORTH_WEST","SOUTH_WEST", "SOUTH_EAST", "NORTH_WEST", "SOUTH_EAST",  "NORTH_EAST",] \
+        + ["SOUTH_WEST", "WEST_CROSS"]                
     print(len(list_of_macros))
     print(len(list_of_materials))
-    print(f"Material at postition len(list_of_materials)-1: {list_of_materials[-1]}")
-
     # set properties for the new MACRO regions
     assembly_box_cell.set_properties({
-        PropertyType.MATERIAL: list_of_materials+ ["mat0"] + ["mat"] * (173 - len(list_of_materials)),
-        PropertyType.MACRO: list_of_macros +  ["macro0"] + ["macro1"] * (173 - len(list_of_macros))
+        PropertyType.MATERIAL: list_of_materials,#+ ["mat0"] + ["mat"] * (173 - len(list_of_materials)),
+        PropertyType.MACRO: list_of_macros# +  ["macro0"] + ["macro1"] * (173 - len(list_of_macros))
     })
     
     # return the updated assembly box cell
     return assembly_box_cell
 
 ### GLOW OUTPUT PARAMETERS 
-tracking_type = "TISO"  # Options: "TISO" or "TSPC"
-
+tracking_type = "TSPC"  # Options: "TISO" or "TSPC"
+export_macro = False  # Whether to export MACRO definitions in the TDT file
+file_to_save_name = f"GE14_ctrl_simplified"
 
 # --------------------
 # GEOMETRY PARAMETERS
@@ -253,7 +251,7 @@ pincell_translation = gap_wide + channel_box_thickness + coolant_intra_assembly_
 center = (assembly_pitch / 2, assembly_pitch / 2, 0.0)
 
 # --------------------
-# LATTICE DESCRIPTION (10x10 GE-14)
+# LATTICE DESCRIPTION (simplified 10x10 GE-14)
 # --------------------
 lattice_description = [
     ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"],
@@ -277,16 +275,13 @@ ROD_to_material = {
 # --------------------
 # GENERATE FUEL CELLS
 # --------------------
-ordered_fuel_cells = generate_IC_cells(
+ordered_fuel_cells = generate_simple_cells(
     lattice_desc=lattice_description,
-    Gd_cells=["ROD5G"],
     pitch=pin_pitch,
     C_to_mat=ROD_to_material,
     fuel_rad=fuel_pellet_radius,
     gap_rad=fuel_clad_inner_radius,
     clad_rad=fuel_clad_outer_radius,
-    corner_radius=pin_lattice_corner_radius,  # Rounded corners for corner fuel cells
-    windmill=False
 )
 
 # Create water rod cells
@@ -460,15 +455,15 @@ assembly_box_cell_face = make_partition(
 
 assembly_box_cell.update_geometry_from_face(GeometryType.TECHNOLOGICAL, assembly_box_cell_face)
 
-list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
-    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
-    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
-    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
-    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
-    + [sheath_material]*3       
-print(list_of_materials)
+#list_of_materials =  ["COOLANT", "CHANNEL_BOX", "MODERATOR"] + [sheath_material]*2 + ["MODERATOR"]*6 + [sheath_material]*6 \
+#    + ["MODERATOR"]*4 + [sheath_material]*2 + [absorber_material]*2 + [sheath_material]* 2 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 + ["MODERATOR"]*4 + [absorber_material]*4 + [sheath_material]*4 \
+#    + ["MODERATOR"]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [absorber_material]*2 + [sheath_material]*4 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 \
+#    + ["MODERATOR"]*4 + [sheath_material]*4 + [absorber_material]*4 + ["MODERATOR"]*4 + [sheath_material]*6 + [absorber_material]*4 \
+#    + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 + ["MODERATOR"]*2 + [sheath_material]*2 + [absorber_material]*2 \
+#    + [sheath_material]*3       
+#print(list_of_materials)
 #assembly_box_cell.set_properties({
 #    PropertyType.MATERIAL: list_of_materials + ["mat"] * (136 - len(list_of_materials)),
 #})
@@ -483,12 +478,12 @@ lattice = Lattice(name='GE14_ctrl_assembly', center=center)
 
 
 # Add all fuel pin cells to the lattice
-#lattice = add_cells_to_regular_lattice(
-#    lattice=lattice,
-#    ordered_cells=ordered_fuel_cells,
-#    cell_pitch=pin_pitch,
-#    translation=pincell_translation
-#)
+lattice = add_cells_to_regular_lattice(
+    lattice=lattice,
+    ordered_cells=ordered_fuel_cells,
+    cell_pitch=pin_pitch,
+    translation=pincell_translation
+)
 
 # Add water rod cells at their specific locations
 # -> center at (4*pitch, 4*pitch) + translation
@@ -515,4 +510,5 @@ lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_sho
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
-export_glow_geom("data/glow_data/tdt_data", "GE14_ctrl_simplified", lattice, tracking_type, export_macro=True)
+
+export_glow_geom("data/glow_data/tdt_data", file_to_save_name, lattice, tracking_type, export_macro=export_macro)
