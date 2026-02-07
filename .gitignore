@@ -1,0 +1,16 @@
+helpers/SALT_tracking_output/*
+# Ignore the __pycache__ directory
+./__pycache__
+
+# Ignore specific directories
+*venv/
+docs/_build
+build
+
+# Ignore other common Python artifacts
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
