@@ -72,25 +72,6 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
     y0 = (assembly_pitch - lattice_pitch) / 2
     x1 = x0 + lattice_pitch
     y1 = y0 + lattice_pitch
-    
-    # Create vertices for the partition
-    points = [  (0.0, 0.0, 0.0), 
-                (x0, 0.0, 0.0),
-                (x1, 0.0, 0.0), 
-                (assembly_pitch, 0.0, 0.0),
-                (0.0, y0, 0.0),
-                (x0, y0, 0.0),
-                (x1, y0, 0.0),
-                (assembly_pitch, y0, 0.0),
-                (0.0, y1, 0.0),
-                (x0, y1, 0.0),
-                (x1, y1, 0.0),
-                (assembly_pitch, y1, 0.0),
-                (0.0, assembly_pitch, 0.0),
-                (x0, assembly_pitch, 0.0),
-                (x1, assembly_pitch, 0.0),
-                (assembly_pitch, assembly_pitch, 0.0)
-              ]
     # Create rectangles for the partition
     rectangles_to_split = [
         Rectangle(height=y0, width=x0, center=(x0/2, y0/2, 0.0)),  # Bottom-left
@@ -233,7 +214,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
 
 ### GLOW OUTPUT PARAMETERS 
 tracking_type = "TISO"  # Options: "TISO" or "TSPC"
-export_macro = False  # Whether to export MACRO definitions in the TDT file
+export_macro = True  # Whether to export MACRO definitions in the TDT file
 file_to_save_name = f"GE14_simplified"
 
 # --------------------
@@ -302,8 +283,8 @@ lattice_description = [
 ]
 
 ROD_to_material = {
-    "ROD1": "UOX160",
-    "ROD5G": "UOX395_Gd8",
+    "ROD1": "UOX16",
+    "ROD5G": "UOX40Gd8",
     "WROD": "MODERATOR"
 }
 

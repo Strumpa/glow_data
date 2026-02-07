@@ -267,8 +267,8 @@ lattice_description = [
 ]
 
 ROD_to_material = {
-    "ROD1": "UOX160",
-    "ROD5G": "UOX395_Gd8",
+    "ROD1": "UOX16",
+    "ROD5G": "UOX40Gd8",
     "WROD": "MODERATOR"
 }
 
