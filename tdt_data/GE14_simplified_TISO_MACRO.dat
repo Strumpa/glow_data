@@ -3246,9 +3246,99 @@
 #  2 - CLAD
 #  3 - MODERATOR
 #  4 - GAP
-#  5 - UOX16
-#  6 - UOX40Gd8
-#  7 - CHANNEL_BOX
+#  5 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9f1b010>
+#  6 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9efdfd0>
+#  7 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab02df150>
+#  8 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab02cc310>
+#  9 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab02b9490>
+# 10 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab02a6610>
+# 11 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab024c510>
+# 12 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab01f5a90>
+# 13 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab02220d0>
+# 14 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab020d790>
+# 15 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab01fd9d0>
+# 16 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab03dad90>
+# 17 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab03b3d10>
+# 18 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab03983d0>
+# 19 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab037c990>
+# 20 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feab0361110>
+# 21 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e80f90>
+# 22 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e81690>
+# 23 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e81d90>
+# 24 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e82490>
+# 25 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e82b90>
+# 26 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e83290>
+# 27 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9e83990>
+# 28 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eac0d0>
+# 29 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eac7d0>
+# 30 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eaced0>
+# 31 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ead5d0>
+# 32 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eadcd0>
+# 33 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eae3d0>
+# 34 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eaead0>
+# 35 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eaf1d0>
+# 36 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eaf8d0>
+# 37 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb4110>
+# 38 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb4710>
+# 39 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb4e10>
+# 40 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb5510>
+# 41 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb5c10>
+# 42 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb6310>
+# 43 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb6a10>
+# 44 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb7110>
+# 45 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb7810>
+# 46 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eb7e90>
+# 47 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebc650>
+# 48 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebcd50>
+# 49 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebd450>
+# 50 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebdb50>
+# 51 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebe250>
+# 52 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebe950>
+# 53 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebf050>
+# 54 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebf750>
+# 55 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ebfe50>
+# 56 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ec8590>
+# 57 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ec8c90>
+# 58 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ec9390>
+# 59 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ec9a90>
+# 60 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eca190>
+# 61 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eca890>
+# 62 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ecaf90>
+# 63 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ecb690>
+# 64 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ecbd90>
+# 65 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed44d0>
+# 66 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed4bd0>
+# 67 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed52d0>
+# 68 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed59d0>
+# 69 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed60d0>
+# 70 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed67d0>
+# 71 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed6ed0>
+# 72 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed75d0>
+# 73 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed7cd0>
+# 74 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed8410>
+# 75 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed8b10>
+# 76 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed9210>
+# 77 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ed9910>
+# 78 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eda010>
+# 79 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eda710>
+# 80 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9edae10>
+# 81 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9edb510>
+# 82 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9edbc10>
+# 83 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ee8350>
+# 84 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ee8a50>
+# 85 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ee9150>
+# 86 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ee9850>
+# 87 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ee9f90>
+# 88 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eea690>
+# 89 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eead90>
+# 90 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eeb490>
+# 91 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9eebb90>
+# 92 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ef02d0>
+# 93 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ef09d0>
+# 94 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ef10d0>
+# 95 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ef17d0>
+# 96 - <starterDD.starterDD.MaterialProperties.material_mixture.MaterialMixture object at 0x7feaa9ef1f10>
+# 97 - CHANNEL_BOX
 * medium number per region
   1
   2
@@ -3263,367 +3353,367 @@
   1
   2
   4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
-  5
-  1
-  2
-  4
   6
   1
   2
   4
-  5
+  7
   1
   2
   4
-  6
+  8
   1
   2
   4
-  5
+  9
   1
   2
   4
-  5
+  10
   1
   2
   4
-  5
+  11
   1
   2
   4
-  5
+  12
   1
   2
   4
-  5
+  13
   1
   2
   4
-  5
+  14
   1
   2
   4
-  6
+  15
   1
   2
   4
-  5
+  16
   1
   2
   4
-  6
+  17
   1
   2
   4
-  5
+  18
   1
   2
   4
-  6
+  19
   1
   2
   4
-  5
+  20
   1
   2
   4
-  6
+  21
   1
   2
   4
-  5
+  22
   1
   2
   4
-  5
+  23
   1
   2
   4
-  5
+  24
   1
   2
   4
-  5
+  25
   1
   2
   4
-  5
+  26
   1
   2
   4
-  5
+  27
   1
   2
   4
-  6
+  28
   1
   2
   4
-  5
+  29
   1
   2
   4
-  5
+  30
   1
   2
   4
-  5
+  31
   1
   2
   4
-  5
+  32
   1
   2
   4
-  5
+  33
   1
   2
   4
-  5
+  34
   1
   2
   4
-  5
+  35
   1
   2
   4
-  5
+  36
   1
   2
   4
-  6
+  37
   1
   2
   4
-  5
+  38
   1
   2
   4
-  5
+  39
   1
   2
   4
-  5
+  40
   1
   2
   4
-  6
+  41
   1
   2
   4
-  5
+  42
   1
   2
   4
-  5
+  43
   1
   2
   4
-  5
+  44
   1
   2
   4
-  5
+  45
   1
   2
   4
-  6
+  46
   1
   2
   4
-  5
+  47
   1
   2
   4
-  5
+  48
   1
   2
   4
-  5
+  49
   1
   2
   4
-  6
+  50
   1
   2
   4
-  5
+  51
   1
   2
   4
-  5
+  52
   1
   2
   4
-  6
+  53
   1
   2
   4
-  5
+  54
   1
   2
   4
-  5
+  55
   1
   2
   4
-  5
+  56
   1
   2
   4
-  6
+  57
   1
   2
   4
-  5
+  58
   1
   2
   4
-  6
+  59
   1
   2
   4
-  5
+  60
   1
   2
   4
-  5
+  61
   1
   2
   4
-  5
+  62
   1
   2
   4
-  5
+  63
   1
   2
   4
-  6
+  64
   1
   2
   4
-  5
+  65
   1
   2
   4
-  5
+  66
   1
   2
   4
-  5
+  67
   1
   2
   4
-  6
+  68
   1
   2
   4
-  5
+  69
   1
   2
   4
-  6
+  70
   1
   2
   4
-  5
+  71
   1
   2
   4
-  5
+  72
   1
   2
   4
-  6
+  73
   1
   2
   4
-  5
+  74
   1
   2
   4
-  5
+  75
   1
   2
   4
-  5
+  76
   1
   2
   4
-  5
+  77
   1
   2
   4
-  5
+  78
   1
   2
   4
-  5
+  79
   1
   2
   4
-  5
+  80
   1
   2
   4
-  5
+  81
   1
   2
   4
-  5
+  82
   1
   2
   4
-  5
+  83
   1
   2
   4
-  5
+  84
   1
   2
   4
-  5
+  85
+  1
+  2
+  4
+  86
+  1
+  2
+  4
+  87
+  1
+  2
+  4
+  88
+  1
+  2
+  4
+  89
+  1
+  2
+  4
+  90
+  1
+  2
+  4
+  91
+  1
+  2
+  4
+  92
+  1
+  2
+  4
+  93
+  1
+  2
+  4
+  94
+  1
+  2
+  4
+  95
+  1
+  2
+  4
+  96
   3
   3
   3
@@ -3700,46 +3790,46 @@
   1
   1
   1
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
   1
   1
   1
@@ -3748,13 +3838,13 @@
   1
   1
   1
-  7
-  7
-  7
-  7
-  7
-  7
-  7
-  7
+  97
+  97
+  97
+  97
+  97
+  97
+  97
+  97
 ------------------------------------------------------------
    this is the last line generated by conversion
