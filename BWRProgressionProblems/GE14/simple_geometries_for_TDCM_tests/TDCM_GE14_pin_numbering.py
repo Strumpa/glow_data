@@ -218,7 +218,7 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
 tracking_type = "TISO"  # Options: "TISO" or "TSPC"
 export_macro = True  # Whether to export MACRO definitions in the TDT file
 path_to_tdt = "data/glow_data/tdt_data"
-file_to_save_name = f"GE14_simplified"
+file_to_save_name = f"GE14_simplified_pin_numbering"
 
 ## import model : 
 path_to_yaml_compositions = "glow_data/BWRProgressionProblems/GE14/input_configs/material_compositions.yaml"
@@ -239,7 +239,7 @@ GE14_simple_assembly.analyze_lattice_description(build_pins=True)
 # Set the material compositions in the assembly model
 GE14_simple_assembly.set_material_compositions(compositions)
 # Number fuel material mixtures based on material names
-GE14_simple_assembly.number_fuel_material_mixtures_by_material()
+GE14_simple_assembly.number_fuel_material_mixtures_by_pin()
 # --------------------
 # GEOMETRY PARAMETERS
 # --------------------
