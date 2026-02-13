@@ -45,7 +45,7 @@ lattice_3x3_GdC.show(PropertyType.MACRO)
 lattice_3x3_GdC.show(PropertyType.MATERIAL)
 
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_C_TISO_MACRO_1fuel_index", lattice_3x3_GdC, tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_C_1fuel_index", lattice_3x3_GdC, tracking_type, export_macro=True)
 
 ### Set up 3x3_Gd_TR test
 # Cells 1 to 8 : UOX fuels
@@ -78,7 +78,7 @@ lattice_3x3_GdTR.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdTR.show(PropertyType.MACRO)
 lattice_3x3_GdTR.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_TR_TISO_MACRO_1fuel_index", lattice_3x3_GdTR , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_TR_1fuel_index", lattice_3x3_GdTR , tracking_type, export_macro=True)
       
 # ------------------------------------------------
 # Test 3x3_Gd_TC_TISO_MACRO LATTICE CONSTRUCTION
@@ -106,7 +106,7 @@ lattice_3x3_GdTC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdTC.show(PropertyType.MACRO)
 lattice_3x3_GdTC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_TC_TISO_MACRO_1fuel_index", lattice_3x3_GdTC , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_TC_1fuel_index", lattice_3x3_GdTC , tracking_type, export_macro=True)
       
 
 ### For sanity check : create tests for bottom center and bottom left Gd positions too
@@ -138,7 +138,7 @@ lattice_3x3_GdBC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdBC.show(PropertyType.MACRO)
 lattice_3x3_GdBC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_BC_TISO_MACRO_1fuel_index", lattice_3x3_GdBC , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_BC_1fuel_index", lattice_3x3_GdBC , tracking_type, export_macro=True)
 
 # ------------------------------------------------
 # Test 3x3_Gd_BL_TISO_MACRO LATTICE CONSTRUCTION
@@ -166,7 +166,7 @@ lattice_3x3_GdBL.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdBL.show(PropertyType.MACRO)
 lattice_3x3_GdBL.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_BL_TISO_MACRO_1fuel_index", lattice_3x3_GdBL , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_BL_1fuel_index", lattice_3x3_GdBL , tracking_type, export_macro=True)
 
 
 # ------------------------------------------------
@@ -195,7 +195,7 @@ lattice_3x3_GdRC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdRC.show(PropertyType.MACRO)
 lattice_3x3_GdRC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_RC_TISO_MACRO_1fuel_index", lattice_3x3_GdRC , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_RC_1fuel_index", lattice_3x3_GdRC , tracking_type, export_macro=True)
 
 # ------------------------------------------------
 # Test 3x3_Gd_LC_TISO_MACRO LATTICE CONSTRUCTION
@@ -223,7 +223,7 @@ lattice_3x3_GdLC.apply_symmetry(SymmetryType.FULL)
 lattice_3x3_GdLC.show(PropertyType.MACRO)
 lattice_3x3_GdLC.show(PropertyType.MATERIAL)
 # Perform the geometry analysis and export the TDT file of the surface geometry
-export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_LC_TISO_MACRO_1fuel_index", lattice_3x3_GdLC , tracking_type, export_macro=True)
+export_glow_geom("data/glow_data/tdt_data", "3x3_Gd_LC_1fuel_index", lattice_3x3_GdLC , tracking_type, export_macro=True)
 
       
 
