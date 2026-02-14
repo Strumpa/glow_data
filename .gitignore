@@ -14,3 +14,5 @@ build
 *.pdb
 *.egg
 *.egg-info/
+# Ignore Cle-2000 output files for now
+*.c2m

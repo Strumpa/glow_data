@@ -31,3 +31,8 @@ ASSEMBLY_GEOMETRY:
 
   Gd_rod_ids: ["ROD5G", "ROD6H", "ROD6K", "ROD7G", "ROD7H"]
   water_rod_ids: ["WROD"]
+
+WATER_ROD_GEOMETRY:
+  inner_radius: 0.5
+  outer_radius: 0.65
+  centers: [[-0.65, -0.65], [-0.65, 0.65], [0.65, -0.65], [0.65, 0.65]]
