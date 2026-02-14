@@ -33,6 +33,7 @@ ASSEMBLY_GEOMETRY:
   water_rod_ids: ["WROD"]
 
 WATER_ROD_GEOMETRY:
-  inner_radius: 0.5
-  outer_radius: 0.65
-  centers: [[-0.65, -0.65], [-0.65, 0.65], [0.65, -0.65], [0.65, 0.65]]
+  type: "circular"
+  inner_radius : 1.170
+  outer_radius : 1.245
+  centers: [[5.2, 5.2], [7.8, 7.8]]

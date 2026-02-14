@@ -7,15 +7,16 @@ from glow.interface.geom_interface import *
 from glow.support.types import *
 from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
 from starterDD.starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
-from starterDD.starterDD.GeometryBuilder.glow_builder import generate_fuel_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
-from starterDD.starterDD.DDModel import CartesianAssemblyModel
+from starterDD.starterDD.GeometryBuilder.glow_builder import generate_fuel_cells, create_and_add_water_rods_to_lattice, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
+from starterDD.starterDD.DDModel import CartesianAssemblyModel, CircularWaterRodModel
 from starterDD.starterDD.GeometryAnalysis.tdt_parser import read_material_mixture_indices_from_tdt_file
 from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB
 
 # --------------------
 # HELPER FUNCTIONS
 # --------------------
-def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
+
+def create_water_rods_fix(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
     """
     Create water rod cells for GE-14 assembly (2x2 pin pitch size)
     Cell center is at (2*pin_pitch, 2*pin_pitch) because the cell spans 2x2 pins
@@ -44,9 +45,11 @@ def create_water_rods(pin_pitch, water_rod_inner_radius, water_rod_outer_radius,
         PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
         PropertyType.MACRO: ["MACRO_WATER_ROD_2"] * 3
     })
+    
     if windmill:
         water_rod_cell1.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
         water_rod_cell2.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
+        
     return water_rod_cell1, water_rod_cell2
 
 
@@ -324,12 +327,12 @@ ordered_fuel_cells = generate_fuel_cells(
     assemblyModel=GE14_assembly,
 )
 
-
-# Create water rod cells
-water_rod_cell1, water_rod_cell2 = create_water_rods(
-    pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False
-)
-
+#water_rod_cells = create_water_rods_fix(
+#    pin_pitch=pin_pitch,
+#    water_rod_inner_radius=water_rod_inner_radius,
+#    water_rod_outer_radius=water_rod_outer_radius,
+#    windmill=False
+#)
 # --------------------
 # CREATE ASSEMBLY BOX CELLS (with rounded corners)
 # --------------------
@@ -399,14 +402,10 @@ lattice = add_cells_to_regular_lattice(
 # Add water rod cells at their specific locations
 # -> center at (4*pitch, 4*pitch) + translation
 
-lattice.add_cell(
-        water_rod_cell1,
-        (4 * pin_pitch + pincell_translation, 4 * pin_pitch + pincell_translation, 0.0)
-    )
-# center at (6*pitch, 6*pitch) + translation
-lattice.add_cell(
-    water_rod_cell2,
-    (6 * pin_pitch + pincell_translation, 6 * pin_pitch + pincell_translation, 0.0)
+lattice = create_and_add_water_rods_to_lattice(
+    lattice=lattice,
+    assembly_model=GE14_assembly,
+    translation=pincell_translation
 )
 
 ## split the box into MACROs for IC method compatibility
