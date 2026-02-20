@@ -16,43 +16,6 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB
 # HELPER FUNCTIONS
 # --------------------
 
-def create_water_rods_fix(pin_pitch, water_rod_inner_radius, water_rod_outer_radius, windmill=False):
-    """
-    Create water rod cells for GE-14 assembly (2x2 pin pitch size)
-    Cell center is at (2*pin_pitch, 2*pin_pitch) because the cell spans 2x2 pins
-    """
-    water_rod_cell1 = RectCell(
-        name="WATER_ROD_1",
-        height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(0.0, 0.0 , 0.0)
-    )
-    water_rod_cell1.add_circle(water_rod_inner_radius)
-    water_rod_cell1.add_circle(water_rod_outer_radius)
-    water_rod_cell1.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-        PropertyType.MACRO: ["MACRO_WATER_ROD_1"] * 3
-    })
-    
-    # Do the same for water rod cell 2
-    water_rod_cell2 = RectCell(
-        name="WATER_ROD_2",
-        height_x_width=(2 * pin_pitch, 2 * pin_pitch),
-        center=(0.0, 0.0, 0.0)
-    )
-    water_rod_cell2.add_circle(water_rod_inner_radius)
-    water_rod_cell2.add_circle(water_rod_outer_radius)
-    water_rod_cell2.set_properties({
-        PropertyType.MATERIAL: ["MODERATOR", "CLAD", "COOLANT"],
-        PropertyType.MACRO: ["MACRO_WATER_ROD_2"] * 3
-    })
-    
-    if windmill:
-        water_rod_cell1.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
-        water_rod_cell2.sectorize([1, 1, 8], [0, 0, 0], windmill=True)
-        
-    return water_rod_cell1, water_rod_cell2
-
-
 def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch):
     """
     Make a partition of the box cell to define new MACROs properties to allow for IC method.
@@ -245,7 +208,7 @@ mix_definition_proc_name = "MIX_GE14_by_pin"
 
 ## import model : 
 path_to_yaml_compositions = "glow_data/BWRProgressionProblems/GE14/input_configs/material_compositions.yaml"
-path_to_yaml_geometry = "glow_data/BWRProgressionProblems/GE14/input_configs/GE14_lower_core_geometry.yaml"
+path_to_yaml_geometry = "glow_data/BWRProgressionProblems/GE14/input_configs/GEOM_GE14_DOM.yaml"
 compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
 ROD_to_material = associate_material_to_rod_ID(path_to_yaml_compositions,
                                                path_to_yaml_geometry)
@@ -327,12 +290,6 @@ ordered_fuel_cells = generate_fuel_cells(
     assemblyModel=GE14_assembly,
 )
 
-#water_rod_cells = create_water_rods_fix(
-#    pin_pitch=pin_pitch,
-#    water_rod_inner_radius=water_rod_inner_radius,
-#    water_rod_outer_radius=water_rod_outer_radius,
-#    windmill=False
-#)
 # --------------------
 # CREATE ASSEMBLY BOX CELLS (with rounded corners)
 # --------------------
