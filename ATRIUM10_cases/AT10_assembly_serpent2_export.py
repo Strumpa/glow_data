@@ -78,7 +78,7 @@ settings.ures = True  # Unresolved resonance probability tables
 # settings.set_jeff311_libraries("/path/to/nuclear_data")
 
 # Add geometry plot
-settings.add_plot(plot_type=3, x_pixels=2000, y_pixels=2000, position=0.5)
+settings.add_plot(plot_type=3, x_pixels=1500, y_pixels=1500)
 
 # =====================================================================
 # 4. Build the Serpent2Model
@@ -90,8 +90,8 @@ model = Serpent2Model(assembly_model=AT10_assembly, settings=settings)
 model.build(
     gap_material_name="gap",
     clad_material_name="clad",
-    coolant_material_name="cool",
-    outer_water_material_name="cool_outer",
+    coolant_material_name="coolant",
+    outer_water_material_name="moderator",
     channel_box_material_name="zr4",
     lattice_name="10",
     empty_universe_name="empty",
@@ -100,7 +100,7 @@ model.build(
 # Add structural (non-fuel) materials from the assembly composition lookup
 model.build_structural_materials_from_assembly(
     name_map={
-        "COOLANT": "cool",
+        "COOLANT": "coolant",
         "CLAD": "clad",
         "GAP": "gap",
         "MODERATOR": "moderator",
