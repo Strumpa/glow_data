@@ -1,4 +1,4 @@
-# AT10 assembly geometry export to Serpent2.
+# GE14 assembly geometry export to Serpent2.
 #
 # Generates a Serpent2 input file equivalent to the Dragon model
 # with detectors for MT=18 (fission) and MT=27 (absorption) for each pin.
@@ -6,7 +6,7 @@
 # Uses dt -4 to sum reaction rates over all material zones of each pin,
 # matching the _by_pin numbering convention from Dragon.
 #
-# R.Guasch — 24/02/2026
+# R.Guasch — 25/02/2026
 # ---------------------------------------------------------------------------
 import os
 from starterDD.DDModel.helpers import associate_material_to_rod_ID
@@ -21,8 +21,8 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # =====================================================================
 # Configuration paths
 # =====================================================================
-path_to_yaml_compositions = "input_configs/material_compositions.yaml"
-path_to_yaml_geometry     = "input_configs/GEOM_ATRIUM10.yaml"
+path_to_yaml_compositions = "../input_configs/material_compositions.yaml"
+path_to_yaml_geometry     = "../input_configs/GEOM_GE14_DOM.yaml"
 
 path_to_output = "serpent2_outputs"  # Directory to save the Serpent2 input file
 if os.path.exists(path_to_output):
@@ -41,13 +41,13 @@ ROD_to_material = associate_material_to_rod_ID(
 # =====================================================================
 # 2. Build the CartesianAssemblyModel
 # =====================================================================
-AT10_assembly = CartesianAssemblyModel(
-    name="AT10_assembly_serpent2",
+GE14_assembly = CartesianAssemblyModel(
+    name="GE14_DOM_assembly_serpent2",
     tdt_file="dummy.tdt",  # Not used for Serpent2 export
     geometry_description_yaml=path_to_yaml_geometry,
 )
-AT10_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
-AT10_assembly.set_uniform_temperatures(
+GE14_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
+GE14_assembly.set_uniform_temperatures(
     fuel_temperature=900.0,
     gap_temperature=600.0,
     coolant_temperature=600.0,
@@ -55,18 +55,18 @@ AT10_assembly.set_uniform_temperatures(
     structural_temperature=600.0,
 )
 # Build pins with self-shielding radii from YAML (Santamarina prescription)
-AT10_assembly.analyze_lattice_description(build_pins=True, apply_self_shielding="from_yaml")
-AT10_assembly.set_material_compositions(compositions)
+GE14_assembly.analyze_lattice_description(build_pins=True, apply_self_shielding="from_yaml")
+GE14_assembly.set_material_compositions(compositions)
 
 # Number fuel material mixtures by pin (creates unique names like UOX24_zone1_pin3)
-AT10_assembly.number_fuel_material_mixtures_by_pin()
-AT10_assembly.identify_generating_and_daughter_mixes()
+GE14_assembly.number_fuel_material_mixtures_by_pin()
+GE14_assembly.identify_generating_and_daughter_mixes()
 
 # =====================================================================
 # 3. Configure Serpent2 settings
 # =====================================================================
 settings = S2_Settings()
-settings.title = "ATRIUM-10 BWR assembly - Serpent2 export from starterDD"
+settings.title = "GE-14 BWR assembly - Serpent2 export from starterDD, void 0%, uncontrolled geometry"
 settings.bc = 2  # Reflective boundary conditions
 settings.neutrons_per_cycle = 50000
 settings.active_cycles = 500
@@ -84,12 +84,12 @@ settings.add_plot(plot_type=3, x_pixels=1500, y_pixels=1500)
 # 4. Build the Serpent2Model
 # =====================================================================
 print("Building Serpent2 model...")
-model = Serpent2Model(assembly_model=AT10_assembly, settings=settings)
+model = Serpent2Model(assembly_model=GE14_assembly, settings=settings)
 
 # Build geometry: pins, lattice, channel box
 model.build(
     gap_material_name="gap",
-    clad_material_name="clad",
+    clad_material_name="zr2",
     coolant_material_name="coolant",
     outer_water_material_name="moderator",
     channel_box_material_name="zr4",
@@ -101,7 +101,7 @@ model.build(
 model.build_structural_materials_from_assembly(
     name_map={
         "COOLANT": "coolant",
-        "CLAD": "clad",
+        "CLAD": "zr2",
         "GAP": "gap",
         "MODERATOR": "moderator",
         "CHANNEL_BOX": "zr4",
@@ -128,7 +128,7 @@ print("Adding detectors for reaction rates...")
 # MT 102 (n,gamma), 103 (n,proton), 104 (n,deutron), 105 (n,ttriton), 107 (n,alpha), 108 (n,2alpha) 28 (n,np), 16 (n,2n), 17 (n,3n), 37 (n,4n)
 # This ensures each isotope is only scored for reactions where it has data.
 reaction_isotope_map = {
-    'absorption': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=27
+    'absorption': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # All tracked, absorption, MT=27 = MT18 + 102 to 117
     'fission': ['U234', 'U235', 'U236', 'U238'],  # Actinides with fission XS MT=18
     'n,gamma': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=102
     'n,proton': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=103
@@ -191,7 +191,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/AT10_assembly_serpent2.serp"
+output_filepath = f"{path_to_output}/GE14_DOM_assembly_serpent2.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")
@@ -200,9 +200,6 @@ print(f"  - Pin universes: {len(model.pin_universes)}")
 print(f"  - Detectors: {len(model.detectors)}")
 print(f"  - Isotope response materials: {len(model.isotope_response_materials)}")
 
-# =====================================================================
-# 7. Summary of detector configuration
-# =====================================================================
 # =====================================================================
 # 7. Summary of detector configuration
 # =====================================================================
