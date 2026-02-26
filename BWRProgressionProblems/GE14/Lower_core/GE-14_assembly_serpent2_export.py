@@ -23,7 +23,7 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # =====================================================================
 path_to_yaml_compositions = "../input_configs/material_compositions.yaml"
 path_to_yaml_geometry     = "../input_configs/GEOM_GE14_DOM.yaml"
-nuclear_data_library = "endfb8r1"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
+nuclear_data_library = "jeff311"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
 
 path_to_output = "serpent2_outputs"  # Directory to save the Serpent2 input file
 if os.path.exists(path_to_output):
@@ -69,11 +69,11 @@ GE14_assembly.identify_generating_and_daughter_mixes()
 settings = S2_Settings()
 settings.title = "GE-14 BWR assembly - Serpent2 export from starterDD, void 0%, uncontrolled geometry"
 settings.bc = 2  # Reflective boundary conditions
-settings.neutrons_per_cycle = 50000
-settings.active_cycles = 500
+settings.neutrons_per_cycle = 2000000
+settings.active_cycles = 5000
 settings.inactive_cycles = 100
 settings.ures = True  # Unresolved resonance probability tables
-
+settings.set_nuclear_data_evaluation(nuclear_data_library)
 # Optional: set up library paths (uncomment and adjust as needed)
 # settings.set_endfb8r1_libraries("/path/to/nuclear_data")
 # settings.set_jeff311_libraries("/path/to/nuclear_data")

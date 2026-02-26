@@ -23,7 +23,7 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # =====================================================================
 path_to_yaml_compositions = "input_configs/material_compositions.yaml"
 path_to_yaml_geometry     = "input_configs/GEOM_ATRIUM10.yaml"
-nuclear_data_library = "jeff311"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
+nuclear_data_library = "endfb8r1"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
 
 path_to_output = "serpent2_outputs"  # Directory to save the Serpent2 input file
 if os.path.exists(path_to_output):
@@ -74,6 +74,10 @@ settings.active_cycles = 5000
 settings.inactive_cycles = 100
 settings.ures = True  # Unresolved resonance probability tables
 
+# Select the nuclear data evaluation for temperature-suffix resolution.
+# This controls cross-section (.XXc) and thermal-scattering (.XXt) suffixes.
+settings.set_nuclear_data_evaluation(nuclear_data_library)
+
 # Optional: set up library paths (uncomment and adjust as needed)
 # settings.set_endfb8r1_libraries("/path/to/nuclear_data")
 # settings.set_jeff311_libraries("/path/to/nuclear_data")
@@ -98,7 +102,9 @@ model.build(
     empty_universe_name="empty",
 )
 
-# Add structural (non-fuel) materials from the assembly composition lookup
+# Add structural (non-fuel) materials from the assembly composition lookup.
+# Thermal scattering ``moder`` + ``therm`` cards are auto-generated for
+# compositions that have ``therm: true`` in the YAML (e.g. COOLANT, MODERATOR).
 model.build_structural_materials_from_assembly(
     name_map={
         "COOLANT": "coolant",
@@ -226,7 +232,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/AT10_assembly_serpent2.serp"
+output_filepath = f"{path_to_output}/AT10_assembly_{nuclear_data_library}.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")

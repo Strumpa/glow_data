@@ -113,8 +113,11 @@ for step in scheme.steps:
         # ---- Build LIB .c2m ----
         mix_definition_proc_name = f"MIX_AT10_{step.name}"
         lib = LIB(AT10_assembly)
-        lib.set_isotope_alias("MODERATOR", "H1", "H1_H2O")
-        lib.set_isotope_alias("COOLANT", "H1", "H1_H2O")
+        # Thermal scattering aliases (H1 → H1_H2O) are now auto-populated
+        # from the ``therm: true`` flag in material_compositions.yaml.
+        # Manual overrides remain available as a fallback:
+        #   lib.set_isotope_alias("MODERATOR", "H1", "H1_H2O")
+        #   lib.set_isotope_alias("COOLANT",   "H1", "H1_H2O")
         lib.write_to_c2m(path_to_procs, mix_definition_proc_name)
 
         print(f"Step '{step.name}' completed — TDT exported, LIB written to "

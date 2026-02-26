@@ -1639,16 +1639,18 @@ mat zr4 sum tmp 559.0
     50122.05c 2.230730E-05
     50124.05c 2.789610E-05
 
-mat moderator sum tmp 559.0
+mat moderator sum tmp 559.0 moder lwtr 1001
     8016.05c 2.472980E-02
     1001.05c 4.945460E-02
 
-mat coolant sum tmp 559.0
+mat coolant sum tmp 559.0 moder lwtr 1001
     8016.05c 2.472980E-02
     1001.05c 4.945460E-02
 
 mat gap sum tmp 750.0
     2004.05c 1.504560E-04
+
+therm lwtr 559.0 lwtr.05t lwtr.06t
 
 % ============================================================
 %  PIN UNIVERSE DEFINITIONS
@@ -2166,14 +2168,14 @@ ene 26g  1  1.1000E-10  1.0451E-08  3.4400E-08  7.6497E-08  1.3800E-07  2.3119E-
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat Gd157  1.0  tmp 750.0
-    64157.05c  1.0
-
 mat U238  1.0  tmp 750.0
     92238.05c  1.0
 
 mat U235  1.0  tmp 750.0
     92235.05c  1.0
+
+mat Gd157  1.0  tmp 750.0
+    64157.05c  1.0
 
 mat Gd155  1.0  tmp 750.0
     64155.05c  1.0
@@ -3218,7 +3220,6 @@ det det_assembly_295g
     dr 101  U238
     dr 18  U238
     dr 102  U238
-    dr 103  U238
     dr 16  U238
     dr 17  U238
     dr 37  U238

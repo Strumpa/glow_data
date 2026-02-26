@@ -4,7 +4,7 @@ set title "GE-14 BWR assembly - Serpent2 export from starterDD, void 0%, uncontr
 set bc 2
 
 % --- Neutron population:
-set pop 50000 500 100
+set pop 2000000 5000 100
 
 % --- Unresolved resonance probability tables:
 set ures 1
@@ -2070,13 +2070,13 @@ mat zr4 sum tmp 600.0
     72179.05c 3.014605E-07
     72180.05c 7.764483E-07
 
-mat moderator sum tmp 600.0
-    1001.05c 4.940444E-03
-    8016.05c 2.470222E-03
+mat moderator sum tmp 600.0 moder lwtr 1001
+    1001.05c 4.926497E-02
+    8016.05c 2.463249E-02
 
-mat coolant sum tmp 600.0
-    1001.05c 4.940444E-03
-    8016.05c 2.470222E-03
+mat coolant sum tmp 600.0 moder lwtr 1001
+    1001.05c 4.926497E-02
+    8016.05c 2.463249E-02
 
 mat gap sum tmp 600.0
     2004.05c 2.687139E-05
@@ -2106,6 +2106,8 @@ mat sheath_ss304 sum tmp 600.0
     28061.05c 8.888800E-05
     28062.05c 2.834149E-04
     28064.05c 7.217747E-05
+
+therm lwtr 600.0 lwtr.06t lwtr.07t
 
 % ============================================================
 %  PIN UNIVERSE DEFINITIONS
