@@ -23,6 +23,7 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # =====================================================================
 path_to_yaml_compositions = "../input_configs/material_compositions.yaml"
 path_to_yaml_geometry     = "../input_configs/GEOM_GE14_DOM.yaml"
+nuclear_data_library = "endfb8r1"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
 
 path_to_output = "serpent2_outputs"  # Directory to save the Serpent2 input file
 if os.path.exists(path_to_output):
@@ -127,20 +128,37 @@ print("Adding detectors for reaction rates...")
 # To reconstruct DRAGON neutronic absorption the following are needed :
 # MT 102 (n,gamma), 103 (n,proton), 104 (n,deutron), 105 (n,ttriton), 107 (n,alpha), 108 (n,2alpha) 28 (n,np), 16 (n,2n), 17 (n,3n), 37 (n,4n)
 # This ensures each isotope is only scored for reactions where it has data.
-reaction_isotope_map = {
-    'absorption': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # All tracked, absorption, MT=27 = MT18 + 102 to 117
-    'fission': ['U234', 'U235', 'U236', 'U238'],  # Actinides with fission XS MT=18
-    'n,gamma': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=102
-    'n,proton': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=103
-    'n,deutron': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=104
-    'n,triton': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=105
-    'n,alpha': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=107
-    'n,2alpha': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=108
-    'n,np': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=28
-    'n,2n': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=16
-    'n,3n': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=17
-    'n,4n': ['U234', 'U235', 'U236', 'U238', 'Gd155', 'Gd157'],  # MT=37
-}
+if nuclear_data_library == "endfb8r1":
+    print("Using ENDF/B-VIII.1 nuclear data library for detector configuration.")
+    reaction_isotope_map = {
+        'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
+        'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
+        'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
+        'n,proton': ['U238'],  # MT=103, not available for U235 in ENDF/B-VIII.1
+        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235 and U238 in ENDF/B-VIII.1
+        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235 and U238 in ENDF/B-VIII.1
+        'n,alpha': ['U235', 'U238'],  # MT=107
+        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235 and U238 in ENDF/B-VIII.1
+        #'n,np': ['U235', 'U238'],  # MT=28, not available for U235 and U238 in ENDF/B-VIII.1
+        'n,2n': ['U235', 'U238'],  # MT=16
+        'n,3n': ['U235', 'U238'],  # MT=17
+        #'n,4n': ['U235', 'U238'],  # MT=37, not available for U235 and U238 in ENDF/B-VIII.1
+    }
+elif nuclear_data_library == "jeff311":
+        reaction_isotope_map = {
+        'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
+        'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
+        'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
+        #'n,proton': ['U235', 'U238'],  # MT=103, not available for U235 in JEFF-3.1.1
+        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
+        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
+        #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
+        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
+        #'n,np': ['U235', 'U238'],  # MT=28
+        'n,2n': ['U235', 'U238'],  # MT=16
+        'n,3n': ['U235', 'U238'],  # MT=17
+        'n,4n': ['U235', 'U238'],  # MT=37
+    }
 
 # Add detector configuration:
 # - Creates energy grid (2g energy grid with cutoff at 0.625 eV)
@@ -158,20 +176,37 @@ model.add_detector_config(
 )
 
 # For precise 295g U238 rates tallies, spatially integrated over all fuel :
-reaction_isotope_map_295g_U238 = {
-    'absorption': ['U238'],  # absorption, MT=27 = MT18 + 102 to 117
-    'fission': ['U238'],  # fission XS MT=18
-    'n,gamma': ['U238'],  # MT=102
-    'n,proton': ['U238'],  # MT=103
-    'n,deutron': ['U238'],  # MT=104
-    'n,triton': ['U238'],  # MT=105
-    'n,alpha': ['U238'],  # MT=107
-    'n,2alpha': ['U238'],  # MT=108
-    'n,np': ['U238'],  # MT=28
-    'n,2n': ['U238'],  # MT=16
-    'n,3n': ['U238'],  # MT=17
-    'n,4n': ['U238'],  # MT=37
-}
+if nuclear_data_library == "endfb8r1":
+    print("Adding separate 295g detector for U238 using ENDF/B-VIII.1 available reaction data.")
+    reaction_isotope_map_295g_U238 = {
+        'disappearance': ['U238'],  # MT=101
+        'fission': ['U238'],  # MT=18
+        'n,gamma': ['U238'],  # MT=102
+        #'n,proton': ['U238'],  # MT=103, not available for U238 in ENDF/B-VIII.1
+        #'n,deutron': ['U238'],  # MT=104, not available for U238 in ENDF/B-VIII.1
+        #'n,triton': ['U238'],  # MT=105, not available for U238 in ENDF/B-VIII.1
+        'n,alpha': ['U238'],  # MT=107
+        #'n,2alpha': ['U238'],  # MT=108, not available for U238 in ENDF/B-VIII.1
+        #'n,np': ['U238'],  # MT=28, not available for U238 in ENDF/B-VIII.1
+        'n,2n': ['U238'],  # MT=16
+        'n,3n': ['U238'],  # MT=17
+        #'n,4n': ['U238'],  # MT=37, not available for U238 in ENDF/B-VIII.1
+    }
+elif nuclear_data_library == "jeff311":
+     reaction_isotope_map_295g_U238 = {
+        'disappearance': ['U238'],  # All tracked, MT=101
+        'fission': ['U238'],  # Actinides with fission XS MT=18
+        'n,gamma': ['U238'],  # MT=102
+        #'n,proton': ['U238'],  # MT=103, not available for U235 in JEFF-3.1.1
+        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
+        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
+        #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
+        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
+        #'n,np': ['U235', 'U238'],  # MT=28
+        'n,2n': ['U238'],  # MT=16
+        'n,3n': ['U238'],  # MT=17
+        'n,4n': ['U238'],  # MT=37
+    }
 
 model.add_assembly_integrated_detector_config(
     reaction_isotope_map=reaction_isotope_map_295g_U238,
@@ -191,7 +226,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/GE14_DOM_assembly_serpent2.serp"
+output_filepath = f"{path_to_output}/GE14_DOM_assembly_{nuclear_data_library}.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")
