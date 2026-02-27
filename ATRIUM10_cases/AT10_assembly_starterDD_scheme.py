@@ -129,7 +129,7 @@ for step in scheme.steps:
         edi_compo.add_edition(
             name="EDIHOM_COND",
             comment="Condensed, homogenized over all fuel cells",
-            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
             spatial_mode="FUEL",
             energy_bounds=[],
         )
@@ -137,7 +137,7 @@ for step in scheme.steps:
         edi_compo.add_edition(
             name="EDIHOM_295",
             comment="Homogenized over all fuel cells, 295g",
-            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
             spatial_mode="ALL",
             energy_bounds=[None],
         )
@@ -145,7 +145,7 @@ for step in scheme.steps:
         edi_compo.add_edition(
             name="H_EDI_REGI_2g",
             comment="Condensed to 2g, per pin",
-            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
             spatial_mode="by_pin",
             energy_bounds=[0.625],
         )
