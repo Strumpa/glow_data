@@ -17,7 +17,7 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 # =====================================================================
 # Configuration paths
 # =====================================================================
-assembly_id = "AT10_NOM"
+assembly_id = "AT10_CTRL"
 path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/material_compositions.yaml"
 path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/GEOM.yaml"
 path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
@@ -38,7 +38,7 @@ ROD_to_material = associate_material_to_rod_ID(
 # =====================================================================
 AT10_assembly = CartesianAssemblyModel(
     name="AT10_assembly",
-    tdt_file=f"{path_to_tdt}/AT10_NOM.tdt",
+    tdt_file=f"{path_to_tdt}/AT10_CTRL.tdt",
     geometry_description_yaml=path_to_yaml_geometry,
 )
 AT10_assembly.set_rod_ID_to_material_mapping(ROD_to_material)

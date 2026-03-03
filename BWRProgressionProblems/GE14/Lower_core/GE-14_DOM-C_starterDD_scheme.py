@@ -1,7 +1,10 @@
-# AT10 assembly geometry generation using DragonCalculationScheme.
+# GE-14 assembly geometry generation using DragonCalculationScheme.
 #
+# This script replaces the manual box subdivision and MACRO assignment
+# of GE-14_assembly_starterDD.py with the automated pipeline provided
+# by ``build_full_assembly_geometry`` and ``DragonCalculationScheme``.
 #
-# R.Guasch — 24/02/2026
+# R.Guasch — 19/02/2026
 # ---------------------------------------------------------------------------
 
 from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
@@ -17,13 +20,13 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 # =====================================================================
 # Configuration paths
 # =====================================================================
-assembly_id = "AT10_NOM"
-path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/material_compositions.yaml"
-path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/GEOM.yaml"
-path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
+assembly_id = "GE14_DOM-C"
+path_to_yaml_compositions = "glow_data/BWRProgressionProblems/GE14/input_configs/material_compositions.yaml"
+path_to_yaml_geometry     = f"glow_data/BWRProgressionProblems/GE14/input_configs/{assembly_id}/GEOM.yaml"
+path_to_yaml_calc_scheme  = f"glow_data/BWRProgressionProblems/GE14/input_configs/{assembly_id}/CALC_SCHEME.yaml"
 
 path_to_tdt  = "data/glow_data/tdt_data"
-path_to_procs = "glow_data/ATRIUM10_cases/cle2000_procs"
+path_to_procs = "glow_data/BWRProgressionProblems/GE14/cle2000_procs"
 
 # =====================================================================
 # 1. Load material compositions and rod-ID → material mapping
@@ -36,21 +39,21 @@ ROD_to_material = associate_material_to_rod_ID(
 # =====================================================================
 # 2. Build the CartesianAssemblyModel
 # =====================================================================
-AT10_assembly = CartesianAssemblyModel(
-    name="AT10_assembly",
-    tdt_file=f"{path_to_tdt}/AT10_NOM.tdt",
+GE14_assembly = CartesianAssemblyModel(
+    name=assembly_id,
+    tdt_file=f"{path_to_tdt}/{assembly_id}.tdt",
     geometry_description_yaml=path_to_yaml_geometry,
 )
-AT10_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
-AT10_assembly.set_uniform_temperatures(
+GE14_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
+GE14_assembly.set_uniform_temperatures(
     fuel_temperature=900.0,
     gap_temperature=600.0,
     coolant_temperature=600.0,
     moderator_temperature=600.0,
     structural_temperature=600.0,
 )
-AT10_assembly.analyze_lattice_description(build_pins=True)
-AT10_assembly.set_material_compositions(compositions)
+GE14_assembly.analyze_lattice_description(build_pins=True)
+GE14_assembly.set_material_compositions(compositions)
 
 # =====================================================================
 # 3. Load the Dragon Calculation Scheme from YAML
@@ -73,12 +76,12 @@ for step in scheme.steps:
     file_to_save_name = f"{assembly_id}_{step.name}_{step.spatial_method}"
 
     # Number fuel material mixtures (needs radii applied first via step)
-    step.apply_radii(AT10_assembly)
-    AT10_assembly.number_fuel_material_mixtures_by_pin()
+    step.apply_radii(GE14_assembly)
+    GE14_assembly.number_fuel_material_mixtures_by_pin()
 
     # ---- Build full geometry (fuel cells + box + MACROs) and export TDT ----
     lattice, assembly_box_cell = build_full_assembly_geometry(
-        assembly_model=AT10_assembly,
+        assembly_model=GE14_assembly,
         calculation_step=step,
         output_path=path_to_tdt,
         output_file_name=file_to_save_name,
@@ -93,7 +96,7 @@ for step in scheme.steps:
     if step.export_macros:
         lattice.show(
             geometry_type_to_show=GeometryType.SECTORIZED,
-            property_type_to_show=PropertyType.MACRO,
+            property_type_to_show=PropertyType.MATERIAL,
         )
 
     if step.name == "SSH":
@@ -106,31 +109,28 @@ for step in scheme.steps:
             include_macros=step.export_macros,
             material_names=None,  # get ALL entries (fuel + non-fuel)
         )
-        AT10_assembly.enforce_material_mixture_indices_from_tdt(tdt_indices)
+        GE14_assembly.enforce_material_mixture_indices_from_tdt(tdt_indices)
 
         # ---- Identify generating / daughter mixes ----
-        AT10_assembly.identify_generating_and_daughter_mixes()
+        GE14_assembly.identify_generating_and_daughter_mixes()
 
         # ---- Build LIB .c2m ----
         mix_definition_proc_name = f"MIX_{assembly_id}_{step.name}"
-        lib = LIB(AT10_assembly)
-        # Thermal scattering aliases (H1 → H1_H2O) are now auto-populated
-        # from the ``therm: true`` flag in material_compositions.yaml.
-        # Manual overrides remain available as a fallback:
-        #   lib.set_isotope_alias("MODERATOR", "H1", "H1_H2O")
-        #   lib.set_isotope_alias("COOLANT",   "H1", "H1_H2O")
+        lib = LIB(GE14_assembly)
+        lib.set_isotope_alias("MODERATOR", "H1", "H1_H2O")
+        lib.set_isotope_alias("COOLANT", "H1", "H1_H2O")
         lib.write_to_c2m(path_to_procs, mix_definition_proc_name)
 
         print(f"Step '{step.name}' completed — TDT exported, LIB written to "
             f"{path_to_procs}/{mix_definition_proc_name}.c2m")
         
         # Build call to EDI and COMPO modules through the EDI_COMPO interface
-        edi_compo = EDI_COMPO(AT10_assembly)
+        edi_compo = EDI_COMPO(GE14_assembly)
         ## Recover properties for energy condensed + spatially homogenized reaction rates and densities
         edi_compo.add_edition(
             name="EDIHOM_COND",
             comment="Condensed, homogenized over all fuel cells",
-            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
             spatial_mode="FUEL",
             energy_bounds=[],
         )
@@ -138,7 +138,7 @@ for step in scheme.steps:
         edi_compo.add_edition(
             name="EDIHOM_295",
             comment="Homogenized over all fuel cells, 295g",
-            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
             spatial_mode="ALL",
             energy_bounds=None,
         )
@@ -146,7 +146,7 @@ for step in scheme.steps:
         edi_compo.add_edition(
             name="H_EDI_REGI_2g",
             comment="Condensed to 2g, per pin",
-            isotopes=["U234", "U235", "U238", "Gd155", "Gd157"],
+            isotopes=["U234", "U235", "U236", "U238", "Gd155", "Gd157"],
             spatial_mode="by_pin",
             energy_bounds=[0.625],
         )

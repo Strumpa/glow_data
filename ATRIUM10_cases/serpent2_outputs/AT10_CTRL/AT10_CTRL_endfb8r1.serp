@@ -1,4 +1,4 @@
-set title "ATRIUM-10 BWR assembly - Serpent2 export from starterDD"
+set title "ATRIUM-10 BWR assembly CTRL - Serpent2 export from starterDD"
 
 % --- Boundary conditions:
 set bc 2
@@ -1650,7 +1650,31 @@ mat coolant sum tmp 559.0 moder lwtr 1001
 mat gap sum tmp 750.0
     2004.05c 1.504560E-04
 
-therm lwtr 559.0 lwtr.05t lwtr.06t
+mat ctrl_rod sum tmp 559.0
+    5010.05c 1.517940E-02
+    5011.05c 6.160720E-02
+    6012.05c 1.918300E-02
+
+mat ctrl_cross sum tmp 559.0
+    14028.05c 7.994187E-04
+    14029.05c 3.908856E-05
+    14030.05c 2.485746E-05
+    24050.05c 7.193556E-04
+    24052.05c 1.333852E-02
+    24053.05c 1.483943E-03
+    24054.05c 3.625444E-04
+    25055.05c 1.721333E-03
+    26054.05c 3.522261E-03
+    26056.05c 5.331725E-02
+    26057.05c 1.209725E-03
+    26058.05c 1.582165E-04
+    28058.05c 6.533295E-03
+    28060.05c 2.432726E-03
+    28061.05c 1.040153E-04
+    28062.05c 3.262973E-04
+    28064.05c 8.050148E-05
+
+therm lwtr 559.0 lwtr.04t lwtr.05t
 
 % ============================================================
 %  PIN UNIVERSE DEFINITIONS
@@ -2153,8 +2177,39 @@ cell 500  0  moderator  -1003
 cell 501  0  zr4  1003 -1004
 cell 502  0  fill 10  -1000 1004
 cell 503  0  zr4  1000 -1001
-cell 504  0  moderator  1001 -1002
+cell 504  0  moderator  1001 -1002 #700 #701 #702 #703 #704
 cell 505  0  outside  1002
+
+% --- Control cross geometry ---
+
+% Control blade absorber pin
+pin ctrl_pin
+ctrl_rod  0.21082
+ctrl_cross
+
+% Control blade surfaces
+surf 2000  rect  0.00000  0.35216  2.00660  12.41654  % Vertical blade - tube region
+surf 2001  rect  0.00000  0.35216  0.35216  2.00660  % Vertical blade - sheath between hub and tubes
+surf 2002  rect  0.00000  0.35216  0.00000  0.35216  % Central hub (corner)
+surf 2003  rect  2.00660  12.41654  0.00000  0.35216  % Horizontal blade - tube region
+surf 2004  rect  0.35216  2.00660  0.00000  0.35216  % Horizontal blade - sheath between hub and tubes
+surf 2005  px  0.00000  % Cross-centre clipping plane (vertical wing)
+surf 2006  py  0.00000  % Cross-centre clipping plane (horizontal wing)
+
+% Control blade tube lattices (type 11)
+lat 20  11  0.00000  7.21157  0.0  1  18  1  0.70432  0.57833  0.7
+ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin
+lat 21  11  7.21157  0.00000  0.0  18  1  1  0.57833  0.70432  0.7
+ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin
+
+% Control blade cells
+cell 700  0  fill 20  -2000  % Vert blade - tube region
+cell 701  0  fill 21  -2003  % Horiz blade - tube region
+
+% Control blade structural cells
+cell 702  0  ctrl_cross  -2002  % Central hub
+cell 703  0  ctrl_cross  -2001  % Vertical blade - sheath between hub and tubes
+cell 704  0  ctrl_cross  -2004  % Horizontal blade - sheath between hub and tubes
 
 % ============================================================
 %  ENERGY GRIDS
@@ -2168,14 +2223,14 @@ ene 26g  1  1.1000E-10  1.0451E-08  3.4400E-08  7.6497E-08  1.3800E-07  2.3119E-
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat Gd157  1.0  tmp 750.0
-    64157.05c  1.0
-
 mat Gd155  1.0  tmp 750.0
     64155.05c  1.0
 
 mat U238  1.0  tmp 750.0
     92238.05c  1.0
+
+mat Gd157  1.0  tmp 750.0
+    64157.05c  1.0
 
 mat U235  1.0  tmp 750.0
     92235.05c  1.0
