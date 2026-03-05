@@ -17,13 +17,13 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 # =====================================================================
 # Configuration paths
 # =====================================================================
-assembly_id = "AT10_CTRL"
+assembly_id = "AT10_NOM-C"
 path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/material_compositions.yaml"
 path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/GEOM.yaml"
 path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
 
 path_to_tdt  = "data/glow_data/tdt_data"
-path_to_procs = "glow_data/ATRIUM10_cases/cle2000_procs"
+path_to_procs = f"glow_data/ATRIUM10_cases/cle2000_procs/{assembly_id}"
 
 # =====================================================================
 # 1. Load material compositions and rod-ID → material mapping

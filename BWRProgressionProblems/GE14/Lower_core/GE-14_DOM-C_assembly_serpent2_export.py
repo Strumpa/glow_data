@@ -27,7 +27,7 @@ path_to_yaml_geometry     = f"../input_configs/{assembly_id}/GEOM.yaml"
 path_to_yaml_calc_scheme  = f"../input_configs/{assembly_id}/CALC_SCHEME.yaml"
 nuclear_data_library = "endfb8r1"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
 
-path_to_output = "serpent2_outputs"  # Directory to save the Serpent2 input file
+path_to_output = f"serpent2_outputs/{assembly_id}"  # Directory to save the Serpent2 input file
 if os.path.exists(path_to_output):
     print(f"Output directory already exists: {path_to_output}")
 else:
@@ -225,6 +225,12 @@ model.add_assembly_integrated_detector_config(
     detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
 )
 
+model.add_assembly_integrated_detector_config(
+    reaction_isotope_map=reaction_isotope_map_295g_U238,
+    energy_grid_name="26g",  # Fine energy mesh for U238 rates
+    fuel_temperature=900.0,
+    detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
+)
 
 # Optionally add a global flux detector
 model.add_flux_detector(energy_grid_name="295g", name="flux_295g")
@@ -236,7 +242,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/GE14_DOM-C_00_assembly_{nuclear_data_library}.serp"
+output_filepath = f"{path_to_output}/{assembly_id}_00_assembly_{nuclear_data_library}.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")

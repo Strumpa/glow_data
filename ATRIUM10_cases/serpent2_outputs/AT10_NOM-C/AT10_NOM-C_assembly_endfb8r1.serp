@@ -1,4 +1,4 @@
-set title "ATRIUM-10 BWR assembly - Serpent2 export from starterDD"
+set title "ATRIUM-10 BWR assembly CTRL - Serpent2 export from starterDD"
 
 % --- Boundary conditions:
 set bc 2
@@ -1650,7 +1650,31 @@ mat coolant sum tmp 559.0 moder lwtr 1001
 mat gap sum tmp 750.0
     2004.05c 1.504560E-04
 
-therm lwtr 559.0 lwtr.05t lwtr.06t
+mat ctrl_rod sum tmp 559.0
+    5010.05c 1.517940E-02
+    5011.05c 6.160720E-02
+    6012.05c 1.918300E-02
+
+mat ctrl_cross sum tmp 559.0
+    14028.05c 7.994187E-04
+    14029.05c 3.908856E-05
+    14030.05c 2.485746E-05
+    24050.05c 7.193556E-04
+    24052.05c 1.333852E-02
+    24053.05c 1.483943E-03
+    24054.05c 3.625444E-04
+    25055.05c 1.721333E-03
+    26054.05c 3.522261E-03
+    26056.05c 5.331725E-02
+    26057.05c 1.209725E-03
+    26058.05c 1.582165E-04
+    28058.05c 6.533295E-03
+    28060.05c 2.432726E-03
+    28061.05c 1.040153E-04
+    28062.05c 3.262973E-04
+    28064.05c 8.050148E-05
+
+therm lwtr 559.0 lwtr.04t lwtr.05t
 
 % ============================================================
 %  PIN UNIVERSE DEFINITIONS
@@ -2140,7 +2164,7 @@ empty     empty     empty     empty     empty     empty     empty     empty     
 
 % --- Channel box and assembly boundary surfaces ---
 surf 1000  sqc  7.620000  7.620000  6.700000
-surf 1001  sqc  7.620000  7.620000  6.870000  0.170000
+surf 1001  sqc  7.620000  7.620000  6.870000
 surf 1002  sqc  7.620000  7.620000  7.620000
 
 % --- Moderator box WaterRod_1 ---
@@ -2153,8 +2177,39 @@ cell 500  0  moderator  -1003
 cell 501  0  zr4  1003 -1004
 cell 502  0  fill 10  -1000 1004
 cell 503  0  zr4  1000 -1001
-cell 504  0  moderator  1001 -1002
+cell 504  0  moderator  1001 -1002 #700 #701 #702 #703 #704
 cell 505  0  outside  1002
+
+% --- Control cross geometry ---
+
+% Control blade absorber pin
+pin ctrl_pin
+ctrl_rod  0.21082
+ctrl_cross
+
+% Control blade surfaces
+surf 2000  rect  0.00000  0.35216  2.00660  12.41654  % Vertical blade - tube region
+surf 2001  rect  0.00000  0.35216  0.35216  2.00660  % Vertical blade - sheath between hub and tubes
+surf 2002  rect  0.00000  0.35216  0.00000  0.35216  % Central hub (corner)
+surf 2003  rect  2.00660  12.41654  0.00000  0.35216  % Horizontal blade - tube region
+surf 2004  rect  0.35216  2.00660  0.00000  0.35216  % Horizontal blade - sheath between hub and tubes
+surf 2005  px  0.00000  % Cross-centre clipping plane (vertical wing)
+surf 2006  py  0.00000  % Cross-centre clipping plane (horizontal wing)
+
+% Control blade tube lattices (type 11)
+lat 20  11  0.00000  7.21157  0.0  1  18  1  0.70432  0.57833  0.7
+ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin
+lat 21  11  7.21157  0.00000  0.0  18  1  1  0.57833  0.70432  0.7
+ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin ctrl_pin
+
+% Control blade cells
+cell 700  0  fill 20  -2000  % Vert blade - tube region
+cell 701  0  fill 21  -2003  % Horiz blade - tube region
+
+% Control blade structural cells
+cell 702  0  ctrl_cross  -2002  % Central hub
+cell 703  0  ctrl_cross  -2001  % Vertical blade - sheath between hub and tubes
+cell 704  0  ctrl_cross  -2004  % Horizontal blade - sheath between hub and tubes
 
 % ============================================================
 %  ENERGY GRIDS
@@ -2168,8 +2223,8 @@ ene 26g  1  1.1000E-10  1.0451E-08  3.4400E-08  7.6497E-08  1.3800E-07  2.3119E-
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat U238  1.0  tmp 750.0
-    92238.05c  1.0
+mat Gd155  1.0  tmp 750.0
+    64155.05c  1.0
 
 mat U235  1.0  tmp 750.0
     92235.05c  1.0
@@ -2177,8 +2232,8 @@ mat U235  1.0  tmp 750.0
 mat Gd157  1.0  tmp 750.0
     64157.05c  1.0
 
-mat Gd155  1.0  tmp 750.0
-    64155.05c  1.0
+mat U238  1.0  tmp 750.0
+    92238.05c  1.0
 
 % ============================================================
 %  DETECTOR DEFINITIONS
@@ -2198,12 +2253,13 @@ det det_24UOX_1
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_32UOX_2
     de 2g
@@ -2219,12 +2275,13 @@ det det_32UOX_2
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42UOX_3
     de 2g
@@ -2240,12 +2297,13 @@ det det_42UOX_3
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_48UOX_4
     de 2g
@@ -2261,12 +2319,13 @@ det det_48UOX_4
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_5
     de 2g
@@ -2282,12 +2341,13 @@ det det_50UOX_5
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_48UOX_6
     de 2g
@@ -2303,12 +2363,13 @@ det det_48UOX_6
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_7
     de 2g
@@ -2324,12 +2385,13 @@ det det_45UOX_7
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42UOX_8
     de 2g
@@ -2345,12 +2407,13 @@ det det_42UOX_8
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_32UOX_9
     de 2g
@@ -2366,12 +2429,13 @@ det det_32UOX_9
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_24UOX_10
     de 2g
@@ -2387,12 +2451,13 @@ det det_24UOX_10
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_11
     de 2g
@@ -2408,12 +2473,13 @@ det det_45UOX_11
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_12
     de 2g
@@ -2429,12 +2495,13 @@ det det_45Gd_12
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_13
     de 2g
@@ -2450,12 +2517,13 @@ det det_50UOX_13
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_14
     de 2g
@@ -2471,12 +2539,13 @@ det det_45Gd_14
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_15
     de 2g
@@ -2492,12 +2561,13 @@ det det_50UOX_15
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_16
     de 2g
@@ -2513,12 +2583,13 @@ det det_50UOX_16
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_17
     de 2g
@@ -2534,12 +2605,13 @@ det det_45Gd_17
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_18
     de 2g
@@ -2555,12 +2627,13 @@ det det_45UOX_18
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_32UOX_19
     de 2g
@@ -2576,12 +2649,13 @@ det det_32UOX_19
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_20
     de 2g
@@ -2597,12 +2671,13 @@ det det_50UOX_20
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_21
     de 2g
@@ -2618,12 +2693,13 @@ det det_50UOX_21
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_22
     de 2g
@@ -2639,12 +2715,13 @@ det det_50UOX_22
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_23
     de 2g
@@ -2660,12 +2737,13 @@ det det_45Gd_23
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_24
     de 2g
@@ -2681,12 +2759,13 @@ det det_50UOX_24
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_25
     de 2g
@@ -2702,12 +2781,13 @@ det det_50UOX_25
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_26
     de 2g
@@ -2723,12 +2803,13 @@ det det_45Gd_26
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42UOX_27
     de 2g
@@ -2744,12 +2825,13 @@ det det_42UOX_27
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_28
     de 2g
@@ -2765,12 +2847,13 @@ det det_50UOX_28
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_29
     de 2g
@@ -2786,12 +2869,13 @@ det det_50UOX_29
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_30
     de 2g
@@ -2807,12 +2891,13 @@ det det_50UOX_30
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_31
     de 2g
@@ -2828,12 +2913,13 @@ det det_45Gd_31
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_32
     de 2g
@@ -2849,12 +2935,13 @@ det det_50UOX_32
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_48UOX_33
     de 2g
@@ -2870,12 +2957,13 @@ det det_48UOX_33
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_34
     de 2g
@@ -2891,12 +2979,13 @@ det det_45UOX_34
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_35
     de 2g
@@ -2912,12 +3001,13 @@ det det_45UOX_35
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_50UOX_36
     de 2g
@@ -2933,12 +3023,13 @@ det det_50UOX_36
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_37
     de 2g
@@ -2954,12 +3045,13 @@ det det_45UOX_37
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42UOX_38
     de 2g
@@ -2975,12 +3067,13 @@ det det_42UOX_38
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45Gd_39
     de 2g
@@ -2996,12 +3089,13 @@ det det_45Gd_39
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_40
     de 2g
@@ -3017,12 +3111,13 @@ det det_45UOX_40
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_41
     de 2g
@@ -3038,12 +3133,13 @@ det det_45UOX_41
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_42
     de 2g
@@ -3059,12 +3155,13 @@ det det_45UOX_42
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_43
     de 2g
@@ -3080,12 +3177,13 @@ det det_45UOX_43
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_44
     de 2g
@@ -3101,12 +3199,13 @@ det det_45UOX_44
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42Gd_45
     de 2g
@@ -3122,12 +3221,13 @@ det det_42Gd_45
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_42UOX_46
     de 2g
@@ -3143,12 +3243,13 @@ det det_42UOX_46
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_45UOX_47
     de 2g
@@ -3164,12 +3265,13 @@ det det_45UOX_47
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_32UOX_48
     de 2g
@@ -3185,12 +3287,13 @@ det det_32UOX_48
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_24UOX_49
     de 2g
@@ -3206,12 +3309,13 @@ det det_24UOX_49
     dr 102  U238
     dr 102  Gd155
     dr 102  Gd157
+    dr 103  U238
+    dr 107  U235
+    dr 107  U238
     dr 16  U235
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 37  U235
-    dr 37  U238
 
 det det_assembly_295g
     de 295g
@@ -3220,9 +3324,20 @@ det det_assembly_295g
     dr 101  U238
     dr 18  U238
     dr 102  U238
+    dr 107  U238
     dr 16  U238
     dr 17  U238
-    dr 37  U238
+
+det det_assembly_26g
+    de 26g
+    dt -4
+    dm 24UOX_zone1_pin1  dm 24UOX_zone2_pin1  dm 24UOX_zone3_pin1  dm 24UOX_zone4_pin1  dm 32UOX_zone1_pin2  dm 32UOX_zone2_pin2  dm 32UOX_zone3_pin2  dm 32UOX_zone4_pin2  dm 42UOX_zone1_pin3  dm 42UOX_zone2_pin3  dm 42UOX_zone3_pin3  dm 42UOX_zone4_pin3  dm 48UOX_zone1_pin4  dm 48UOX_zone2_pin4  dm 48UOX_zone3_pin4  dm 48UOX_zone4_pin4  dm 50UOX_zone1_pin5  dm 50UOX_zone2_pin5  dm 50UOX_zone3_pin5  dm 50UOX_zone4_pin5  dm 48UOX_zone1_pin6  dm 48UOX_zone2_pin6  dm 48UOX_zone3_pin6  dm 48UOX_zone4_pin6  dm 45UOX_zone1_pin7  dm 45UOX_zone2_pin7  dm 45UOX_zone3_pin7  dm 45UOX_zone4_pin7  dm 42UOX_zone1_pin8  dm 42UOX_zone2_pin8  dm 42UOX_zone3_pin8  dm 42UOX_zone4_pin8  dm 32UOX_zone1_pin9  dm 32UOX_zone2_pin9  dm 32UOX_zone3_pin9  dm 32UOX_zone4_pin9  dm 24UOX_zone1_pin10  dm 24UOX_zone2_pin10  dm 24UOX_zone3_pin10  dm 24UOX_zone4_pin10  dm 45UOX_zone1_pin11  dm 45UOX_zone2_pin11  dm 45UOX_zone3_pin11  dm 45UOX_zone4_pin11  dm 45Gd_zone1_pin12  dm 45Gd_zone2_pin12  dm 45Gd_zone3_pin12  dm 45Gd_zone4_pin12  dm 45Gd_zone5_pin12  dm 45Gd_zone6_pin12  dm 50UOX_zone1_pin13  dm 50UOX_zone2_pin13  dm 50UOX_zone3_pin13  dm 50UOX_zone4_pin13  dm 45Gd_zone1_pin14  dm 45Gd_zone2_pin14  dm 45Gd_zone3_pin14  dm 45Gd_zone4_pin14  dm 45Gd_zone5_pin14  dm 45Gd_zone6_pin14  dm 50UOX_zone1_pin15  dm 50UOX_zone2_pin15  dm 50UOX_zone3_pin15  dm 50UOX_zone4_pin15  dm 50UOX_zone1_pin16  dm 50UOX_zone2_pin16  dm 50UOX_zone3_pin16  dm 50UOX_zone4_pin16  dm 45Gd_zone1_pin17  dm 45Gd_zone2_pin17  dm 45Gd_zone3_pin17  dm 45Gd_zone4_pin17  dm 45Gd_zone5_pin17  dm 45Gd_zone6_pin17  dm 45UOX_zone1_pin18  dm 45UOX_zone2_pin18  dm 45UOX_zone3_pin18  dm 45UOX_zone4_pin18  dm 32UOX_zone1_pin19  dm 32UOX_zone2_pin19  dm 32UOX_zone3_pin19  dm 32UOX_zone4_pin19  dm 50UOX_zone1_pin20  dm 50UOX_zone2_pin20  dm 50UOX_zone3_pin20  dm 50UOX_zone4_pin20  dm 50UOX_zone1_pin21  dm 50UOX_zone2_pin21  dm 50UOX_zone3_pin21  dm 50UOX_zone4_pin21  dm 50UOX_zone1_pin22  dm 50UOX_zone2_pin22  dm 50UOX_zone3_pin22  dm 50UOX_zone4_pin22  dm 45Gd_zone1_pin23  dm 45Gd_zone2_pin23  dm 45Gd_zone3_pin23  dm 45Gd_zone4_pin23  dm 45Gd_zone5_pin23  dm 45Gd_zone6_pin23  dm 50UOX_zone1_pin24  dm 50UOX_zone2_pin24  dm 50UOX_zone3_pin24  dm 50UOX_zone4_pin24  dm 50UOX_zone1_pin25  dm 50UOX_zone2_pin25  dm 50UOX_zone3_pin25  dm 50UOX_zone4_pin25  dm 45Gd_zone1_pin26  dm 45Gd_zone2_pin26  dm 45Gd_zone3_pin26  dm 45Gd_zone4_pin26  dm 45Gd_zone5_pin26  dm 45Gd_zone6_pin26  dm 42UOX_zone1_pin27  dm 42UOX_zone2_pin27  dm 42UOX_zone3_pin27  dm 42UOX_zone4_pin27  dm 50UOX_zone1_pin28  dm 50UOX_zone2_pin28  dm 50UOX_zone3_pin28  dm 50UOX_zone4_pin28  dm 50UOX_zone1_pin29  dm 50UOX_zone2_pin29  dm 50UOX_zone3_pin29  dm 50UOX_zone4_pin29  dm 50UOX_zone1_pin30  dm 50UOX_zone2_pin30  dm 50UOX_zone3_pin30  dm 50UOX_zone4_pin30  dm 45Gd_zone1_pin31  dm 45Gd_zone2_pin31  dm 45Gd_zone3_pin31  dm 45Gd_zone4_pin31  dm 45Gd_zone5_pin31  dm 45Gd_zone6_pin31  dm 50UOX_zone1_pin32  dm 50UOX_zone2_pin32  dm 50UOX_zone3_pin32  dm 50UOX_zone4_pin32  dm 48UOX_zone1_pin33  dm 48UOX_zone2_pin33  dm 48UOX_zone3_pin33  dm 48UOX_zone4_pin33  dm 45UOX_zone1_pin34  dm 45UOX_zone2_pin34  dm 45UOX_zone3_pin34  dm 45UOX_zone4_pin34  dm 45UOX_zone1_pin35  dm 45UOX_zone2_pin35  dm 45UOX_zone3_pin35  dm 45UOX_zone4_pin35  dm 50UOX_zone1_pin36  dm 50UOX_zone2_pin36  dm 50UOX_zone3_pin36  dm 50UOX_zone4_pin36  dm 45UOX_zone1_pin37  dm 45UOX_zone2_pin37  dm 45UOX_zone3_pin37  dm 45UOX_zone4_pin37  dm 42UOX_zone1_pin38  dm 42UOX_zone2_pin38  dm 42UOX_zone3_pin38  dm 42UOX_zone4_pin38  dm 45Gd_zone1_pin39  dm 45Gd_zone2_pin39  dm 45Gd_zone3_pin39  dm 45Gd_zone4_pin39  dm 45Gd_zone5_pin39  dm 45Gd_zone6_pin39  dm 45UOX_zone1_pin40  dm 45UOX_zone2_pin40  dm 45UOX_zone3_pin40  dm 45UOX_zone4_pin40  dm 45UOX_zone1_pin41  dm 45UOX_zone2_pin41  dm 45UOX_zone3_pin41  dm 45UOX_zone4_pin41  dm 45UOX_zone1_pin42  dm 45UOX_zone2_pin42  dm 45UOX_zone3_pin42  dm 45UOX_zone4_pin42  dm 45UOX_zone1_pin43  dm 45UOX_zone2_pin43  dm 45UOX_zone3_pin43  dm 45UOX_zone4_pin43  dm 45UOX_zone1_pin44  dm 45UOX_zone2_pin44  dm 45UOX_zone3_pin44  dm 45UOX_zone4_pin44  dm 42Gd_zone1_pin45  dm 42Gd_zone2_pin45  dm 42Gd_zone3_pin45  dm 42Gd_zone4_pin45  dm 42Gd_zone5_pin45  dm 42Gd_zone6_pin45  dm 42UOX_zone1_pin46  dm 42UOX_zone2_pin46  dm 42UOX_zone3_pin46  dm 42UOX_zone4_pin46  dm 45UOX_zone1_pin47  dm 45UOX_zone2_pin47  dm 45UOX_zone3_pin47  dm 45UOX_zone4_pin47  dm 32UOX_zone1_pin48  dm 32UOX_zone2_pin48  dm 32UOX_zone3_pin48  dm 32UOX_zone4_pin48  dm 24UOX_zone1_pin49  dm 24UOX_zone2_pin49  dm 24UOX_zone3_pin49  dm 24UOX_zone4_pin49
+    dr 101  U238
+    dr 18  U238
+    dr 102  U238
+    dr 107  U238
+    dr 16  U238
+    dr 17  U238
 
 det flux_295g
     de 295g

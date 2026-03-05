@@ -23,7 +23,7 @@ path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_i
 path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
 
 path_to_tdt  = "data/glow_data/tdt_data"
-path_to_procs = "glow_data/ATRIUM10_cases/cle2000_procs"
+path_to_procs = f"glow_data/ATRIUM10_cases/cle2000_procs/{assembly_id}"
 
 # =====================================================================
 # 1. Load material compositions and rod-ID → material mapping

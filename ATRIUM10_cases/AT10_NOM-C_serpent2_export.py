@@ -21,7 +21,7 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # =====================================================================
 # Configuration paths
 # =====================================================================
-assembly_id = "AT10_CTRL"
+assembly_id = "AT10_NOM-C"
 path_to_yaml_compositions = f"input_configs/{assembly_id}/material_compositions.yaml"
 path_to_yaml_geometry     = f"input_configs/{assembly_id}/GEOM.yaml"
 nuclear_data_library = "endfb8r1"
@@ -187,6 +187,12 @@ model.add_assembly_integrated_detector_config(
     fuel_temperature=750.0,
     detector_type=-4,
 )
+model.add_assembly_integrated_detector_config(
+    reaction_isotope_map=reaction_isotope_map_295g_U238,
+    energy_grid_name="26g",  # Fine energy mesh for U238 rates
+    fuel_temperature=900.0,
+    detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
+)
 
 # Global flux detectors
 model.add_flux_detector(energy_grid_name="295g", name="flux_295g")
@@ -198,7 +204,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/{assembly_id}_{nuclear_data_library}.serp"
+output_filepath = f"{path_to_output}/{assembly_id}_assembly_{nuclear_data_library}.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")

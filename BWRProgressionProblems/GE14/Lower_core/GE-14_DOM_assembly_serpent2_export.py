@@ -217,6 +217,13 @@ model.add_assembly_integrated_detector_config(
     detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
 )
 
+model.add_assembly_integrated_detector_config(
+    reaction_isotope_map=reaction_isotope_map_295g_U238,
+    energy_grid_name="26g",  # Fine energy mesh for U238 rates
+    fuel_temperature=900.0,
+    detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
+)
+
 
 # Optionally add a global flux detector
 model.add_flux_detector(energy_grid_name="295g", name="flux_295g")
@@ -228,7 +235,7 @@ model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
 # =====================================================================
 print(model.summary())
 
-output_filepath = f"{path_to_output}/GE14_DOM_00_assembly_{nuclear_data_library}.serp"
+output_filepath = f"{path_to_output}/{assembly_id}_00_assembly_{nuclear_data_library}.serp"
 model.write(output_filepath)
 
 print(f"\nSerpent2 model exported to: {output_filepath}")
