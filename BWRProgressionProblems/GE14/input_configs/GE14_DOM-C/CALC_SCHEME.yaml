@@ -83,7 +83,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2"
+    - name: "FLUXL2_water_rods_cross_submesh_extend"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
@@ -101,6 +101,7 @@ DRAGON_CALCULATION_SCHEME:
           sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
           angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
         water_rods:
+          additional_radial_splits_in_moderator: 3
           # Water rods: moderator + clad + coolant = 3 regions
           sectors: [16, 16, 16]
           angles:  [0, 0, 0]
@@ -110,14 +111,22 @@ DRAGON_CALCULATION_SCHEME:
       # gap_splits: [n_parallel, n_perpendicular] for unaffected side strips.
       #   Auto-permuted: horizontal strips use (n_par, n_perp) as (nx, ny),
       #   vertical strips use (n_perp, n_par).
-      # cross_discretization: optional sub-meshing for cross-affected regions.
-      #   null values → auto-computed from gap_splits mesh density.
+      # cross_moderator_discretization: optional sub-meshing for moderator
+      #   regions near the control cross. null values → auto-computed from
+      #   gap_splits mesh density.
+      # control_cross_submesh: optional sub-meshing of the control cross
+      #   wings (corner, central structure and absorber pin zones).
       box_discretization:
         enabled: True
         corner_splits: [8, 8]
         gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
-        cross_discretization:
-          narrow_gap_splits: null    # auto from gap_splits density
-          cross_corner_splits: null  # auto from gap_splits density
-          stub_splits: null          # auto from gap_splits density
-          wing_submesh: false
+        cross_moderator_discretization:
+          narrow_gap_splits: [30, 5]    # auto from gap_splits density
+          moderator_at_cross_corner_splits: [4, 4]  # auto from gap_splits density
+          stub_splits: [8, 3]          # auto from gap_splits density
+        control_cross_submesh:
+          enabled: true
+          control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
+          central_structure_splits: [3, 4]  # (n_along_arm, n_across_arm)
+          extend_splits_at_tube_boundaries: true
+          split_tubes_in_half: true

@@ -83,7 +83,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2"
+    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_10"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
@@ -101,7 +101,13 @@ DRAGON_CALCULATION_SCHEME:
           sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
           angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
         water_rods:
+          additional_radial_splits_in_moderator: 8 # integer for number of additional radial splits (if >1 compute subdivisions of moderator region with r<inner_radius)
+          # integer mode : evenly spaced ie = 2 -> 1 split at r=0.5*inner_radius, 3 -> splits at r=0.33*inner_radius and r=0.67*inner_radius, etc.
+          # optionally accept user defined list of raddii instead of integer number of splits to manually control the radial subdivision of the moderator region
+          # -> default to no additional splits (empty list or int = 1)
           # Water rods: moderator + clad + coolant = 3 regions
+          # Keep sectors an angles with 3 entries for the 3 regions (moderator, clad, coolant) and apply the same sectorization to all radial splits in the moderator region (if enabled).
+          # or add the options for the additional radial region introduced by the "additional_radial_splits_in_moderator" parameter (if enabled) to allow for different sectorization of the additional radial splits in the moderator region compared to the clad and coolant regions.
           sectors: [16, 16, 16]
           angles:  [0, 0, 0]
       # Sub-mesh the assembly box periphery for MOC tracking.
@@ -110,6 +116,7 @@ DRAGON_CALCULATION_SCHEME:
       #   Auto-permuted: horizontal strips use (n_par, n_perp) as (nx, ny),
       #   vertical strips use (n_perp, n_par).
       box_discretization:
-        enabled: True
-        corner_splits: [8, 8]
-        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
+        reassign_materials: false
+        enabled: true
+        corner_splits: [10, 10]
+        gap_splits: [30, 10]      # [n_parallel, n_perpendicular]
