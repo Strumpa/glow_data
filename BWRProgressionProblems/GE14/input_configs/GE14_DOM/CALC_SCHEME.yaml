@@ -83,7 +83,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_10"
+    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_16"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
@@ -118,5 +118,5 @@ DRAGON_CALCULATION_SCHEME:
       box_discretization:
         reassign_materials: false
         enabled: true
-        corner_splits: [10, 10]
-        gap_splits: [30, 10]      # [n_parallel, n_perpendicular]
+        corner_splits: [10, 16]
+        gap_splits: [30, 16]      # [n_parallel, n_perpendicular]

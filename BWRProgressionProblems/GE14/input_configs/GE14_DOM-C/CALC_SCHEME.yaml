@@ -129,4 +129,4 @@ DRAGON_CALCULATION_SCHEME:
           control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
           central_structure_splits: [3, 4]  # (n_along_arm, n_across_arm)
           extend_splits_at_tube_boundaries: true
-          split_tubes_in_half: true
+          split_tubes_in_half: false
