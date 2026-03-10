@@ -118,5 +118,5 @@ DRAGON_CALCULATION_SCHEME:
       box_discretization:
         reassign_materials: false
         enabled: true
-        corner_splits: [10, 16]
+        corner_splits: [16, 16]
         gap_splits: [30, 16]      # [n_parallel, n_perpendicular]
