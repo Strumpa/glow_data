@@ -83,7 +83,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2_water_rods_cross_submesh_extend"
+    - name: "FLUXL2_wr_8_cross_submesh_extend_moder3016"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
@@ -101,7 +101,7 @@ DRAGON_CALCULATION_SCHEME:
           sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
           angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
         water_rods:
-          additional_radial_splits_in_moderator: 3
+          additional_radial_splits_in_moderator: 8
           # Water rods: moderator + clad + coolant = 3 regions
           sectors: [16, 16, 16]
           angles:  [0, 0, 0]
@@ -118,15 +118,15 @@ DRAGON_CALCULATION_SCHEME:
       #   wings (corner, central structure and absorber pin zones).
       box_discretization:
         enabled: True
-        corner_splits: [8, 8]
-        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
+        corner_splits: [16,16]
+        gap_splits: [30, 16]      # [n_parallel, n_perpendicular]
         cross_moderator_discretization:
-          narrow_gap_splits: [30, 5]    # auto from gap_splits density
-          moderator_at_cross_corner_splits: [4, 4]  # auto from gap_splits density
+          narrow_gap_splits: [30, 8]    # auto from gap_splits density
+          moderator_at_cross_corner_splits: [8,8]  # auto from gap_splits density
           stub_splits: [8, 3]          # auto from gap_splits density
         control_cross_submesh:
           enabled: true
           control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
-          central_structure_splits: [3, 4]  # (n_along_arm, n_across_arm)
+          central_structure_splits: [3, 2]  # (n_along_arm, n_across_arm)
           extend_splits_at_tube_boundaries: true
           split_tubes_in_half: false
