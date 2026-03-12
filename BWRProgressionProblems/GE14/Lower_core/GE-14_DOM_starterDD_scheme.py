@@ -23,7 +23,7 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 assembly_id = "GE14_DOM"
 path_to_yaml_compositions = "glow_data/BWRProgressionProblems/GE14/input_configs/material_compositions.yaml"
 path_to_yaml_geometry     = f"glow_data/BWRProgressionProblems/GE14/input_configs/{assembly_id}/GEOM.yaml"
-path_to_yaml_calc_scheme  = f"glow_data/BWRProgressionProblems/GE14/input_configs/{assembly_id}/CALC_SCHEME.yaml"
+path_to_yaml_calc_scheme  = f"glow_data/BWRProgressionProblems/GE14/input_configs/{assembly_id}/CALC_SCHEME_test.yaml"
 
 path_to_tdt  = "data/glow_data/tdt_data"
 path_to_procs = f"glow_data/BWRProgressionProblems/GE14/cle2000_procs/{assembly_id}"
