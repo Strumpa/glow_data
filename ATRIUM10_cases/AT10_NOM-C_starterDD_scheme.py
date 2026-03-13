@@ -22,7 +22,7 @@ path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/input_configs/{assembly_i
 path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/GEOM.yaml"
 path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
 
-path_to_tdt  = "data/glow_data/tdt_data"
+path_to_tdt  = "glow_data/tdt_data"
 path_to_procs = f"glow_data/ATRIUM10_cases/cle2000_procs/{assembly_id}"
 
 # =====================================================================
@@ -100,7 +100,7 @@ for step in scheme.steps:
 
         # ---- Recover TDT material mixture indices ----
         tdt_indices = read_material_mixture_indices_from_tdt_file(
-            tdt_file_path=f"/home/user/{path_to_tdt}",
+            tdt_file_path=f"/home/user/data/{path_to_tdt}",
             tdt_file_name=file_to_save_name,
             tracking_option=step.tracking,
             include_macros=step.export_macros,
