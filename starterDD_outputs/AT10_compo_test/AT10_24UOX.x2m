@@ -4,9 +4,9 @@
 
 MODULE LIB: G2S: SALT: MCCGT: USS: ASM: FLU: EDI: SPH: GREP: UTL: COMPO:
   DELETE: END: ;
-PROCEDURE MIX_AT10_24UOX TRK_AT10_24UOX EDIR_AT10_24UOX ;
+PROCEDURE MIX TRK EDIR ;
 
-LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX PARAMS ;
+LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX COMPO PARAMS ;
 SEQ_BINARY TRKFILSSH TRKFILFLUX ;
 STRING name_compo := "_CPO_AT10_24UOX" ;
 STRING Draglib := "J311_295" ;
@@ -41,8 +41,8 @@ SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 **************************************************
 * Tracking sub-procedure call
 **************************************************
-TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK_AT10_24UOX tdt_ssh tdt_flux
-  :: <<o_anis>> ;
+TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
+  <<o_anis>> ;
 
 **************************************************
 * Parameter arrays for branch calculations
@@ -131,16 +131,16 @@ WHILE i_Tfuel n_Tfuel < DO
             WHILE i_BU n_BU < DO
                 EVALUATE i_BU := i_BU 1 + ;
 GREP: PARAMS :: GETVAL 'burnup_pts' <<i_BU>> >>Burnup<< ;
-ECHO "SP:""TFuel= "TFuel "TCool= "TCool "DCool= "DCool "Burnup= "Burnup
-  ;
+                ECHO "State Point:" ; 
+
+ECHO "TFuel=" TFuel "TCool=" TCool "DCool=" DCool "Burnup=" Burnup ;
                 EVALUATE TFUEL := TFuel ;
                 EVALUATE TCOOL := TCool ;
                 EVALUATE TMODE := TCool ;
 
                 * LIB: creation
-LIBRARY := MIX_AT10_24UOX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE'
-  <<TFUEL>> <<TBOX>> <<TCLAD>> <<TCOOL>> <<TMODE>> <<TCTRL>> <<N_H>>
-  <<N_O>> ;
+LIBRARY := MIX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
+  <<TCLAD>> <<TCOOL>> <<TMODE>> <<TCTRL>> <<N_H>> <<N_O>> ;
 
                 * USS: self-shielding
                 LIBRARY2 := USS: LIBRARY TRKSSH TRKFILSSH ::
@@ -159,8 +159,8 @@ LIBRARY := MIX_AT10_24UOX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE'
                 ECHO "AT10_24UOX keff=" keff ;
 
                 * EDI/COMPO call
-COMPO := EDIR_AT10_24UOX FLUX LIBRARY2 TRKFLUX COMPO :: <<name_compo>>
-  <<TFuel>> <<TCool>> <<DCool>> <<Burnup>> ;
+COMPO := EDIR FLUX LIBRARY2 TRKFLUX COMPO :: <<name_compo>> <<TFuel>>
+  <<TCool>> <<DCool>> <<Burnup>> ;
 
                 * Cleanup
                 LIBRARY LIBRARY2 := DELETE: LIBRARY LIBRARY2 ;
