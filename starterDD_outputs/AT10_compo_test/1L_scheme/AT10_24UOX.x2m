@@ -5,7 +5,9 @@
 MODULE LIB: G2S: SALT: MCCGT: USS: ASM: FLU: EDI: SPH: GREP: UTL: COMPO:
   DELETE: END: ;
 PROCEDURE MIX TRK EDIR ;
+PROCEDURE MIX TRK EDIR ;
 
+LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX COMPO PARAMS ;
 LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX COMPO PARAMS ;
 SEQ_BINARY TRKFILSSH TRKFILFLUX ;
 STRING name_compo := "_CPO_AT10_24UOX" ;
@@ -38,6 +40,8 @@ SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 **************************************************
 * Tracking sub-procedure call
 **************************************************
+TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
+  <<o_anis>> ;
 TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
   <<o_anis>> ;
 
