@@ -5,9 +5,7 @@
 MODULE LIB: G2S: SALT: MCCGT: USS: ASM: FLU: EDI: SPH: GREP: UTL: COMPO:
   DELETE: END: ;
 PROCEDURE MIX TRK EDIR ;
-PROCEDURE MIX TRK EDIR ;
 
-LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX COMPO PARAMS ;
 LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUX SYS FLUX COMPO PARAMS ;
 SEQ_BINARY TRKFILSSH TRKFILFLUX ;
 STRING name_compo := "_CPO_AT10_24UOX" ;
@@ -17,9 +15,9 @@ INTEGER n_Tfuel := 1 ;
 INTEGER i_Tfuel := 0 ;
 INTEGER n_Tcool := 1 ;
 INTEGER i_Tcool := 0 ;
-INTEGER n_DCool := 1 ;
+INTEGER n_DCool := 5 ;
 INTEGER i_DCool := 0 ;
-INTEGER n_dens := 1 ;
+INTEGER n_dens := 5 ;
 REAL TFuel ;
 REAL TCool ;
 REAL DCool ;
@@ -33,15 +31,13 @@ REAL TBOX := 600.0 ;
 REAL TCLAD := 600.0 ;
 REAL TCTRL := 600.0 ;
 
-SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_IC_TISO_MACRO.dat' ;
-SEQ_ASCII tdt_flux :: FILE 'AT10_24UOX_FLUX_MOC_TSPC.dat' ;
+SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_CP_TISO_MACRO.dat' ;
+SEQ_ASCII tdt_flux :: FILE 'AT10_24UOX_FLUX_IC_TISO.dat' ;
 SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 
 **************************************************
 * Tracking sub-procedure call
 **************************************************
-TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
-  <<o_anis>> ;
 TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
   <<o_anis>> ;
 
@@ -57,15 +53,17 @@ PARAMS := UTL: ::
             559.0
     CREA
         cool_dens <<n_DCool>> =
-            0.73669
+            0.73669 0.5968566 0.4570232 0.3171898 0.1773564
 ;
 PARAMS := UTL: PARAMS ::
     CREA
         N_H_arr <<n_dens>> =
-            4.92517066E-02
+4.92517066E-02 3.99030884E-02 3.05544701E-02 2.12058518E-02
+  1.18572336E-02
     CREA
         N_O_arr <<n_dens>> =
-            2.46258533E-02
+2.46258533E-02 1.99515442E-02 1.52772351E-02 1.06029259E-02
+  5.92861678E-03
 ;
 
 **************************************************
@@ -74,7 +72,7 @@ PARAMS := UTL: PARAMS ::
 COMPO := COMPO: ::
    EDIT 0
    STEP UP 'EDIHOM_COND'
-       MAXCAL 1
+       MAXCAL 5
        COMM 'Condensed, homogenized over all fuel cells' ENDC
        PARA 'DCool' VALU REAL
        PARA 'TFuel' VALU REAL
@@ -83,7 +81,7 @@ ISOT 12 U234 U235 U236 U238 Pu239 Pu240 Pu241 Pu242 Gd155 Gd157 Xe135
   Sm149
    INIT
    STEP UP 'EDIHOM_295'
-       MAXCAL 1
+       MAXCAL 5
        COMM 'Homogenized over all materials' ENDC
        PARA 'DCool' VALU REAL
        PARA 'TFuel' VALU REAL
@@ -91,7 +89,7 @@ ISOT 12 U234 U235 U236 U238 Pu239 Pu240 Pu241 Pu242 Gd155 Gd157 Xe135
       ISOT 1 U238
    INIT
    STEP UP 'EDIR_2G'
-       MAXCAL 1
+       MAXCAL 5
        COMM 'Condensed to 2g, per pin homogenization' ENDC
        PARA 'DCool' VALU REAL
        PARA 'TFuel' VALU REAL
@@ -99,7 +97,7 @@ ISOT 12 U234 U235 U236 U238 Pu239 Pu240 Pu241 Pu242 Gd155 Gd157 Xe135
       ISOT 6 U234 U235 U236 U238 Gd155 Gd157
    INIT
    STEP UP 'U238_295'
-       MAXCAL 1
+       MAXCAL 5
        COMM 'U238, 295g, homogenized over all fuel cells' ENDC
        PARA 'DCool' VALU REAL
        PARA 'TFuel' VALU REAL

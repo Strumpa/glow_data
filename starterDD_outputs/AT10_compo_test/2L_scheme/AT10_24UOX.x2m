@@ -33,8 +33,8 @@ REAL TCOOL := 600.0 ;
 REAL TMODE := 600.0 ;
 REAL TCTRL := 600.0 ;
 
-SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_IC_TISO_MACRO.dat' ;
-SEQ_ASCII tdt_fluxl1 :: FILE 'AT10_24UOX_FLUXL1_IC_TISO_MACRO.dat' ;
+SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_CP_TISO_MACRO.dat' ;
+SEQ_ASCII tdt_fluxl1 :: FILE 'AT10_24UOX_FLUXL1_CP_TISO_MACRO.dat' ;
 SEQ_ASCII tdt_fluxl2 :: FILE 'AT10_24UOX_FLUXL2_MOC_TSPC.dat' ;
 SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 
@@ -137,12 +137,12 @@ LIBRARY := MIX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
 
             * USS: self-shielding
             LIBRARY2 := USS: LIBRARY TRKSSH TRKFILSSH ::
-                EDIT 1 ARM
+                EDIT 1 PIJ
             ;
 
             * ASM: + FLU: — first level
             SYS := ASM: LIBRARY2 TRKFLUXL1 TRKFILFLUXL1 ::
-                EDIT 1 ARM
+                EDIT 1 PIJ
             ;
 
             FLUX := FLU: SYS LIBRARY2 TRKFLUXL1 TRKFILFLUXL1 ::

@@ -21,19 +21,17 @@ MODULE SALT: MCCGT: END: ;
 * Tracking for step SSH
 TRKSSH TRKFILSSH := SALT: tdt_ssh ::
     EDIT 1
-    TITLE 'SSH - IC'
+    TITLE 'SSH - CP'
     BATCH 200
     TISO EQW 8 25.0
-    IC EPSJ 1.0E-5
 ;
 
 * Tracking for step FLUXL1
 TRKFLUXL1 TRKFILFLUXL1 := SALT: tdt_fluxl1 ::
     EDIT 1
-    TITLE 'FLUXL1 - IC'
+    TITLE 'FLUXL1 - CP'
     BATCH 200
     TISO EQW 8 25.0
-    IC EPSJ 1.0E-5
 ;
 
 * Tracking for step FLUXL2

@@ -19,29 +19,18 @@ MODULE SALT: MCCGT: END: ;
 * Tracking for step SSH
 TRKSSH TRKFILSSH := SALT: tdt_ssh ::
     EDIT 1
-    TITLE 'SSH - IC'
+    TITLE 'SSH - CP'
     BATCH 200
     TISO EQW 8 25.0
-    IC EPSJ 1.0E-5
 ;
 
 * Tracking for step FLUX
 TRKFLUX TRKFILFLUX := SALT: tdt_flux ::
     EDIT 1
-    TITLE 'FLUX - MOC'
-    ALLG LONG
-    BATCH 2000
-    GAUS
-    ANIS <<o_anis>>
-    TSPC EQW2 24 40.0 REND
-    NOIC
-;
-
-* MOC tracking for step FLUX
-TRKFLUX := MCCGT: TRKFLUX TRKFILFLUX ::
-    EDIT 1
-    GAUS <<o_anis>> AAC 100 ILU0
-    HDD 0.0 SC KRYL 10
+    TITLE 'FLUX - IC'
+    BATCH 200
+    TISO EQW 24 40.0
+    IC EPSJ 1.0E-5
 ;
 
 END: ;
