@@ -31,8 +31,8 @@ REAL TBOX := 600.0 ;
 REAL TCLAD := 600.0 ;
 REAL TCTRL := 600.0 ;
 
-SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_CP_TISO_MACRO.dat' ;
-SEQ_ASCII tdt_flux :: FILE 'AT10_24UOX_FLUX_IC_TISO.dat' ;
+SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_IC_TISO_MACRO.dat' ;
+SEQ_ASCII tdt_flux :: FILE 'AT10_24UOX_FLUX_MOC_TSPC.dat' ;
 SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 
 **************************************************

@@ -83,10 +83,12 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_16"
+    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_8_subdivided_coolant_corners_4"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
+      polar_angles_quadrature: "GAUS"
+      number_of_polar_angles: 4
       radial_scheme: "Santamarina"
       export_macros: False
       sectorization:
@@ -110,6 +112,7 @@ DRAGON_CALCULATION_SCHEME:
           # or add the options for the additional radial region introduced by the "additional_radial_splits_in_moderator" parameter (if enabled) to allow for different sectorization of the additional radial splits in the moderator region compared to the clad and coolant regions.
           sectors: [16, 16, 16]
           angles:  [0, 0, 0]
+          subdivisions_coolant_corners: 4
       # Sub-mesh the assembly box periphery for MOC tracking.
       # corner_splits: grid (nx, ny) for each of the 4 corner regions.
       # gap_splits: [n_parallel, n_perpendicular] for side strips.
@@ -118,5 +121,5 @@ DRAGON_CALCULATION_SCHEME:
       box_discretization:
         reassign_materials: false
         enabled: true
-        corner_splits: [16, 16]
-        gap_splits: [30, 16]      # [n_parallel, n_perpendicular]
+        corner_splits: [8, 8]
+        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
