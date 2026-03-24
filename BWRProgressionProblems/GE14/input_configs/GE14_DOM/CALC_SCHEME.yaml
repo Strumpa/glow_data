@@ -26,19 +26,7 @@ DRAGON_CALCULATION_SCHEME:
       export_macros: True
       sectorization:
         enabled: false
-        windmill: true
-        fuel_pins:
-          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
-          sectors: [1, 1, 1, 1, 1, 1, 8]
-          angles:  [0, 0, 0, 0, 0, 0, 22.5]
-        Gd_pins:
-          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
-          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 8]
-          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 22.5]
-        water_rods:
-          # Water rods: moderator + clad + coolant = 3 regions
-          sectors: [1, 1, 8]
-          angles:  [0, 0, 0]
+
 
 
     # ------------------------------------------------------------------

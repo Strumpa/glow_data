@@ -63,10 +63,10 @@
 #  1 - COOLANT
 #  2 - CLAD
 #  3 - GAP
-#  4 - 24UOX_zone4_pin1
-#  5 - 24UOX_zone3_pin1
-#  6 - 24UOX_zone2_pin1
-#  7 - 24UOX_zone1_pin1
+#  4 - 24UOX_zone_4_pin_1
+#  5 - 24UOX_zone_3_pin_1
+#  6 - 24UOX_zone_2_pin_1
+#  7 - 24UOX_zone_1_pin_1
 * medium number per region
   1
   2

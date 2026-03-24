@@ -27,230 +27,230 @@ MODULE  LIB: UTL: DELETE: END: ABORT: ;
 *    MIX INDEX ASSIGNMENTS
 * --------------------------------
 * -- Fuel mixes --
-*      8 : UOX28_zone1_pin1 (generating)
-*      7 : UOX28_zone2_pin1 (daughter of mix 8)
-*      6 : UOX28_zone3_pin1 (daughter of mix 8)
-*      5 : UOX28_zone4_pin1 (daughter of mix 8)
-*     48 : UOX40_zone1_pin2 (generating)
-*     47 : UOX40_zone2_pin2 (daughter of mix 48)
-*     46 : UOX40_zone3_pin2 (daughter of mix 48)
-*     45 : UOX40_zone4_pin2 (daughter of mix 48)
-*     88 : UOX49_zone1_pin3 (generating)
-*     87 : UOX49_zone2_pin3 (daughter of mix 88)
-*     86 : UOX49_zone3_pin3 (daughter of mix 88)
-*     85 : UOX49_zone4_pin3 (daughter of mix 88)
-*    128 : UOX49_zone1_pin4 (daughter of mix 88)
-*    127 : UOX49_zone2_pin4 (daughter of mix 88)
-*    126 : UOX49_zone3_pin4 (daughter of mix 88)
-*    125 : UOX49_zone4_pin4 (daughter of mix 88)
-*    150 : UOX49_zone1_pin5 (daughter of mix 88)
-*    149 : UOX49_zone2_pin5 (daughter of mix 88)
-*    148 : UOX49_zone3_pin5 (daughter of mix 88)
-*    147 : UOX49_zone4_pin5 (daughter of mix 88)
-*    166 : UOX49_zone1_pin6 (daughter of mix 88)
-*    165 : UOX49_zone2_pin6 (daughter of mix 88)
-*    164 : UOX49_zone3_pin6 (daughter of mix 88)
-*    163 : UOX49_zone4_pin6 (daughter of mix 88)
-*    188 : UOX49_zone1_pin7 (daughter of mix 88)
-*    187 : UOX49_zone2_pin7 (daughter of mix 88)
-*    186 : UOX49_zone3_pin7 (daughter of mix 88)
-*    185 : UOX49_zone4_pin7 (daughter of mix 88)
-*    206 : UOX49_zone1_pin8 (daughter of mix 88)
-*    205 : UOX49_zone2_pin8 (daughter of mix 88)
-*    204 : UOX49_zone3_pin8 (daughter of mix 88)
-*    203 : UOX49_zone4_pin8 (daughter of mix 88)
-*    220 : UOX49_zone1_pin9 (daughter of mix 88)
-*    219 : UOX49_zone2_pin9 (daughter of mix 88)
-*    218 : UOX49_zone3_pin9 (daughter of mix 88)
-*    217 : UOX49_zone4_pin9 (daughter of mix 88)
-*    228 : UOX32_zone1_pin10 (generating)
-*    227 : UOX32_zone2_pin10 (daughter of mix 228)
-*    226 : UOX32_zone3_pin10 (daughter of mix 228)
-*    225 : UOX32_zone4_pin10 (daughter of mix 228)
-*     12 : UOX40_zone1_pin11 (daughter of mix 48)
-*     11 : UOX40_zone2_pin11 (daughter of mix 48)
-*     10 : UOX40_zone3_pin11 (daughter of mix 48)
-*      9 : UOX40_zone4_pin11 (daughter of mix 48)
-*     52 : UOX40_zone1_pin12 (daughter of mix 48)
-*     51 : UOX40_zone2_pin12 (daughter of mix 48)
-*     50 : UOX40_zone3_pin12 (daughter of mix 48)
-*     49 : UOX40_zone4_pin12 (daughter of mix 48)
-*     94 : UOX44Gd6_zone1_pin13 (generating)
-*     93 : UOX44Gd6_zone2_pin13 (daughter of mix 94)
-*     92 : UOX44Gd6_zone3_pin13 (daughter of mix 94)
-*     91 : UOX44Gd6_zone4_pin13 (daughter of mix 94)
-*     90 : UOX44Gd6_zone5_pin13 (daughter of mix 94)
-*     89 : UOX44Gd6_zone6_pin13 (daughter of mix 94)
-*    132 : UOX49_zone1_pin14 (daughter of mix 88)
-*    131 : UOX49_zone2_pin14 (daughter of mix 88)
-*    130 : UOX49_zone3_pin14 (daughter of mix 88)
-*    129 : UOX49_zone4_pin14 (daughter of mix 88)
-*    154 : UOX49_zone1_pin15 (daughter of mix 88)
-*    153 : UOX49_zone2_pin15 (daughter of mix 88)
-*    152 : UOX49_zone3_pin15 (daughter of mix 88)
-*    151 : UOX49_zone4_pin15 (daughter of mix 88)
-*    172 : UOX49Gd8_zone1_pin16 (generating)
-*    171 : UOX49Gd8_zone2_pin16 (daughter of mix 172)
-*    170 : UOX49Gd8_zone3_pin16 (daughter of mix 172)
-*    169 : UOX49Gd8_zone4_pin16 (daughter of mix 172)
-*    168 : UOX49Gd8_zone5_pin16 (daughter of mix 172)
-*    167 : UOX49Gd8_zone6_pin16 (daughter of mix 172)
-*    192 : UOX49_zone1_pin17 (daughter of mix 88)
-*    191 : UOX49_zone2_pin17 (daughter of mix 88)
-*    190 : UOX49_zone3_pin17 (daughter of mix 88)
-*    189 : UOX49_zone4_pin17 (daughter of mix 88)
-*    212 : UOX49Gd8_zone1_pin18 (daughter of mix 172)
-*    211 : UOX49Gd8_zone2_pin18 (daughter of mix 172)
-*    210 : UOX49Gd8_zone3_pin18 (daughter of mix 172)
-*    209 : UOX49Gd8_zone4_pin18 (daughter of mix 172)
-*    208 : UOX49Gd8_zone5_pin18 (daughter of mix 172)
-*    207 : UOX49Gd8_zone6_pin18 (daughter of mix 172)
-*    224 : UOX49_zone1_pin19 (daughter of mix 88)
-*    223 : UOX49_zone2_pin19 (daughter of mix 88)
-*    222 : UOX49_zone3_pin19 (daughter of mix 88)
-*    221 : UOX49_zone4_pin19 (daughter of mix 88)
-*     16 : UOX40_zone1_pin20 (daughter of mix 48)
-*     15 : UOX40_zone2_pin20 (daughter of mix 48)
-*     14 : UOX40_zone3_pin20 (daughter of mix 48)
-*     13 : UOX40_zone4_pin20 (daughter of mix 48)
-*     58 : UOX44Gd6_zone1_pin21 (daughter of mix 94)
-*     57 : UOX44Gd6_zone2_pin21 (daughter of mix 94)
-*     56 : UOX44Gd6_zone3_pin21 (daughter of mix 94)
-*     55 : UOX44Gd6_zone4_pin21 (daughter of mix 94)
-*     54 : UOX44Gd6_zone5_pin21 (daughter of mix 94)
-*     53 : UOX44Gd6_zone6_pin21 (daughter of mix 94)
-*     98 : UOX44_zone1_pin22 (generating)
-*     97 : UOX44_zone2_pin22 (daughter of mix 98)
-*     96 : UOX44_zone3_pin22 (daughter of mix 98)
-*     95 : UOX44_zone4_pin22 (daughter of mix 98)
-*    136 : UOX49_zone1_pin23 (daughter of mix 88)
-*    135 : UOX49_zone2_pin23 (daughter of mix 88)
-*    134 : UOX49_zone3_pin23 (daughter of mix 88)
-*    133 : UOX49_zone4_pin23 (daughter of mix 88)
-*    158 : UOX49_zone1_pin24 (daughter of mix 88)
-*    157 : UOX49_zone2_pin24 (daughter of mix 88)
-*    156 : UOX49_zone3_pin24 (daughter of mix 88)
-*    155 : UOX49_zone4_pin24 (daughter of mix 88)
-*    176 : UOX49_zone1_pin25 (daughter of mix 88)
-*    175 : UOX49_zone2_pin25 (daughter of mix 88)
-*    174 : UOX49_zone3_pin25 (daughter of mix 88)
-*    173 : UOX49_zone4_pin25 (daughter of mix 88)
-*    198 : UOX49Gd8_zone1_pin26 (daughter of mix 172)
-*    197 : UOX49Gd8_zone2_pin26 (daughter of mix 172)
-*    196 : UOX49Gd8_zone3_pin26 (daughter of mix 172)
-*    195 : UOX49Gd8_zone4_pin26 (daughter of mix 172)
-*    194 : UOX49Gd8_zone5_pin26 (daughter of mix 172)
-*    193 : UOX49Gd8_zone6_pin26 (daughter of mix 172)
-*    216 : UOX49_zone1_pin27 (daughter of mix 88)
-*    215 : UOX49_zone2_pin27 (daughter of mix 88)
-*    214 : UOX49_zone3_pin27 (daughter of mix 88)
-*    213 : UOX49_zone4_pin27 (daughter of mix 88)
-*     20 : UOX40_zone1_pin28 (daughter of mix 48)
-*     19 : UOX40_zone2_pin28 (daughter of mix 48)
-*     18 : UOX40_zone3_pin28 (daughter of mix 48)
-*     17 : UOX40_zone4_pin28 (daughter of mix 48)
-*     62 : UOX40_zone1_pin29 (daughter of mix 48)
-*     61 : UOX40_zone2_pin29 (daughter of mix 48)
-*     60 : UOX40_zone3_pin29 (daughter of mix 48)
-*     59 : UOX40_zone4_pin29 (daughter of mix 48)
-*    104 : UOX44Gd6_zone1_pin30 (daughter of mix 94)
-*    103 : UOX44Gd6_zone2_pin30 (daughter of mix 94)
-*    102 : UOX44Gd6_zone3_pin30 (daughter of mix 94)
-*    101 : UOX44Gd6_zone4_pin30 (daughter of mix 94)
-*    100 : UOX44Gd6_zone5_pin30 (daughter of mix 94)
-*     99 : UOX44Gd6_zone6_pin30 (daughter of mix 94)
-*    180 : UOX49_zone1_pin31 (daughter of mix 88)
-*    179 : UOX49_zone2_pin31 (daughter of mix 88)
-*    178 : UOX49_zone3_pin31 (daughter of mix 88)
-*    177 : UOX49_zone4_pin31 (daughter of mix 88)
-*    202 : UOX49_zone1_pin32 (daughter of mix 88)
-*    201 : UOX49_zone2_pin32 (daughter of mix 88)
-*    200 : UOX49_zone3_pin32 (daughter of mix 88)
-*    199 : UOX49_zone4_pin32 (daughter of mix 88)
-*     24 : UOX40_zone1_pin33 (daughter of mix 48)
-*     23 : UOX40_zone2_pin33 (daughter of mix 48)
-*     22 : UOX40_zone3_pin33 (daughter of mix 48)
-*     21 : UOX40_zone4_pin33 (daughter of mix 48)
-*     68 : UOX40Gd8_zone1_pin34 (generating)
-*     67 : UOX40Gd8_zone2_pin34 (daughter of mix 68)
-*     66 : UOX40Gd8_zone3_pin34 (daughter of mix 68)
-*     65 : UOX40Gd8_zone4_pin34 (daughter of mix 68)
-*     64 : UOX40Gd8_zone5_pin34 (daughter of mix 68)
-*     63 : UOX40Gd8_zone6_pin34 (daughter of mix 68)
-*    108 : UOX44_zone1_pin35 (daughter of mix 98)
-*    107 : UOX44_zone2_pin35 (daughter of mix 98)
-*    106 : UOX44_zone3_pin35 (daughter of mix 98)
-*    105 : UOX44_zone4_pin35 (daughter of mix 98)
-*    184 : UOX49_zone1_pin36 (daughter of mix 88)
-*    183 : UOX49_zone2_pin36 (daughter of mix 88)
-*    182 : UOX49_zone3_pin36 (daughter of mix 88)
-*    181 : UOX49_zone4_pin36 (daughter of mix 88)
-*     28 : UOX40_zone1_pin37 (daughter of mix 48)
-*     27 : UOX40_zone2_pin37 (daughter of mix 48)
-*     26 : UOX40_zone3_pin37 (daughter of mix 48)
-*     25 : UOX40_zone4_pin37 (daughter of mix 48)
-*     72 : UOX36_zone1_pin38 (generating)
-*     71 : UOX36_zone2_pin38 (daughter of mix 72)
-*     70 : UOX36_zone3_pin38 (daughter of mix 72)
-*     69 : UOX36_zone4_pin38 (daughter of mix 72)
-*    114 : UOX49Gd6_zone1_pin39 (generating)
-*    113 : UOX49Gd6_zone2_pin39 (daughter of mix 114)
-*    112 : UOX49Gd6_zone3_pin39 (daughter of mix 114)
-*    111 : UOX49Gd6_zone4_pin39 (daughter of mix 114)
-*    110 : UOX49Gd6_zone5_pin39 (daughter of mix 114)
-*    109 : UOX49Gd6_zone6_pin39 (daughter of mix 114)
-*    140 : UOX40_zone1_pin40 (daughter of mix 48)
-*    139 : UOX40_zone2_pin40 (daughter of mix 48)
-*    138 : UOX40_zone3_pin40 (daughter of mix 48)
-*    137 : UOX40_zone4_pin40 (daughter of mix 48)
-*    162 : UOX49_zone1_pin41 (daughter of mix 88)
-*    161 : UOX49_zone2_pin41 (daughter of mix 88)
-*    160 : UOX49_zone3_pin41 (daughter of mix 88)
-*    159 : UOX49_zone4_pin41 (daughter of mix 88)
-*     32 : UOX40_zone1_pin42 (daughter of mix 48)
-*     31 : UOX40_zone2_pin42 (daughter of mix 48)
-*     30 : UOX40_zone3_pin42 (daughter of mix 48)
-*     29 : UOX40_zone4_pin42 (daughter of mix 48)
-*     76 : UOX40_zone1_pin43 (daughter of mix 48)
-*     75 : UOX40_zone2_pin43 (daughter of mix 48)
-*     74 : UOX40_zone3_pin43 (daughter of mix 48)
-*     73 : UOX40_zone4_pin43 (daughter of mix 48)
-*    118 : UOX44_zone1_pin44 (daughter of mix 98)
-*    117 : UOX44_zone2_pin44 (daughter of mix 98)
-*    116 : UOX44_zone3_pin44 (daughter of mix 98)
-*    115 : UOX44_zone4_pin44 (daughter of mix 98)
-*    146 : UOX49Gd8_zone1_pin45 (daughter of mix 172)
-*    145 : UOX49Gd8_zone2_pin45 (daughter of mix 172)
-*    144 : UOX49Gd8_zone3_pin45 (daughter of mix 172)
-*    143 : UOX49Gd8_zone4_pin45 (daughter of mix 172)
-*    142 : UOX49Gd8_zone5_pin45 (daughter of mix 172)
-*    141 : UOX49Gd8_zone6_pin45 (daughter of mix 172)
-*     36 : UOX32_zone1_pin46 (daughter of mix 228)
-*     35 : UOX32_zone2_pin46 (daughter of mix 228)
-*     34 : UOX32_zone3_pin46 (daughter of mix 228)
-*     33 : UOX32_zone4_pin46 (daughter of mix 228)
-*     80 : UOX32_zone1_pin47 (daughter of mix 228)
-*     79 : UOX32_zone2_pin47 (daughter of mix 228)
-*     78 : UOX32_zone3_pin47 (daughter of mix 228)
-*     77 : UOX32_zone4_pin47 (daughter of mix 228)
-*    124 : UOX44Gd3_zone1_pin48 (generating)
-*    123 : UOX44Gd3_zone2_pin48 (daughter of mix 124)
-*    122 : UOX44Gd3_zone3_pin48 (daughter of mix 124)
-*    121 : UOX44Gd3_zone4_pin48 (daughter of mix 124)
-*    120 : UOX44Gd3_zone5_pin48 (daughter of mix 124)
-*    119 : UOX44Gd3_zone6_pin48 (daughter of mix 124)
-*     40 : UOX28_zone1_pin49 (daughter of mix 8)
-*     39 : UOX28_zone2_pin49 (daughter of mix 8)
-*     38 : UOX28_zone3_pin49 (daughter of mix 8)
-*     37 : UOX28_zone4_pin49 (daughter of mix 8)
-*     84 : UOX28_zone1_pin50 (daughter of mix 8)
-*     83 : UOX28_zone2_pin50 (daughter of mix 8)
-*     82 : UOX28_zone3_pin50 (daughter of mix 8)
-*     81 : UOX28_zone4_pin50 (daughter of mix 8)
-*     44 : UOX16_zone1_pin51 (generating)
-*     43 : UOX16_zone2_pin51 (daughter of mix 44)
-*     42 : UOX16_zone3_pin51 (daughter of mix 44)
-*     41 : UOX16_zone4_pin51 (daughter of mix 44)
+*     62 : UOX28_zone_1_pin_1 (generating)
+*     61 : UOX28_zone_2_pin_1 (daughter of mix 62)
+*     60 : UOX28_zone_3_pin_1 (daughter of mix 62)
+*     59 : UOX28_zone_4_pin_1 (daughter of mix 62)
+*     58 : UOX40_zone_1_pin_2 (generating)
+*     57 : UOX40_zone_2_pin_2 (daughter of mix 58)
+*     56 : UOX40_zone_3_pin_2 (daughter of mix 58)
+*     55 : UOX40_zone_4_pin_2 (daughter of mix 58)
+*     54 : UOX49_zone_1_pin_3 (generating)
+*     53 : UOX49_zone_2_pin_3 (daughter of mix 54)
+*     52 : UOX49_zone_3_pin_3 (daughter of mix 54)
+*     51 : UOX49_zone_4_pin_3 (daughter of mix 54)
+*    138 : UOX49_zone_1_pin_4 (daughter of mix 54)
+*    137 : UOX49_zone_2_pin_4 (daughter of mix 54)
+*    136 : UOX49_zone_3_pin_4 (daughter of mix 54)
+*    135 : UOX49_zone_4_pin_4 (daughter of mix 54)
+*    160 : UOX49_zone_1_pin_5 (daughter of mix 54)
+*    159 : UOX49_zone_2_pin_5 (daughter of mix 54)
+*    158 : UOX49_zone_3_pin_5 (daughter of mix 54)
+*    157 : UOX49_zone_4_pin_5 (daughter of mix 54)
+*    176 : UOX49_zone_1_pin_6 (daughter of mix 54)
+*    175 : UOX49_zone_2_pin_6 (daughter of mix 54)
+*    174 : UOX49_zone_3_pin_6 (daughter of mix 54)
+*    173 : UOX49_zone_4_pin_6 (daughter of mix 54)
+*    192 : UOX49_zone_1_pin_7 (daughter of mix 54)
+*    191 : UOX49_zone_2_pin_7 (daughter of mix 54)
+*    190 : UOX49_zone_3_pin_7 (daughter of mix 54)
+*    189 : UOX49_zone_4_pin_7 (daughter of mix 54)
+*    210 : UOX49_zone_1_pin_8 (daughter of mix 54)
+*    209 : UOX49_zone_2_pin_8 (daughter of mix 54)
+*    208 : UOX49_zone_3_pin_8 (daughter of mix 54)
+*    207 : UOX49_zone_4_pin_8 (daughter of mix 54)
+*    224 : UOX49_zone_1_pin_9 (daughter of mix 54)
+*    223 : UOX49_zone_2_pin_9 (daughter of mix 54)
+*    222 : UOX49_zone_3_pin_9 (daughter of mix 54)
+*    221 : UOX49_zone_4_pin_9 (daughter of mix 54)
+*     50 : UOX32_zone_1_pin_10 (generating)
+*     49 : UOX32_zone_2_pin_10 (daughter of mix 50)
+*     48 : UOX32_zone_3_pin_10 (daughter of mix 50)
+*     47 : UOX32_zone_4_pin_10 (daughter of mix 50)
+*     66 : UOX40_zone_1_pin_11 (daughter of mix 58)
+*     65 : UOX40_zone_2_pin_11 (daughter of mix 58)
+*     64 : UOX40_zone_3_pin_11 (daughter of mix 58)
+*     63 : UOX40_zone_4_pin_11 (daughter of mix 58)
+*     98 : UOX40_zone_1_pin_12 (daughter of mix 58)
+*     97 : UOX40_zone_2_pin_12 (daughter of mix 58)
+*     96 : UOX40_zone_3_pin_12 (daughter of mix 58)
+*     95 : UOX40_zone_4_pin_12 (daughter of mix 58)
+*     46 : UOX44Gd6_zone_1_pin_13 (generating)
+*     45 : UOX44Gd6_zone_2_pin_13 (daughter of mix 46)
+*     44 : UOX44Gd6_zone_3_pin_13 (daughter of mix 46)
+*     43 : UOX44Gd6_zone_4_pin_13 (daughter of mix 46)
+*     42 : UOX44Gd6_zone_5_pin_13 (daughter of mix 46)
+*     41 : UOX44Gd6_zone_6_pin_13 (daughter of mix 46)
+*    142 : UOX49_zone_1_pin_14 (daughter of mix 54)
+*    141 : UOX49_zone_2_pin_14 (daughter of mix 54)
+*    140 : UOX49_zone_3_pin_14 (daughter of mix 54)
+*    139 : UOX49_zone_4_pin_14 (daughter of mix 54)
+*    164 : UOX49_zone_1_pin_15 (daughter of mix 54)
+*    163 : UOX49_zone_2_pin_15 (daughter of mix 54)
+*    162 : UOX49_zone_3_pin_15 (daughter of mix 54)
+*    161 : UOX49_zone_4_pin_15 (daughter of mix 54)
+*     40 : UOX49Gd8_zone_1_pin_16 (generating)
+*     39 : UOX49Gd8_zone_2_pin_16 (daughter of mix 40)
+*     38 : UOX49Gd8_zone_3_pin_16 (daughter of mix 40)
+*     37 : UOX49Gd8_zone_4_pin_16 (daughter of mix 40)
+*     36 : UOX49Gd8_zone_5_pin_16 (daughter of mix 40)
+*     35 : UOX49Gd8_zone_6_pin_16 (daughter of mix 40)
+*    196 : UOX49_zone_1_pin_17 (daughter of mix 54)
+*    195 : UOX49_zone_2_pin_17 (daughter of mix 54)
+*    194 : UOX49_zone_3_pin_17 (daughter of mix 54)
+*    193 : UOX49_zone_4_pin_17 (daughter of mix 54)
+*    216 : UOX49Gd8_zone_1_pin_18 (daughter of mix 40)
+*    215 : UOX49Gd8_zone_2_pin_18 (daughter of mix 40)
+*    214 : UOX49Gd8_zone_3_pin_18 (daughter of mix 40)
+*    213 : UOX49Gd8_zone_4_pin_18 (daughter of mix 40)
+*    212 : UOX49Gd8_zone_5_pin_18 (daughter of mix 40)
+*    211 : UOX49Gd8_zone_6_pin_18 (daughter of mix 40)
+*    228 : UOX49_zone_1_pin_19 (daughter of mix 54)
+*    227 : UOX49_zone_2_pin_19 (daughter of mix 54)
+*    226 : UOX49_zone_3_pin_19 (daughter of mix 54)
+*    225 : UOX49_zone_4_pin_19 (daughter of mix 54)
+*     70 : UOX40_zone_1_pin_20 (daughter of mix 58)
+*     69 : UOX40_zone_2_pin_20 (daughter of mix 58)
+*     68 : UOX40_zone_3_pin_20 (daughter of mix 58)
+*     67 : UOX40_zone_4_pin_20 (daughter of mix 58)
+*    104 : UOX44Gd6_zone_1_pin_21 (daughter of mix 46)
+*    103 : UOX44Gd6_zone_2_pin_21 (daughter of mix 46)
+*    102 : UOX44Gd6_zone_3_pin_21 (daughter of mix 46)
+*    101 : UOX44Gd6_zone_4_pin_21 (daughter of mix 46)
+*    100 : UOX44Gd6_zone_5_pin_21 (daughter of mix 46)
+*     99 : UOX44Gd6_zone_6_pin_21 (daughter of mix 46)
+*     34 : UOX44_zone_1_pin_22 (generating)
+*     33 : UOX44_zone_2_pin_22 (daughter of mix 34)
+*     32 : UOX44_zone_3_pin_22 (daughter of mix 34)
+*     31 : UOX44_zone_4_pin_22 (daughter of mix 34)
+*    146 : UOX49_zone_1_pin_23 (daughter of mix 54)
+*    145 : UOX49_zone_2_pin_23 (daughter of mix 54)
+*    144 : UOX49_zone_3_pin_23 (daughter of mix 54)
+*    143 : UOX49_zone_4_pin_23 (daughter of mix 54)
+*    168 : UOX49_zone_1_pin_24 (daughter of mix 54)
+*    167 : UOX49_zone_2_pin_24 (daughter of mix 54)
+*    166 : UOX49_zone_3_pin_24 (daughter of mix 54)
+*    165 : UOX49_zone_4_pin_24 (daughter of mix 54)
+*    180 : UOX49_zone_1_pin_25 (daughter of mix 54)
+*    179 : UOX49_zone_2_pin_25 (daughter of mix 54)
+*    178 : UOX49_zone_3_pin_25 (daughter of mix 54)
+*    177 : UOX49_zone_4_pin_25 (daughter of mix 54)
+*    202 : UOX49Gd8_zone_1_pin_26 (daughter of mix 40)
+*    201 : UOX49Gd8_zone_2_pin_26 (daughter of mix 40)
+*    200 : UOX49Gd8_zone_3_pin_26 (daughter of mix 40)
+*    199 : UOX49Gd8_zone_4_pin_26 (daughter of mix 40)
+*    198 : UOX49Gd8_zone_5_pin_26 (daughter of mix 40)
+*    197 : UOX49Gd8_zone_6_pin_26 (daughter of mix 40)
+*    220 : UOX49_zone_1_pin_27 (daughter of mix 54)
+*    219 : UOX49_zone_2_pin_27 (daughter of mix 54)
+*    218 : UOX49_zone_3_pin_27 (daughter of mix 54)
+*    217 : UOX49_zone_4_pin_27 (daughter of mix 54)
+*     74 : UOX40_zone_1_pin_28 (daughter of mix 58)
+*     73 : UOX40_zone_2_pin_28 (daughter of mix 58)
+*     72 : UOX40_zone_3_pin_28 (daughter of mix 58)
+*     71 : UOX40_zone_4_pin_28 (daughter of mix 58)
+*    108 : UOX40_zone_1_pin_29 (daughter of mix 58)
+*    107 : UOX40_zone_2_pin_29 (daughter of mix 58)
+*    106 : UOX40_zone_3_pin_29 (daughter of mix 58)
+*    105 : UOX40_zone_4_pin_29 (daughter of mix 58)
+*    126 : UOX44Gd6_zone_1_pin_30 (daughter of mix 46)
+*    125 : UOX44Gd6_zone_2_pin_30 (daughter of mix 46)
+*    124 : UOX44Gd6_zone_3_pin_30 (daughter of mix 46)
+*    123 : UOX44Gd6_zone_4_pin_30 (daughter of mix 46)
+*    122 : UOX44Gd6_zone_5_pin_30 (daughter of mix 46)
+*    121 : UOX44Gd6_zone_6_pin_30 (daughter of mix 46)
+*    184 : UOX49_zone_1_pin_31 (daughter of mix 54)
+*    183 : UOX49_zone_2_pin_31 (daughter of mix 54)
+*    182 : UOX49_zone_3_pin_31 (daughter of mix 54)
+*    181 : UOX49_zone_4_pin_31 (daughter of mix 54)
+*    206 : UOX49_zone_1_pin_32 (daughter of mix 54)
+*    205 : UOX49_zone_2_pin_32 (daughter of mix 54)
+*    204 : UOX49_zone_3_pin_32 (daughter of mix 54)
+*    203 : UOX49_zone_4_pin_32 (daughter of mix 54)
+*     78 : UOX40_zone_1_pin_33 (daughter of mix 58)
+*     77 : UOX40_zone_2_pin_33 (daughter of mix 58)
+*     76 : UOX40_zone_3_pin_33 (daughter of mix 58)
+*     75 : UOX40_zone_4_pin_33 (daughter of mix 58)
+*     30 : UOX40Gd8_zone_1_pin_34 (generating)
+*     29 : UOX40Gd8_zone_2_pin_34 (daughter of mix 30)
+*     28 : UOX40Gd8_zone_3_pin_34 (daughter of mix 30)
+*     27 : UOX40Gd8_zone_4_pin_34 (daughter of mix 30)
+*     26 : UOX40Gd8_zone_5_pin_34 (daughter of mix 30)
+*     25 : UOX40Gd8_zone_6_pin_34 (daughter of mix 30)
+*    130 : UOX44_zone_1_pin_35 (daughter of mix 34)
+*    129 : UOX44_zone_2_pin_35 (daughter of mix 34)
+*    128 : UOX44_zone_3_pin_35 (daughter of mix 34)
+*    127 : UOX44_zone_4_pin_35 (daughter of mix 34)
+*    188 : UOX49_zone_1_pin_36 (daughter of mix 54)
+*    187 : UOX49_zone_2_pin_36 (daughter of mix 54)
+*    186 : UOX49_zone_3_pin_36 (daughter of mix 54)
+*    185 : UOX49_zone_4_pin_36 (daughter of mix 54)
+*     82 : UOX40_zone_1_pin_37 (daughter of mix 58)
+*     81 : UOX40_zone_2_pin_37 (daughter of mix 58)
+*     80 : UOX40_zone_3_pin_37 (daughter of mix 58)
+*     79 : UOX40_zone_4_pin_37 (daughter of mix 58)
+*     24 : UOX36_zone_1_pin_38 (generating)
+*     23 : UOX36_zone_2_pin_38 (daughter of mix 24)
+*     22 : UOX36_zone_3_pin_38 (daughter of mix 24)
+*     21 : UOX36_zone_4_pin_38 (daughter of mix 24)
+*     20 : UOX49Gd6_zone_1_pin_39 (generating)
+*     19 : UOX49Gd6_zone_2_pin_39 (daughter of mix 20)
+*     18 : UOX49Gd6_zone_3_pin_39 (daughter of mix 20)
+*     17 : UOX49Gd6_zone_4_pin_39 (daughter of mix 20)
+*     16 : UOX49Gd6_zone_5_pin_39 (daughter of mix 20)
+*     15 : UOX49Gd6_zone_6_pin_39 (daughter of mix 20)
+*    150 : UOX40_zone_1_pin_40 (daughter of mix 58)
+*    149 : UOX40_zone_2_pin_40 (daughter of mix 58)
+*    148 : UOX40_zone_3_pin_40 (daughter of mix 58)
+*    147 : UOX40_zone_4_pin_40 (daughter of mix 58)
+*    172 : UOX49_zone_1_pin_41 (daughter of mix 54)
+*    171 : UOX49_zone_2_pin_41 (daughter of mix 54)
+*    170 : UOX49_zone_3_pin_41 (daughter of mix 54)
+*    169 : UOX49_zone_4_pin_41 (daughter of mix 54)
+*     86 : UOX40_zone_1_pin_42 (daughter of mix 58)
+*     85 : UOX40_zone_2_pin_42 (daughter of mix 58)
+*     84 : UOX40_zone_3_pin_42 (daughter of mix 58)
+*     83 : UOX40_zone_4_pin_42 (daughter of mix 58)
+*    112 : UOX40_zone_1_pin_43 (daughter of mix 58)
+*    111 : UOX40_zone_2_pin_43 (daughter of mix 58)
+*    110 : UOX40_zone_3_pin_43 (daughter of mix 58)
+*    109 : UOX40_zone_4_pin_43 (daughter of mix 58)
+*    134 : UOX44_zone_1_pin_44 (daughter of mix 34)
+*    133 : UOX44_zone_2_pin_44 (daughter of mix 34)
+*    132 : UOX44_zone_3_pin_44 (daughter of mix 34)
+*    131 : UOX44_zone_4_pin_44 (daughter of mix 34)
+*    156 : UOX49Gd8_zone_1_pin_45 (daughter of mix 40)
+*    155 : UOX49Gd8_zone_2_pin_45 (daughter of mix 40)
+*    154 : UOX49Gd8_zone_3_pin_45 (daughter of mix 40)
+*    153 : UOX49Gd8_zone_4_pin_45 (daughter of mix 40)
+*    152 : UOX49Gd8_zone_5_pin_45 (daughter of mix 40)
+*    151 : UOX49Gd8_zone_6_pin_45 (daughter of mix 40)
+*     90 : UOX32_zone_1_pin_46 (daughter of mix 50)
+*     89 : UOX32_zone_2_pin_46 (daughter of mix 50)
+*     88 : UOX32_zone_3_pin_46 (daughter of mix 50)
+*     87 : UOX32_zone_4_pin_46 (daughter of mix 50)
+*    116 : UOX32_zone_1_pin_47 (daughter of mix 50)
+*    115 : UOX32_zone_2_pin_47 (daughter of mix 50)
+*    114 : UOX32_zone_3_pin_47 (daughter of mix 50)
+*    113 : UOX32_zone_4_pin_47 (daughter of mix 50)
+*     14 : UOX44Gd3_zone_1_pin_48 (generating)
+*     13 : UOX44Gd3_zone_2_pin_48 (daughter of mix 14)
+*     12 : UOX44Gd3_zone_3_pin_48 (daughter of mix 14)
+*     11 : UOX44Gd3_zone_4_pin_48 (daughter of mix 14)
+*     10 : UOX44Gd3_zone_5_pin_48 (daughter of mix 14)
+*      9 : UOX44Gd3_zone_6_pin_48 (daughter of mix 14)
+*     94 : UOX28_zone_1_pin_49 (daughter of mix 62)
+*     93 : UOX28_zone_2_pin_49 (daughter of mix 62)
+*     92 : UOX28_zone_3_pin_49 (daughter of mix 62)
+*     91 : UOX28_zone_4_pin_49 (daughter of mix 62)
+*    120 : UOX28_zone_1_pin_50 (daughter of mix 62)
+*    119 : UOX28_zone_2_pin_50 (daughter of mix 62)
+*    118 : UOX28_zone_3_pin_50 (daughter of mix 62)
+*    117 : UOX28_zone_4_pin_50 (daughter of mix 62)
+*      8 : UOX16_zone_1_pin_51 (generating)
+*      7 : UOX16_zone_2_pin_51 (daughter of mix 8)
+*      6 : UOX16_zone_3_pin_51 (daughter of mix 8)
+*      5 : UOX16_zone_4_pin_51 (daughter of mix 8)
 * -- Non-fuel mixes --
 *      1 : COOLANT
 *      2 : CLAD
@@ -270,31 +270,31 @@ ANIS <<anis_level>>
 CTRA <<tran_correc>>
 DEPL LIB: DRAGON FIL: <<Library>>
 MIXS LIB: DRAGON FIL: <<Library>>
-    MIX 8 <<TFUEL>> 
+    MIX 62 <<TFUEL>> 
     U235 = U235 6.57669E-04 1
     U234 = U234 5.87834E-06 1
     U236 = U236 3.01244E-06 1
     U238 = U238 2.25334E-02 1
     O16 = O16 4.63999E-02
-    MIX 48 <<TFUEL>> 
+    MIX 58 <<TFUEL>> 
     U235 = U235 9.27767E-04 1
     U234 = U234 8.29251E-06 1
     U236 = U236 4.24962E-06 1
     U238 = U238 2.22627E-02 1
     O16 = O16 4.64060E-02
-    MIX 88 <<TFUEL>> 
+    MIX 54 <<TFUEL>> 
     U235 = U235 1.15088E-03 1
     U234 = U234 1.02868E-05 1
     U236 = U236 5.27160E-06 1
     U238 = U238 2.20391E-02 1
     O16 = O16 4.64110E-02
-    MIX 228 <<TFUEL>> 
+    MIX 50 <<TFUEL>> 
     U235 = U235 7.51617E-04 1
     U234 = U234 6.71806E-06 1
     U236 = U236 3.44277E-06 1
     U238 = U238 2.24392E-02 1
     O16 = O16 4.64020E-02
-    MIX 94 <<TFUEL>> 
+    MIX 46 <<TFUEL>> 
     U235 = U235 9.51832E-04 1
     U234 = U234 8.50761E-06 1
     U236 = U236 4.35984E-06 1
@@ -307,7 +307,7 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 5.04618E-04 1
     Gd160 = Gd160 4.44081E-04 1
     O16 = O16 4.57902E-02
-    MIX 172 <<TFUEL>> 
+    MIX 40 <<TFUEL>> 
     U235 = U235 1.03743E-03 1
     U234 = U234 9.27273E-06 1
     U236 = U236 4.75194E-06 1
@@ -320,13 +320,13 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 6.72824E-04 1
     Gd160 = Gd160 5.92108E-04 1
     O16 = O16 4.58989E-02
-    MIX 98 <<TFUEL>> 
+    MIX 34 <<TFUEL>> 
     U235 = U235 1.03345E-03 1
     U234 = U234 9.23716E-06 1
     U236 = U236 4.73372E-06 1
     U238 = U238 2.21568E-02 1
     O16 = O16 4.64084E-02
-    MIX 68 <<TFUEL>> 
+    MIX 30 <<TFUEL>> 
     U235 = U235 8.36310E-04 1
     U234 = U234 7.47506E-06 1
     U236 = U236 3.83070E-06 1
@@ -339,13 +339,13 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 6.72824E-04 1
     Gd160 = Gd160 5.92108E-04 1
     O16 = O16 4.58944E-02
-    MIX 72 <<TFUEL>> 
+    MIX 24 <<TFUEL>> 
     U235 = U235 8.45564E-04 1
     U234 = U234 7.55777E-06 1
     U236 = U236 3.87309E-06 1
     U238 = U238 2.23451E-02 1
     O16 = O16 4.64041E-02
-    MIX 114 <<TFUEL>> 
+    MIX 20 <<TFUEL>> 
     U235 = U235 1.05999E-03 1
     U234 = U234 9.47431E-06 1
     U236 = U236 4.85524E-06 1
@@ -358,7 +358,7 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 5.04618E-04 1
     Gd160 = Gd160 4.44081E-04 1
     O16 = O16 4.57926E-02
-    MIX 124 <<TFUEL>> 
+    MIX 14 <<TFUEL>> 
     U235 = U235 9.82209E-04 1
     U234 = U234 8.77913E-06 1
     U236 = U236 4.49899E-06 1
@@ -371,224 +371,224 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 2.52309E-04 1
     Gd160 = Gd160 2.22041E-04 1
     O16 = O16 4.56307E-02
-    MIX 44 <<TFUEL>> 
+    MIX 8 <<TFUEL>> 
     U235 = U235 3.75818E-04 1
     U234 = U234 3.35911E-06 1
     U236 = U236 1.72143E-06 1
     U238 = U238 2.28158E-02 1
     O16 = O16 4.63935E-02
+    MIX 61 COMB 62 1.0
+    MIX 60 COMB 62 1.0
+    MIX 59 COMB 62 1.0
+    MIX 57 COMB 58 1.0
+    MIX 56 COMB 58 1.0
+    MIX 55 COMB 58 1.0
+    MIX 53 COMB 54 1.0
+    MIX 52 COMB 54 1.0
+    MIX 51 COMB 54 1.0
+    MIX 138 COMB 54 1.0
+    MIX 137 COMB 54 1.0
+    MIX 136 COMB 54 1.0
+    MIX 135 COMB 54 1.0
+    MIX 160 COMB 54 1.0
+    MIX 159 COMB 54 1.0
+    MIX 158 COMB 54 1.0
+    MIX 157 COMB 54 1.0
+    MIX 176 COMB 54 1.0
+    MIX 175 COMB 54 1.0
+    MIX 174 COMB 54 1.0
+    MIX 173 COMB 54 1.0
+    MIX 192 COMB 54 1.0
+    MIX 191 COMB 54 1.0
+    MIX 190 COMB 54 1.0
+    MIX 189 COMB 54 1.0
+    MIX 210 COMB 54 1.0
+    MIX 209 COMB 54 1.0
+    MIX 208 COMB 54 1.0
+    MIX 207 COMB 54 1.0
+    MIX 224 COMB 54 1.0
+    MIX 223 COMB 54 1.0
+    MIX 222 COMB 54 1.0
+    MIX 221 COMB 54 1.0
+    MIX 49 COMB 50 1.0
+    MIX 48 COMB 50 1.0
+    MIX 47 COMB 50 1.0
+    MIX 66 COMB 58 1.0
+    MIX 65 COMB 58 1.0
+    MIX 64 COMB 58 1.0
+    MIX 63 COMB 58 1.0
+    MIX 98 COMB 58 1.0
+    MIX 97 COMB 58 1.0
+    MIX 96 COMB 58 1.0
+    MIX 95 COMB 58 1.0
+    MIX 45 COMB 46 1.0
+    MIX 44 COMB 46 1.0
+    MIX 43 COMB 46 1.0
+    MIX 42 COMB 46 1.0
+    MIX 41 COMB 46 1.0
+    MIX 142 COMB 54 1.0
+    MIX 141 COMB 54 1.0
+    MIX 140 COMB 54 1.0
+    MIX 139 COMB 54 1.0
+    MIX 164 COMB 54 1.0
+    MIX 163 COMB 54 1.0
+    MIX 162 COMB 54 1.0
+    MIX 161 COMB 54 1.0
+    MIX 39 COMB 40 1.0
+    MIX 38 COMB 40 1.0
+    MIX 37 COMB 40 1.0
+    MIX 36 COMB 40 1.0
+    MIX 35 COMB 40 1.0
+    MIX 196 COMB 54 1.0
+    MIX 195 COMB 54 1.0
+    MIX 194 COMB 54 1.0
+    MIX 193 COMB 54 1.0
+    MIX 216 COMB 40 1.0
+    MIX 215 COMB 40 1.0
+    MIX 214 COMB 40 1.0
+    MIX 213 COMB 40 1.0
+    MIX 212 COMB 40 1.0
+    MIX 211 COMB 40 1.0
+    MIX 228 COMB 54 1.0
+    MIX 227 COMB 54 1.0
+    MIX 226 COMB 54 1.0
+    MIX 225 COMB 54 1.0
+    MIX 70 COMB 58 1.0
+    MIX 69 COMB 58 1.0
+    MIX 68 COMB 58 1.0
+    MIX 67 COMB 58 1.0
+    MIX 104 COMB 46 1.0
+    MIX 103 COMB 46 1.0
+    MIX 102 COMB 46 1.0
+    MIX 101 COMB 46 1.0
+    MIX 100 COMB 46 1.0
+    MIX 99 COMB 46 1.0
+    MIX 33 COMB 34 1.0
+    MIX 32 COMB 34 1.0
+    MIX 31 COMB 34 1.0
+    MIX 146 COMB 54 1.0
+    MIX 145 COMB 54 1.0
+    MIX 144 COMB 54 1.0
+    MIX 143 COMB 54 1.0
+    MIX 168 COMB 54 1.0
+    MIX 167 COMB 54 1.0
+    MIX 166 COMB 54 1.0
+    MIX 165 COMB 54 1.0
+    MIX 180 COMB 54 1.0
+    MIX 179 COMB 54 1.0
+    MIX 178 COMB 54 1.0
+    MIX 177 COMB 54 1.0
+    MIX 202 COMB 40 1.0
+    MIX 201 COMB 40 1.0
+    MIX 200 COMB 40 1.0
+    MIX 199 COMB 40 1.0
+    MIX 198 COMB 40 1.0
+    MIX 197 COMB 40 1.0
+    MIX 220 COMB 54 1.0
+    MIX 219 COMB 54 1.0
+    MIX 218 COMB 54 1.0
+    MIX 217 COMB 54 1.0
+    MIX 74 COMB 58 1.0
+    MIX 73 COMB 58 1.0
+    MIX 72 COMB 58 1.0
+    MIX 71 COMB 58 1.0
+    MIX 108 COMB 58 1.0
+    MIX 107 COMB 58 1.0
+    MIX 106 COMB 58 1.0
+    MIX 105 COMB 58 1.0
+    MIX 126 COMB 46 1.0
+    MIX 125 COMB 46 1.0
+    MIX 124 COMB 46 1.0
+    MIX 123 COMB 46 1.0
+    MIX 122 COMB 46 1.0
+    MIX 121 COMB 46 1.0
+    MIX 184 COMB 54 1.0
+    MIX 183 COMB 54 1.0
+    MIX 182 COMB 54 1.0
+    MIX 181 COMB 54 1.0
+    MIX 206 COMB 54 1.0
+    MIX 205 COMB 54 1.0
+    MIX 204 COMB 54 1.0
+    MIX 203 COMB 54 1.0
+    MIX 78 COMB 58 1.0
+    MIX 77 COMB 58 1.0
+    MIX 76 COMB 58 1.0
+    MIX 75 COMB 58 1.0
+    MIX 29 COMB 30 1.0
+    MIX 28 COMB 30 1.0
+    MIX 27 COMB 30 1.0
+    MIX 26 COMB 30 1.0
+    MIX 25 COMB 30 1.0
+    MIX 130 COMB 34 1.0
+    MIX 129 COMB 34 1.0
+    MIX 128 COMB 34 1.0
+    MIX 127 COMB 34 1.0
+    MIX 188 COMB 54 1.0
+    MIX 187 COMB 54 1.0
+    MIX 186 COMB 54 1.0
+    MIX 185 COMB 54 1.0
+    MIX 82 COMB 58 1.0
+    MIX 81 COMB 58 1.0
+    MIX 80 COMB 58 1.0
+    MIX 79 COMB 58 1.0
+    MIX 23 COMB 24 1.0
+    MIX 22 COMB 24 1.0
+    MIX 21 COMB 24 1.0
+    MIX 19 COMB 20 1.0
+    MIX 18 COMB 20 1.0
+    MIX 17 COMB 20 1.0
+    MIX 16 COMB 20 1.0
+    MIX 15 COMB 20 1.0
+    MIX 150 COMB 58 1.0
+    MIX 149 COMB 58 1.0
+    MIX 148 COMB 58 1.0
+    MIX 147 COMB 58 1.0
+    MIX 172 COMB 54 1.0
+    MIX 171 COMB 54 1.0
+    MIX 170 COMB 54 1.0
+    MIX 169 COMB 54 1.0
+    MIX 86 COMB 58 1.0
+    MIX 85 COMB 58 1.0
+    MIX 84 COMB 58 1.0
+    MIX 83 COMB 58 1.0
+    MIX 112 COMB 58 1.0
+    MIX 111 COMB 58 1.0
+    MIX 110 COMB 58 1.0
+    MIX 109 COMB 58 1.0
+    MIX 134 COMB 34 1.0
+    MIX 133 COMB 34 1.0
+    MIX 132 COMB 34 1.0
+    MIX 131 COMB 34 1.0
+    MIX 156 COMB 40 1.0
+    MIX 155 COMB 40 1.0
+    MIX 154 COMB 40 1.0
+    MIX 153 COMB 40 1.0
+    MIX 152 COMB 40 1.0
+    MIX 151 COMB 40 1.0
+    MIX 90 COMB 50 1.0
+    MIX 89 COMB 50 1.0
+    MIX 88 COMB 50 1.0
+    MIX 87 COMB 50 1.0
+    MIX 116 COMB 50 1.0
+    MIX 115 COMB 50 1.0
+    MIX 114 COMB 50 1.0
+    MIX 113 COMB 50 1.0
+    MIX 13 COMB 14 1.0
+    MIX 12 COMB 14 1.0
+    MIX 11 COMB 14 1.0
+    MIX 10 COMB 14 1.0
+    MIX 9 COMB 14 1.0
+    MIX 94 COMB 62 1.0
+    MIX 93 COMB 62 1.0
+    MIX 92 COMB 62 1.0
+    MIX 91 COMB 62 1.0
+    MIX 120 COMB 62 1.0
+    MIX 119 COMB 62 1.0
+    MIX 118 COMB 62 1.0
+    MIX 117 COMB 62 1.0
     MIX 7 COMB 8 1.0
     MIX 6 COMB 8 1.0
     MIX 5 COMB 8 1.0
-    MIX 47 COMB 48 1.0
-    MIX 46 COMB 48 1.0
-    MIX 45 COMB 48 1.0
-    MIX 87 COMB 88 1.0
-    MIX 86 COMB 88 1.0
-    MIX 85 COMB 88 1.0
-    MIX 128 COMB 88 1.0
-    MIX 127 COMB 88 1.0
-    MIX 126 COMB 88 1.0
-    MIX 125 COMB 88 1.0
-    MIX 150 COMB 88 1.0
-    MIX 149 COMB 88 1.0
-    MIX 148 COMB 88 1.0
-    MIX 147 COMB 88 1.0
-    MIX 166 COMB 88 1.0
-    MIX 165 COMB 88 1.0
-    MIX 164 COMB 88 1.0
-    MIX 163 COMB 88 1.0
-    MIX 188 COMB 88 1.0
-    MIX 187 COMB 88 1.0
-    MIX 186 COMB 88 1.0
-    MIX 185 COMB 88 1.0
-    MIX 206 COMB 88 1.0
-    MIX 205 COMB 88 1.0
-    MIX 204 COMB 88 1.0
-    MIX 203 COMB 88 1.0
-    MIX 220 COMB 88 1.0
-    MIX 219 COMB 88 1.0
-    MIX 218 COMB 88 1.0
-    MIX 217 COMB 88 1.0
-    MIX 227 COMB 228 1.0
-    MIX 226 COMB 228 1.0
-    MIX 225 COMB 228 1.0
-    MIX 12 COMB 48 1.0
-    MIX 11 COMB 48 1.0
-    MIX 10 COMB 48 1.0
-    MIX 9 COMB 48 1.0
-    MIX 52 COMB 48 1.0
-    MIX 51 COMB 48 1.0
-    MIX 50 COMB 48 1.0
-    MIX 49 COMB 48 1.0
-    MIX 93 COMB 94 1.0
-    MIX 92 COMB 94 1.0
-    MIX 91 COMB 94 1.0
-    MIX 90 COMB 94 1.0
-    MIX 89 COMB 94 1.0
-    MIX 132 COMB 88 1.0
-    MIX 131 COMB 88 1.0
-    MIX 130 COMB 88 1.0
-    MIX 129 COMB 88 1.0
-    MIX 154 COMB 88 1.0
-    MIX 153 COMB 88 1.0
-    MIX 152 COMB 88 1.0
-    MIX 151 COMB 88 1.0
-    MIX 171 COMB 172 1.0
-    MIX 170 COMB 172 1.0
-    MIX 169 COMB 172 1.0
-    MIX 168 COMB 172 1.0
-    MIX 167 COMB 172 1.0
-    MIX 192 COMB 88 1.0
-    MIX 191 COMB 88 1.0
-    MIX 190 COMB 88 1.0
-    MIX 189 COMB 88 1.0
-    MIX 212 COMB 172 1.0
-    MIX 211 COMB 172 1.0
-    MIX 210 COMB 172 1.0
-    MIX 209 COMB 172 1.0
-    MIX 208 COMB 172 1.0
-    MIX 207 COMB 172 1.0
-    MIX 224 COMB 88 1.0
-    MIX 223 COMB 88 1.0
-    MIX 222 COMB 88 1.0
-    MIX 221 COMB 88 1.0
-    MIX 16 COMB 48 1.0
-    MIX 15 COMB 48 1.0
-    MIX 14 COMB 48 1.0
-    MIX 13 COMB 48 1.0
-    MIX 58 COMB 94 1.0
-    MIX 57 COMB 94 1.0
-    MIX 56 COMB 94 1.0
-    MIX 55 COMB 94 1.0
-    MIX 54 COMB 94 1.0
-    MIX 53 COMB 94 1.0
-    MIX 97 COMB 98 1.0
-    MIX 96 COMB 98 1.0
-    MIX 95 COMB 98 1.0
-    MIX 136 COMB 88 1.0
-    MIX 135 COMB 88 1.0
-    MIX 134 COMB 88 1.0
-    MIX 133 COMB 88 1.0
-    MIX 158 COMB 88 1.0
-    MIX 157 COMB 88 1.0
-    MIX 156 COMB 88 1.0
-    MIX 155 COMB 88 1.0
-    MIX 176 COMB 88 1.0
-    MIX 175 COMB 88 1.0
-    MIX 174 COMB 88 1.0
-    MIX 173 COMB 88 1.0
-    MIX 198 COMB 172 1.0
-    MIX 197 COMB 172 1.0
-    MIX 196 COMB 172 1.0
-    MIX 195 COMB 172 1.0
-    MIX 194 COMB 172 1.0
-    MIX 193 COMB 172 1.0
-    MIX 216 COMB 88 1.0
-    MIX 215 COMB 88 1.0
-    MIX 214 COMB 88 1.0
-    MIX 213 COMB 88 1.0
-    MIX 20 COMB 48 1.0
-    MIX 19 COMB 48 1.0
-    MIX 18 COMB 48 1.0
-    MIX 17 COMB 48 1.0
-    MIX 62 COMB 48 1.0
-    MIX 61 COMB 48 1.0
-    MIX 60 COMB 48 1.0
-    MIX 59 COMB 48 1.0
-    MIX 104 COMB 94 1.0
-    MIX 103 COMB 94 1.0
-    MIX 102 COMB 94 1.0
-    MIX 101 COMB 94 1.0
-    MIX 100 COMB 94 1.0
-    MIX 99 COMB 94 1.0
-    MIX 180 COMB 88 1.0
-    MIX 179 COMB 88 1.0
-    MIX 178 COMB 88 1.0
-    MIX 177 COMB 88 1.0
-    MIX 202 COMB 88 1.0
-    MIX 201 COMB 88 1.0
-    MIX 200 COMB 88 1.0
-    MIX 199 COMB 88 1.0
-    MIX 24 COMB 48 1.0
-    MIX 23 COMB 48 1.0
-    MIX 22 COMB 48 1.0
-    MIX 21 COMB 48 1.0
-    MIX 67 COMB 68 1.0
-    MIX 66 COMB 68 1.0
-    MIX 65 COMB 68 1.0
-    MIX 64 COMB 68 1.0
-    MIX 63 COMB 68 1.0
-    MIX 108 COMB 98 1.0
-    MIX 107 COMB 98 1.0
-    MIX 106 COMB 98 1.0
-    MIX 105 COMB 98 1.0
-    MIX 184 COMB 88 1.0
-    MIX 183 COMB 88 1.0
-    MIX 182 COMB 88 1.0
-    MIX 181 COMB 88 1.0
-    MIX 28 COMB 48 1.0
-    MIX 27 COMB 48 1.0
-    MIX 26 COMB 48 1.0
-    MIX 25 COMB 48 1.0
-    MIX 71 COMB 72 1.0
-    MIX 70 COMB 72 1.0
-    MIX 69 COMB 72 1.0
-    MIX 113 COMB 114 1.0
-    MIX 112 COMB 114 1.0
-    MIX 111 COMB 114 1.0
-    MIX 110 COMB 114 1.0
-    MIX 109 COMB 114 1.0
-    MIX 140 COMB 48 1.0
-    MIX 139 COMB 48 1.0
-    MIX 138 COMB 48 1.0
-    MIX 137 COMB 48 1.0
-    MIX 162 COMB 88 1.0
-    MIX 161 COMB 88 1.0
-    MIX 160 COMB 88 1.0
-    MIX 159 COMB 88 1.0
-    MIX 32 COMB 48 1.0
-    MIX 31 COMB 48 1.0
-    MIX 30 COMB 48 1.0
-    MIX 29 COMB 48 1.0
-    MIX 76 COMB 48 1.0
-    MIX 75 COMB 48 1.0
-    MIX 74 COMB 48 1.0
-    MIX 73 COMB 48 1.0
-    MIX 118 COMB 98 1.0
-    MIX 117 COMB 98 1.0
-    MIX 116 COMB 98 1.0
-    MIX 115 COMB 98 1.0
-    MIX 146 COMB 172 1.0
-    MIX 145 COMB 172 1.0
-    MIX 144 COMB 172 1.0
-    MIX 143 COMB 172 1.0
-    MIX 142 COMB 172 1.0
-    MIX 141 COMB 172 1.0
-    MIX 36 COMB 228 1.0
-    MIX 35 COMB 228 1.0
-    MIX 34 COMB 228 1.0
-    MIX 33 COMB 228 1.0
-    MIX 80 COMB 228 1.0
-    MIX 79 COMB 228 1.0
-    MIX 78 COMB 228 1.0
-    MIX 77 COMB 228 1.0
-    MIX 123 COMB 124 1.0
-    MIX 122 COMB 124 1.0
-    MIX 121 COMB 124 1.0
-    MIX 120 COMB 124 1.0
-    MIX 119 COMB 124 1.0
-    MIX 40 COMB 8 1.0
-    MIX 39 COMB 8 1.0
-    MIX 38 COMB 8 1.0
-    MIX 37 COMB 8 1.0
-    MIX 84 COMB 8 1.0
-    MIX 83 COMB 8 1.0
-    MIX 82 COMB 8 1.0
-    MIX 81 COMB 8 1.0
-    MIX 43 COMB 44 1.0
-    MIX 42 COMB 44 1.0
-    MIX 41 COMB 44 1.0
     MIX 1 <<TCOOL>> NOEV
     H1 = H1_H2O 4.92650E-02
     O16 = O16 2.46325E-02

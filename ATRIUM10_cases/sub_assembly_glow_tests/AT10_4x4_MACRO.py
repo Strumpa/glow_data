@@ -190,9 +190,11 @@ lattice = Lattice([cell1], 'ATRIUM-10 4x4 - MACROS', center=(0.0, 0.0, 0.0))
 
 """
 # First row
+#lattice.add_cell(cell1, ((1/2)*pitch, (1/2)*pitch, 0.0))
 lattice.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
 lattice.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
 lattice.add_cell(cell4, ((7/2)*pitch, (1/2)*pitch, 0.0))
+
 # Second row
 lattice.add_cell(cell5, ((1/2)*pitch, (3/2)*pitch, 0.0))
 lattice.add_cell(cell6, ((3/2)*pitch, (3/2)*pitch, 0.0))

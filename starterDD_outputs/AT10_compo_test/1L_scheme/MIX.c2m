@@ -29,10 +29,10 @@ MODULE  LIB: UTL: DELETE: END: ABORT: ;
 *    MIX INDEX ASSIGNMENTS
 * --------------------------------
 * -- Fuel mixes --
-*      7 : 24UOX_zone1_pin1 (generating)
-*      6 : 24UOX_zone2_pin1 (daughter of mix 7)
-*      5 : 24UOX_zone3_pin1 (daughter of mix 7)
-*      4 : 24UOX_zone4_pin1 (daughter of mix 7)
+*      7 : 24UOX_zone_1_pin_1 (generating)
+*      6 : 24UOX_zone_2_pin_1 (daughter of mix 7)
+*      5 : 24UOX_zone_3_pin_1 (daughter of mix 7)
+*      4 : 24UOX_zone_4_pin_1 (daughter of mix 7)
 * -- Non-fuel mixes --
 *      1 : COOLANT
 *      2 : CLAD
