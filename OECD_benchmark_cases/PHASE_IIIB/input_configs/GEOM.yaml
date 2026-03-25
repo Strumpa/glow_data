@@ -1,0 +1,34 @@
+# DRAGON/GLOW geometry description for the OECD Phase IIIB Burnup Credit Criticality Benchmarks.
+# Burnup Calculations of BWR Fuel Assemblies for Storage and Transport
+
+PIN_GEOMETRY:
+  fuel_radius: 0.529
+  clad_radius: 0.615 # Issue here : no GAP in OECD IIIB benchmark, need to treat this case where gap_radius = clad_radius and no material is assigned to the gap region.
+  pin_pitch: 1.63
+  self_shielding_option: "Santamarina"
+
+ASSEMBLY_GEOMETRY:
+  lattice_type: "Cartesian"
+  reactor_type: "BWR"
+  lattice_description:
+    - ["ROD4", "ROD3", "ROD2", "ROD2", "ROD2", "ROD2", "ROD3", "ROD4"]
+    - ["ROD3", "ROD2", "RODG", "ROD1", "ROD1", "RODG", "ROD2", "ROD3"]
+    - ["ROD2", "RODG", "ROD1", "ROD1", "ROD1", "ROD1", "RODG", "ROD2"]
+    - ["ROD2", "ROD1", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD2"]
+    - ["ROD2", "ROD1", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD2"]
+    - ["ROD2", "RODG", "ROD1", "ROD1", "ROD1", "ROD1", "RODG", "ROD2"]
+    - ["ROD3", "ROD2", "RODG", "ROD1", "ROD1", "RODG", "ROD2", "ROD3"]
+    - ["ROD4", "ROD3", "ROD2", "ROD2", "ROD2", "ROD2", "ROD3", "ROD4"]
+
+  assembly_pitch: 15.24
+  gap_wide: 0.846
+  channel_box_thickness: 0.254
+
+  Gd_rod_ids: ["RODG"]
+  non_fuel_rod_ids: ["WROD"]
+
+WATER_ROD_GEOMETRY:
+  type: "circular"
+  inner_radius : 1.5
+  outer_radius : 1.6
+  centers: [[6.52, 6.52]]

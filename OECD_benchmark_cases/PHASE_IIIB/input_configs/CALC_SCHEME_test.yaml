@@ -1,0 +1,61 @@
+# DRAGON Calculation Scheme for the OECD Phase IIIB Burnup Credit Criticality Benchmarks.
+# Burnup Calculations of BWR Fuel Assemblies for Storage and Transport
+# Defines the sequence of calculation steps (self-shielding, flux)
+# with their respective discretization options.
+#
+
+DRAGON_CALCULATION_SCHEME:
+  name: "OECD_IIIB"
+
+  steps:
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - RSE method for resonance self-shielding (energy treatment)
+    #   - CP spatial solution for the self-shielding calculation
+    #   - TISO tracking (isotropic)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      step_type: "self_shielding"
+      self_shielding_method: "RSE"
+      spatial_method: "IC"
+      tracking: "TISO"
+      radial_scheme: "Santamarina"
+      export_macros: True
+      sectorization:
+        enabled: false
+
+    # ------------------------------------------------------------------
+    # Step 2 :1st level Flux calculation:
+    #   - IC spatial solution for the flux calculation
+    #   - TISO tracking
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization of the coolant (8 sectors with 22.5° angle for the coolant regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties exported
+    # ------------------------------------------------------------------
+
+    - name: "FLUXL1"
+      step_type: "flux"
+      spatial_method: "IC"
+      tracking: "TISO"
+      radial_scheme: "Santamarina"
+      export_macros: True
+      sectorization:
+        enabled: true
+        windmill: true
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 22.5]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 22.5]
+        water_rods:
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [1, 1, 8]
+          angles:  [0, 0, 0]
+
+    # ------------------------------------------------------------------
