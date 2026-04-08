@@ -139,6 +139,7 @@ LIBRARY := MIX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
             * USS: self-shielding
             LIBRARY2 := USS: LIBRARY TRKSSH TRKFILSSH ::
                 EDIT 1 ARM
+                PASS 3
             ;
 
             * ASM: + FLU: — first level

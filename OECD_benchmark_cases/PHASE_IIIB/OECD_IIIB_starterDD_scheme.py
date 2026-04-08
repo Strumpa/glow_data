@@ -89,11 +89,11 @@ for step in scheme.steps:
         geometry_type_to_show=GeometryType.SECTORIZED,
         property_type_to_show=PropertyType.MATERIAL,
     )
-    #if step.export_macros:
-    #    lattice.show(
-    #        geometry_type_to_show=GeometryType.SECTORIZED,
-    #        property_type_to_show=PropertyType.MACRO,
-    #    )
+    if step.export_macros:
+        lattice.show(
+            geometry_type_to_show=GeometryType.SECTORIZED,
+            property_type_to_show=PropertyType.MACRO,
+        )
 
     if step.name == "SSH":
 

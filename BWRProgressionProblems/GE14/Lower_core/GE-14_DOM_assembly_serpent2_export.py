@@ -12,7 +12,7 @@ import os
 from starterDD.DDModel.helpers import associate_material_to_rod_ID
 from starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
 from starterDD.DDModel import CartesianAssemblyModel
-from starterDD.InterfaceToDD.serpent2_cards import (
+from starterDD.InterfaceToDD.Serpent2_exports import (
     Serpent2Model,
     S2_Settings,
     S2_EnergyGrid,

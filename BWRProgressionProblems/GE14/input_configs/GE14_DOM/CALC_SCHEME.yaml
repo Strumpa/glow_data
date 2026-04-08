@@ -6,7 +6,7 @@
 # and the material compositions (material_compositions.yaml).
 
 DRAGON_CALCULATION_SCHEME:
-  name: "GE14_standard"
+  name: "GE14_2L_scheme"
 
   steps:
     # ------------------------------------------------------------------
@@ -19,7 +19,9 @@ DRAGON_CALCULATION_SCHEME:
     # ------------------------------------------------------------------
     - name: "SSH"
       step_type: "self_shielding"
-      self_shielding_method: "RSE"
+      self_shielding_method: "PT"
+      num_angles_2d: 8
+      line_density: 25.0
       spatial_method: "IC"
       tracking: "TISO"
       radial_scheme: "Santamarina"
@@ -43,6 +45,8 @@ DRAGON_CALCULATION_SCHEME:
       step_type: "flux"
       spatial_method: "IC"
       tracking: "TISO"
+      num_angles_2d: 12
+      line_density: 25.0
       radial_scheme: "Santamarina"
       export_macros: True
       sectorization:
@@ -71,10 +75,17 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2_finer_water_rods_8_and_moderator_30_8_subdivided_coolant_corners_4"
+    # 8 sectors per fuel cells,
+    # 8 subdivisions in water rod moderator, 
+    # 30 by 8 subdivisions in the water rod around the assemby,
+    # 4 splits in water rod coolant corners
+
+    - name: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_4_sp_wrc"
       step_type: "flux"
       spatial_method: "MOC"
       tracking: "TSPC"
+      num_angles_2d: 12
+      line_density: 20.0
       polar_angles_quadrature: "GAUS"
       number_of_polar_angles: 4
       radial_scheme: "Santamarina"
@@ -85,11 +96,11 @@ DRAGON_CALCULATION_SCHEME:
         fuel_pins:
           # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
           sectors: [8, 8, 8, 8, 8, 8, 8]
-          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+          angles:  [0, 0, 0, 0, 0, 0, 0]
         Gd_pins:
           # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
           sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
-          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 0]
         water_rods:
           additional_radial_splits_in_moderator: 8 # integer for number of additional radial splits (if >1 compute subdivisions of moderator region with r<inner_radius)
           # integer mode : evenly spaced ie = 2 -> 1 split at r=0.5*inner_radius, 3 -> splits at r=0.33*inner_radius and r=0.67*inner_radius, etc.
