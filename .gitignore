@@ -14,3 +14,4 @@ build
 *.pdb
 *.egg
 *.egg-info/
+**results**

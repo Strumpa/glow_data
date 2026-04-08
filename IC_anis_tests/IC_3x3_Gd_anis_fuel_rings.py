@@ -5,314 +5,143 @@ from glow.geometry_layouts.lattices import Lattice
 from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
+from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
+from starterDD.starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+from starterDD.starterDD.GeometryBuilder.glow_builder import generate_fuel_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
+from starterDD.starterDD.DDModel import CartesianAssemblyModel
+from starterDD.starterDD.GeometryAnalysis.tdt_parser import read_material_mixture_indices_from_tdt_file
+from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB
 
 
+lattice_center = (0.0, 0.0, 0.0)
+### GLOW OUTPUT PARAMETERS 
+tracking_type = "TISO"  # Options: "TISO" or "TSPC"
+export_macro = True  # Whether to export MACRO definitions in the TDT file
+path_to_tdt = "data/glow_data/tdt_data"
 
-tracking_type = "TISO" # "TSPC"
-pitch = 1.295
-# numbered in increasing x / increasing y order
-cell1 = RectCell(name="C1", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell2 = RectCell(name="C2", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell3 = RectCell(name="C3", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell4 = RectCell(name="C4", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell5 = RectCell(name="C5", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell6 = RectCell(name="C6", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell7 = RectCell(name="C7", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell8 = RectCell(name="C8", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
-cell9 = RectCell(name="C9", height_x_width=(pitch, pitch), center=(pitch/2, pitch/2, 0.0))
+### starterDD output case parameters
+path_to_procs = "glow_data/IC_anis_tests/cle2000_procs"
 
-radii = [0.313602, 0.396678, 0.43227, 0.4435, 0.4520, 0.5140]
-radiiGd = [0.19834, 0.28049, 0.34353, 0.39668, 0.43227, 0.4435, 0.4520, 0.5140]
-#radii = [0.4435, 0.4520, 0.5140]
-### Set up 3x3_Gd_C test : All fuels 24UOX, except 24UOX center
-#    24UOX | 24UOX | 24UOX
-#    24UOX | 24UOX  | 24UOX
-#    24UOX | 24UOX | 24UOX
-### Set up 3x3_Gd_TR test 
-
-# Cells 1, 2, 3, 4, 6, 7, 8, 9 : UOX fuels
-# Cell 5 : Gd fuel
-
-for radius in radii:
-    cell1.add_circle(radius)
-    cell2.add_circle(radius)
-    cell3.add_circle(radius)
-    cell4.add_circle(radius)
-    cell6.add_circle(radius)
-    cell7.add_circle(radius)
-    cell8.add_circle(radius)
-    cell9.add_circle(radius)
-for radius in radiiGd:
-      cell5.add_circle(radius)
-# Assign the materials to each zone in the cell1
-cell1.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO1"]*7
-       }
-)
-cell2.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO2"]*7
-      }
-)
-cell3.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO3"]*7
-       }
-)
-cell4.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO4"]*7
-      }
-)
-cell5.set_properties(
-      {PropertyType.MATERIAL: ["45Gd_1", "45Gd_2", "45Gd_3", "45Gd_4", "45Gd_5", "45Gd_6", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO5"]*9
-       }
-)
-cell6.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO6"]*7
-      }
-)
-cell7.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO7"]*7
-      }
-)
-cell8.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO8"]*7
-}
-)
-cell9.set_properties(
-      {PropertyType.MATERIAL: ["24UOX_1", "24UOX_2", "24UOX_3", "24UOX_4", "GAP", "CLAD", "MODERATOR"],
-       PropertyType.MACRO: ["MACRO9"]*7
-}
-)
+# Input case definitions
+path_to_yaml_compositions = "glow_data/ATRIUM10_cases/input_configs/material_compositions.yaml"
+path_to_yaml_geometry = "glow_data/IC_anis_tests/input_configs/geometry_definitions_selfshielding_tests.yaml"
 
 
-# ------------------------------------------------
-# Test 3x3_Gd_C_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-lattice = Lattice([cell1], '3x3 with Gd center', center=(0.0, 0.0, 0.0))
-lattice.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
+case_names_to_latdesc = {"3x3_Gd_C_ssh":None, 
+                        "3x3_Gd_TR_ssh":[["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD7"]], 
+                        
+                        "3x3_Gd_TC_ssh":[["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD7",  "ROD1"]],
+                        
+                        "3x3_Gd_BC_ssh":[["ROD1", "ROD7",  "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1"]],
+                        
+                        "3x3_Gd_BL_ssh":[["ROD7", "ROD1",  "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1"]],
+                        
+                        "3x3_Gd_RC_ssh":[["ROD1", "ROD1",  "ROD1",],
+                                        ["ROD1", "ROD1", "ROD7",],
+                                        ["ROD1", "ROD1", "ROD1"]],
+                        
+                        "3x3_Gd_LC_ssh":[["ROD1", "ROD1",  "ROD1",],
+                                        ["ROD7", "ROD1", "ROD1",],
+                                        ["ROD1", "ROD1", "ROD1"]],
+                        }
+## import model : 
+compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
+ROD_to_material = associate_material_to_rod_ID(path_to_yaml_compositions,
+                                               path_to_yaml_geometry)
+for case_name, lattice_desc in case_names_to_latdesc.items():
+    file_to_save_name = case_name
 
-# Second row
-lattice.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell5, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice.add_cell(cell6, ((5/2)*pitch, (3/2)*pitch, 0.0))
+    if lattice_desc is not None:
+        # update the lattice description attribute in the assembly model
+        Gd_3x3_test_case.update_lattice_description(lattice_desc)
+    else:
+        # Create the assembly model with the given tdt file and lattice description.
+        Gd_3x3_test_case = CartesianAssemblyModel(name="3x3_test_case",
+                                            tdt_file=path_to_tdt + "/" + file_to_save_name + ".tdt",
+                                            geometry_description_yaml=path_to_yaml_geometry)
+        # Set the rod ID to material mapping in the assembly model
+        Gd_3x3_test_case.set_rod_ID_to_material_mapping(ROD_to_material)
+        # Set uniform temperatures for all materials in the assembly model
+        Gd_3x3_test_case.set_uniform_temperatures(fuel_temperature=750.0, gap_temperature=750.0, coolant_temperature=559.0, moderator_temperature=559.0, structural_temperature=559.0)
+    
+    # Analyze the lattice description to build the lattice structure in the assembly model
+    Gd_3x3_test_case.analyze_lattice_description(build_pins=True)
+    # Set the material compositions in the assembly model
+    Gd_3x3_test_case.set_material_compositions(compositions)
+    # Number fuel material mixtures based on material names
+    Gd_3x3_test_case.number_fuel_material_mixtures_by_material()
 
-# Third row
-lattice.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell8, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice.add_cell(cell9, ((5/2)*pitch, (5/2)*pitch, 0.0))
+    # ------------------------------------------------
+    # Test 3x3_Gd_C_TISO_MACRO LATTICE CONSTRUCTION
+    # ------------------------------------------------
+    ordered_fuel_cells = generate_fuel_cells(
+        assemblyModel=Gd_3x3_test_case,
+    )
 
-# Apply the full symmetry type to the cartesian lattice
-lattice.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice.show(PropertyType.MACRO)
-lattice.show(PropertyType.MATERIAL)
+    lattice_3x3 = Lattice(name=case_name, center=lattice_center)
+    lattice_3x3 = add_cells_to_regular_lattice(lattice_3x3, ordered_fuel_cells, 
+                                                Gd_3x3_test_case.pin_geometry_dict["pin_pitch"], 
+                                                translation=0.0)
 
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice], "data/glow_data/tdt_data/3x3_Gd_C_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+    # Show the resulting layout with the 'MATERIAL' colorset
+    lattice_3x3.apply_symmetry(SymmetryType.FULL)
+    lattice_3x3.show(PropertyType.MACRO)
+    lattice_3x3.show(PropertyType.MATERIAL)
+
+    # Perform the geometry analysis and export the TDT file of the surface geometry
+    export_glow_geom(path_to_tdt, file_to_save_name, lattice_3x3, tracking_type, export_macro=True)
       
-
-### Set up 3x3_Gd_TR test
-# Cells 1 to 8 : UOX fuels
-# Cell 9 : Gd fuel, so switch cell5 and cell9
-
-# ------------------------------------------------
-# Test 3x3_Gd_TR_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-lattice2 = Lattice([cell1], '3x3 with Gd top right', center=(0.0, 0.0, 0.0))
-lattice2.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice2.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-# Second row
-lattice2.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice2.add_cell(cell9, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice2.add_cell(cell6, ((5/2)*pitch, (3/2)*pitch, 0.0))
-# Third row
-lattice2.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice2.add_cell(cell8, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice2.add_cell(cell5, ((5/2)*pitch, (5/2)*pitch, 0.0))
-
-# Apply the full symmetry type to the cartesian lattice
-lattice2.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice2.show(PropertyType.MACRO)
-lattice2.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice2.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice2], "data/glow_data/tdt_data/3x3_Gd_TR_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
-      
-# ------------------------------------------------
-# Test 3x3_Gd_TC_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-# Cells 1, 2, 3, 4, 5, 6, 7, 9 : UOX fuels
-# Cell 8 : Gd fuel, so switch cell5 and cell8
-lattice3 = Lattice([cell1], '3x3 with Gd top center', center=(0.0, 0.0, 0.0))
-lattice3.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice3.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-# Second row
-lattice3.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice3.add_cell(cell8, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice3.add_cell(cell6, ((5/2)*pitch, (3/2)*pitch, 0.0))
-# Third row
-lattice3.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice3.add_cell(cell5, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice3.add_cell(cell9, ((5/2)*pitch, (5/2)*pitch, 0.0))
-
-# Apply the full symmetry type to the cartesian lattice
-lattice3.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice3.show(PropertyType.MACRO)
-lattice3.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice3.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice3], "data/glow_data/tdt_data/3x3_Gd_TC_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
-      
-
-### For sanity check : create tests for bottom center and bottom left Gd positions too
-# These should be equivalent to the top center and top right tests respectively
-
-# ------------------------------------------------
-# Test 3x3_Gd_BC_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-# Cells 1, 3, 4, 5, 6, 7, 8, 9 : UOX fuels
-# Cell 2 : Gd fuel, so switch cell2 and cell5
-lattice4 = Lattice([cell1], '3x3 with Gd bottom center', center=(0.0, 0.0, 0.0))
-lattice4.add_cell(cell5, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice4.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-# Second row
-lattice4.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice4.add_cell(cell2, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice4.add_cell(cell6, ((5/2)*pitch, (3/2)*pitch, 0.0))
-# Third row
-lattice4.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice4.add_cell(cell8, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice4.add_cell(cell9, ((5/2)*pitch, (5/2)*pitch, 0.0))
-# Apply the full symmetry type to the cartesian lattice
-lattice4.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice4.show(PropertyType.MACRO)
-lattice4.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice4.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice4], "data/glow_data/tdt_data/3x3_Gd_BC_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
-# ------------------------------------------------
-# Test 3x3_Gd_BL_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-# Cells 2, 3, 4, 5, 6, 7, 8, 9 : UOX fuels
-# Cell 1 : Gd fuel, so switch cell1 and cell5
-lattice5 = Lattice([cell5], '3x3 with Gd bottom left', center=(0.0, 0.0, 0.0))
-lattice5.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice5.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-#     Second row
-lattice5.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell6, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell7, ((5/2)*pitch, (3/2)*pitch, 0.0))
-#     Third row  
-lattice5.add_cell(cell8, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell9, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell1, ((5/2)*pitch, (5/2)*pitch, 0.0))
-# Apply the full symmetry type to the cartesian lattice
-lattice5.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice5.show(PropertyType.MACRO)
-lattice5.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice5.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice5], "data/glow_data/tdt_data/3x3_Gd_BL_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+    # -------------------------------------------------------------------------------------------
+    # Recover material mixture indices from the tdt file and update them in the assembly model
+    # -------------------------------------------------------------------------------------------
+    tdt_indices = read_material_mixture_indices_from_tdt_file(
+            tdt_file_path=f"/home/user/{path_to_tdt}",
+            tdt_file_name=file_to_save_name,
+            tracking_option=tracking_type,
+            include_macros=True,
+            material_names=None  # get ALL entries (fuel + non-fuel)
+        )
+    Gd_3x3_test_case.enforce_material_mixture_indices_from_tdt(tdt_indices)
 
 
-# ------------------------------------------------
-# Test 3x3_Gd_RC_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-# Cells 1, 2, 3, 4, 5, 7, 8, 9 : UOX fuels
-# Cell 6 : Gd fuel, so switch cell6 and cell5
-lattice5 = Lattice([cell1], '3x3 with Gd right center', center=(0.0, 0.0, 0.0))
-lattice5.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice5.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-#     Second row
-lattice5.add_cell(cell4, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell6, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell5, ((5/2)*pitch, (3/2)*pitch, 0.0))
-#     Third row  
-lattice5.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell8, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell9, ((5/2)*pitch, (5/2)*pitch, 0.0))
-# Apply the full symmetry type to the cartesian lattice
-lattice5.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice5.show(PropertyType.MACRO)
-lattice5.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice5.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice5], "data/glow_data/tdt_data/3x3_Gd_RC_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
-      
-# ------------------------------------------------
-# Test 3x3_Gd_LC_TISO_MACRO LATTICE CONSTRUCTION
-# ------------------------------------------------
-# Cells 1, 2, 3, 5, 6, 7, 8, 9 : UOX fuels
-# Cell 4 : Gd fuel, so switch cell6 and cell5
-lattice5 = Lattice([cell1], '3x3 with Gd left center', center=(0.0, 0.0, 0.0))
-lattice5.add_cell(cell2, ((3/2)*pitch, (1/2)*pitch, 0.0))
-lattice5.add_cell(cell3, ((5/2)*pitch, (1/2)*pitch, 0.0))
-#     Second row
-lattice5.add_cell(cell5, ((1/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell4, ((3/2)*pitch, (3/2)*pitch, 0.0))
-lattice5.add_cell(cell6, ((5/2)*pitch, (3/2)*pitch, 0.0))
-#     Third row  
-lattice5.add_cell(cell7, ((1/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell8, ((3/2)*pitch, (5/2)*pitch, 0.0))
-lattice5.add_cell(cell9, ((5/2)*pitch, (5/2)*pitch, 0.0))
-# Apply the full symmetry type to the cartesian lattice
-lattice5.apply_symmetry(SymmetryType.FULL)
-# Show the resulting layout with the 'MATERIAL' colorset
-lattice5.show(PropertyType.MACRO)
-lattice5.show(PropertyType.MATERIAL)
-# Perform the geometry analysis and export the TDT file of the surface geometry
-if tracking_type == "TISO":
-      lattice5.type_geo = LatticeGeometryType.ISOTROPIC
-      analyse_and_generate_tdt(
-      [lattice5], "data/glow_data/tdt_data/3x3_Gd_LC_TISO_MACRO_fuel_rings", TdtSetup(GeometryType.SECTORIZED, 
-                                                        property_types=[PropertyType.MATERIAL, PropertyType.MACRO],
-                                                        type_geo=LatticeGeometryType.ISOTROPIC,
-                                                        symmetry_type=BoundaryType.AXIAL_SYMMETRY))
+    # -------------------------------------------------------------------------------------------
+    # Identify generating / daughter mixes
+    # -------------------------------------------------------------------------------------------
+    Gd_3x3_test_case.identify_generating_and_daughter_mixes()
 
-      
+    # ------------------------------------------------------------------
+    # Step 5: Build LIB and write .c2m
+    # ------------------------------------------------------------------
+    lib = LIB(Gd_3x3_test_case)
+    lib.set_isotope_alias("MODERATOR", "H1", "H1_H2O")
+    lib.set_isotope_alias("COOLANT", "H1", "H1_H2O")
 
-      
+    # --- Generating mix lines use SALOME indices ---
+    gen_lines = lib.build_generating_mix_lines()
+
+    # --- Daughter mix lines reference the generating SALOME index ---
+    daughter_lines = lib.build_daughter_mix_lines()
+
+    # --- Non-fuel lines from TDT enforcement (automatic, not manual) ---
+    non_fuel_lines = lib.build_non_fuel_mix_lines()
+
+    # --- NMIX = max index across all (fuel + non-fuel) ---
+    max_idx = lib._get_max_mix_index()
+
+    # --- Full lib call ---
+    lib_call = lib.build_lib_module_call()
+
+    # --- Comment block ---
+    comment_block = lib.build_mix_index_comment_block()
+
+    # --- Write to file ---
+    mix_definition_proc_name = f"{case_name}_mix_definitions"
+    lib.write_to_c2m(path_to_procs, mix_definition_proc_name)

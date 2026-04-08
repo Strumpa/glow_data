@@ -1,0 +1,61 @@
+# DRAGON Calculation Scheme for pincell 24UOX in the ATRIUM10 fuel bundle.
+# Defines the sequence of calculation steps (self-shielding, flux)
+# with their respective discretization options.
+
+DRAGON_CALCULATION_SCHEME:
+  name: "GE14_standard"
+
+  steps:
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - PT method for resonance self-shielding (energy treatment)
+    #   - CP spatial solution for the self-shielding calculation
+    #   - TISO tracking (isotropic)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      step_type: "self_shielding"
+      self_shielding_method: "PT"
+      spatial_method: "CP"
+      tracking: "TISO"
+      anisotropy_level: 2
+      transport_correction: "APOL"
+      num_angles_2d: 8
+      line_density: 15.0
+      fuel_self_shielded_isotopes: ["U235", "U238", "U234"]
+      clad_self_shielded_isotopes: ["Zr90", "Zr91", "Zr92", "Zr94", "Zr96", "Fe56"]
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: false
+
+
+    # ------------------------------------------------------------------
+    # Step 2 :1st level Flux calculation:
+    #   - IC spatial solution for the flux calculation
+    #   - TSPC tracking
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization of the coolant (8 sectors with 22.5° angle for the coolant regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties exported
+    # ------------------------------------------------------------------
+
+    - name: "FLUXL1"
+      step_type: "flux"
+      spatial_method: "MOC"
+      polar_angles_quadrature: "GAUS"
+      number_of_polar_angles: 4
+      tracking: "TSPC"
+      num_angles_2d: 12
+      line_density: 40.0
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: true
+        windmill: true
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 22.5]
+  

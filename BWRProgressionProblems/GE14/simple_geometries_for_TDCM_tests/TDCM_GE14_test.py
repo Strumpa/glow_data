@@ -5,8 +5,10 @@ from glow.geometry_layouts.lattices import Lattice
 from glow.main import TdtSetup, analyse_and_generate_tdt
 from glow.interface.geom_interface import *
 from glow.support.types import *
-from starterDD.starterDD.GeometryBuilder.glow_builder import generate_simple_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
-
+from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
+from starterDD.starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+from starterDD.starterDD.GeometryBuilder.glow_builder import generate_fuel_cells, add_cells_to_regular_lattice, export_glow_geom, make_grid_faces
+from starterDD.starterDD.DDModel import CartesianAssemblyModel
 
 # --------------------
 # HELPER FUNCTIONS
@@ -215,21 +217,44 @@ def split_box_in_MACROs_for_IC(assembly_box_cell, pincell_pitch, assembly_pitch)
 ### GLOW OUTPUT PARAMETERS 
 tracking_type = "TISO"  # Options: "TISO" or "TSPC"
 export_macro = True  # Whether to export MACRO definitions in the TDT file
+path_to_tdt = "data/glow_data/tdt_data"
 file_to_save_name = f"GE14_simplified"
 
+## import model : 
+path_to_yaml_compositions = "glow_data/BWRProgressionProblems/GE14/input_configs/material_compositions.yaml"
+path_to_yaml_geometry = "glow_data/BWRProgressionProblems/GE14/input_configs/simplified_geometry.yaml"
+compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
+ROD_to_material = associate_material_to_rod_ID(path_to_yaml_compositions,
+                                               path_to_yaml_geometry)
+# Create the assembly model with the given tdt file and lattice description.
+GE14_simple_assembly = CartesianAssemblyModel(name="GE14_simple_assembly",
+                                    tdt_file=path_to_tdt + "/" + file_to_save_name + ".tdt",
+                                    geometry_description_yaml=path_to_yaml_geometry)
+# Set the rod ID to material mapping in the assembly model
+GE14_simple_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
+# Set uniform temperatures for all materials in the assembly model
+GE14_simple_assembly.set_uniform_temperatures(fuel_temperature=900.0, gap_temperature=600.0, coolant_temperature=600.0, moderator_temperature=600.0, structural_temperature=600.0)
+# Analyze the lattice description to build the lattice structure in the assembly model
+GE14_simple_assembly.analyze_lattice_description(build_pins=True)
+# Set the material compositions in the assembly model
+GE14_simple_assembly.set_material_compositions(compositions)
+# Number fuel material mixtures based on material names
+GE14_simple_assembly.number_fuel_material_mixtures_by_material()
 # --------------------
 # GEOMETRY PARAMETERS
 # --------------------
-# Main geometrical dimensions
-assembly_pitch = 15.24  # cm
-pin_pitch = 1.3
-gap_wide = 0.7549
-channel_box_thickness = 0.1651
-fuel_pellet_radius = 0.438
-fuel_clad_inner_radius = 0.447
-fuel_clad_outer_radius = 0.515
-water_rod_inner_radius = 1.170
-water_rod_outer_radius = 1.245
+
+# Recover Main geometrical dimensions
+assembly_pitch = GE14_simple_assembly.assembly_pitch  # cm
+pin_pitch = GE14_simple_assembly.pin_geometry_dict["pin_pitch"]  # cm
+gap_wide = GE14_simple_assembly.gap_wide  # cm
+channel_box_thickness = GE14_simple_assembly.channel_box_thickness  # cm
+fuel_pellet_radius = GE14_simple_assembly.pin_geometry_dict["fuel_radius"]  # cm
+fuel_clad_inner_radius = GE14_simple_assembly.pin_geometry_dict["gap_radius"]  # cm
+fuel_clad_outer_radius = GE14_simple_assembly.pin_geometry_dict["clad_radius"]  # cm
+water_rod_inner_radius = 1.170  # cm
+water_rod_outer_radius = 1.245  # cm
+
 
 # Derived dimensions
 channel_box_inner_side = assembly_pitch - 2 * channel_box_thickness - 2 * gap_wide
@@ -269,35 +294,14 @@ center = (assembly_pitch / 2, assembly_pitch / 2, 0.0)
 # --------------------
 # LATTICE DESCRIPTION (simplified 10x10 GE-14)
 # --------------------
-lattice_description = [
-    ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"],
-    ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD1"],
-    ["ROD1", "ROD5G", "ROD1", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1"],
-    ["ROD1", "ROD1", "ROD5G", "WROD", "WROD", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD1"],
-    ["ROD1", "ROD5G", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1"],
-    ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1"],
-    ["ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1"],
-    ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1"],
-    ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD1"],
-    ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"],
-]
+#lattice_description = GE14_simple_assembly.lattice_description
 
-ROD_to_material = {
-    "ROD1": "UOX16",
-    "ROD5G": "UOX40Gd8",
-    "WROD": "MODERATOR"
-}
 
 # --------------------
 # GENERATE FUEL CELLS
 # --------------------
-ordered_fuel_cells = generate_simple_cells(
-    lattice_desc=lattice_description,
-    pitch=pin_pitch,
-    C_to_mat=ROD_to_material,
-    fuel_rad=fuel_pellet_radius,
-    gap_rad=fuel_clad_inner_radius,
-    clad_rad=fuel_clad_outer_radius,
+ordered_fuel_cells = generate_fuel_cells(
+    assemblyModel=GE14_simple_assembly,
 )
 
 
@@ -394,9 +398,9 @@ assembly_box_cell = split_box_in_MACROs_for_IC(assembly_box_cell, pin_pitch, ass
 lattice.lattice_box = assembly_box_cell
 
 # Show the lattice
-lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MACRO)
+lattice.show(geometry_type_to_show=GeometryType.SECTORIZED, property_type_to_show=PropertyType.MATERIAL)
 
 # --------------------  
 # GENERATE TDT FILE
 # --------------------
-export_glow_geom("data/glow_data/tdt_data", file_to_save_name, lattice, tracking_type, export_macro=export_macro)
+export_glow_geom(path_to_tdt, file_to_save_name, lattice, tracking_type, export_macro=export_macro)

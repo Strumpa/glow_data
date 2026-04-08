@@ -1,0 +1,647 @@
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3751607
+Time:    50.0s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-43-05
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -266.23 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3757603
+Time:    60.1s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-43-55
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -206.27 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3758153
+Time:    60.4s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-44-55
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -200.77 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3754728
+Time:    68.1s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-45-55
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -235.02 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3758346
+Time:    63.6s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-47-04
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -198.84 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.37642
+Time:    68.5s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-48-07
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -140.30 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3764753
+Time:    70.9s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-49-16
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -134.77 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3762127
+Time:    73.0s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-50-27
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -161.03 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3750352
+Time:    31.8s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-51-40
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -278.78 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3756345
+Time:    34.5s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-52-12
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -218.85 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3756626
+Time:    34.7s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-52-46
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -216.04 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3753471
+Time:    36.5s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-53-21
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -247.59 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3750352
+Time:    25.3s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-53-57
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -278.78 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.376087
+Time:    37.0s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-54-23
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -173.60 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.3763222
+Time:    30.6s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-55-00
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -150.08 pcm
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+[set_uniform_temperatures] Setting uniform temperatures: fuel=900.0 K, gap=600.0 K, coolant=600.0 K, moderator=600.0 K, structural=600.0 K.
+Analyzing lattice description and building lattice data structure with pin models based on the geometry description ...
+Created : Pin with fuel material UOX49Gd8 subdivided into radial zones with radii [0.438, 0.447, 0.515] based on self-shielding option default.
+Creating MaterialMixture for 'UOX49Gd8_zone_1' with base material 'UOX49Gd8' and mix index 1...
+Creating MaterialMixture for 'UOX49Gd8_zone_2' with base material 'UOX49Gd8' and mix index 2...
+Creating MaterialMixture for 'UOX49Gd8_zone_3' with base material 'UOX49Gd8' and mix index 3...
+Creating MaterialMixture for 'UOX49Gd8_zone_4' with base material 'UOX49Gd8' and mix index 4...
+Creating MaterialMixture for 'UOX49Gd8_zone_5' with base material 'UOX49Gd8' and mix index 5...
+Creating MaterialMixture for 'UOX49Gd8_zone_6' with base material 'UOX49Gd8' and mix index 6...
+[by_material] Created 6 fuel material mixtures for 1 unique fuel materials.
+[apply_mix_numbering] Switched from None to by_material.
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'SSH' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[SSH Step] Applied TDT indices for step 'SSH'. 
+These indices define the initial LIB numbering.
+Generating MIX procedure 'MIX' with LIB: ...
+[LIB] Setting self-shielded fuel isotopes to: ['U234', 'U235', 'U238', 'Gd154', 'Gd155', 'Gd156', 'Gd157', 'Gd158', 'Gd160']
+[LIB] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/MIX.c2m
+[enforce_tdt] Updated 6 fuel mixture indices from TDT file.
+[enforce_tdt] Also stored 3 non-fuel mixture indices: {'COOLANT': 1, 'CLAD': 2, 'GAP': 3}
+[enforce_tdt] Stored TDT indices for step 'FLUXL1' in mix state history.
+[identify_mixes] Found 1 generating mixes and 5 daughter mixes.
+[MIXEQ] No strategy transitions detected - no MIXEQ procedures generated
+[TRK] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/TRK.c2m
+[EDI_COMPO] Wrote procedure to /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/EDIR.c2m
+[x2m] Wrote /home/loutre/PHDCODE/glow_env/glow/glow_data/starterDD_outputs/GE14/GE14_ROD7G/1L_scheme/GE14_ROD7G.x2m
+Running Dragon... This may take a few moments.
+Using Dragon executable: /home/loutre/PHDCODE/5.1/Dragon/bin/Linux_x86_64/Dragon
+Draglibs path used: /home/loutre/PHDCODE/libraries/l_endian/draglibendfb8r1SHEM295_v5p1
+Dragon run completed.
+Success: True
+keff:    0.376087
+Time:    37.9s
+Results: /home/loutre/PHDCODE/glow_env/glow/glow_data/BWRProgressionProblems/GE14/pincells/results/GE14_ROD7G/PT_CP_1L_MOC/2026-04-06T18-55-30
+Serpent2 reference keff for endfb8r1: 0.377823
+Delta keff (pcm): -173.60 pcm
+
+============================================================
+  DRAGON RESULTS SUMMARY (delta keff in pcm relative to Serpent2 reference)
+============================================================
+  PT_CP_TSPC_1L_MOC_TSPC_ANIS1: keff = 0.37516, delta = -266.23 pcm
+  PT_CP_TSPC_1L_MOC_TSPC_ANIS2: keff = 0.37576, delta = -206.27 pcm
+  PT_CP_TSPC_1L_MOC_TSPC_ANIS2_CTRA: keff = 0.37582, delta = -200.77 pcm
+  PT_CP_TSPC_1L_MOC_TSPC_ANIS4: keff = 0.37547, delta = -235.02 pcm
+  PT_CP_TSPC_1L_MOC_TISO_ANIS1: keff = 0.37583, delta = -198.84 pcm
+  PT_CP_TSPC_1L_MOC_TISO_ANIS2: keff = 0.37642, delta = -140.30 pcm
+  PT_CP_TSPC_1L_MOC_TISO_ANIS2_CTRA: keff = 0.37648, delta = -134.77 pcm
+  PT_CP_TSPC_1L_MOC_TISO_ANIS4: keff = 0.37621, delta = -161.03 pcm
+  PT_CP_TISO_1L_MOC_TSPC_ANIS1: keff = 0.37504, delta = -278.78 pcm
+  PT_CP_TISO_1L_MOC_TSPC_ANIS2: keff = 0.37563, delta = -218.85 pcm
+  PT_CP_TISO_1L_MOC_TSPC_ANIS2_CTRA: keff = 0.37566, delta = -216.04 pcm
+  PT_CP_TISO_1L_MOC_TSPC_ANIS4: keff = 0.37535, delta = -247.59 pcm
+  PT_CP_TISO_1L_MOC_TISO_ANIS1: keff = 0.37504, delta = -278.78 pcm
+  PT_CP_TISO_1L_MOC_TISO_ANIS2: keff = 0.37609, delta = -173.60 pcm
+  PT_CP_TISO_1L_MOC_TISO_ANIS2_CTRA: keff = 0.37632, delta = -150.08 pcm
+  PT_CP_TISO_1L_MOC_TISO_ANIS4: keff = 0.37609, delta = -173.60 pcm
+============================================================
+
+Results summary saved to: results/results_summary_GE14_ROD7G_endfb8r1.csv
