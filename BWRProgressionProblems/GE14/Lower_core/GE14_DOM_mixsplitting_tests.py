@@ -33,13 +33,15 @@ except ImportError:
 # =====================================================================
 try:
     PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+    PWD = Path(__file__).resolve().parent
 except NameError:
     # Running inside glow/SALOME — CWD is /home/user/data/
     PROJECT_ROOT = Path("/home/user/data/glow_data")
+    PWD = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "Lower_core"
 
 assembly_id = "GE14_DOM" # Identifier for the assembly configuration (e.g., "GE14_DOM")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
-mix_splitting = True  # Set to True to enable mix splitting in the second level flux calculation
+mix_splitting = False  # Set to True to enable mix splitting in the second level flux calculation
 if mix_splitting:
     case_name_suffix = "split"
     calculation_scheme = "CALC_SCHEME_2L_mix_splitting"
@@ -54,7 +56,11 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
 # glow_data sits next to the starterDD project root
 GLOW_DATA = PROJECT_ROOT
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "mix_splitting"
+if mix_splitting:
+    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "mix_splitting"
+else:
+    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "by_pin"
+
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
@@ -69,8 +75,6 @@ elif nuclear_data_library == "jeff311":
     draglib_alias = "J311_295"
 else:
     raise ValueError(f"Unsupported nuclear data library: {nuclear_data_library}")
-
-calculation_scheme = "CALC_SCHEME_test"
 
 GE14_assembly = DragonCase(
         case_name=f"{assembly_id}_{case_name_suffix}",
@@ -132,7 +136,7 @@ if not run_dragon:
         draglib_paths={
             draglib_name: (DRAGLIBS_PATH / draglib_name),
         }, # if None, read from the $DRAGLIBS env var, and selected name + alias in the case config.
-        results_root=f"./results/{assembly_id}_{case_name_suffix}",
+        results_root=f"{str(PWD)}/results/{assembly_id}_{case_name_suffix}",
         dry_run=True,
     )
     print(f"Dry run directory: {dry_result.run_directory}")
@@ -148,7 +152,7 @@ if run_dragon:
         draglib_paths={
             draglib_name: (DRAGLIBS_PATH / draglib_name),
         },
-        results_root=f"./results/{assembly_id}_{case_name_suffix}",
+        results_root=f"{str(PWD)}/results/{assembly_id}_{case_name_suffix}",
         num_threads=20,
     )
     print(f"Draglibs path used: {DRAGLIBS_PATH / draglib_name}")

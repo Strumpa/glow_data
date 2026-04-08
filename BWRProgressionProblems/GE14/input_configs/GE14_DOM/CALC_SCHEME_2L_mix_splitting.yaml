@@ -17,7 +17,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - Santamarina radii for fuel zone subdivision
     #   - No azimuthal sectorization
     # ------------------------------------------------------------------
-    - name: "SSH_PT_MIX_SPLITTING_BY_MATERIAL_THIS_TITLE_IS_TOO_LONG"
+    - name: "SSH"
       step_type: "self_shielding"
       self_shielding_method: "PT"
       mix_numbering_strategy: "by_material"
@@ -100,7 +100,8 @@ DRAGON_CALCULATION_SCHEME:
     # 30 by 8 subdivisions in the water rod around the assemby,
     # 4 splits in water rod coolant corners
 
-    - name: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
+    - name: "FLUXL2"
+      tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
       step_type: "flux"
       mix_numbering_strategy: "by_pin"
       spatial_method: "MOC"

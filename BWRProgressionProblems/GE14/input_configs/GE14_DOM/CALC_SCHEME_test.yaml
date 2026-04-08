@@ -21,6 +21,7 @@ DRAGON_CALCULATION_SCHEME:
     #   - No azimuthal sectorization
     # ------------------------------------------------------------------
     - name: "SSH_PT_MIX_SPLITTING_BY_MATERIAL_THIS_TITLE_IS_TOO_LONG"
+      tdt_file_id: "SSH_PT_MIX_SPLITTING_BY_MATERIAL"
       step_type: "self_shielding"
       self_shielding_method: "PT"
       mix_numbering_strategy: "by_material"
@@ -47,6 +48,7 @@ DRAGON_CALCULATION_SCHEME:
     # ------------------------------------------------------------------
 
     - name: "FLUXL1"
+      tdt_file_id: "FLUXL1"
       step_type: "flux"
       mix_numbering_strategy: "by_material"
       spatial_method: "IC"

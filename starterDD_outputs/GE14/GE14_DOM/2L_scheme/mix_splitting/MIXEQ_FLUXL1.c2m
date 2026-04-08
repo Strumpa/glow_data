@@ -18,7 +18,7 @@ MODULE LIB: END: ;
 
 ! --------------------------------
 ! MIXTURE CORRESPONDENCE MAPPING
-! FLUXL1 → FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc
+! FLUXL1 → FLUXL2
 ! --------------------------------
 ! MIX 62  → MIX 62  (UOX28_zone_1 → UOX28_zone_1_pin_1)
 ! MIX 62  → MIX 94  (UOX28_zone_1 → UOX28_zone_1_pin_49)
