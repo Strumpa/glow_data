@@ -1,10 +1,11 @@
 # DRAGON Calculation Scheme for the Peach Bottom Unit 2 Type 6 BWR progression problem.
+# Control cross inserted at north-west corner.
 # Defines the sequence of calculation steps (self-shielding, flux)
 # with their respective discretization options.
 #
 
 DRAGON_CALCULATION_SCHEME:
-  name: "PB2_Type6_test"
+  name: "PB2_Type6-C_test"
 
   steps:
     # ------------------------------------------------------------------
@@ -103,5 +104,14 @@ DRAGON_CALCULATION_SCHEME:
         wide_wide_corner_splits: [4, 4]     # fixed splits for wide-wide corners (not transposed)
         narrow_narrow_corner_splits: [4, 2]   # fixed splits for narrow-narrow corners (not transposed)
         mixed_corner_splits: [4, 2]         # transposed by symmetry for consistent mesh alignment
-
+        cross_moderator_discretization:
+            cross_side_gap_splits: [10, 2]    # (n_parallel, n_perpendicular) for affected sides near cross
+            moderator_at_cross_corner_splits: [2,2]  # auto from gap_splits density
+            stub_splits: [3, 2]          # auto from gap_splits density
+        control_cross_submesh:
+            enabled: true
+            control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
+            central_structure_splits: [3, 2]  # (n_along_arm, n_across_arm)
+            extend_splits_at_tube_boundaries: true
+            split_tubes_in_half: false
     # ------------------------------------------------------------------

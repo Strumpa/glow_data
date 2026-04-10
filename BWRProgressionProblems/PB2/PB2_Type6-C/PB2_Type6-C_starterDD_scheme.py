@@ -16,7 +16,7 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 # =====================================================================
 # Configuration paths
 # =====================================================================
-assembly_id = "PB2_Type6"
+assembly_id = "PB2_Type6-C"
 path_to_yaml_compositions = f"glow_data/BWRProgressionProblems/PB2/{assembly_id}/input_configs/MATS.yaml"
 path_to_yaml_geometry     = f"glow_data/BWRProgressionProblems/PB2/{assembly_id}/input_configs/GEOM.yaml"
 path_to_yaml_calc_scheme  = f"glow_data/BWRProgressionProblems/PB2/{assembly_id}/input_configs/CALC_SCHEME_test.yaml"

@@ -48,7 +48,7 @@ DRAGON_CALCULATION_SCHEME:
         corner_splits: [8, 8]
         gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
         cross_moderator_discretization:
-          narrow_gap_splits: [2, 2]    # auto from gap_splits density
+          cross_side_gap_splits: [2, 2]    # (n_parallel, n_perpendicular) for affected sides near cross
           moderator_at_cross_corner_splits: [2, 2]  # auto from gap_splits density
           stub_splits: [2, 2]        # auto from gap_splits density
         control_cross_submesh:
