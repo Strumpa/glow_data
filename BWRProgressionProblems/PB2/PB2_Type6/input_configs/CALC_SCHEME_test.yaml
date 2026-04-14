@@ -97,11 +97,11 @@ DRAGON_CALCULATION_SCHEME:
         corner_splits: [2,2]
         #gap_splits: [10, 2]      # [n_parallel, n_perpendicular]
         # In gap_narrow != gap_wide, introduce :
-        gap_wide_splits: [10, 4]
-        gap_narrow_splits: [10, 3] # entries to specify different splits for wide and narrow gaps
+        gap_wide_splits: [8, 4]
+        gap_narrow_splits: [8, 3] # entries to specify different splits for wide and narrow gaps
         # by default use gap splits for both if narrow/wide are not specified.
         wide_wide_corner_splits: [4, 4]     # fixed splits for wide-wide corners (not transposed)
-        narrow_narrow_corner_splits: [4, 2]   # fixed splits for narrow-narrow corners (not transposed)
+        narrow_narrow_corner_splits: [3, 3]   # fixed splits for narrow-narrow corners (not transposed)
         mixed_corner_splits: [4, 2]         # transposed by symmetry for consistent mesh alignment
 
     # ------------------------------------------------------------------

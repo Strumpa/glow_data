@@ -41,7 +41,8 @@ except NameError:
 
 assembly_id = "GE14_DOM" # Identifier for the assembly configuration (e.g., "GE14_DOM")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
-mix_splitting = False  # Set to True to enable mix splitting in the second level flux calculation
+mix_splitting = True  # Set to True to enable mix splitting in the second level flux calculation
+
 if mix_splitting:
     case_name_suffix = "split"
     calculation_scheme = "CALC_SCHEME_2L_mix_splitting"
@@ -65,7 +66,7 @@ GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_exp
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = True  # Set to False to skip glow geometry generation and case setup
+run_glow = False  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"

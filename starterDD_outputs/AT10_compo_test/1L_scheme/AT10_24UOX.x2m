@@ -31,15 +31,14 @@ REAL TBOX := 600.0 ;
 REAL TCLAD := 600.0 ;
 REAL TCTRL := 600.0 ;
 
-SEQ_ASCII tdt_ssh :: FILE 'AT10_24UOX_SSH_IC_TISO_MACRO.dat' ;
-SEQ_ASCII tdt_flux :: FILE 'AT10_24UOX_FLUX_MOC_TSPC.dat' ;
+SEQ_ASCII tdtssh :: FILE 'AT10_24UOX_SSH_IC_TISO_MACRO.dat' ;
+SEQ_ASCII tdtflux :: FILE 'AT10_24UOX_FLUX_MOC_TSPC.dat' ;
 SEQ_ASCII _COMPO :: FILE '_CPO_AT10_24UOX' ;
 
 **************************************************
 * Tracking sub-procedure call
 **************************************************
-TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdt_ssh tdt_flux ::
-  <<o_anis>> ;
+TRKSSH TRKFILSSH TRKFLUX TRKFILFLUX := TRK tdtssh tdtflux ;
 
 **************************************************
 * Parameter arrays for branch calculations
@@ -129,12 +128,13 @@ WHILE i_Tfuel n_Tfuel < DO
             EVALUATE TMODE := TCool ;
 
             * LIB: creation
-LIBRARY := MIX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
+LIBRARY := MIX :: <<Draglib>> 'PT' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
   <<TCLAD>> <<TCOOL>> <<TMODE>> <<TCTRL>> <<N_H>> <<N_O>> ;
 
             * USS: self-shielding
             LIBRARY2 := USS: LIBRARY TRKSSH TRKFILSSH ::
                 EDIT 1 ARM
+    PASS 3
             ;
 
             * ASM: + FLU:

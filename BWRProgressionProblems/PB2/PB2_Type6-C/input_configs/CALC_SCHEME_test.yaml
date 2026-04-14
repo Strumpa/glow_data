@@ -98,16 +98,16 @@ DRAGON_CALCULATION_SCHEME:
         corner_splits: [2,2]
         #gap_splits: [10, 2]      # [n_parallel, n_perpendicular]
         # In gap_narrow != gap_wide, introduce :
-        gap_wide_splits: [10, 4]
-        gap_narrow_splits: [10, 3] # entries to specify different splits for wide and narrow gaps
+        gap_wide_splits: [8, 4]
+        gap_narrow_splits: [8, 6] # entries to specify different splits for wide and narrow gaps
         # by default use gap splits for both if narrow/wide are not specified.
         wide_wide_corner_splits: [4, 4]     # fixed splits for wide-wide corners (not transposed)
-        narrow_narrow_corner_splits: [4, 2]   # fixed splits for narrow-narrow corners (not transposed)
-        mixed_corner_splits: [4, 2]         # transposed by symmetry for consistent mesh alignment
+        narrow_narrow_corner_splits: [6, 6]   # fixed splits for narrow-narrow corners (not transposed)
+        mixed_corner_splits: [6, 4]         # transposed by symmetry for consistent mesh alignment
         cross_moderator_discretization:
-            cross_side_gap_splits: [10, 2]    # (n_parallel, n_perpendicular) for affected sides near cross
-            moderator_at_cross_corner_splits: [2,2]  # auto from gap_splits density
-            stub_splits: [3, 2]          # auto from gap_splits density
+            cross_side_gap_splits: [8, 7]    # (n_parallel, n_perpendicular) for affected sides near cross
+            moderator_at_cross_corner_splits: [4, 4]  # auto from gap_splits density
+            stub_splits: [4, 2]          # auto from gap_splits density
         control_cross_submesh:
             enabled: true
             control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
