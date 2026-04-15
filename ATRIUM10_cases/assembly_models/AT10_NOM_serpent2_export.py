@@ -12,7 +12,7 @@ import os
 from starterDD.DDModel.helpers import associate_material_to_rod_ID
 from starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
 from starterDD.DDModel import CartesianAssemblyModel
-from starterDD.InterfaceToDD.serpent2_cards import (
+from starterDD.InterfaceToDD.Serpent2_exports import (
     Serpent2Model,
     S2_Settings,
     S2_EnergyGrid,
@@ -50,11 +50,11 @@ AT10_assembly = CartesianAssemblyModel(
 )
 AT10_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
 AT10_assembly.set_uniform_temperatures(
-    fuel_temperature=750.0,
-    gap_temperature=750.0,
-    coolant_temperature=559.0,
-    moderator_temperature=559.0,
-    structural_temperature=559.0,
+    fuel_temperature=900.0,
+    gap_temperature=600.0,
+    coolant_temperature=600.0,
+    moderator_temperature=600.0,
+    structural_temperature=600.0,
 )
 # Build pins with self-shielding radii from YAML (Santamarina prescription)
 AT10_assembly.analyze_lattice_description(build_pins=True, apply_self_shielding="from_yaml")
@@ -115,11 +115,11 @@ model.build_structural_materials_from_assembly(
         "CHANNEL_BOX": "zr4",
     },
     temperature_map={
-        "COOLANT": 559.0,
-        "CLAD": 559.0,
-        "GAP": 750.0,
-        "MODERATOR": 559.0,
-        "CHANNEL_BOX": 559.0,
+        "COOLANT": 600.0,
+        "CLAD": 600.0,
+        "GAP": 600.0,
+        "MODERATOR": 600.0,
+        "CHANNEL_BOX": 600.0,
     },
 )
 
@@ -142,26 +142,15 @@ if nuclear_data_library == "endfb8r1":
         'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
         'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
         'n,proton': ['U238'],  # MT=103, not available for U235 in ENDF/B-VIII.1
-        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235 and U238 in ENDF/B-VIII.1
-        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235 and U238 in ENDF/B-VIII.1
         'n,alpha': ['U235', 'U238'],  # MT=107
-        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235 and U238 in ENDF/B-VIII.1
-        #'n,np': ['U235', 'U238'],  # MT=28, not available for U235 and U238 in ENDF/B-VIII.1
         'n,2n': ['U235', 'U238'],  # MT=16
         'n,3n': ['U235', 'U238'],  # MT=17
-        #'n,4n': ['U235', 'U238'],  # MT=37, not available for U235 and U238 in ENDF/B-VIII.1
     }
 elif nuclear_data_library == "jeff311":
         reaction_isotope_map = {
         'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
         'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
         'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
-        #'n,proton': ['U235', 'U238'],  # MT=103, not available for U235 in JEFF-3.1.1
-        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
-        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
-        #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
-        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
-        #'n,np': ['U235', 'U238'],  # MT=28
         'n,2n': ['U235', 'U238'],  # MT=16
         'n,3n': ['U235', 'U238'],  # MT=17
         'n,4n': ['U235', 'U238'],  # MT=37
@@ -178,7 +167,14 @@ elif nuclear_data_library == "jeff311":
 model.add_detector_config(
     reaction_isotope_map=reaction_isotope_map,
     energy_grid_name="2g",  # Use 2g energy grid for condensed reaction rates
-    fuel_temperature=750.0,
+    fuel_temperature=900.0,
+    detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
+)
+
+model.add_detector_config(
+    reaction_isotope_map=reaction_isotope_map,
+    energy_grid_name="full",  # Use full energy grid for condensed reaction rates
+    fuel_temperature=900.0,
     detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
 )
 
@@ -189,27 +185,15 @@ if nuclear_data_library == "endfb8r1":
         'disappearance': ['U238'],  # MT=101
         'fission': ['U238'],  # MT=18
         'n,gamma': ['U238'],  # MT=102
-        #'n,proton': ['U238'],  # MT=103, not available for U238 in ENDF/B-VIII.1
-        #'n,deutron': ['U238'],  # MT=104, not available for U238 in ENDF/B-VIII.1
-        #'n,triton': ['U238'],  # MT=105, not available for U238 in ENDF/B-VIII.1
         'n,alpha': ['U238'],  # MT=107
-        #'n,2alpha': ['U238'],  # MT=108, not available for U238 in ENDF/B-VIII.1
-        #'n,np': ['U238'],  # MT=28, not available for U238 in ENDF/B-VIII.1
         'n,2n': ['U238'],  # MT=16
         'n,3n': ['U238'],  # MT=17
-        #'n,4n': ['U238'],  # MT=37, not available for U238 in ENDF/B-VIII.1
     }
 elif nuclear_data_library == "jeff311":
      reaction_isotope_map_295g_U238 = {
         'disappearance': ['U238'],  # All tracked, MT=101
         'fission': ['U238'],  # Actinides with fission XS MT=18
         'n,gamma': ['U238'],  # MT=102
-        #'n,proton': ['U238'],  # MT=103, not available for U235 in JEFF-3.1.1
-        #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
-        #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
-        #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
-        #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
-        #'n,np': ['U235', 'U238'],  # MT=28
         'n,2n': ['U238'],  # MT=16
         'n,3n': ['U238'],  # MT=17
         'n,4n': ['U238'],  # MT=37
@@ -218,7 +202,7 @@ elif nuclear_data_library == "jeff311":
 model.add_assembly_integrated_detector_config(
     reaction_isotope_map=reaction_isotope_map_295g_U238,
     energy_grid_name="295g",  # Fine energy mesh for U238 rates
-    fuel_temperature=750.0,
+    fuel_temperature=900.0,
     detector_type=-4,  # dt -4: sum over dm materials (all fuel zones, all pins)
 )
 

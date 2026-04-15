@@ -218,7 +218,7 @@ if export_serpent2:
     settings = S2_Settings()
     settings.title = f"PB2 Type6 BWR fuel cell ({assembly_id}) - Serpent2 export from starterDD, void 0%"
     settings.bc = 2  # Reflective boundary conditions
-    settings.neutrons_per_cycle = 20000
+    settings.neutrons_per_cycle = 2000000
     settings.active_cycles = 5000
     settings.inactive_cycles = 100
     settings.ures = True  # Unresolved resonance probability tables

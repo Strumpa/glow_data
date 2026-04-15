@@ -1864,9 +1864,6 @@ ene 26g  1  1.1000E-10  1.0451E-08  3.4400E-08  7.6497E-08  1.3800E-07  2.3119E-
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat U235  1.0  tmp 900.0
-    92235.09c  1.0
-
 mat Gd157  1.0  tmp 900.0
     64157.09c  1.0
 
@@ -1875,6 +1872,9 @@ mat Gd155  1.0  tmp 900.0
 
 mat U238  1.0  tmp 900.0
     92238.09c  1.0
+
+mat U235  1.0  tmp 900.0
+    92235.09c  1.0
 
 % ============================================================
 %  DETECTOR DEFINITIONS
@@ -1901,8 +1901,6 @@ det det_UOX187_1
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_2
     de 2g
@@ -1925,8 +1923,6 @@ det det_UOX222_2
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_3
     de 2g
@@ -1949,8 +1945,6 @@ det det_UOX301_3
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_4
     de 2g
@@ -1973,8 +1967,6 @@ det det_UOX301_4
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_5
     de 2g
@@ -1997,8 +1989,6 @@ det det_UOX301_5
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_6
     de 2g
@@ -2021,8 +2011,6 @@ det det_UOX301_6
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_7
     de 2g
@@ -2045,8 +2033,6 @@ det det_UOX301_7
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_8
     de 2g
@@ -2069,8 +2055,6 @@ det det_UOX222_8
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_9
     de 2g
@@ -2093,8 +2077,6 @@ det det_UOX222_9
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_10
     de 2g
@@ -2117,8 +2099,6 @@ det det_UOX301_10
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301G2_11
     de 2g
@@ -2141,8 +2121,6 @@ det det_UOX301G2_11
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_12
     de 2g
@@ -2165,8 +2143,6 @@ det det_UOX301_12
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_13
     de 2g
@@ -2189,8 +2165,6 @@ det det_UOX301_13
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_14
     de 2g
@@ -2213,8 +2187,6 @@ det det_UOX301_14
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301G2_15
     de 2g
@@ -2237,8 +2209,6 @@ det det_UOX301G2_15
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_16
     de 2g
@@ -2261,8 +2231,6 @@ det det_UOX222_16
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_17
     de 2g
@@ -2285,8 +2253,6 @@ det det_UOX301_17
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_18
     de 2g
@@ -2309,8 +2275,6 @@ det det_UOX301_18
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_19
     de 2g
@@ -2333,8 +2297,6 @@ det det_UOX301_19
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_20
     de 2g
@@ -2357,8 +2319,6 @@ det det_UOX301_20
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_21
     de 2g
@@ -2381,8 +2341,6 @@ det det_UOX301_21
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_22
     de 2g
@@ -2405,8 +2363,6 @@ det det_UOX222_22
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_23
     de 2g
@@ -2429,8 +2385,6 @@ det det_UOX301_23
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_24
     de 2g
@@ -2453,8 +2407,6 @@ det det_UOX301_24
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_25
     de 2g
@@ -2477,8 +2429,6 @@ det det_UOX301_25
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_26
     de 2g
@@ -2501,8 +2451,6 @@ det det_UOX222_26
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301G2_27
     de 2g
@@ -2525,8 +2473,6 @@ det det_UOX301G2_27
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_28
     de 2g
@@ -2549,8 +2495,6 @@ det det_UOX301_28
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_29
     de 2g
@@ -2573,8 +2517,6 @@ det det_UOX301_29
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_30
     de 2g
@@ -2597,8 +2539,6 @@ det det_UOX222_30
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_31
     de 2g
@@ -2621,8 +2561,6 @@ det det_UOX301_31
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX301_32
     de 2g
@@ -2645,8 +2583,6 @@ det det_UOX301_32
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX187_33
     de 2g
@@ -2669,8 +2605,6 @@ det det_UOX187_33
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX222_34
     de 2g
@@ -2693,8 +2627,6 @@ det det_UOX222_34
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_UOX145_35
     de 2g
@@ -2717,8 +2649,6 @@ det det_UOX145_35
     dr 16  U238
     dr 17  U235
     dr 17  U238
-    dr 452  U235
-    dr 452  U238
 
 det det_assembly_295g
     de 295g
@@ -2731,7 +2661,6 @@ det det_assembly_295g
     dr 107  U238
     dr 16  U238
     dr 17  U238
-    dr 452  U238
 
 det det_assembly_26g
     de 26g
@@ -2744,7 +2673,6 @@ det det_assembly_26g
     dr 107  U238
     dr 16  U238
     dr 17  U238
-    dr 452  U238
 
 det flux_295g
     de 295g

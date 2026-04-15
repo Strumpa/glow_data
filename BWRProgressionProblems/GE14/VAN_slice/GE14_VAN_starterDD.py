@@ -1,8 +1,13 @@
-# Example of a simple DRAGON 1 level flux calulation scheme with starterDD
-# Generate a glow geometry with a single AT10 pincell,
-# Run dragon with a RSE+IC self shielding step + direct 295g MOC flux calculation.
+# DRAGON 2-levels flux calculation scheme with starterDD
+# Generate glow geometries for each calculation step for the GE14 VAN assembly,
+# Run dragon with a PT+IC self shielding step + first level IC on 295g + second level 26g MOC flux calculation.
+# At self shielding step and 1st level flux calculation, each pin is divided in Santamarina radial zones, 
+# Material Mixes are numbered by material ie enrichment / fuel type. 
+# Cross sections are condensed from 295g to 26g after the first level flux calculation, 
+# Mixes are duplicated to the "by pin" numbering scheme and assigned to the respective pins,
+# The second level flux calculation is performed on the 26g cross sections with the "by pin" mixes.
 
-# Date : 30/03/2026
+# Date : 08/04/2026
 # R.Guasch
 
 from pathlib import Path
@@ -42,25 +47,36 @@ except ImportError:
 # =====================================================================
 try:
     PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+    PWD = Path(__file__).resolve().parent
 except NameError:
     # Running inside glow/SALOME — CWD is /home/user/data/
     PROJECT_ROOT = Path("/home/user/data/glow_data")
+    PWD = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "VAN_slice"
 
-pincell_id = "GE14_ROD7G" # or "GE14_ROD7G" for the Gd case
+assembly_id = "GE14_VAN" # Identifier for the assembly configuration (e.g., "GE14_VAN")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
+mix_splitting = False  # Set to True to enable mix splitting in the second level flux calculation
 
-GE14_PINCELL_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" / pincell_id
+GE14_VAN_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" / assembly_id
+GE14_GENERAL_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" 
 DRAGON_EXEC = os.environ.get('dragon_exec', 'path/to/dragon_executable')
 DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
-# glow_data sits next to the starterDD project root
 GLOW_DATA = PROJECT_ROOT
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / pincell_id / "1L_scheme"
-GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / pincell_id
+if mix_splitting:
+    case_name_suffix = "split"
+    calculation_scheme = "CALC_SCHEME_2L_mix_splitting"
+    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "mix_splitting"
+else:
+    case_name_suffix = "by_pin"
+    calculation_scheme = "CALC_SCHEME_2L_by_pin"
+    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "by_pin"
 
-export_serpent2 = False # Set to False to skip Serpent2 export step
-run_dragon = True # Set to False for a dry run (no Dragon execution)
-run_glow = False  # Set to False to skip glow geometry generation and case setup
+GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
+
+export_serpent2 = True # Set to False to skip Serpent2 export step
+run_dragon = False # Set to False for a dry run (no Dragon execution)
+run_glow = True  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -71,171 +87,108 @@ elif nuclear_data_library == "jeff311":
 else:
     raise ValueError(f"Unsupported nuclear data library: {nuclear_data_library}")
 
-ssh_method = "PT"  # Options: "PT", "RSE"
-ssh_solution_doors = ["CP"] # "CP" or "IC"
-possible_track_generation_method = {"CP": ["TSPC", "TISO"], 
-                                    "IC": ["TISO"],
-                                    "MOC": ["TSPC","TISO"]} # Options: "TSPC", "TISO" for CP and MOC, only TISO for IC
-flux_solution_doors = ["MOC"]  # Options: "MOC", "TSPC"
-anisortopy_treatment_options = ["ANIS1", "ANIS2", "ANIS2_CTRA", "ANIS4"] # Options: "ANIS1", "ANIS2", "ANIS4"
-calculations_schemes = [f"{ssh_method}_{solution_door}_{track_method_ssh}_1L_{flux_solution_door}_{track_method_flux}_{anisotropy}" 
-                        for solution_door in ssh_solution_doors 
-                        for track_method_ssh in possible_track_generation_method.get(solution_door, []) 
-                        for flux_solution_door in flux_solution_doors 
-                        for track_method_flux in possible_track_generation_method.get(flux_solution_door, [])
-                        for anisotropy in anisortopy_treatment_options]  # List of calculation schemes to generate (must match names in AT10_INPUTS/)
+GE14_assembly = DragonCase(
+        case_name=f"{assembly_id}_{case_name_suffix}",
+        call_glow=run_glow,
+        draglib_name_to_alias={
+            draglib_name: draglib_alias
+        },
+        config_yamls={
+            "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
+            "GEOM": str(GE14_VAN_INPUTS / "GEOM.yaml"),
+            "CALC_SCHEME": str(GE14_VAN_INPUTS / f"{calculation_scheme}.yaml"),
+        },
+        output_path=str(GE14_OUTPUT),
+        tdt_path=str(GE14_OUTPUT),
+    )
+# Step 1 : Assign temperatures : 
 
-# Serpent2 reference keff at 900K for TFuel and 600K for non-fuel materials
-keff_S2_reference = {"endfb8r1": {"GE14_ROD7": 1.36663E+00,
-                                  "GE14_ROD7G": 3.77823E-01,
-                                },
-                     "jeff311": None}  # Reference keff values for Serpent2 models with the specified nuclear data libraries
-results_summary = {}
+GE14_assembly.set_fuel_material_temperatures({
+    "UOX16": 900.0,
+    "UOX28": 900.0,
+    "UOX32": 900.0,
+    "UOX36": 900.0,
+    "UOX40": 900.0,
+    "UOX40Gd8": 900.0,
+    "UOX44": 900.0,
+    "UOX44Gd6": 900.0,
+    "UOX44Gd3": 900.0,
+    "UOX49": 900.0,
+    "UOX49Gd8": 900.0,
+    "UOX49Gd6": 900.0,
 
-#calculations_schemes = ["CALC_SCHEME"]  # Override to run only the CALC_SCHEME.yaml defined scheme for quick testing. Set to None or empty list to run all schemes defined in the input_configs directory.
-for calculation_scheme in calculations_schemes:
-    GE14_pincell = DragonCase(
-            case_name=pincell_id,
-            call_glow=run_glow,
-            draglib_name_to_alias={
-                draglib_name: draglib_alias
-            },
-            config_yamls={
-                "MATS": str(GE14_PINCELL_INPUTS / "material_compositions.yaml"),
-                "GEOM": str(GE14_PINCELL_INPUTS / "GEOM.yaml"),
-                "CALC_SCHEME": str(GE14_PINCELL_INPUTS / f"{calculation_scheme}.yaml"),
-            },
-            output_path=str(GE14_OUTPUT),
-            tdt_path=str(GE14_OUTPUT),
-        )
-    # Step 1 : Assign temperatures : 
-    fuel_id = pincell_id.split("_")[1]  # Extract fuel ID from pincell_id (e.g., "ROD7" or "ROD7G")
-    GE14_pincell.set_fuel_material_temperatures({
-        fuel_id: 900.0
-    })
-    GE14_pincell.set_non_fuel_temperatures(structural_temperature=600.0, coolant_temperature=600.0, moderator_temperature=600.0, gap_temperature=600.0)
+})
+GE14_assembly.set_non_fuel_temperatures(structural_temperature=600.0, coolant_temperature=600.0, moderator_temperature=600.0, gap_temperature=600.0)
 
 
-    # Step 2: Generate CLE2000 procedures (x2m + c2m files)
-    result = GE14_pincell.generate_cle2000_procedures()
+# Step 2: Generate CLE2000 procedures (x2m + c2m files)
+result = GE14_assembly.generate_cle2000_procedures()
 
-    # =====================================================================
-    # Step 3: Execute the case with the Dragon runner
-    #
-    # The runner replaces the manual rdragon + .access + .save workflow.
-    # It handles: executable resolution, input staging (TDT files,
-    # draglibs), execution in a temp directory, output collection,
-    # and traceability (manifest + config archival).
-    #
-    # Requirements:
-    #   - Dragon executable: set $dragon_exec or pass explicitly
-    #   - Draglib files: set $DRAGLIBS directory or pass draglib_paths
-    #
-    # Use dry_run=True to stage everything without executing Dragon.
-    # =====================================================================
-
-    # --- Option A: dry run (no Dragon execution) -----------------------
-    # Useful for verifying the setup before running.
-    #
-    if not run_dragon:
-        dry_result = GE14_pincell.run(
-            draglib_paths={
-                draglib_name: (DRAGLIBS_PATH / draglib_name),
-            }, # if None, read from the $DRAGLIBS env var, and selected name + alias in the case config.
-            results_root="./results",
-            dry_run=True,
-        )
-        print(f"Dry run directory: {dry_result.run_directory}")
-
-    # --- Option B: full execution --------------------------------------
-    # Requires $dragon_exec and draglib files to be available.
-    #
-    if run_dragon:
-        print("Running Dragon... This may take a few moments.")
-        print(f"Using Dragon executable: {DRAGON_EXEC}")
-        run_result = GE14_pincell.run(
-            dragon_executable=DRAGON_EXEC,  # or None to use $dragon_exec
-            draglib_paths={
-                draglib_name: (DRAGLIBS_PATH / draglib_name),
-            },
-            results_root="./results",
-            num_threads=1,
-        )
-        print(f"Draglibs path used: {DRAGLIBS_PATH / draglib_name}")
-        print("Dragon run completed.")
-        print(f"Success: {run_result.success}")
-        print(f"keff:    {run_result.keff}")
-        print(f"Time:    {run_result.wall_time_seconds:.1f}s")
-        print(f"Results: {run_result.run_directory}")
-        if nuclear_data_library in keff_S2_reference and keff_S2_reference[nuclear_data_library][pincell_id] is not None:
-            print(f"Serpent2 reference keff for {nuclear_data_library}: {keff_S2_reference[nuclear_data_library][pincell_id]}")
-            delta_keff = (run_result.keff - keff_S2_reference[nuclear_data_library][pincell_id])*1e5
-            print(f"Delta keff (pcm): {delta_keff:.2f} pcm")
-            results_summary[calculation_scheme] = (run_result.keff, delta_keff)
+# =====================================================================
+# Step 3: Execute the case with the Dragon runner
 #
-# Results directory structure:
-#   results/
-#   └── GE14_<pincell_id>/
-#       └── RSE_IC_1L_CP/
-#           ├── 2026-03-12T14-32-07/
-#           │   ├── run_manifest.yaml
-#           │   ├── inputs/           (frozen config yamls)
-#           │   ├── procedures/       (generated CLE2000 files)
-#           │   ├── GE14_<pincell_id>.result   (Dragon listing)
-#           │   └── _CPO_GE14_<pincell_id>     (COMPO output)
-#           └── latest -> 2026-03-12T14-32-07/
+# The runner replaces the manual rdragon + .access + .save workflow.
+# It handles: executable resolution, input staging (TDT files,
+# draglibs), execution in a temp directory, output collection,
+# and traceability (manifest + config archival).
+#
+# Requirements:
+#   - Dragon executable: set $dragon_exec or pass explicitly
+#   - Draglib files: set $DRAGLIBS directory or pass draglib_paths
+#
+# Use dry_run=True to stage everything without executing Dragon.
+# =====================================================================
 
-if run_dragon and results_summary:
-    print("\n" + "=" * 60)
-    print("  DRAGON RESULTS SUMMARY (delta keff in pcm relative to Serpent2 reference)")
-    print("=" * 60)
-    for scheme, (keff, delta_keff) in results_summary.items():
-        print(f"  {scheme}: keff = {keff:.5f}, delta = {delta_keff:.2f} pcm")
-    print("=" * 60)
+# --- Option A: dry run (no Dragon execution) -----------------------
+# Useful for verifying the setup before running.
+#
+if not run_dragon:
+    dry_result = GE14_assembly.run(
+        draglib_paths={
+            draglib_name: (DRAGLIBS_PATH / draglib_name),
+        }, # if None, read from the $DRAGLIBS env var, and selected name + alias in the case config.
+        results_root=f"{str(PWD)}/results/{assembly_id}_{case_name_suffix}",
+        dry_run=True,
+    )
+    print(f"Dry run directory: {dry_result.run_directory}")
 
-    # save a pandas data frame with the results summary (optional)
-    # introduce columns for calculation scheme options : self-shielding method, SSH solution door, flux solution door, track generation method for SSH and flux, anisotropy treatment
-    try:
-        import pandas as pd
-        df = pd.DataFrame.from_dict(results_summary, orient='index', columns=['keff', 'delta_keff_pcm'])
-        df.index.name = 'calculation_scheme'
-        df.reset_index(inplace=True)
+# --- Option B: full execution --------------------------------------
+# Requires $dragon_exec and draglib files to be available.
+#
+if run_dragon:
+    print("Running Dragon... This may take a few moments.")
+    print(f"Using Dragon executable: {DRAGON_EXEC}")
+    run_result = GE14_assembly.run(
+        dragon_executable=DRAGON_EXEC,  # or None to use $dragon_exec
+        draglib_paths={
+            draglib_name: (DRAGLIBS_PATH / draglib_name),
+        },
+        results_root=f"{str(PWD)}/results/{assembly_id}",
+        num_threads=20,
+    )
+    print(f"Draglibs path used: {DRAGLIBS_PATH / draglib_name}")
+    print("Dragon run completed.")
+    print(f"Success: {run_result.success}")
+    print(f"keff:    {run_result.keff}")
+    print(f"Time:    {run_result.wall_time_seconds:.1f}s")
+    print(f"Results: {run_result.run_directory}")
+    reference_keff_from_S2 = 1.0
+    print(f"Reference keff from Serpent2: {reference_keff_from_S2}")
+    keff_diff = (run_result.keff - reference_keff_from_S2)*1e5
+    print(f"Difference in pcm: {keff_diff:.2f} pcm")
 
-        # Parse scheme name into explicit option columns.
-        # The anisotropy token may include underscores (e.g., ANIS2_CTRA),
-        # so capture it as the trailing remainder.
-        scheme_pattern = (
-            r'^(?P<ssh_method>[^_]+)_(?P<ssh_solution_door>[^_]+)_(?P<ssh_tracking_method>[^_]+)_'
-            r'(?P<flux_levels>[^_]+)_(?P<flux_solution_door>[^_]+)_(?P<flux_tracking_method>[^_]+)_'
-            r'(?P<anisotropy_expansion>.+)$'
-        )
-        extracted = df['calculation_scheme'].str.extract(scheme_pattern)
-        if extracted.notna().all(axis=1).all():
-            df = pd.concat([df, extracted], axis=1)
-        else:
-            print(
-                "\nWarning: some calculation_scheme values could not be parsed; "
-                "scheme option columns were not expanded for those rows."
-            )
-
-        summary_csv_path = Path("results") / f"results_summary_{pincell_id}_{nuclear_data_library}.csv"
-        summary_csv_path.parent.mkdir(parents=True, exist_ok=True)
-        df.to_csv(summary_csv_path, index=False)
-        print(f"\nResults summary saved to: {summary_csv_path}")
-    except ImportError:
-        print("\nPandas not available, skipping results summary CSV export.")
 
 # export to Serpent2
-if export_serpent2:
+if export_serpent2 and not mix_splitting:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)
-    output_filepath = f"{GE14_SERP_OUTPUT}/{pincell_id}_00_{nuclear_data_library}.serp"
+    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_00_{nuclear_data_library}.serp"
     # =====================================================================
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
-    path_to_yaml_compositions = GE14_PINCELL_INPUTS / "material_compositions.yaml"
-    path_to_yaml_geometry = GE14_PINCELL_INPUTS / "GEOM.yaml"
+    path_to_yaml_compositions = GE14_GENERAL_INPUTS / "material_compositions.yaml"
+    path_to_yaml_geometry = GE14_VAN_INPUTS / "GEOM.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
     ROD_to_material = associate_material_to_rod_ID(
@@ -246,7 +199,7 @@ if export_serpent2:
     # 2. Build the CartesianAssemblyModel
     # =====================================================================
     GE14_assembly = CartesianAssemblyModel(
-        name=f"{pincell_id}_serpent2",
+        name=f"{assembly_id}_serpent2",
         tdt_file="dummy.tdt",  # Not used for Serpent2 export
         geometry_description_yaml=path_to_yaml_geometry,
     )
@@ -270,7 +223,7 @@ if export_serpent2:
     # 3. Configure Serpent2 settings
     # =====================================================================
     settings = S2_Settings()
-    settings.title = f"GE-14 BWR fuel cell ({pincell_id}) - Serpent2 export from starterDD, void 0%"
+    settings.title = f"GE-14 BWR fuel cell ({assembly_id}) - Serpent2 export from starterDD, void 0%"
     settings.bc = 2  # Reflective boundary conditions
     settings.neutrons_per_cycle = 20000
     settings.active_cycles = 5000
@@ -338,26 +291,15 @@ if export_serpent2:
             'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
             'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
             'n,proton': ['U238'],  # MT=103, not available for U235 in ENDF/B-VIII.1
-            #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235 and U238 in ENDF/B-VIII.1
-            #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235 and U238 in ENDF/B-VIII.1
             'n,alpha': ['U235', 'U238'],  # MT=107
-            #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235 and U238 in ENDF/B-VIII.1
-            #'n,np': ['U235', 'U238'],  # MT=28, not available for U235 and U238 in ENDF/B-VIII.1
             'n,2n': ['U235', 'U238'],  # MT=16
             'n,3n': ['U235', 'U238'],  # MT=17
-            #'n,4n': ['U235', 'U238'],  # MT=37, not available for U235 and U238 in ENDF/B-VIII.1
         }
     elif nuclear_data_library == "jeff311":
             reaction_isotope_map = {
             'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
             'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
             'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
-            #'n,proton': ['U235', 'U238'],  # MT=103, not available for U235 in JEFF-3.1.1
-            #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
-            #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
-            #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
-            #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
-            #'n,np': ['U235', 'U238'],  # MT=28
             'n,2n': ['U235', 'U238'],  # MT=16
             'n,3n': ['U235', 'U238'],  # MT=17
             'n,4n': ['U235', 'U238'],  # MT=37
@@ -378,6 +320,13 @@ if export_serpent2:
         detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
     )
 
+    model.add_detector_config(
+        reaction_isotope_map=reaction_isotope_map,
+        energy_grid_name="full",  # Use fully energy condensed grid for 1g reaction rates
+        fuel_temperature=900.0,
+        detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
+    )
+
     # For precise 295g U238 rates tallies, spatially integrated over all fuel :
     if nuclear_data_library == "endfb8r1":
         print("Adding separate 295g detector for U238 using ENDF/B-VIII.1 available reaction data.")
@@ -386,26 +335,15 @@ if export_serpent2:
             'fission': ['U238'],  # MT=18
             'n,gamma': ['U238'],  # MT=102
             'n,proton': ['U238'],  # MT=103
-            #'n,deutron': ['U238'],  # MT=104, not available for U238 in ENDF/B-VIII.1
-            #'n,triton': ['U238'],  # MT=105, not available for U238 in ENDF/B-VIII.1
             'n,alpha': ['U238'],  # MT=107
-            #'n,2alpha': ['U238'],  # MT=108, not available for U238 in ENDF/B-VIII.1
-            #'n,np': ['U238'],  # MT=28, not available for U238 in ENDF/B-VIII.1
             'n,2n': ['U238'],  # MT=16
             'n,3n': ['U238'],  # MT=17
-            #'n,4n': ['U238'],  # MT=37, not available for U238 in ENDF/B-VIII.1
         }
     elif nuclear_data_library == "jeff311":
         reaction_isotope_map_295g_U238 = {
             'disappearance': ['U238'],  # All tracked, MT=101
             'fission': ['U238'],  # Actinides with fission XS MT=18
             'n,gamma': ['U238'],  # MT=102
-            #'n,proton': ['U238'],  # MT=103, not available for U235 in JEFF-3.1.1
-            #'n,deutron': ['U235', 'U238'],  # MT=104, not available for U235, U238 in JEFF-3.1.1
-            #'n,triton': ['U235', 'U238'],  # MT=105, not available for U235, U238 in JEFF-3.1.1
-            #'n,alpha': ['U238'],  # MT=107, not available for U235, U238 in JEFF-3.1.1
-            #'n,2alpha': ['U235', 'U238'],  # MT=108, not available for U235, U238 in JEFF-3.1.1
-            #'n,np': ['U235', 'U238'],  # MT=28
             'n,2n': ['U238'],  # MT=16
             'n,3n': ['U238'],  # MT=17
             'n,4n': ['U238'],  # MT=37

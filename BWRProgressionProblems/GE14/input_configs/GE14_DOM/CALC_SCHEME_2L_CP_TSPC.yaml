@@ -1,0 +1,149 @@
+# DRAGON Calculation Scheme for the GE14 BWR progression problem.
+# Defines the sequence of calculation steps (self-shielding, flux)
+# with their respective discretization options.
+#
+# This file is separate from the geometry description (GEOM_GE14_DOM.yaml)
+# and the material compositions (material_compositions.yaml).
+
+DRAGON_CALCULATION_SCHEME:
+  name: "GE14_2L_scheme_TSPC_CP_PT_CP_MOC_P1"
+
+  steps:
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - PT method for resonance self-shielding (energy treatment)
+    #   - CP spatial solution for the self-shielding calculation
+    #   - TSPC tracking (specular)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      step_type: "self_shielding"
+      self_shielding_method: "PT"
+      mix_numbering_strategy: "by_pin"
+      num_angles_2d: 8
+      line_density: 25.0
+      anisotropy_level: 2
+      spatial_method: "CP"
+      tracking: "TSPC"
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: false
+
+      box_discretization:
+        reassign_materials: false
+        enabled: true
+        corner_splits: [1, 1]
+        gap_splits: [10, 1]      # [n_parallel, n_perpendicular]
+
+    # ------------------------------------------------------------------
+    # Step 2 :1st level Flux calculation:
+    #   - CP spatial solution for the flux calculation
+    #   - TSPC tracking (specular)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization of the coolant (8 sectors with 22.5° angle for the coolant regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties exported
+    # ------------------------------------------------------------------
+
+    - name: "FLUXL1"
+      step_type: "flux"
+      mix_numbering_strategy: "by_pin"
+      spatial_method: "CP"
+      tracking: "TSPC"
+      num_angles_2d: 12
+      line_density: 35.0 
+      radial_scheme: "Santamarina"
+      export_macros: false
+      sectorization:
+        enabled: true
+        windmill: false
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        water_rods:
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [1, 1, 1]
+          angles:  [0, 0, 0]
+      box_discretization:
+        reassign_materials: false
+        enabled: true
+        corner_splits: [2, 2]
+        gap_splits: [10, 2]      # [n_parallel, n_perpendicular]
+
+    # ------------------------------------------------------------------
+    # Step 3: Energy condensation -> condense from a fine (295g) to a coarse (26g) energy grid, in order to prepare for the second level of flux calculation. The condensation is done on the flux calculated in the first level, and the condensed cross sections are used in the second level.
+    #   - Condensation method : edition between levels (use the flux calculated in the first level to condense the cross sections for the second level)
+    - name: "Energy condensation"
+      step_type: "edition_between_levels"
+      number_of_macro_groups: 26
+      energy_groups_bounds: [10,  14,  18,  26,  33,  40,  49,  56,  66, 84,
+       150, 210, 241, 244, 247, 252, 255, 258, 261, 268, 273, 277, 281, 286, 291]
+      SPH_correction: True
+      max_SPH_group: 19
+
+    # ------------------------------------------------------------------
+    # Step 4 : 2nd level Flux calculation:
+    #   - MOC spatial solution for the flux calculation
+    #   - TSPC tracking (recommended for MOC)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization (8 sectors with 22.5° angle for all regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
+    #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
+    # ------------------------------------------------------------------
+    # 8 sectors per fuel cells,
+    # 8 subdivisions in water rod moderator, 
+    # 30 by 8 subdivisions in the water rod around the assemby,
+    # 4 splits in water rod coolant corners
+
+    - name: "FLUXL2"
+      tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
+      step_type: "flux"
+      mix_numbering_strategy: "by_pin"
+      spatial_method: "MOC"
+      tracking: "TSPC"
+      num_angles_2d: 12 # A modifier potentiellement
+      line_density: 20.0 # A modifier potentiellement
+      polar_angles_quadrature: "GAUS" # A modifier potentiellement
+      number_of_polar_angles: 4 # A modifier potentiellement
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: True
+        windmill: True
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [8, 8, 8, 8, 8, 8, 8]
+          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
+          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+        water_rods:
+          additional_radial_splits_in_moderator: 8 # integer for number of additional radial splits (if >1 compute subdivisions of moderator region with r<inner_radius)
+         # integer mode : evenly spaced ie = 2 -> 1 split at r=0.5*inner_radius, 3 -> splits at r=0.33*inner_radius and r=0.67*inner_radius, etc.
+         # optionally accept user defined list of raddii instead of integer number of splits to manually control the radial subdivision of the moderator region
+         # -> default to no additional splits (empty list or int = 1)
+         # Water rods: moderator + clad + coolant = 3 regions
+         # Keep sectors an angles with 3 entries for the 3 regions (moderator, clad, coolant) and apply the same sectorization to all radial splits in the moderator region (if enabled).
+         # or add the options for the additional radial region introduced by the "additional_radial_splits_in_moderator" parameter (if enabled) to allow for different sectorization of the additional radial splits in the moderator region compared to the clad and coolant regions.
+          sectors: [16, 16, 16]
+          angles:  [0, 0, 0]
+          subdivisions_coolant_corners: 2
+     # Sub-mesh the assembly box periphery for MOC tracking.
+     # corner_splits: grid (nx, ny) for each of the 4 corner regions.
+     # gap_splits: [n_parallel, n_perpendicular] for side strips.
+     #   Auto-permuted: horizontal strips use (n_par, n_perp) as (nx, ny),
+     #   vertical strips use (n_perp, n_par).
+      box_discretization:
+        reassign_materials: false
+        enabled: true
+        corner_splits: [8, 8]
+        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
