@@ -17,11 +17,25 @@ try:
     from glow.support.types import GeometryType, PropertyType
     from starterDD.starterDD.InterfaceToDD.case_generator import DragonCase
     GLOW_AVAILABLE = True
-    
+    from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
+    from starterDD.starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+    from starterDD.starterDD.DDModel import CartesianAssemblyModel
+    from starterDD.starterDD.InterfaceToDD.Serpent2_exports import (
+        Serpent2Model,
+        S2_Settings,
+        S2_EnergyGrid,
+    )
 except ImportError:
-    
     GLOW_AVAILABLE = False
     from starterDD.InterfaceToDD.case_generator import DragonCase
+    from starterDD.DDModel.helpers import associate_material_to_rod_ID
+    from starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+    from starterDD.DDModel import CartesianAssemblyModel
+    from starterDD.InterfaceToDD.Serpent2_exports import (
+        Serpent2Model,
+        S2_Settings,
+        S2_EnergyGrid,
+    )
 
 # =====================================================================
 # Configuration paths — anchored to the project root so the script
@@ -165,7 +179,7 @@ if run_dragon:
 
 
 # export to Serpent2
-if export_serpent2 and not mix_splitting:
+if export_serpent2:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)
