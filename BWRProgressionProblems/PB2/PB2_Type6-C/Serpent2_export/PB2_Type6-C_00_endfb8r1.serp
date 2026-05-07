@@ -4,7 +4,7 @@ set title "PB2 Type6 Controlled BWR fuel cell (PB2_Type6-C) - Serpent2 export fr
 set bc 2
 
 % --- Neutron population:
-set pop 20000 5000 100
+set pop 2000000 5000 100
 
 % --- Unresolved resonance probability tables:
 set ures 1
@@ -1864,23 +1864,23 @@ ene 26g  1  1.1000E-10  1.0451E-08  3.4400E-08  7.6497E-08  1.3800E-07  2.3119E-
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat Gd157  1.0  tmp 900.0
-    64157.09c  1.0
+mat U238  1.0  tmp 900.0
+    92238.09c  1.0
 
 mat Gd155  1.0  tmp 900.0
     64155.09c  1.0
 
-mat U238  1.0  tmp 900.0
-    92238.09c  1.0
-
 mat U235  1.0  tmp 900.0
     92235.09c  1.0
+
+mat Gd157  1.0  tmp 900.0
+    64157.09c  1.0
 
 % ============================================================
 %  DETECTOR DEFINITIONS
 % ============================================================
 
-det det_UOX187_1
+det det_2g_UOX187_1
     de 2g
     dt -4
     dm UOX187_zone_1_pin_1  dm UOX187_zone_2_pin_1  dm UOX187_zone_3_pin_1  dm UOX187_zone_4_pin_1
@@ -1902,7 +1902,7 @@ det det_UOX187_1
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_2
+det det_2g_UOX222_2
     de 2g
     dt -4
     dm UOX222_zone_1_pin_2  dm UOX222_zone_2_pin_2  dm UOX222_zone_3_pin_2  dm UOX222_zone_4_pin_2
@@ -1924,7 +1924,7 @@ det det_UOX222_2
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_3
+det det_2g_UOX301_3
     de 2g
     dt -4
     dm UOX301_zone_1_pin_3  dm UOX301_zone_2_pin_3  dm UOX301_zone_3_pin_3  dm UOX301_zone_4_pin_3
@@ -1946,7 +1946,7 @@ det det_UOX301_3
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_4
+det det_2g_UOX301_4
     de 2g
     dt -4
     dm UOX301_zone_1_pin_4  dm UOX301_zone_2_pin_4  dm UOX301_zone_3_pin_4  dm UOX301_zone_4_pin_4
@@ -1968,7 +1968,7 @@ det det_UOX301_4
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_5
+det det_2g_UOX301_5
     de 2g
     dt -4
     dm UOX301_zone_1_pin_5  dm UOX301_zone_2_pin_5  dm UOX301_zone_3_pin_5  dm UOX301_zone_4_pin_5
@@ -1990,7 +1990,7 @@ det det_UOX301_5
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_6
+det det_2g_UOX301_6
     de 2g
     dt -4
     dm UOX301_zone_1_pin_6  dm UOX301_zone_2_pin_6  dm UOX301_zone_3_pin_6  dm UOX301_zone_4_pin_6
@@ -2012,7 +2012,7 @@ det det_UOX301_6
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_7
+det det_2g_UOX301_7
     de 2g
     dt -4
     dm UOX301_zone_1_pin_7  dm UOX301_zone_2_pin_7  dm UOX301_zone_3_pin_7  dm UOX301_zone_4_pin_7
@@ -2034,7 +2034,7 @@ det det_UOX301_7
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_8
+det det_2g_UOX222_8
     de 2g
     dt -4
     dm UOX222_zone_1_pin_8  dm UOX222_zone_2_pin_8  dm UOX222_zone_3_pin_8  dm UOX222_zone_4_pin_8
@@ -2056,7 +2056,7 @@ det det_UOX222_8
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_9
+det det_2g_UOX222_9
     de 2g
     dt -4
     dm UOX222_zone_1_pin_9  dm UOX222_zone_2_pin_9  dm UOX222_zone_3_pin_9  dm UOX222_zone_4_pin_9
@@ -2078,7 +2078,7 @@ det det_UOX222_9
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_10
+det det_2g_UOX301_10
     de 2g
     dt -4
     dm UOX301_zone_1_pin_10  dm UOX301_zone_2_pin_10  dm UOX301_zone_3_pin_10  dm UOX301_zone_4_pin_10
@@ -2100,7 +2100,7 @@ det det_UOX301_10
     dr 17  U235
     dr 17  U238
 
-det det_UOX301G2_11
+det det_2g_UOX301G2_11
     de 2g
     dt -4
     dm UOX301G2_zone_1_pin_11  dm UOX301G2_zone_2_pin_11  dm UOX301G2_zone_3_pin_11  dm UOX301G2_zone_4_pin_11  dm UOX301G2_zone_5_pin_11  dm UOX301G2_zone_6_pin_11
@@ -2122,7 +2122,7 @@ det det_UOX301G2_11
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_12
+det det_2g_UOX301_12
     de 2g
     dt -4
     dm UOX301_zone_1_pin_12  dm UOX301_zone_2_pin_12  dm UOX301_zone_3_pin_12  dm UOX301_zone_4_pin_12
@@ -2144,7 +2144,7 @@ det det_UOX301_12
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_13
+det det_2g_UOX301_13
     de 2g
     dt -4
     dm UOX301_zone_1_pin_13  dm UOX301_zone_2_pin_13  dm UOX301_zone_3_pin_13  dm UOX301_zone_4_pin_13
@@ -2166,7 +2166,7 @@ det det_UOX301_13
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_14
+det det_2g_UOX301_14
     de 2g
     dt -4
     dm UOX301_zone_1_pin_14  dm UOX301_zone_2_pin_14  dm UOX301_zone_3_pin_14  dm UOX301_zone_4_pin_14
@@ -2188,7 +2188,7 @@ det det_UOX301_14
     dr 17  U235
     dr 17  U238
 
-det det_UOX301G2_15
+det det_2g_UOX301G2_15
     de 2g
     dt -4
     dm UOX301G2_zone_1_pin_15  dm UOX301G2_zone_2_pin_15  dm UOX301G2_zone_3_pin_15  dm UOX301G2_zone_4_pin_15  dm UOX301G2_zone_5_pin_15  dm UOX301G2_zone_6_pin_15
@@ -2210,7 +2210,7 @@ det det_UOX301G2_15
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_16
+det det_2g_UOX222_16
     de 2g
     dt -4
     dm UOX222_zone_1_pin_16  dm UOX222_zone_2_pin_16  dm UOX222_zone_3_pin_16  dm UOX222_zone_4_pin_16
@@ -2232,7 +2232,7 @@ det det_UOX222_16
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_17
+det det_2g_UOX301_17
     de 2g
     dt -4
     dm UOX301_zone_1_pin_17  dm UOX301_zone_2_pin_17  dm UOX301_zone_3_pin_17  dm UOX301_zone_4_pin_17
@@ -2254,7 +2254,7 @@ det det_UOX301_17
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_18
+det det_2g_UOX301_18
     de 2g
     dt -4
     dm UOX301_zone_1_pin_18  dm UOX301_zone_2_pin_18  dm UOX301_zone_3_pin_18  dm UOX301_zone_4_pin_18
@@ -2276,7 +2276,7 @@ det det_UOX301_18
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_19
+det det_2g_UOX301_19
     de 2g
     dt -4
     dm UOX301_zone_1_pin_19  dm UOX301_zone_2_pin_19  dm UOX301_zone_3_pin_19  dm UOX301_zone_4_pin_19
@@ -2298,7 +2298,7 @@ det det_UOX301_19
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_20
+det det_2g_UOX301_20
     de 2g
     dt -4
     dm UOX301_zone_1_pin_20  dm UOX301_zone_2_pin_20  dm UOX301_zone_3_pin_20  dm UOX301_zone_4_pin_20
@@ -2320,7 +2320,7 @@ det det_UOX301_20
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_21
+det det_2g_UOX301_21
     de 2g
     dt -4
     dm UOX301_zone_1_pin_21  dm UOX301_zone_2_pin_21  dm UOX301_zone_3_pin_21  dm UOX301_zone_4_pin_21
@@ -2342,7 +2342,7 @@ det det_UOX301_21
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_22
+det det_2g_UOX222_22
     de 2g
     dt -4
     dm UOX222_zone_1_pin_22  dm UOX222_zone_2_pin_22  dm UOX222_zone_3_pin_22  dm UOX222_zone_4_pin_22
@@ -2364,7 +2364,7 @@ det det_UOX222_22
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_23
+det det_2g_UOX301_23
     de 2g
     dt -4
     dm UOX301_zone_1_pin_23  dm UOX301_zone_2_pin_23  dm UOX301_zone_3_pin_23  dm UOX301_zone_4_pin_23
@@ -2386,7 +2386,7 @@ det det_UOX301_23
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_24
+det det_2g_UOX301_24
     de 2g
     dt -4
     dm UOX301_zone_1_pin_24  dm UOX301_zone_2_pin_24  dm UOX301_zone_3_pin_24  dm UOX301_zone_4_pin_24
@@ -2408,7 +2408,7 @@ det det_UOX301_24
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_25
+det det_2g_UOX301_25
     de 2g
     dt -4
     dm UOX301_zone_1_pin_25  dm UOX301_zone_2_pin_25  dm UOX301_zone_3_pin_25  dm UOX301_zone_4_pin_25
@@ -2430,7 +2430,7 @@ det det_UOX301_25
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_26
+det det_2g_UOX222_26
     de 2g
     dt -4
     dm UOX222_zone_1_pin_26  dm UOX222_zone_2_pin_26  dm UOX222_zone_3_pin_26  dm UOX222_zone_4_pin_26
@@ -2452,7 +2452,7 @@ det det_UOX222_26
     dr 17  U235
     dr 17  U238
 
-det det_UOX301G2_27
+det det_2g_UOX301G2_27
     de 2g
     dt -4
     dm UOX301G2_zone_1_pin_27  dm UOX301G2_zone_2_pin_27  dm UOX301G2_zone_3_pin_27  dm UOX301G2_zone_4_pin_27  dm UOX301G2_zone_5_pin_27  dm UOX301G2_zone_6_pin_27
@@ -2474,7 +2474,7 @@ det det_UOX301G2_27
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_28
+det det_2g_UOX301_28
     de 2g
     dt -4
     dm UOX301_zone_1_pin_28  dm UOX301_zone_2_pin_28  dm UOX301_zone_3_pin_28  dm UOX301_zone_4_pin_28
@@ -2496,7 +2496,7 @@ det det_UOX301_28
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_29
+det det_2g_UOX301_29
     de 2g
     dt -4
     dm UOX301_zone_1_pin_29  dm UOX301_zone_2_pin_29  dm UOX301_zone_3_pin_29  dm UOX301_zone_4_pin_29
@@ -2518,7 +2518,7 @@ det det_UOX301_29
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_30
+det det_2g_UOX222_30
     de 2g
     dt -4
     dm UOX222_zone_1_pin_30  dm UOX222_zone_2_pin_30  dm UOX222_zone_3_pin_30  dm UOX222_zone_4_pin_30
@@ -2540,7 +2540,7 @@ det det_UOX222_30
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_31
+det det_2g_UOX301_31
     de 2g
     dt -4
     dm UOX301_zone_1_pin_31  dm UOX301_zone_2_pin_31  dm UOX301_zone_3_pin_31  dm UOX301_zone_4_pin_31
@@ -2562,7 +2562,7 @@ det det_UOX301_31
     dr 17  U235
     dr 17  U238
 
-det det_UOX301_32
+det det_2g_UOX301_32
     de 2g
     dt -4
     dm UOX301_zone_1_pin_32  dm UOX301_zone_2_pin_32  dm UOX301_zone_3_pin_32  dm UOX301_zone_4_pin_32
@@ -2584,7 +2584,7 @@ det det_UOX301_32
     dr 17  U235
     dr 17  U238
 
-det det_UOX187_33
+det det_2g_UOX187_33
     de 2g
     dt -4
     dm UOX187_zone_1_pin_33  dm UOX187_zone_2_pin_33  dm UOX187_zone_3_pin_33  dm UOX187_zone_4_pin_33
@@ -2606,7 +2606,7 @@ det det_UOX187_33
     dr 17  U235
     dr 17  U238
 
-det det_UOX222_34
+det det_2g_UOX222_34
     de 2g
     dt -4
     dm UOX222_zone_1_pin_34  dm UOX222_zone_2_pin_34  dm UOX222_zone_3_pin_34  dm UOX222_zone_4_pin_34
@@ -2628,7 +2628,7 @@ det det_UOX222_34
     dr 17  U235
     dr 17  U238
 
-det det_UOX145_35
+det det_2g_UOX145_35
     de 2g
     dt -4
     dm UOX145_zone_1_pin_35  dm UOX145_zone_2_pin_35  dm UOX145_zone_3_pin_35  dm UOX145_zone_4_pin_35

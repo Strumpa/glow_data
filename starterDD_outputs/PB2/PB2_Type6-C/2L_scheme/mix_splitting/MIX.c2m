@@ -27,33 +27,33 @@ MODULE  LIB: UTL: DELETE: END: ABORT: ;
 *    MIX INDEX ASSIGNMENTS
 * --------------------------------
 * -- Fuel mixes --
-*     26 : UOX187_zone_1 (generating)
-*     25 : UOX187_zone_2 (daughter of mix 26)
-*     24 : UOX187_zone_3 (daughter of mix 26)
-*     23 : UOX187_zone_4 (daughter of mix 26)
-*     22 : UOX222_zone_1 (generating)
-*     21 : UOX222_zone_2 (daughter of mix 22)
-*     20 : UOX222_zone_3 (daughter of mix 22)
-*     19 : UOX222_zone_4 (daughter of mix 22)
-*     18 : UOX301_zone_1 (generating)
-*     17 : UOX301_zone_2 (daughter of mix 18)
-*     16 : UOX301_zone_3 (daughter of mix 18)
-*     15 : UOX301_zone_4 (daughter of mix 18)
-*     14 : UOX301G2_zone_1 (generating)
-*     13 : UOX301G2_zone_2 (daughter of mix 14)
-*     12 : UOX301G2_zone_3 (daughter of mix 14)
-*     11 : UOX301G2_zone_4 (daughter of mix 14)
-*     10 : UOX301G2_zone_5 (daughter of mix 14)
-*      9 : UOX301G2_zone_6 (daughter of mix 14)
-*      8 : UOX145_zone_1 (generating)
-*      7 : UOX145_zone_2 (daughter of mix 8)
-*      6 : UOX145_zone_3 (daughter of mix 8)
-*      5 : UOX145_zone_4 (daughter of mix 8)
+*     25 : UOX145_zone_1 (generating)
+*     24 : UOX145_zone_2 (daughter of mix 25)
+*     23 : UOX145_zone_3 (daughter of mix 25)
+*     22 : UOX145_zone_4 (daughter of mix 25)
+*     11 : UOX187_zone_1 (generating)
+*     10 : UOX187_zone_2 (daughter of mix 11)
+*      9 : UOX187_zone_3 (daughter of mix 11)
+*      8 : UOX187_zone_4 (daughter of mix 11)
+*      7 : UOX222_zone_1 (generating)
+*      6 : UOX222_zone_2 (daughter of mix 7)
+*      5 : UOX222_zone_3 (daughter of mix 7)
+*      4 : UOX222_zone_4 (daughter of mix 7)
+*     15 : UOX301_zone_1 (generating)
+*     14 : UOX301_zone_2 (daughter of mix 15)
+*     13 : UOX301_zone_3 (daughter of mix 15)
+*     12 : UOX301_zone_4 (daughter of mix 15)
+*     21 : UOX301G2_zone_1 (generating)
+*     20 : UOX301G2_zone_2 (daughter of mix 21)
+*     19 : UOX301G2_zone_3 (daughter of mix 21)
+*     18 : UOX301G2_zone_4 (daughter of mix 21)
+*     17 : UOX301G2_zone_5 (daughter of mix 21)
+*     16 : UOX301G2_zone_6 (daughter of mix 21)
 * -- Non-fuel mixes --
 *      1 : COOLANT
 *      2 : CLAD
-*      3 : MODERATOR
-*      4 : GAP
+*      3 : GAP
+*     26 : MODERATOR
 *     27 : CHANNEL_BOX
 *     28 : SHEATH_SS304
 *     29 : ABS_B4C
@@ -71,25 +71,31 @@ CTRA <<tran_correc>>
 ADED 4 NELAS N2N N3N N4N
 DEPL LIB: DRAGON FIL: <<Library>>
 MIXS LIB: DRAGON FIL: <<Library>>
-    MIX 26 <<TFUEL>> 
+    MIX 25 <<TFUEL>> 
+    U235 = U235 3.379659E-04 1
+    U234 = U234 3.020787E-06 1
+    U236 = U236 1.548046E-06 1
+    U238 = U238 2.267538E-02 1
+    O16 = O16 4.603582E-02
+    MIX 11 <<TFUEL>> 
     U235 = U235 4.358566E-04 1
     U234 = U234 3.895748E-06 1
     U236 = U236 1.996432E-06 1
     U238 = U238 2.257727E-02 1
     O16 = O16 4.603804E-02
-    MIX 22 <<TFUEL>> 
+    MIX 7 <<TFUEL>> 
     U235 = U235 5.174313E-04 1
     U234 = U234 4.624874E-06 1
     U236 = U236 2.370083E-06 1
     U238 = U238 2.249551E-02 1
     O16 = O16 4.603988E-02
-    MIX 18 <<TFUEL>> 
+    MIX 15 <<TFUEL>> 
     U235 = U235 7.015537E-04 1
     U234 = U234 6.270586E-06 1
     U236 = U236 3.213452E-06 1
     U238 = U238 2.231098E-02 1
     O16 = O16 4.604404E-02
-    MIX 14 <<TFUEL>> 
+    MIX 21 <<TFUEL>> 
     U235 = U235 6.815268E-04 1
     U234 = U234 6.091583E-06 1
     U236 = U236 3.121719E-06 1
@@ -102,29 +108,23 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Gd158 = Gd158 1.688662E-04 1
     Gd160 = Gd160 1.486081E-04 1
     O16 = O16 4.574937E-02
-    MIX 8 <<TFUEL>> 
-    U235 = U235 3.379659E-04 1
-    U234 = U234 3.020787E-06 1
-    U236 = U236 1.548046E-06 1
-    U238 = U238 2.267538E-02 1
-    O16 = O16 4.603582E-02
-    MIX 25 COMB 26 1.0
-    MIX 24 COMB 26 1.0
-    MIX 23 COMB 26 1.0
-    MIX 21 COMB 22 1.0
-    MIX 20 COMB 22 1.0
-    MIX 19 COMB 22 1.0
-    MIX 17 COMB 18 1.0
-    MIX 16 COMB 18 1.0
-    MIX 15 COMB 18 1.0
-    MIX 13 COMB 14 1.0
-    MIX 12 COMB 14 1.0
-    MIX 11 COMB 14 1.0
-    MIX 10 COMB 14 1.0
-    MIX 9 COMB 14 1.0
-    MIX 7 COMB 8 1.0
-    MIX 6 COMB 8 1.0
-    MIX 5 COMB 8 1.0
+    MIX 24 COMB 25 1.0
+    MIX 23 COMB 25 1.0
+    MIX 22 COMB 25 1.0
+    MIX 10 COMB 11 1.0
+    MIX 9 COMB 11 1.0
+    MIX 8 COMB 11 1.0
+    MIX 6 COMB 7 1.0
+    MIX 5 COMB 7 1.0
+    MIX 4 COMB 7 1.0
+    MIX 14 COMB 15 1.0
+    MIX 13 COMB 15 1.0
+    MIX 12 COMB 15 1.0
+    MIX 20 COMB 21 1.0
+    MIX 19 COMB 21 1.0
+    MIX 18 COMB 21 1.0
+    MIX 17 COMB 21 1.0
+    MIX 16 COMB 21 1.0
     MIX 1 <<TCOOL>> NOEV
     H1 = H1_H2O 4.926497E-02
     O16 = O16 2.463249E-02
@@ -165,12 +165,12 @@ MIXS LIB: DRAGON FIL: <<Library>>
     Hf179 = Hf179 3.010653E-07 2
     Hf180 = Hf180 7.754304E-07 2
 
-    MIX 3 <<TMODE>> NOEV
+    MIX 3 <<TFUEL>> NOEV
+    He4 = He4 2.648021E-05
+
+    MIX 26 <<TMODE>> NOEV
     H1 = H1_H2O 4.926497E-02
     O16 = O16 2.463249E-02
-
-    MIX 4 <<TFUEL>> NOEV
-    He4 = He4 2.648021E-05
 
     MIX 27 <<TBOX>> NOEV
     Cr50 = Cr50 3.296887E-06

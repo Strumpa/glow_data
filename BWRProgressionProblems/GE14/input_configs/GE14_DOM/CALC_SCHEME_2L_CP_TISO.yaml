@@ -90,7 +90,7 @@ DRAGON_CALCULATION_SCHEME:
     # ------------------------------------------------------------------
     # Step 4 : 2nd level Flux calculation:
     #   - MOC spatial solution for the flux calculation
-    #   - TISO tracking (recommended for MOC)
+    #   - TSPC tracking (recommended for MOC)
     #   - Santamarina radii for fuel zone subdivision
     #   - Fine azimuthal sectorization (8 sectors with 22.5° angle for all regions)
     #   - Windmill sectorization on coolant region
@@ -103,11 +103,11 @@ DRAGON_CALCULATION_SCHEME:
     # 4 splits in water rod coolant corners
 
     - name: "FLUXL2"
-      tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
+      #tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
       step_type: "flux"
       mix_numbering_strategy: "by_pin"
       spatial_method: "MOC"
-      tracking: "TISO"
+      tracking: "TSPC"
       num_angles_2d: 12 # A modifier potentiellement
       line_density: 20.0 # A modifier potentiellement
       polar_angles_quadrature: "GAUS" # A modifier potentiellement

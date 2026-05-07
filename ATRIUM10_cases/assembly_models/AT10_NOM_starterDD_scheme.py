@@ -18,12 +18,12 @@ from starterDD.starterDD.InterfaceToDD.dragon_module_calls import LIB, EDI_COMPO
 # Configuration paths
 # =====================================================================
 assembly_id = "AT10_NOM"
-path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/material_compositions.yaml"
-path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/GEOM.yaml"
-path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/input_configs/{assembly_id}/CALC_SCHEME.yaml"
+path_to_yaml_compositions = f"glow_data/ATRIUM10_cases/assembly_models/input_configs/{assembly_id}/material_compositions.yaml"
+path_to_yaml_geometry     = f"glow_data/ATRIUM10_cases/assembly_models/input_configs/{assembly_id}/GEOM.yaml"
+path_to_yaml_calc_scheme  = f"glow_data/ATRIUM10_cases/assembly_models/input_configs/{assembly_id}/CALC_SCHEME_test.yaml"
 
 path_to_tdt  = "glow_data/tdt_data"
-path_to_procs = f"glow_data/ATRIUM10_cases/cle2000_procs/{assembly_id}"
+path_to_procs = f"glow_data/ATRIUM10_cases/assembly_models/cle2000_procs/{assembly_id}"
 
 # =====================================================================
 # 1. Load material compositions and rod-ID → material mapping
@@ -77,24 +77,12 @@ for step in scheme.steps:
     AT10_assembly.number_fuel_material_mixtures_by_pin()
 
     # ---- Build full geometry (fuel cells + box + MACROs) and export TDT ----
-    lattice, assembly_box_cell = build_full_assembly_geometry(
+    assembly_universe = build_full_assembly_geometry(
         assembly_model=AT10_assembly,
         calculation_step=step,
         output_path=path_to_tdt,
         output_file_name=file_to_save_name,
     )
-
-    # Show the lattice in the SALOME viewer
-    from glow.support.types import GeometryType, PropertyType
-    lattice.show(
-        geometry_type_to_show=GeometryType.SECTORIZED,
-        property_type_to_show=PropertyType.MATERIAL,
-    )
-    if step.export_macros:
-        lattice.show(
-            geometry_type_to_show=GeometryType.SECTORIZED,
-            property_type_to_show=PropertyType.MACRO,
-        )
 
     if step.name == "SSH":
 

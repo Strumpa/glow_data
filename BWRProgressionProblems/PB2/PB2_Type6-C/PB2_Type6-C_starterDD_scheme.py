@@ -76,9 +76,9 @@ else:
 
 PB2_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "PB2" / assembly_id / "Serpent2_export"
 
-export_serpent2 = True # Set to False to skip Serpent2 export step
+export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = False  # Set to False to skip glow geometry generation and case setup
+run_glow = True  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -98,7 +98,7 @@ PB2_assembly = DragonCase(
         },
         config_yamls={
             "MATS": str(PB2_TYPE6_INPUTS / "MATS.yaml"),
-            "GEOM": str(PB2_TYPE6_INPUTS / "GEOM.yaml"),
+            "GEOM": str(PB2_TYPE6_INPUTS / "GEOM_DIAG_test.yaml"),
             "CALC_SCHEME": str(PB2_TYPE6_INPUTS / f"{calculation_scheme}.yaml"),
         },
         output_path=str(PB2_OUTPUT),

@@ -76,9 +76,9 @@ else:
 
 PB2_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "PB2" / "Serpent2_export" / assembly_id
 
-export_serpent2 = True # Set to False to skip Serpent2 export step
+export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = False  # Set to False to skip glow geometry generation and case setup
+run_glow = True  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"

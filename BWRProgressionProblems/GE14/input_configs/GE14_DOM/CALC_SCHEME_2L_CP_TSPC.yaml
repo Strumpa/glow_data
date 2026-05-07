@@ -104,7 +104,7 @@ DRAGON_CALCULATION_SCHEME:
     # 4 splits in water rod coolant corners
 
     - name: "FLUXL2"
-      tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
+      #tdt_file_id: "FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc"
       step_type: "flux"
       mix_numbering_strategy: "by_pin"
       spatial_method: "MOC"

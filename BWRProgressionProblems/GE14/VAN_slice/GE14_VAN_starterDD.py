@@ -55,7 +55,6 @@ except NameError:
 
 assembly_id = "GE14_VAN" # Identifier for the assembly configuration (e.g., "GE14_VAN")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
-mix_splitting = False  # Set to True to enable mix splitting in the second level flux calculation
 
 GE14_VAN_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" / assembly_id
 GE14_GENERAL_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" 
@@ -63,14 +62,10 @@ DRAGON_EXEC = os.environ.get('dragon_exec', 'path/to/dragon_executable')
 DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
 GLOW_DATA = PROJECT_ROOT
-if mix_splitting:
-    case_name_suffix = "split"
-    calculation_scheme = "CALC_SCHEME_2L_mix_splitting"
-    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "mix_splitting"
-else:
-    case_name_suffix = "by_pin"
-    calculation_scheme = "CALC_SCHEME_2L_by_pin"
-    GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "by_pin"
+
+case_name_suffix = "DIAG"
+calculation_scheme = "CALC_SCHEME_2L_by_pin"
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "DIAG"
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
@@ -95,7 +90,7 @@ GE14_assembly = DragonCase(
         },
         config_yamls={
             "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
-            "GEOM": str(GE14_VAN_INPUTS / "GEOM.yaml"),
+            "GEOM": str(GE14_VAN_INPUTS / "GEOM_DIAG.yaml"),
             "CALC_SCHEME": str(GE14_VAN_INPUTS / f"{calculation_scheme}.yaml"),
         },
         output_path=str(GE14_OUTPUT),

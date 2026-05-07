@@ -19,10 +19,10 @@ DRAGON_CALCULATION_SCHEME:
     - name: "SSH"
       step_type: "self_shielding"
       self_shielding_method: "RSE"
-      spatial_method: "IC"
+      spatial_method: "CP"
       tracking: "TISO"
       radial_scheme: "Santamarina"
-      export_macros: True
+      export_macros: False
       sectorization:
         enabled: false
 
@@ -38,10 +38,10 @@ DRAGON_CALCULATION_SCHEME:
 
     - name: "FLUXL1"
       step_type: "flux"
-      spatial_method: "IC"
+      spatial_method: "CP"
       tracking: "TISO"
       radial_scheme: "Santamarina"
-      export_macros: True
+      export_macros: False
       sectorization:
         enabled: true
         windmill: true

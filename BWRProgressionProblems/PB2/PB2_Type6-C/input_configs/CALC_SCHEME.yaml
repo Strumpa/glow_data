@@ -1,0 +1,117 @@
+# DRAGON Calculation Scheme for the Peach Bottom Unit 2 Type 6 BWR progression problem.
+# Control cross inserted at north-west corner.
+# Defines the sequence of calculation steps (self-shielding, flux)
+# with their respective discretization options.
+#
+
+DRAGON_CALCULATION_SCHEME:
+  name: "PB2_Type6-C_test"
+
+  steps:
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - RSE method for resonance self-shielding (energy treatment)
+    #   - IC spatial solution for the self-shielding calculation
+    #   - TISO tracking (isotropic)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      step_type: "self_shielding"
+      self_shielding_method: "RSE"
+      spatial_method: "IC"
+      tracking: "TISO"
+      radial_scheme: "Santamarina"
+      export_macros: True
+      sectorization:
+        enabled: false
+
+    # ------------------------------------------------------------------
+    # Step 2 :1st level Flux calculation:
+    #   - IC spatial solution for the flux calculation
+    #   - TISO tracking
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization of the coolant (8 sectors with 22.5° angle for the coolant regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties exported
+    # ------------------------------------------------------------------
+
+    - name: "FLUXL1"
+      step_type: "flux"
+      spatial_method: "CP"
+      tracking: "TISO"
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: true
+        windmill: true
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 22.5]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 22.5]
+        water_rods:
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [1, 1, 8]
+          angles:  [0, 0, 0]
+
+    # ------------------------------------------------------------------
+
+    # ------------------------------------------------------------------
+    # Step 3 :2nd level Flux calculation:
+    #   - MOC spatial solution for the flux calculation
+    #   - TSPC tracking
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization of the coolant (8 sectors with 22.5° angle for the coolant regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties NOT exported
+    # ------------------------------------------------------------------
+
+    - name: "FLUXL2"
+      step_type: "flux"
+      spatial_method: "MOC"
+      tracking: "TSPC"
+      polar_angles_quadrature: "GAUS"
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: true
+        windmill: true
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 22.5]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 8]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 22.5]
+        water_rods:
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [1, 1, 8]
+          angles:  [0, 0, 0]
+      box_discretization:
+        reassign_materials: false
+        enabled: true
+        corner_splits: [2,2]
+        #gap_splits: [10, 2]      # [n_parallel, n_perpendicular]
+        # In gap_narrow != gap_wide, introduce :
+        gap_wide_splits: [8, 4]
+        gap_narrow_splits: [8, 6] # entries to specify different splits for wide and narrow gaps
+        # by default use gap splits for both if narrow/wide are not specified.
+        wide_wide_corner_splits: [4, 4]     # fixed splits for wide-wide corners (not transposed)
+        narrow_narrow_corner_splits: [6, 6]   # fixed splits for narrow-narrow corners (not transposed)
+        mixed_corner_splits: [6, 4]         # transposed by symmetry for consistent mesh alignment
+        cross_moderator_discretization:
+            cross_side_gap_splits: [8, 7]    # (n_parallel, n_perpendicular) for affected sides near cross
+            moderator_at_cross_corner_splits: [4, 4]  # auto from gap_splits density
+            stub_splits: [4, 2]          # auto from gap_splits density
+        control_cross_submesh:
+            enabled: true
+            control_cross_corner_splits: [1, 1]             # (n_along_arm, n_across_arm)
+            central_structure_splits: [3, 2]  # (n_along_arm, n_across_arm)
+            extend_splits_at_tube_boundaries: true
+            split_tubes_in_half: false
+    # ------------------------------------------------------------------

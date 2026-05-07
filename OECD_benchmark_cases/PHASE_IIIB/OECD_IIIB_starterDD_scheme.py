@@ -76,24 +76,12 @@ for step in scheme.steps:
     PHASE_IIIB_assembly.number_fuel_material_mixtures_by_pin()
 
     # ---- Build full geometry (fuel cells + box + MACROs) and export TDT ----
-    lattice, assembly_box_cell = build_full_assembly_geometry(
+    assembly_universe = build_full_assembly_geometry(
         assembly_model=PHASE_IIIB_assembly,
         calculation_step=step,
         output_path=path_to_tdt,
         output_file_name=file_to_save_name,
     )
-
-    # Show the lattice in the SALOME viewer
-    from glow.support.types import GeometryType, PropertyType
-    lattice.show(
-        geometry_type_to_show=GeometryType.SECTORIZED,
-        property_type_to_show=PropertyType.MATERIAL,
-    )
-    if step.export_macros:
-        lattice.show(
-            geometry_type_to_show=GeometryType.SECTORIZED,
-            property_type_to_show=PropertyType.MACRO,
-        )
 
     if step.name == "SSH":
 

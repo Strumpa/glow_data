@@ -31,4 +31,4 @@ WATER_ROD_GEOMETRY:
   type: "circular"
   inner_radius : 1.5
   outer_radius : 1.6
-  centers: [[6.52, 6.52]]
+  centers: [[7.62, 7.62]]
