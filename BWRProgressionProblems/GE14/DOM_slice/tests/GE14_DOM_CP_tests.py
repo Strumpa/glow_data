@@ -164,7 +164,7 @@ if run_dragon:
             draglib_name: (DRAGLIBS_PATH / draglib_name),
         },
         results_root=f"{str(PWD)}/results/{assembly_id}_{case_name_suffix}",
-        num_threads=20,
+        num_threads=1,
     )
     print(f"Draglibs path used: {DRAGLIBS_PATH / draglib_name}")
     print("Dragon run completed.")
@@ -189,7 +189,7 @@ if export_serpent2:
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
     path_to_yaml_compositions = GE14_GENERAL_INPUTS / "material_compositions.yaml"
-    path_to_yaml_geometry = GE14_VAN_INPUTS / "GEOM.yaml"
+    path_to_yaml_geometry = GE14_DOM_INPUTS / "GEOM.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
     ROD_to_material = associate_material_to_rod_ID(
