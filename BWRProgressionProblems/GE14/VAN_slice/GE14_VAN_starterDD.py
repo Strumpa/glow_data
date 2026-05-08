@@ -174,7 +174,7 @@ if run_dragon:
 
 
 # export to Serpent2
-if export_serpent2 and not mix_splitting:
+if export_serpent2:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)

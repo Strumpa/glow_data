@@ -17,9 +17,16 @@ DRAGON_CALCULATION_SCHEME:
     #   - Santamarina radii for fuel zone subdivision
     #   - No azimuthal sectorization
     # ------------------------------------------------------------------
-    - name: "SSH_DIAG"
+    - name: "SSH"
+      tdt_file_id: "SSH_DIAG"
       step_type: "self_shielding"
       self_shielding_method: "RSE"
+      mix_numbering_strategy: "by_pin"
+      fuel_self_shielded_isotopes: ["U235", "U236", "U238", "U234", "Gd152", "Gd154", "Gd155", "Gd156", "Gd157", "Gd158", "Gd160"]
+      clad_self_shielded_isotopes: ["Zr90", "Zr91", "Zr92", "Zr94", "Zr96", "Fe56", "Hf174", "Hf176", "Hf177", "Hf178", "Hf179", "Hf180"]
+      num_angles_2d: 8
+      line_density: 25.0
+      anisotropy_level: 4
       spatial_method: "IC"
       tracking: "TISO"
       radial_scheme: "Santamarina"
@@ -51,11 +58,15 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties exported
     # ------------------------------------------------------------------
 
-    - name: "FLUXL1_DIAG"
+    - name: "FLUXL1"
+      tdt_file_id: "FLUXL1_DIAG"
       step_type: "flux"
       spatial_method: "IC"
       tracking: "TISO"
+      num_angles_2d: 12
+      line_density: 35.0 
       radial_scheme: "Santamarina"
+      mix_numbering_strategy: "by_pin"
       export_macros: True
       sectorization:
         enabled: true
@@ -74,7 +85,19 @@ DRAGON_CALCULATION_SCHEME:
           angles:  [0, 0, 0]
 
     # ------------------------------------------------------------------
-    # Step 3 : 2nd level Flux calculation:
+    # Step 3: Energy condensation -> condense from a fine (295g) to a coarse (26g) energy grid, in order to prepare for the second level of flux calculation. The condensation is done on the flux calculated in the first level, and the condensed cross sections are used in the second level.
+    #   - Condensation method : edition between levels (use the flux calculated in the first level to condense the cross sections for the second level)
+    - name: "Energy condensation"
+      step_type: "edition_between_levels"
+      number_of_macro_groups: 26
+      energy_groups_bounds: [10,  14,  18,  26,  33,  40,  49,  56,  66, 84,
+       150, 210, 241, 244, 247, 252, 255, 258, 261, 268, 273, 277, 281, 286, 291]
+      SPH_correction: True
+      max_SPH_group: 19
+
+
+    # ------------------------------------------------------------------
+    # Step 4 : 2nd level Flux calculation:
     #   - MOC spatial solution for the flux calculation
     #   - TSPC tracking (recommended for MOC)
     #   - Santamarina radii for fuel zone subdivision
@@ -83,10 +106,17 @@ DRAGON_CALCULATION_SCHEME:
     #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
     #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
     # ------------------------------------------------------------------
-    - name: "FLUXL2_wr_8_cross_submesh_extend_moder3016"
+    - name: "FLUXL2"
+      tdt_file_id: "FLUXL2_wr_8_cross_submesh_extend_moder308"
       step_type: "flux"
+      mix_numbering_strategy: "by_pin"
       spatial_method: "MOC"
       tracking: "TSPC"
+      num_angles_2d: 14 # A modifier potentiellement
+      line_density: 50.0 # A modifier potentiellement
+      batch_size: 1000
+      polar_angles_quadrature: "GAUS" # A modifier potentiellement
+      number_of_polar_angles: 4 # A modifier potentiellement
       radial_scheme: "Santamarina"
       export_macros: False
       sectorization:
