@@ -7,7 +7,7 @@ MODULE LIB: G2S: SALT: MCCGT: USS: ASM: FLU: EDI: SPH: GREP: UTL: COMPO:
 PROCEDURE MIX TRK EDIR ;
 
 LINKED_LIST LIBRARY LIBRARY2 TRKSSH TRKFLUXL1 TRKFLUXL2 SYS FLUXL1
-  FLUXL2 EDITION LIBEQ COMPO PARAMS ;
+  FLUXL2 EDITION LIBEQL1 LIBEQL2 COMPO PARAMS ;
 SEQ_BINARY TRKFILSSH TRKFILFLUXL1 TRKFILFLUXL2 ;
 STRING name_compo := "_CPO_GE14_DOM_DIAG" ;
 STRING Draglib := "endfb8r1295" ;
@@ -61,12 +61,12 @@ PARAMS := UTL: ::
 PARAMS := UTL: PARAMS ::
     CREA
         N_H_arr <<n_dens>> =
-4.92646003E-02 3.99135346E-02 3.05624690E-02 2.12114033E-02
-  1.18603377E-02
+4.92649828E-02 3.99138446E-02 3.05627063E-02 2.12115680E-02
+  1.18604298E-02
     CREA
         N_O_arr <<n_dens>> =
-2.46323001E-02 1.99567673E-02 1.52812345E-02 1.06057017E-02
-  5.93016883E-03
+2.46324914E-02 1.99569223E-02 1.52813531E-02 1.06057840E-02
+  5.93021488E-03
 ;
 
 **************************************************
@@ -132,7 +132,7 @@ WHILE i_Tfuel n_Tfuel < DO
             EVALUATE TMODE := TCool ;
 
             * LIB: creation
-LIBRARY := MIX :: <<Draglib>> 'PT' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
+LIBRARY := MIX :: <<Draglib>> 'RSE' <<o_anis>> 'NONE' <<TFUEL>> <<TBOX>>
   <<TCLAD>> <<TCOOL>> <<TMODE>> <<TCTRL>> <<N_H>> <<N_O>> ;
 
             * USS: self-shielding
@@ -161,10 +161,10 @@ COND 10 14 18 26 33 40 49 56 66 84 150 210 241 244 247 252 255 258 261
   268 273 277 281 286 291
                 SAVE ON COND26
             ;
-            LIBEQ := EDITION :: STEP UP COND26 ;
+            LIBEQL1 := EDITION :: STEP UP COND26 ;
 
             * SPH: equivalence correction
-            LIBEQ := SPH: LIBEQ TRKFLUXL1 TRKFILFLUXL1 ::
+            LIBEQL1 := SPH: LIBEQL1 TRKFLUXL1 TRKFILFLUXL1 ::
                 EDIT 1
                 GRMAX 19
             ;
@@ -173,22 +173,22 @@ COND 10 14 18 26 33 40 49 56 66 84 150 210 241 244 247 252 255 258 261
             FLUXL1 SYS EDITION := DELETE: FLUXL1 SYS EDITION ;
 
             * ASM: + FLU: — second level
-            SYS := ASM: LIBEQ TRKFLUXL2 TRKFILFLUXL2 ::
+            SYS := ASM: LIBEQL1 TRKFLUXL2 TRKFILFLUXL2 ::
                 ARM EDIT 1
             ;
 
-            FLUXL2 := FLU: LIBEQ SYS TRKFLUXL2 TRKFILFLUXL2 ::
+            FLUXL2 := FLU: LIBEQL1 SYS TRKFLUXL2 TRKFILFLUXL2 ::
                 EDIT 1 TYPE K
             ;
             GREP: FLUXL2 :: GETVAL 'K-EFFECTIVE' 1 1 1 >>keffL2<< ;
             ECHO "GE14_DOM_DIAG L2 keff=" keffL2 ;
 
             * EDI/COMPO call
-COMPO := EDIR FLUXL2 LIBEQ TRKFLUXL2 COMPO :: <<name_compo>> <<TFuel>>
+COMPO := EDIR FLUXL2 LIBEQL1 TRKFLUXL2 COMPO :: <<name_compo>> <<TFuel>>
   <<TCool>> <<DCool>> ;
 
             * Cleanup
-            LIBRARY LIBRARY2 LIBEQ := DELETE: LIBRARY LIBRARY2 LIBEQ ;
+LIBRARY LIBRARY2 LIBEQL1 := DELETE: LIBRARY LIBRARY2 LIBEQL1 ;
             FLUXL2 := DELETE: FLUXL2 ;
             SYS := DELETE: SYS ;
         ENDWHILE ;

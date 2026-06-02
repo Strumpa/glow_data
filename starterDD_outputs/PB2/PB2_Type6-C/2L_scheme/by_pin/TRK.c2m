@@ -20,7 +20,7 @@ TRKSSH TRKFILSSH := SALT: tdtssh ::
     EDIT 2
     TITLE 'SSH - IC'
     ANIS 1
-    TISO 8 25.0
+    TISO 8 10.0
     IC EPSJ 1.0E-5
 ;
 
@@ -29,7 +29,7 @@ TRKFLUXL1 TRKFILFLUXL1 := SALT: tdtfluxl1 ::
     EDIT 2
     TITLE 'FLUXL1 - IC'
     ANIS 1
-    TISO 12 35.0
+    TISO 8 10.0
     IC EPSJ 1.0E-5
 ;
 
@@ -37,10 +37,9 @@ TRKFLUXL1 TRKFILFLUXL1 := SALT: tdtfluxl1 ::
 TRKFLUXL2 TRKFILFLUXL2 := SALT: tdtfluxl2 ::
     EDIT 2
     TITLE 'FLUXL2 - MOC'
-    BATCH 1000
     ANIS 1
     ALLG
-    TSPC 14 50.0 REND
+    TSPC 8 10.0 REND
     NOIC
 ;
 

@@ -4,7 +4,7 @@
 * --------------------------------
 *    INPUT & OUTPUT PARAMETERS
 * --------------------------------
-PARAMETER TRKSSH TRKFILSSH TRKFLUXL1 TRKFILFLUXL1 tdt_ssh tdt_fluxl1 ::
+PARAMETER TRKSSH TRKFILSSH TRKFLUXL1 TRKFILFLUXL1 tdtssh tdtfluxl1 ::
 ::: LINKED_LIST TRKSSH ;
 ::: SEQ_BINARY TRKFILSSH ;
 ::: LINKED_LIST TRKFLUXL1 ;
@@ -14,21 +14,19 @@ PARAMETER TRKSSH TRKFILSSH TRKFLUXL1 TRKFILFLUXL1 tdt_ssh tdt_fluxl1 ::
 MODULE SALT: MCCGT: END: ;
 
 * Tracking for step SSH
-TRKSSH TRKFILSSH := SALT: tdt_ssh ::
+TRKSSH TRKFILSSH := SALT: tdtssh ::
     EDIT 2
     TITLE 'SSH - CP'
-    BATCH 200
-    ANIS 4
+    ANIS 1
     TISO 8 15.0
     NOIC
 ;
 
 * Tracking for step FLUXL1
-TRKFLUXL1 TRKFILFLUXL1 := SALT: tdt_fluxl1 ::
+TRKFLUXL1 TRKFILFLUXL1 := SALT: tdtfluxl1 ::
     EDIT 2
     TITLE 'FLUXL1 - MOC'
-    BATCH 2000
-    ANIS 4
+    ANIS 1
     ALLG
     TISO 12 40.0 REND
     NOIC
