@@ -29,13 +29,13 @@ DRAGON_CALCULATION_SCHEME:
         windmill: False
         fuel_pins:
           # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
-          sectors: [1, 1, 1, 1, 1, 1, 1]
+          sectors: [1, 1, 1, 1, 1, 1, 4]
           angles:  [0, 0, 0, 0, 0, 0, 0]
         Gd_pins:
           # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
-          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 4]
           angles:  [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        #water_rods:
+        water_rods:
           # Square water rods: Cartesian grid sub-meshing (nx, ny)
           # Material is reassigned by geometric containment against inner/outer boundaries
-        #  splits: [3, 3]
+          splits: [3, 3]

@@ -52,6 +52,3 @@ CONTROL_CROSS_GEOMETRY:
   absorber_tube_inner_radius: 0.17526
   absorber_material : "ABS_B4C"
   sheath_material : "SHEATH_SS304"
-  # I have computed tube_spacing and first_tube_offset (distance from center to first tube center) using the ge-14-00-C.serp file.
-  tube_spacing: 0.4883456       # optional — override automatic computation
-  first_tube_offset: 2.229183   # optional — override automatic computation

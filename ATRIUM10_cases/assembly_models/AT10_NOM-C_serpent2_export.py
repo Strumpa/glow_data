@@ -22,8 +22,8 @@ from starterDD.InterfaceToDD.serpent2_cards import (
 # Configuration paths
 # =====================================================================
 assembly_id = "AT10_NOM-C"
-path_to_yaml_compositions = f"input_configs/{assembly_id}/material_compositions.yaml"
-path_to_yaml_geometry     = f"input_configs/{assembly_id}/GEOM.yaml"
+path_to_yaml_compositions = f"input_configs/assembly_models/{assembly_id}/material_compositions.yaml"
+path_to_yaml_geometry     = f"input_configs/assembly_models/{assembly_id}/GEOM.yaml"
 nuclear_data_library = "endfb8r1"
 
 path_to_output = f"serpent2_outputs/{assembly_id}"

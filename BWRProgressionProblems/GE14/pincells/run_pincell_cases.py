@@ -84,7 +84,7 @@ calculations_schemes = [f"{ssh_method}_{solution_door}_{track_method_ssh}_1L_{fl
                         for flux_solution_door in flux_solution_doors 
                         for track_method_flux in possible_track_generation_method.get(flux_solution_door, [])
                         for anisotropy in anisortopy_treatment_options]  # List of calculation schemes to generate (must match names in AT10_INPUTS/)
-
+calculations_schemes = ["PT_CP_TISO_1L_MOC_TISO_ANIS2_CTRA"]
 # Serpent2 reference keff at 900K for TFuel and 600K for non-fuel materials
 keff_S2_reference = {"endfb8r1": {"GE14_ROD7": 1.36663E+00,
                                   "GE14_ROD7G": 3.77823E-01,

@@ -1,4 +1,4 @@
-# Geometry description for the controlled GE14 in DOM axial slice : BWR progression problem.
+# Geometry description for the uncontrolled GE14 in DOM axial slice : BWR progression problem.
 
 PIN_GEOMETRY:
   fuel_radius: 0.438
@@ -8,33 +8,34 @@ PIN_GEOMETRY:
   self_shielding_option: "Santamarina"
 
 ASSEMBLY_GEOMETRY:
-  lattice_type: "cartesian"
+  lattice_type: "Cartesian"
   reactor_type: "BWR"
   lattice_description:
-    - ["ROD2", "ROD5", "ROD7", "ROD7", "ROD7", "ROD7", "ROD7", "ROD7", "ROD7", "ROD3"]
-    - ["ROD5", "ROD5", "ROD6H", "ROD7", "ROD7", "ROD7G", "ROD7", "ROD7G", "ROD7", "ROD7"]
-    - ["ROD5", "ROD6H", "ROD6", "ROD7", "ROD7", "ROD7", "ROD7G", "ROD7", "ROD7G", "ROD7"]
-    - ["ROD5", "ROD5", "ROD6H", "WROD", "WROD", "ROD7", "ROD7", "ROD7G", "ROD7", "ROD7"]
-    - ["ROD5", "ROD5G", "ROD6", "WROD", "WROD", "ROD7", "ROD7", "ROD7", "ROD7G", "ROD7"]
-    - ["ROD5", "ROD4", "ROD7H", "ROD5", "ROD7", "WROD", "WROD", "ROD7", "ROD7", "ROD7"]
-    - ["ROD5", "ROD5", "ROD6", "ROD7G", "ROD5", "WROD", "WROD", "ROD7", "ROD7", "ROD7"]
-    - ["ROD3", "ROD3", "ROD6K", "ROD6", "ROD7H", "ROD6", "ROD6H", "ROD6", "ROD6H", "ROD7"]
-    - ["ROD2", "ROD2", "ROD3", "ROD5", "ROD4", "ROD5G", "ROD5", "ROD6H", "ROD5", "ROD5"]
-    - ["ROD1", "ROD2", "ROD3", "ROD5", "ROD5", "ROD5", "ROD5", "ROD5", "ROD5", "ROD2"]
+    - ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"]
+    - ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD1"]
+    - ["ROD1", "ROD5G", "ROD1", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1"]
+    - ["ROD1", "ROD1", "ROD5G", "WROD", "WROD", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD1"]
+    - ["ROD1", "ROD5G", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1"]
+    - ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1"]
+    - ["ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "WROD", "WROD", "ROD1", "ROD1", "ROD1"]
+    - ["ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1"]
+    - ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD5G", "ROD1", "ROD5G", "ROD1", "ROD1"]
+    - ["ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"]
 
   assembly_pitch: 15.24
   gap_wide: 0.7549
+  gap_narrow: 0.7549
   channel_box_thickness: 0.1651
   corner_inner_radius_of_curvature: 0.965
+  number_of_water_rods: 2
 
-  Gd_rod_ids: ["ROD5G", "ROD6H", "ROD6K", "ROD7G", "ROD7H"]
+  Gd_rod_ids: ["ROD5G"]
   non_fuel_rod_ids: ["WROD"]
 
 WATER_ROD_GEOMETRY:
   type: "circular"
   inner_radius : 1.170
   outer_radius : 1.245
-  centers: [[6.32, 6.32], [8.92, 8.92]]
 
 CONTROL_CROSS_GEOMETRY:
   center: "north-west"
@@ -53,5 +54,5 @@ CONTROL_CROSS_GEOMETRY:
   absorber_material : "ABS_B4C"
   sheath_material : "SHEATH_SS304"
   # I have computed tube_spacing and first_tube_offset (distance from center to first tube center) using the ge-14-00-C.serp file.
-  tube_spacing: 0.4883456       # optional — override automatic computation
-  first_tube_offset: 2.229183   # optional — override automatic computation
+  #tube_spacing: 0.4883456       # optional — override automatic computation
+  #first_tube_offset: 2.229183   # optional — override automatic computation

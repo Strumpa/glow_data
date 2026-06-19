@@ -19,6 +19,7 @@ DRAGON_CALCULATION_SCHEME:
     # ------------------------------------------------------------------
     - name: "SSH"
       step_type: "self_shielding"
+      tdt_file_id: "SSH_3x3_6x6"
       self_shielding_method: "RSE"
       mix_numbering_strategy: "by_pin"
       fuel_self_shielded_isotopes: ["U235", "U236", "U238", "U234", "Gd152", "Gd154", "Gd155", "Gd156", "Gd157", "Gd158", "Gd160"]
@@ -32,6 +33,17 @@ DRAGON_CALCULATION_SCHEME:
       export_macros: True
       sectorization:
         enabled: false
+      macro_assignment:
+        - ["MACRO01", "MACRO01", "MACRO02", "MACRO02", "MACRO02", "MACRO03", "MACRO03", "MACRO03", "MACRO04", "MACRO04"]
+        - ["MACRO01", "MACRO01", "MACRO02", "MACRO02", "MACRO02", "MACRO03", "MACRO03", "MACRO03", "MACRO04", "MACRO04"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO13", "MACRO13", "MACRO14", "MACRO14", "MACRO14", "MACRO15", "MACRO15", "MACRO15", "MACRO16", "MACRO16"]
+        - ["MACRO13", "MACRO13", "MACRO14", "MACRO14", "MACRO14", "MACRO15", "MACRO15", "MACRO15", "MACRO16", "MACRO16"]
 
     # ------------------------------------------------------------------
     # Step 2 :1st level Flux calculation:
@@ -45,6 +57,7 @@ DRAGON_CALCULATION_SCHEME:
 
     - name: "FLUXL1"
       step_type: "flux"
+      tdt_file_id: "FLUXL1_3x3_6x6_windmills"
       mix_numbering_strategy: "by_pin"
       spatial_method: "IC"
       tracking: "TISO"
@@ -67,6 +80,18 @@ DRAGON_CALCULATION_SCHEME:
           # Water rods: moderator + clad + coolant = 3 regions
           sectors: [1, 1, 8]
           angles:  [0, 0, 0]
+
+      macro_assignment:
+        - ["MACRO01", "MACRO01", "MACRO02", "MACRO02", "MACRO02", "MACRO03", "MACRO03", "MACRO03", "MACRO04", "MACRO04"]
+        - ["MACRO01", "MACRO01", "MACRO02", "MACRO02", "MACRO02", "MACRO03", "MACRO03", "MACRO03", "MACRO04", "MACRO04"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO05", "MACRO05", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO08", "MACRO08"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO09", "MACRO09", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO06", "MACRO12", "MACRO12"]
+        - ["MACRO13", "MACRO13", "MACRO14", "MACRO14", "MACRO14", "MACRO15", "MACRO15", "MACRO15", "MACRO16", "MACRO16"]
+        - ["MACRO13", "MACRO13", "MACRO14", "MACRO14", "MACRO14", "MACRO15", "MACRO15", "MACRO15", "MACRO16", "MACRO16"]
 
     # ------------------------------------------------------------------
     # Step 3: Energy condensation -> condense from a fine (295g) to a coarse (26g) energy grid, in order to prepare for the second level of flux calculation. The condensation is done on the flux calculated in the first level, and the condensed cross sections are used in the second level.

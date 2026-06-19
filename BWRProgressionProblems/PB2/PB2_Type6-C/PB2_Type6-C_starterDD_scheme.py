@@ -54,7 +54,7 @@ except NameError:
 
 assembly_id = "PB2_Type6-C" # Identifier for the assembly configuration (e.g., "PB2_Type6")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
-mix_splitting = True  # Set to True to enable mix splitting in the second level flux calculation
+mix_splitting = False  # Set to True to enable mix splitting in the second level flux calculation
 
 if mix_splitting:
     case_name_suffix = "split"
@@ -89,7 +89,7 @@ elif nuclear_data_library == "jeff311":
 else:
     raise ValueError(f"Unsupported nuclear data library: {nuclear_data_library}")
 
-calculation_scheme = "CALC_SCHEME_test" # temporarily overridden
+calculation_scheme = "CALC_SCHEME" # temporarily overridden
 PB2_assembly = DragonCase(
         case_name=f"{assembly_id}_{case_name_suffix}",
         call_glow=run_glow,
@@ -98,7 +98,7 @@ PB2_assembly = DragonCase(
         },
         config_yamls={
             "MATS": str(PB2_TYPE6_INPUTS / "MATS.yaml"),
-            "GEOM": str(PB2_TYPE6_INPUTS / "GEOM_DIAG_test.yaml"),
+            "GEOM": str(PB2_TYPE6_INPUTS / "GEOM_DIAG.yaml"),
             "CALC_SCHEME": str(PB2_TYPE6_INPUTS / f"{calculation_scheme}.yaml"),
         },
         output_path=str(PB2_OUTPUT),

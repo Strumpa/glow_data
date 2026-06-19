@@ -21,7 +21,7 @@ ASSEMBLY_GEOMETRY:
     - ["ROD2", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1"]
     - ["ROD2", "ROD1", "ROD5", "ROD1", "ROD1", "ROD1", "ROD5", "ROD1"]
     - ["ROD3", "ROD2", "ROD1", "ROD1", "ROD1", "ROD1", "ROD1", "ROD2"]
-
+  
   assembly_pitch: 15.24
   gap_wide: 0.9017
   gap_narrow: 0.42418

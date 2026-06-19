@@ -22,8 +22,8 @@ from starterDD.InterfaceToDD.Serpent2_exports import (
 # Configuration paths
 # =====================================================================
 assembly_id = "AT10_NOM"
-path_to_yaml_compositions = f"input_configs/{assembly_id}/material_compositions.yaml"
-path_to_yaml_geometry     = f"input_configs/{assembly_id}/GEOM.yaml"
+path_to_yaml_compositions = f"assembly_models/input_configs/{assembly_id}/material_compositions.yaml"
+path_to_yaml_geometry     = f"assembly_models/input_configs/{assembly_id}/GEOM.yaml"
 nuclear_data_library = "endfb8r1"  # Specify the nuclear data library to use (e.g., "endfb8r1", "jeff311", etc.)
 
 path_to_output = f"serpent2_outputs/{assembly_id}"  # Directory to save the Serpent2 input file

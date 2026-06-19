@@ -64,13 +64,13 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "DIAG"
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = True  # Set to False to skip glow geometry generation and case setup
+run_glow = True # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -91,8 +91,8 @@ GE14_assembly = DragonCase(
         },
         config_yamls={
             "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
-            "GEOM": str(GE14_DOM_INPUTS / "GEOM_DIAG.yaml"),
-            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"),
+            "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
+            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"), #f"CALC_SCHEME_2L.yaml"),
         },
         output_path=str(GE14_OUTPUT),
         tdt_path=str(GE14_OUTPUT),
@@ -180,12 +180,12 @@ if export_serpent2:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)
-    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_00_{nuclear_data_library}.serp"
+    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_{case_name_suffix}_00_{nuclear_data_library}.serp"
     # =====================================================================
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
     path_to_yaml_compositions = GE14_GENERAL_INPUTS / "material_compositions.yaml"
-    path_to_yaml_geometry = GE14_DOM_INPUTS / "GEOM.yaml"
+    path_to_yaml_geometry = GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
     ROD_to_material = associate_material_to_rod_ID(
@@ -249,6 +249,10 @@ if export_serpent2:
         channel_box_material_name="zr4",
         lattice_name="10",
         empty_universe_name="empty",
+        # Control cross material names matching YAML composition names
+        ctrl_absorber_material_name="ABS_B4C",
+        ctrl_sheath_material_name="SHEATH_SS304",
+        ctrl_blade_fill_material_name="moderator",
     )
 
     # Add structural (non-fuel) materials from the assembly composition lookup
@@ -259,6 +263,8 @@ if export_serpent2:
             "GAP": "gap",
             "MODERATOR": "moderator",
             "CHANNEL_BOX": "zr4",
+            "ABS_B4C": "ABS_B4C",
+            "SHEATH_SS304": "SHEATH_SS304",
         },
         temperature_map={
             "COOLANT": 600.0,
@@ -266,6 +272,8 @@ if export_serpent2:
             "GAP": 600.0,
             "MODERATOR": 600.0,
             "CHANNEL_BOX": 600.0,
+            "ABS_B4C": 600.0,
+            "SHEATH_SS304": 600.0,
         },
     )
 

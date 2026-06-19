@@ -7,53 +7,43 @@
 
 DRAGON_CALCULATION_SCHEME:
   name: "GE14_standard"
-
+  
   steps:
-
-
-    - name: "FLUXL2_moderator_near_cross_submesh_test"
-      step_type: "flux"
-      spatial_method: "MOC"
-      tracking: "TSPC"
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - RSE method for resonance self-shielding (energy treatment)
+    #   - CP spatial solution for the self-shielding calculation
+    #   - TISO tracking (isotropic)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      tdt_file_id: "SSH_DIAG"
+      step_type: "self_shielding"
+      self_shielding_method: "RSE"
+      mix_numbering_strategy: "by_pin"
+      fuel_self_shielded_isotopes: ["U235", "U236", "U238", "U234", "Gd152", "Gd154", "Gd155", "Gd156", "Gd157", "Gd158", "Gd160"]
+      clad_self_shielded_isotopes: ["Zr90", "Zr91", "Zr92", "Zr94", "Zr96", "Fe56", "Hf174", "Hf176", "Hf177", "Hf178", "Hf179", "Hf180"]
+      num_angles_2d: 8
+      line_density: 25.0
+      anisotropy_level: 4
+      spatial_method: "IC"
+      tracking: "TISO"
       radial_scheme: "Santamarina"
-      export_macros: False
+      export_macros: True
       sectorization:
-        enabled: False
-        windmill: True
+        enabled: false
+        windmill: true
         fuel_pins:
           # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
-          sectors: [8, 8, 8, 8, 8, 8, 8]
-          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+          sectors: [1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0]
         Gd_pins:
           # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
-          sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
-          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 0]
         water_rods:
           # Water rods: moderator + clad + coolant = 3 regions
-          sectors: [16, 16, 16]
+          sectors: [1, 1, 1]
           angles:  [0, 0, 0]
 
-      # Sub-mesh the assembly box periphery for MOC tracking.
-      # corner_splits: grid (nx, ny) for each of the 4 corner regions.
-      # gap_splits: [n_parallel, n_perpendicular] for unaffected side strips.
-      #   Auto-permuted: horizontal strips use (n_par, n_perp) as (nx, ny),
-      #   vertical strips use (n_perp, n_par).
-      # cross_moderator_discretization: optional sub-meshing for moderator
-      #   regions near the control cross. null values → auto-computed from
-      #   gap_splits mesh density.
-      # control_cross_submesh: optional sub-meshing of the control cross
-      #   wings (corner, central structure and absorber pin zones).
-      box_discretization:
-        enabled: True
-        corner_splits: [8, 8]
-        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
-        cross_moderator_discretization:
-          cross_side_gap_splits: [2, 2]    # (n_parallel, n_perpendicular) for affected sides near cross
-          moderator_at_cross_corner_splits: [2, 2]  # auto from gap_splits density
-          stub_splits: [2, 2]        # auto from gap_splits density
-        control_cross_submesh:
-          enabled: false
-          control_cross_corner_splits: [2, 2]             # (n_along_arm, n_across_arm)
-          central_structure_splits: [3, 4]  # (n_along_arm, n_across_arm)
-          extend_splits_at_tube_boundaries: true
-          split_tubes_in_half: true
