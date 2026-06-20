@@ -64,6 +64,7 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
+void_id = "00"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
@@ -90,7 +91,7 @@ GE14_assembly = DragonCase(
             draglib_name: draglib_alias
         },
         config_yamls={
-            "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
+            "MATS": str(GE14_GENERAL_INPUTS / "material_compositions_void_id.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
             "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"), #f"CALC_SCHEME_2L.yaml"),
         },

@@ -64,13 +64,14 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / "DIAG"
+#GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = True  # Set to False to skip glow geometry generation and case setup
+run_glow = False  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -93,6 +94,7 @@ GE14_assembly = DragonCase(
             "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / "GEOM_DIAG.yaml"),
             "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L_by_pin.yaml"),
+            #"CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_1L.yaml"),
         },
         output_path=str(GE14_OUTPUT),
         tdt_path=str(GE14_OUTPUT),
@@ -168,7 +170,7 @@ if run_dragon:
     print(f"keff:    {run_result.keff}")
     print(f"Time:    {run_result.wall_time_seconds:.1f}s")
     print(f"Results: {run_result.run_directory}")
-    reference_keff_from_S2 = 9.90259E-01
+    reference_keff_from_S2 = 9.90275E-01
     print(f"Reference keff from Serpent2: {reference_keff_from_S2}")
     keff_diff = (run_result.keff - reference_keff_from_S2)*1e5
     print(f"Difference in pcm: {keff_diff:.2f} pcm")
@@ -185,7 +187,7 @@ if export_serpent2:
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
     path_to_yaml_compositions = GE14_GENERAL_INPUTS / "material_compositions.yaml"
-    path_to_yaml_geometry = GE14_DOM_INPUTS / "GEOM.yaml"
+    path_to_yaml_geometry = GE14_DOM_INPUTS / "GEOM_DIAG.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
     ROD_to_material = associate_material_to_rod_ID(
@@ -222,9 +224,9 @@ if export_serpent2:
     settings = S2_Settings()
     settings.title = f"GE-14 BWR fuel cell ({assembly_id}) - Serpent2 export from starterDD, void 0%"
     settings.bc = 2  # Reflective boundary conditions
-    settings.neutrons_per_cycle = 20000
+    settings.neutrons_per_cycle = 2000000
     settings.active_cycles = 5000
-    settings.inactive_cycles = 100
+    settings.inactive_cycles = 1000
     settings.ures = True  # Unresolved resonance probability tables
     settings.set_nuclear_data_evaluation(nuclear_data_library)
     # Optional: set up library paths (uncomment and adjust as needed)
@@ -328,13 +330,13 @@ if export_serpent2:
     if nuclear_data_library == "endfb8r1":
         print("Adding separate 295g detector for U238 using ENDF/B-VIII.1 available reaction data.")
         reaction_isotope_map_295g_U238 = {
-            'disappearance': ['U238'],  # MT=101
-            'fission': ['U238'],  # MT=18
-            'n,gamma': ['U238'],  # MT=102
-            'n,proton': ['U238'],  # MT=103
-            'n,alpha': ['U238'],  # MT=107
-            'n,2n': ['U238'],  # MT=16
-            'n,3n': ['U238'],  # MT=17
+            'disappearance': ['U235', "U238", "Gd155", "Gd157"],  # MT=101
+            'fission': ['U235', "U238"],  # MT=18
+            'n,gamma': ['U235', "U238", "Gd155", "Gd157"],  # MT=102
+            'n,proton': ['U235', "U238", "Gd155", "Gd157"],  # MT=103
+            'n,alpha': ['U235', "U238", "Gd155", "Gd157"],  # MT=107
+            'n,2n': ['U235', "U238", "Gd155", "Gd157"],  # MT=16
+            'n,3n': ['U235', "U238", "Gd155", "Gd157"],  # MT=17
         }
     elif nuclear_data_library == "jeff311":
         reaction_isotope_map_295g_U238 = {
