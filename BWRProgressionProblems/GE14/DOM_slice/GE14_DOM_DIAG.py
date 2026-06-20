@@ -63,9 +63,9 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
 GLOW_DATA = PROJECT_ROOT
 
-case_name_suffix = "FULL"
+case_name_suffix = "DIAG"
 void_id = "00"
-scheme_suffix = "2L"
+scheme_suffix = "1L"
 #GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme" / case_name_suffix
 
