@@ -1,0 +1,18 @@
+INFO:starterDD.InterfaceToDD.case_generator:[TDT] Custom-named file detected for step 'FLUXL2':
+      actual: GE14_DOM_DIAG_FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc_MOC_TSPC.dat
+      standardized would be: GE14_DOM_DIAG_FLUXL2_MOC_TSPC.dat
+INFO:starterDD.InterfaceToDD.dragon_runner:Staging 3 TDT file(s) with standardized names pointing to full names
+INFO:starterDD.InterfaceToDD.dragon_runner:[OK] Staged TDT for step 'SSH':
+  Standardized name: GE14_DOM_DIAG_SSH_IC_TISO_MACRO.dat
+  Points to actual: GE14_DOM_DIAG_SSH_IC_TISO_MACRO.dat
+  Link: /home/apollon/p117902/vscode-tmp/dragon_GE14_DOM_DIAG_akona7ig/GE14_DOM_DIAG_SSH_IC_TISO_MACRO.dat -> /home/apollon/p117902/working_dir/glow_data/starterDD_outputs/GE14/GE14_DOM/2L_scheme/DIAG/GE14_DOM_DIAG_SSH_IC_TISO_MACRO.dat
+INFO:starterDD.InterfaceToDD.dragon_runner:[OK] Staged TDT for step 'FLUXL1':
+  Standardized name: GE14_DOM_DIAG_FLUXL1_IC_TISO_MACRO.dat
+  Points to actual: GE14_DOM_DIAG_FLUXL1_IC_TISO_MACRO.dat
+  Link: /home/apollon/p117902/vscode-tmp/dragon_GE14_DOM_DIAG_akona7ig/GE14_DOM_DIAG_FLUXL1_IC_TISO_MACRO.dat -> /home/apollon/p117902/working_dir/glow_data/starterDD_outputs/GE14/GE14_DOM/2L_scheme/DIAG/GE14_DOM_DIAG_FLUXL1_IC_TISO_MACRO.dat
+INFO:starterDD.InterfaceToDD.dragon_runner:[OK] Staged TDT for step 'FLUXL2':
+  Standardized name: GE14_DOM_DIAG_FLUXL2_MOC_TSPC.dat
+  Points to actual: GE14_DOM_DIAG_FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc_MOC_TSPC.dat
+  Link: /home/apollon/p117902/vscode-tmp/dragon_GE14_DOM_DIAG_akona7ig/GE14_DOM_DIAG_FLUXL2_MOC_TSPC.dat -> /home/apollon/p117902/working_dir/glow_data/starterDD_outputs/GE14/GE14_DOM/2L_scheme/DIAG/GE14_DOM_DIAG_FLUXL2_8_sectors_8_subd_water_rod_30_8_moder_2_sp_wrc_MOC_TSPC.dat
+INFO:starterDD.InterfaceToDD.dragon_runner:Staging draglib 'draglibendfb8r1SHEM295_v5p1' from '/home/apollon/p117902/working_dir/libraries/l_endian/draglibendfb8r1SHEM295_v5p1'
+INFO:starterDD.InterfaceToDD.dragon_runner:Staged draglib 'draglibendfb8r1SHEM295_v5p1' as alias 'endfb8r1295' -> '/home/apollon/p117902/working_dir/libraries/l_endian/draglibendfb8r1SHEM295_v5p1'

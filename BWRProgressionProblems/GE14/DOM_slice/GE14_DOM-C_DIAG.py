@@ -91,7 +91,7 @@ GE14_assembly = DragonCase(
             draglib_name: draglib_alias
         },
         config_yamls={
-            "MATS": str(GE14_GENERAL_INPUTS / "material_compositions_void_id.yaml"),
+            "MATS": str(GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
             "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"), #f"CALC_SCHEME_2L.yaml"),
         },
@@ -185,7 +185,7 @@ if export_serpent2:
     # =====================================================================
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
-    path_to_yaml_compositions = GE14_GENERAL_INPUTS / f"material_compositions_{void_id}.yaml"
+    path_to_yaml_compositions = GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"
     path_to_yaml_geometry = GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)

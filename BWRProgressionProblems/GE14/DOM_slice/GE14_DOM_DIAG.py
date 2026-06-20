@@ -64,13 +64,14 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
+void_id = "00"
 #GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
-run_dragon = False # Set to False for a dry run (no Dragon execution)
+run_dragon = True # Set to False for a dry run (no Dragon execution)
 run_glow = False  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
@@ -91,9 +92,9 @@ GE14_assembly = DragonCase(
             draglib_name: draglib_alias
         },
         config_yamls={
-            "MATS": str(GE14_GENERAL_INPUTS / "material_compositions.yaml"),
-            "GEOM": str(GE14_DOM_INPUTS / "GEOM_DIAG.yaml"),
-            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L_by_pin.yaml"),
+            "MATS": str(GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"),
+            "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
+            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"),
             #"CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_1L.yaml"),
         },
         output_path=str(GE14_OUTPUT),
@@ -182,12 +183,12 @@ if export_serpent2:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)
-    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_00_{nuclear_data_library}.serp"
+    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_{void_id}_{nuclear_data_library}.serp"
     # =====================================================================
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================
-    path_to_yaml_compositions = GE14_GENERAL_INPUTS / "material_compositions.yaml"
-    path_to_yaml_geometry = GE14_DOM_INPUTS / "GEOM_DIAG.yaml"
+    path_to_yaml_compositions = GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"
+    path_to_yaml_geometry = GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"
 
     compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
     ROD_to_material = associate_material_to_rod_ID(
@@ -222,7 +223,7 @@ if export_serpent2:
     # 3. Configure Serpent2 settings
     # =====================================================================
     settings = S2_Settings()
-    settings.title = f"GE-14 BWR fuel cell ({assembly_id}) - Serpent2 export from starterDD, void 0%"
+    settings.title = f"GE-14 BWR fuel cell ({assembly_id}) - Serpent2 export from starterDD, void {void_id}%"
     settings.bc = 2  # Reflective boundary conditions
     settings.neutrons_per_cycle = 2000000
     settings.active_cycles = 5000
