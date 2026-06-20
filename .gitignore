@@ -15,3 +15,5 @@ build
 *.egg
 *.egg-info/
 **results**
+
+*.out

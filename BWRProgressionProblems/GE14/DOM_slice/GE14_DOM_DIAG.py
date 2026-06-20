@@ -63,16 +63,17 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
 GLOW_DATA = PROJECT_ROOT
 
-case_name_suffix = "DIAG"
+case_name_suffix = "FULL"
 void_id = "00"
+scheme_suffix = "2L"
 #GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
-run_dragon = True # Set to False for a dry run (no Dragon execution)
-run_glow = False  # Set to False to skip glow geometry generation and case setup
+run_dragon = False # Set to False for a dry run (no Dragon execution)
+run_glow = True  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -94,7 +95,7 @@ GE14_assembly = DragonCase(
         config_yamls={
             "MATS": str(GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
-            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"),
+            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_{scheme_suffix}.yaml"),
             #"CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_1L.yaml"),
         },
         output_path=str(GE14_OUTPUT),

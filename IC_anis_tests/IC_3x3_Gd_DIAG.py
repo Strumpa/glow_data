@@ -32,9 +32,9 @@ if not os.path.isabs(tdt_output_path):
 if not os.path.exists(tdt_output_path):
     os.makedirs(tdt_output_path)
 
-apply_diagonal_symmetry = True
-sectorize_coolant = False
-spatial_method = "MOC"
+apply_diagonal_symmetry = False
+sectorize_coolant = True
+spatial_method = "IC"
 
 fuel_radius = 0.4435
 gap_radius = 0.4520
@@ -43,8 +43,8 @@ pin_pitch = 1.295
 
 lattice_description = [
     ["ROD1", "ROD1", "ROD1"],
-    ["ROD1", "ROD7", "ROD1"],
-    ["ROD1", "ROD1", "ROD1"]
+    ["ROD1", "ROD1", "ROD1"],
+    ["ROD1", "ROD1", "ROD7"]
 ]
 
 assembly_pitch = 3.885
