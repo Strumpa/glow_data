@@ -63,15 +63,16 @@ DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
 GLOW_DATA = PROJECT_ROOT
 
-case_name_suffix = "DIAG"
+case_name_suffix = "FULL"
 void_id = "00"
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "2L_scheme" / case_name_suffix
+scheme_suffix = "2L"
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = False # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = True # Set to False to skip glow geometry generation and case setup
+run_glow = True  # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"
@@ -93,7 +94,7 @@ GE14_assembly = DragonCase(
         config_yamls={
             "MATS": str(GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
-            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_2L.yaml"), #f"CALC_SCHEME_2L.yaml"),
+            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_{scheme_suffix}.yaml"),
         },
         output_path=str(GE14_OUTPUT),
         tdt_path=str(GE14_OUTPUT),
@@ -169,7 +170,7 @@ if run_dragon:
     print(f"keff:    {run_result.keff}")
     print(f"Time:    {run_result.wall_time_seconds:.1f}s")
     print(f"Results: {run_result.run_directory}")
-    reference_keff_from_S2 = 9.90259E-01
+    reference_keff_from_S2 = 9.90275E-01
     print(f"Reference keff from Serpent2: {reference_keff_from_S2}")
     keff_diff = (run_result.keff - reference_keff_from_S2)*1e5
     print(f"Difference in pcm: {keff_diff:.2f} pcm")
@@ -181,7 +182,7 @@ if export_serpent2:
     
     outout_dir = GE14_SERP_OUTPUT
     outout_dir.mkdir(parents=True, exist_ok=True)
-    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_{case_name_suffix}_{void_id}_{nuclear_data_library}.serp"
+    output_filepath = f"{GE14_SERP_OUTPUT}/{assembly_id}_{void_id}_{nuclear_data_library}.serp"
     # =====================================================================
     # 1. Load material compositions and rod-ID → material mapping
     # =====================================================================

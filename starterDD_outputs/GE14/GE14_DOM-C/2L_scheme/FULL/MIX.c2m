@@ -17,8 +17,6 @@ STRING tran_correc ;
 :: >>tran_correc<< ; ! Transport correction option
 REAL TFUEL TBOX TCLAD TCOOL TMODE TCTRL ;
 :: >>TFUEL<< >>TBOX<< >>TCLAD<< >>TCOOL<< >>TMODE<< >>TCTRL<< ;
-REAL N_H N_O ;
-:: >>N_H<< >>N_O<< ;
 
 * -------------------------------
 *    STRUCTURES AND MODULES
@@ -595,8 +593,8 @@ MIXS LIB: DRAGON FIL: <<Library>>
     MIX 225 COMB 227 1.0
     MIX 224 COMB 227 1.0
     MIX 1 <<TCOOL>> NOEV
-    H1 = H1_H2O <<N_H>>
-    O16 = O16 <<N_O>>
+    H1 = H1_H2O 4.926497E-02
+    O16 = O16 2.463249E-02
 
     MIX 2 <<TCLAD>> NOEV
     Cr50 = Cr50 3.301214E-06
