@@ -54,7 +54,7 @@ except NameError:
     PWD = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "DOM_slice"
 
 assembly_id = "GE14_DOM" # Identifier for the assembly configuration (e.g., "GE14_DOM")
-macro_grouping_type = "3x3_6x6"
+macro_grouping_type = "3x3"
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
 
 GE14_DOM_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" / assembly_id
