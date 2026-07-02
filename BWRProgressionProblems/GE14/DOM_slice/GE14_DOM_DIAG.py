@@ -65,9 +65,10 @@ GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
 void_id = "00"
-scheme_suffix = "2L_fineGd"
+macro_grouping = "1x1" # "3x3_6x6"
+scheme_suffix = "1L_fineGd"
 #GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
-GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme" / case_name_suffix
+GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme_{macro_grouping}" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
@@ -95,7 +96,7 @@ GE14_assembly = DragonCase(
         config_yamls={
             "MATS": str(GE14_GENERAL_INPUTS / f"material_compos_{void_id}.yaml"),
             "GEOM": str(GE14_DOM_INPUTS / f"GEOM_{case_name_suffix}.yaml"),
-            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_{scheme_suffix}.yaml"),
+            "CALC_SCHEME": str(GE14_DOM_INPUTS / f"CALC_SCHEME_{scheme_suffix}_{macro_grouping}.yaml"),
         },
         output_path=str(GE14_OUTPUT),
         tdt_path=str(GE14_OUTPUT),
