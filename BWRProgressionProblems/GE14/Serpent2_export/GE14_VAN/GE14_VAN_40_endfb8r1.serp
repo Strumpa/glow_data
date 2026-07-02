@@ -1,4 +1,4 @@
-set title "GE-14 BWR fuel cell (GE14_VAN) - Serpent2 export from starterDD, void 00%"
+set title "GE-14 BWR fuel cell (GE14_VAN) - Serpent2 export from starterDD, void 40%"
 
 % --- Boundary conditions:
 set bc 2
@@ -1739,8 +1739,8 @@ mat moderator sum tmp 600.0 moder lwtr 1001
     8016.05c 2.463249E-02
 
 mat coolant sum tmp 600.0 moder lwtr 1001
-    1001.05c 4.926497E-02
-    8016.05c 2.463249E-02
+    1001.05c 3.056270E-02
+    8016.05c 1.528135E-02
 
 mat gap sum tmp 600.0
     2004.05c 2.687139E-05

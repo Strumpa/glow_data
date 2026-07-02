@@ -1,4 +1,4 @@
-set title "GE-14 BWR fuel cell (GE14_VAN) - Serpent2 export from starterDD, void 00%"
+set title "GE-14 BWR fuel cell (GE14_VAN) - Serpent2 export from starterDD, void 80%"
 
 % --- Boundary conditions:
 set bc 2
@@ -1739,8 +1739,8 @@ mat moderator sum tmp 600.0 moder lwtr 1001
     8016.05c 2.463249E-02
 
 mat coolant sum tmp 600.0 moder lwtr 1001
-    1001.05c 4.926497E-02
-    8016.05c 2.463249E-02
+    1001.05c 1.186043E-02
+    8016.05c 5.930214E-03
 
 mat gap sum tmp 600.0
     2004.05c 2.687139E-05
@@ -2234,17 +2234,17 @@ ene 2g  1  1.1000E-10  6.2500E-07  1.9640E+01
 %  ISOTOPE RESPONSE MATERIALS (for detectors)
 % ============================================================
 
-mat Gd157  1.0  tmp 900.0
-    64157.09c  1.0
-
 mat U238  1.0  tmp 900.0
     92238.09c  1.0
 
-mat U235  1.0  tmp 900.0
-    92235.09c  1.0
-
 mat Gd155  1.0  tmp 900.0
     64155.09c  1.0
+
+mat Gd157  1.0  tmp 900.0
+    64157.09c  1.0
+
+mat U235  1.0  tmp 900.0
+    92235.09c  1.0
 
 % ============================================================
 %  DETECTOR DEFINITIONS
