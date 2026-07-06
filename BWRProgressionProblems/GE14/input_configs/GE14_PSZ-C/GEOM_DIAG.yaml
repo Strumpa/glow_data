@@ -36,3 +36,20 @@ WATER_ROD_GEOMETRY:
   type: "circular"
   inner_radius : 1.170
   outer_radius : 1.245
+
+CONTROL_CROSS_GEOMETRY:
+  center: "south-west"
+  # control cross dimensions
+  number_tubes_per_wing: 21
+  blade_half_span: 12.3825 # length from cross center to tip, 
+  blade_thickness: 0.79248 # total thickness of the blade, needs to be divided by 2 to split along axis of symmetry, -> done in glow builder
+  tip_radius: 0.39624 # radius of the rounded tip of the blade, optional, if not specified, the blade will have a sharp tip
+  central_structure_half_span: 1.98501 # length from center to begining of absorber tubes array, necessary in case of sheath around the tubes (GE-14 case)
+  # sheath around absorber tubes of thickness "sheath_thickness" leaves a hollow structure for the tubes to be placed in :
+  # the absorber cylinders (rabsorber_tube_inner_radius) are in a sheath annular region (absorber_tube_inner_radius<r<absorber_tube_outer_radius>) and surrounded by moderator (r>absorber_tube_outer_radius but within the sheath ie r<blade_thickness/2 - sheath_thickness)
+  sheath_thickness: 0.14224 # thickness of the sheath around the absorber tubes, distance from inner blade moderator to outer assembly moderator.
+  # absorber tube dimensions
+  absorber_tube_outer_radius: 0.23876
+  absorber_tube_inner_radius: 0.17526
+  absorber_material : "ABS_B4C"
+  sheath_material : "SHEATH_SS304"

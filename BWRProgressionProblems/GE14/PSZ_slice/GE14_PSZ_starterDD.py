@@ -1,13 +1,13 @@
 # DRAGON 2-levels flux calculation scheme with starterDD
-# Generate glow geometries for each calculation step for the GE14 DOM-C assembly,
-# Run dragon with a RSE+IC self shielding step + first level IC on 295g + second level 26g MOC flux calculation.
+# Generate glow geometries for each calculation step for the GE14 VAN assembly,
+# Run dragon with a PT+IC self shielding step + first level IC on 295g + second level 26g MOC flux calculation.
 # At self shielding step and 1st level flux calculation, each pin is divided in Santamarina radial zones, 
 # Material Mixes are numbered by material ie enrichment / fuel type. 
 # Cross sections are condensed from 295g to 26g after the first level flux calculation, 
 # Mixes are duplicated to the "by pin" numbering scheme and assigned to the respective pins,
 # The second level flux calculation is performed on the 26g cross sections with the "by pin" mixes.
 
-# Date : 03/07/2026
+# Date : 08/04/2026
 # R.Guasch
 
 from pathlib import Path
@@ -51,9 +51,9 @@ try:
 except NameError:
     # Running inside glow/SALOME — CWD is /home/user/data/
     PROJECT_ROOT = Path("/home/user/data/glow_data")
-    PWD = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "DOM_slice"
+    PWD = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "PSZ_slice"
 
-assembly_id = "GE14_DOM-C" # Identifier for the assembly configuration
+assembly_id = "GE14_PSZ" # Identifier for the assembly configuration (e.g., "GE14_PSZ", "GE14_DOM", "GE14_VAN")
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
 
 GE14_PSZ_INPUTS = PROJECT_ROOT / "BWRProgressionProblems" / "GE14" / "input_configs" / assembly_id
@@ -65,8 +65,8 @@ GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
 void_id = "80"
-macro_grouping = "3x3_6x6" #"3x3_6x6" # "1x1" # "3x3_6x6"
-scheme_suffix = "2L" # "1L", "2L", "1L_fineGd", "2L_fineGd"
+macro_grouping = "1x1" #"3x3_6x6" # "1x1" # "3x3_6x6"
+scheme_suffix = "1L_fineGd" # "1L", "2L", "1L_fineGd", "2L_fineGd"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme_{macro_grouping}" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
@@ -108,6 +108,7 @@ GE14_assembly.set_fuel_material_temperatures({
     "UOX40": 900.0,
     "UOX40Gd8": 900.0,
     "UOX44": 900.0,
+    "UOX44Gd8" : 900.0,
     "UOX44Gd6": 900.0,
     "UOX44Gd3": 900.0,
     "UOX49": 900.0,

@@ -66,14 +66,14 @@ GLOW_DATA = PROJECT_ROOT
 case_name_suffix = "DIAG"
 void_id = "00"
 macro_grouping = "1x1" # "3x3_6x6"
-scheme_suffix = "1L_fineGd" # "1L", "2L"
+scheme_suffix = "2L_fineGd" # "1L", "2L"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme_{macro_grouping}" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
 
 export_serpent2 = True # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
-run_glow = True  # Set to False to skip glow geometry generation and case setup
+run_glow = True # Set to False to skip glow geometry generation and case setup
 
 if nuclear_data_library == "endfb8r1":
     draglib_name = "draglibendfb8r1SHEM295_v5p1"

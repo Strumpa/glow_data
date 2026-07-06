@@ -1,0 +1,146 @@
+# DRAGON Calculation Scheme for the GE14 BWR progression problem.
+# Defines the sequence of calculation steps (self-shielding, flux)
+# with their respective discretization options.
+#
+# This file is separate from the geometry description (GEOM_GE14_DOM-C.yaml)
+# and the material compositions (material_compositions.yaml).
+
+DRAGON_CALCULATION_SCHEME:
+  name: "GE14_standard"
+
+  steps:
+    # ------------------------------------------------------------------
+    # Step 1: Self-shielding (SSH)
+    #   - RSE method for resonance self-shielding (energy treatment)
+    #   - CP spatial solution for the self-shielding calculation
+    #   - TISO tracking (isotropic)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - No azimuthal sectorization
+    # ------------------------------------------------------------------
+    - name: "SSH"
+      tdt_file_id: "SSH"
+      step_type: "self_shielding"
+      self_shielding_method: "RSE"
+      mix_numbering_strategy: "by_pin"
+      fuel_self_shielded_isotopes: ["U235", "U236", "U238", "U234", "Gd152", "Gd154", "Gd155", "Gd156", "Gd157", "Gd158", "Gd160"]
+      clad_self_shielded_isotopes: ["Zr90", "Zr91", "Zr92", "Zr94", "Zr96", "Fe56", "Hf174", "Hf176", "Hf177", "Hf178", "Hf179", "Hf180"]
+      num_angles_2d: 8
+      line_density: 25.0
+      anisotropy_level: 4
+      spatial_method: "IC"
+      tracking: "TISO"
+      radial_scheme: "Santamarina"
+      export_macros: True
+      sectorization:
+        enabled: false
+        windmill: true
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+          angles:  [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        water_rods:
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [1, 1, 1]
+          angles:  [0, 0, 0]
+
+    # ------------------------------------------------------------------
+    # Step 2: MOC flux calclation
+    #   - MOC spatial solution for the flux calculation
+    #   - TSPC tracking (recommended for MOC)
+    #   - Santamarina radii for fuel zone subdivision
+    #   - Fine azimuthal sectorization (8 sectors with 22.5° angle for all regions)
+    #   - Windmill sectorization on coolant region
+    #   - MACRO properties NOT exported (test case for downstream use of MOC fluxes without IC macros)
+    #   - box_discretization enabled to sub-mesh the assembly periphery for improved MOC accuracy
+    # ------------------------------------------------------------------
+    - name: "FLUXL2"
+      tdt_file_id: "FLUXL2_wr_8_cross_submesh_extend_moder308"
+      step_type: "flux"
+      mix_numbering_strategy: "by_pin"
+      spatial_method: "MOC"
+      tracking: "TSPC"
+      num_angles_2d: 30 # A modifier potentiellement
+      line_density: 115.0 # A modifier potentiellement
+      batch_size: 1000
+      polar_angles_quadrature: "GAUS" # A modifier potentiellement
+      number_of_polar_angles: 4 # A modifier potentiellement
+      radial_scheme: "Santamarina"
+      export_macros: False
+      sectorization:
+        enabled: True
+        windmill: True
+        fuel_pins:
+          # UOX pins: 4 Santamarina fuel zones + gap + clad + coolant = 7 regions
+          sectors: [8, 8, 8, 8, 8, 8, 8]
+          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+        Gd_pins:
+          # Gd pins: 6 Santamarina fuel zones + gap + clad + coolant = 9 regions
+          sectors: [8, 8, 8, 8, 8, 8, 8, 8, 8]
+          angles:  [22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5, 22.5]
+        water_rods:
+          additional_radial_splits_in_moderator: 8
+          subdivisions_coolant_corners: 3
+          # Water rods: moderator + clad + coolant = 3 regions
+          sectors: [16, 16, 16]
+          angles:  [0, 0, 0]
+
+      # Sub-mesh the assembly box periphery for MOC tracking.
+      # corner_splits: grid (nx, ny) for each of the 4 corner regions.
+      # gap_splits: [n_parallel, n_perpendicular] for unaffected side strips.
+      #   Auto-permuted: horizontal strips use (n_par, n_perp) as (nx, ny),
+      #   vertical strips use (n_perp, n_par).
+      # cross_moderator_discretization: optional sub-meshing for moderator
+      #   regions near the control cross. null values → auto-computed from
+      #   gap_splits mesh density.
+      # control_cross_submesh: optional sub-meshing of the control cross
+      #   wings (corner, central structure and absorber pin zones).
+      box_discretization:
+        enabled: True
+        corner_splits: [8,8]
+        gap_splits: [30, 8]      # [n_parallel, n_perpendicular]
+        cross_moderator_discretization:
+          cross_side_gap_splits: [30, 8]    # (n_parallel, n_perpendicular) for affected sides near cross
+          moderator_at_cross_corner_splits: [8,8]  # auto from gap_splits density
+          stub_splits: [8, 3]          # auto from gap_splits density
+        control_cross_submesh:
+          enabled: true
+          control_cross_corner_splits: [1, 1] # (n_along_arm, n_across_arm)
+          central_structure_splits: [3, 2]  # (n_along_arm, n_across_arm)
+          extend_splits_at_tube_boundaries: true
+          split_tubes_in_half: false
+
+
+# config file block to specify what outputs are to be generated by the calculation scheme. This is used to automate the creation of calls to the EDI and COMPO modules.
+CALCULATION_OUTPUTS:
+  - name: "EDIHOM_COND"
+    comment: "Condensed, homogenized over all fuel cells"
+    spatial_integration_mode : "FUEL"
+    isotopes: ["U234", "U235", "U236", "U238", "Pu239", "Pu240", "Pu241", "Pu242", "Gd155", "Gd157", "Xe135", "Sm149"]
+    energy_bounds : [] # implicit min and max bounds : condense over the whole energy range
+    state_points: "ALL"
+  
+  - name: "EDIHOM_295"
+    comment: "Homogenized over all materials"
+    isotopes: ["U238"] # 
+    spatial_intergation_mode : "ALL"
+    energy_bounds : None # None : no condensation, keep all energy groups
+    state_points: "ALL"
+      
+  - name: "EDIR_2G"
+    comment: "Condensed to 2g, per pin homogenization"
+    isotopes: ["U234", "U235", "U236", "U238", "Gd155", "Gd157"]
+    spatial_integration_mode: "by_pin"
+    energy_bounds: [0.625] # cut the properties into 2 groups : thermal below 0.625 eV and fast above,
+    state_points: "ALL"
+
+  - name: "U238_295"
+    comment: "U238, 295g, homogenized over all fuel cells"
+    isotopes: ["U238"]
+    spatial_integration_mode: "FUEL"
+    energy_bounds: "None"
+    state_points: "ALL"
+    
