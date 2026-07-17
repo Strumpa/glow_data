@@ -65,8 +65,8 @@ GLOW_DATA = PROJECT_ROOT
 
 case_name_suffix = "DIAG"
 void_id = "00"
-macro_grouping = "1x1" # "3x3_6x6"
-scheme_suffix = "2L_fineGd" # "1L", "2L"
+macro_grouping = "3x3_ssh_3x3_6x6" # "3x3_6x6"
+scheme_suffix = "2L" # "1L", "2L"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme_{macro_grouping}" / case_name_suffix
 
 GE14_SERP_OUTPUT = GLOW_DATA / "BWRProgressionProblems" / "GE14" / "Serpent2_export" / assembly_id
