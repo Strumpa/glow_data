@@ -7,7 +7,7 @@
 # Mixes are duplicated to the "by pin" numbering scheme and assigned to the respective pins,
 # The second level flux calculation is performed on the 26g cross sections with the "by pin" mixes.
 
-# Date : 08/04/2026
+# Date : 08/04/2026, refactor on 07/07/2026
 # R.Guasch
 
 from pathlib import Path
@@ -17,11 +17,25 @@ try:
     from glow.support.types import GeometryType, PropertyType
     from starterDD.starterDD.InterfaceToDD.case_generator import DragonCase
     GLOW_AVAILABLE = True
-    
+    from starterDD.starterDD.DDModel.helpers import associate_material_to_rod_ID
+    from starterDD.starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+    from starterDD.starterDD.DDModel import CartesianAssemblyModel
+    from starterDD.starterDD.InterfaceToDD.Serpent2_exports import (
+        Serpent2Model,
+        S2_Settings,
+        S2_EnergyGrid,
+    )
 except ImportError:
-    
     GLOW_AVAILABLE = False
     from starterDD.InterfaceToDD.case_generator import DragonCase
+    from starterDD.DDModel.helpers import associate_material_to_rod_ID
+    from starterDD.MaterialProperties.material_mixture import parse_all_compositions_from_yaml
+    from starterDD.DDModel import CartesianAssemblyModel
+    from starterDD.InterfaceToDD.Serpent2_exports import (
+        Serpent2Model,
+        S2_Settings,
+        S2_EnergyGrid,
+    )
 
 # =====================================================================
 # Configuration paths — anchored to the project root so the script
@@ -32,28 +46,29 @@ except ImportError:
 # Docker mount point.
 # =====================================================================
 try:
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
     PWD = Path(__file__).resolve().parent
 except NameError:
     # Running inside glow/SALOME — CWD is /home/user/data/
     PROJECT_ROOT = Path("/home/user/data/glow_data")
     PWD = PROJECT_ROOT / "ATRIUM10_cases" / "assembly_models"
 
-assembly_id = "AT10_VAN" # Identifier for the assembly configuration (e.g., "GE14_DOM")
+assembly_id = "AT10_VAN"
 nuclear_data_library = "endfb8r1"  # Options: "endfb8r1", "jeff311"
 
-AT10_VAN_INPUTS = PROJECT_ROOT / "ATRIUM10_cases" / "assembly_models" / "input_configs" / assembly_id
+AT10_NOM_INPUTS = PROJECT_ROOT / "ATRIUM10_cases" / "assembly_models" / "input_configs" / assembly_id
 DRAGON_EXEC = os.environ.get('dragon_exec', 'path/to/dragon_executable')
 DRAGLIBS_PATH = Path(os.environ.get('DRAGLIB_DIR', "/path/to/draglibs"))
 
-# glow_data sits next to the starterDD project root
 GLOW_DATA = PROJECT_ROOT
 
-AT10_OUTPUT = GLOW_DATA / "starterDD_outputs" / "AT10" / assembly_id / "2L_scheme" / "by_pin"
+case_name_suffix = "DIAG_2L"
+void_id = "00" 
+AT10_OUTPUT = GLOW_DATA / "starterDD_outputs" / "AT10" / assembly_id / case_name_suffix
 
-AT10_SERP_OUTPUT = GLOW_DATA / "ATRIUM10_cases" / "assembly_models" / "Serpent2_export" / assembly_id
+AT10_SERP_OUTPUT = GLOW_DATA / "ATRIUM10_cases" / "AT10" / "Serpent2_export" / assembly_id
 
-export_serpent2 = False # Set to False to skip Serpent2 export step
+export_serpent2 = True # Set to False to skip Serpent2 export step
 run_dragon = False # Set to False for a dry run (no Dragon execution)
 run_glow = True # Set to False to skip glow geometry generation and case setup
 
@@ -66,19 +81,16 @@ elif nuclear_data_library == "jeff311":
 else:
     raise ValueError(f"Unsupported nuclear data library: {nuclear_data_library}")
 
-case_name_suffix = "by_pin"
-calculation_scheme = "CALC_SCHEME"
-
 AT10_assembly = DragonCase(
-        case_name=f"{assembly_id}_{case_name_suffix}",
+        case_name=f"{assembly_id}",
         call_glow=run_glow,
         draglib_name_to_alias={
             draglib_name: draglib_alias
         },
         config_yamls={
-            "MATS": str(AT10_VAN_INPUTS / "MATS.yaml"),
-            "GEOM": str(AT10_VAN_INPUTS / "GEOM.yaml"),
-            "CALC_SCHEME": str(AT10_VAN_INPUTS / f"{calculation_scheme}.yaml"),
+            "MATS": str(AT10_NOM_INPUTS / f"material_compositions.yaml"),
+            "GEOM": str(AT10_NOM_INPUTS / f"GEOM.yaml"),
+            "CALC_SCHEME": str(AT10_NOM_INPUTS / f"CALC_SCHEME.yaml"),
         },
         output_path=str(AT10_OUTPUT),
         tdt_path=str(AT10_OUTPUT),
@@ -140,7 +152,7 @@ if run_dragon:
         draglib_paths={
             draglib_name: (DRAGLIBS_PATH / draglib_name),
         },
-        results_root=f"{str(PWD)}/results/{assembly_id}_{case_name_suffix}",
+        results_root=f"{str(PWD)}/results/{assembly_id}",
         num_threads=20,
     )
     print(f"Draglibs path used: {DRAGLIBS_PATH / draglib_name}")
@@ -153,3 +165,187 @@ if run_dragon:
     print(f"Reference keff from Serpent2: {reference_keff_from_S2}")
     keff_diff = (run_result.keff - reference_keff_from_S2)*1e5
     print(f"Difference in pcm: {keff_diff:.2f} pcm")
+
+
+# export to Serpent2
+if export_serpent2:
+    
+    outout_dir = AT10_SERP_OUTPUT
+    outout_dir.mkdir(parents=True, exist_ok=True)
+    output_filepath = f"{AT10_SERP_OUTPUT}/{assembly_id}_{void_id}_{nuclear_data_library}.serp"
+    # =====================================================================
+    # 1. Load material compositions and rod-ID → material mapping
+    # =====================================================================
+    path_to_yaml_compositions = AT10_NOM_INPUTS / f"material_compositions.yaml"
+    path_to_yaml_geometry = AT10_NOM_INPUTS / f"GEOM.yaml"
+
+    compositions = parse_all_compositions_from_yaml(path_to_yaml_compositions)
+    ROD_to_material = associate_material_to_rod_ID(
+        path_to_yaml_compositions, path_to_yaml_geometry
+    )
+
+    # =====================================================================
+    # 2. Build the CartesianAssemblyModel
+    # =====================================================================
+    AT10_assembly = CartesianAssemblyModel(
+        name=f"{assembly_id}_serpent2",
+        tdt_file="dummy.tdt",  # Not used for Serpent2 export
+        geometry_description_yaml=path_to_yaml_geometry,
+    )
+    AT10_assembly.set_rod_ID_to_material_mapping(ROD_to_material)
+    AT10_assembly.set_uniform_temperatures(
+        fuel_temperature=900.0,
+        gap_temperature=600.0,
+        coolant_temperature=600.0,
+        moderator_temperature=600.0,
+        structural_temperature=600.0,
+    )
+    # Build pins with self-shielding radii from YAML (Santamarina prescription)
+    AT10_assembly.analyze_lattice_description(build_pins=True, apply_self_shielding="from_yaml")
+    AT10_assembly.set_material_compositions(compositions)
+
+    # Number fuel material mixtures by pin (creates unique names like UOX24_zone1_pin3)
+    AT10_assembly.number_fuel_material_mixtures_by_pin()
+    AT10_assembly.identify_generating_and_daughter_mixes()
+
+    # =====================================================================
+    # 3. Configure Serpent2 settings
+    # =====================================================================
+    settings = S2_Settings()
+    settings.title = f"AT10 BWR fuel bundle ({assembly_id}) - Serpent2 export from starterDD, void {void_id}%"
+    settings.bc = 2  # Reflective boundary conditions
+    settings.neutrons_per_cycle = 2000000
+    settings.active_cycles = 5000
+    settings.inactive_cycles = 1000
+    settings.ures = True  # Unresolved resonance probability tables
+    settings.set_nuclear_data_evaluation(nuclear_data_library)
+    # Optional: set up library paths (uncomment and adjust as needed)
+    # settings.set_endfb8r1_libraries("/path/to/nuclear_data")
+    # settings.set_jeff311_libraries("/path/to/nuclear_data")
+
+    # Add geometry plot
+    settings.add_plot(plot_type=3, x_pixels=1500, y_pixels=1500)
+
+    # =====================================================================
+    # 4. Build the Serpent2Model
+    # =====================================================================
+    print("Building Serpent2 model...")
+    model = Serpent2Model(assembly_model=AT10_assembly, settings=settings)
+
+    # Build geometry: pins, lattice, channel box
+    model.build(
+        gap_material_name="gap",
+        clad_material_name="zr2",
+        coolant_material_name="coolant",
+        outer_water_material_name="moderator",
+        channel_box_material_name="zr4",
+        lattice_name="10",
+        empty_universe_name="empty",
+    )
+
+    # Add structural (non-fuel) materials from the assembly composition lookup
+    model.build_structural_materials_from_assembly(
+        name_map={
+            "COOLANT": "coolant",
+            "CLAD": "zr2",
+            "GAP": "gap",
+            "MODERATOR": "moderator",
+            "CHANNEL_BOX": "zr4",
+        },
+        temperature_map={
+            "COOLANT": 600.0,
+            "CLAD": 600.0,
+            "GAP": 600.0,
+            "MODERATOR": 600.0,
+            "CHANNEL_BOX": 600.0,
+        },
+    )
+
+    # =====================================================================
+    # 5. Add detectors for fission and absorption reactions
+    # =====================================================================
+    print("Adding detectors for reaction rates...")
+
+    # Define reaction-to-isotope mapping:
+    # - Fission (MT=18): Only actinides with fission data
+    # - Absorption (MT=27): All isotopes of interest (actinides + Gd poisons)
+    #
+    # To reconstruct DRAGON neutronic absorption the following are needed :
+    # MT 102 (n,gamma), 103 (n,proton), 104 (n,deutron), 105 (n,ttriton), 107 (n,alpha), 108 (n,2alpha) 28 (n,np), 16 (n,2n), 17 (n,3n), 37 (n,4n)
+    # This ensures each isotope is only scored for reactions where it has data.
+    if nuclear_data_library == "endfb8r1":
+        print("Using ENDF/B-VIII.1 nuclear data library for detector configuration.")
+        reaction_isotope_map = {
+            'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
+            'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
+            'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
+            'n,proton': ['U238'],  # MT=103, not available for U235 in ENDF/B-VIII.1
+            'n,alpha': ['U235', 'U238'],  # MT=107
+            'n,2n': ['U235', 'U238'],  # MT=16
+            'n,3n': ['U235', 'U238'],  # MT=17
+        }
+    elif nuclear_data_library == "jeff311":
+            reaction_isotope_map = {
+            'disappearance': ['U235', 'U238', 'Gd155', 'Gd157'],  # All tracked, MT=101
+            'fission': ['U235', 'U238'],  # Actinides with fission XS MT=18
+            'n,gamma': ['U235', 'U238', 'Gd155', 'Gd157'],  # MT=102
+            'n,2n': ['U235', 'U238'],  # MT=16
+            'n,3n': ['U235', 'U238'],  # MT=17
+            'n,4n': ['U235', 'U238'],  # MT=37
+        }
+
+    # Add detector configuration:
+    # - Creates energy grid (295g from SHEM295)
+    # - Creates single-isotope response materials for each unique isotope
+    # - Creates one detector per unique fuel pin
+    # - Uses dm cards for FUEL MATERIALS ONLY (excludes gap, clad, coolant)
+    # - Uses dt -4 to sum scores over all fuel material zones within each pin
+    #   This matches the Dragon _by_pin numbering convention where all radial
+    #   zones of a pin are grouped together for reaction rate tallying.
+    model.add_detector_config(
+        reaction_isotope_map=reaction_isotope_map,
+        energy_grid_name="295g",  # Use fine 295g energy grid for condensed reaction rates
+        fuel_temperature=900.0,
+        detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
+    )
+
+    model.add_detector_config(
+        reaction_isotope_map=reaction_isotope_map,
+        energy_grid_name="full",  # Use fully energy condensed grid for 1g reaction rates
+        fuel_temperature=900.0,
+        detector_type=-4,  # dt -4: sum over dm materials (all fuel zones of a pin)
+    )
+
+    # Optionally add a global flux detector
+    model.add_flux_detector(energy_grid_name="295g", name="flux_295g")
+    model.add_flux_detector(energy_grid_name="26g", name="flux_26g")
+    model.add_flux_detector(energy_grid_name="2g", name="flux_2g")
+
+    # =====================================================================
+    # 6. Print summary and write output
+    # =====================================================================
+    print(model.summary())
+
+    model.write(output_filepath)
+
+    print(f"\nSerpent2 model exported to: {output_filepath}")
+    print(f"  - Total materials: {len(model.materials)}")
+    print(f"  - Pin universes: {len(model.pin_universes)}")
+    print(f"  - Detectors: {len(model.detectors)}")
+    print(f"  - Isotope response materials: {len(model.isotope_response_materials)}")
+
+    # =====================================================================
+    # 7. Summary of detector configuration
+    # =====================================================================
+    print("\n" + "=" * 60)
+    print("  DETECTOR SUMMARY")
+    print("=" * 60)
+    print("  Reaction-isotope mapping (per-pin 295g detectors):")
+    for reaction, isotopes in reaction_isotope_map.items():
+        print(f"    - {reaction}: {', '.join(isotopes)}")
+    print(f"  Domain: dm cards for FUEL MATERIALS ONLY per pin")
+    print(f"  Detector type: dt -4 (sum over fuel zones per pin)")
+    print(f"  Energy grid: full range (integrated over all energies)")
+    print(f"  Total detectors: {len(model.detectors)}")
+    print("=" * 60)
+

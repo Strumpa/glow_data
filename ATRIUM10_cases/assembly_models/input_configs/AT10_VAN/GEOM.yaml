@@ -25,13 +25,14 @@ ASSEMBLY_GEOMETRY:
     - ["ROD5", "VANR", "ROD7", "ROD6", "WROD", "WROD", "WROD", "ROD3", "ROD7", "ROD4"]
     - ["ROD4", "ROD6", "ROD6", "ROD7", "WROD", "WROD", "WROD", "ROD4", "ROD4", "ROD4"]
     - ["ROD3", "ROD7", "ROD6", "ROD6", "ROD4", "ROD3", "ROD4", "ROD4", "ROD8", "ROD3"]
-    - ["ROD2", "VANR", "ROD7", "ROD5", "ROD6", "VANR", "ROD4", "ROD8", "VANR", "ROD2"]
+    - ["ROD2", "VANR", "ROD7", "ROD5", "VANR", "ROD7", "ROD4", "ROD8", "VANR", "ROD2"]
     - ["ROD1", "ROD2", "ROD3", "ROD4", "ROD4", "ROD4", "ROD4", "ROD3", "ROD2", "ROD1"]
 
   assembly_pitch: 15.24
   gap_wide: 0.75
   channel_box_thickness: 0.17
   corner_inner_radius_of_curvature: 0
+  number_of_water_rods : 1
 
   Gd_rod_ids: ["ROD7", "ROD8"]
   non_fuel_rod_ids: ["WROD", "VANR"]
@@ -40,4 +41,3 @@ WATER_ROD_GEOMETRY:
   type: "square"
   inner_side : 3.34
   outer_side : 3.5
-  centers: [[8.2675, 8.2675]]

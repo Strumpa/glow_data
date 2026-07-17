@@ -66,7 +66,7 @@ GLOW_DATA = PROJECT_ROOT
 case_name_suffix = "DIAG"
 void_id = "00"
 macro_grouping = "1x1" # "3x3_6x6"
-scheme_suffix = "1L_fineGd"
+scheme_suffix = "1L"
 #GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / "1L_scheme" / "DIAG"
 GE14_OUTPUT = GLOW_DATA / "starterDD_outputs" / "GE14" / assembly_id / f"{scheme_suffix}_scheme_{macro_grouping}" / case_name_suffix
 
